@@ -1,0 +1,453 @@
+
+<form name="form1" method="post" action="?" onsubmit="block_answers_warn();">
+
+<table border="0" cellpadding="4" cellspacing="0" align="left">
+
+<tr>
+  <td valign="top" height="18" colspan="2">
+  <!-- TMPL_VAR NAME=top_message -->
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top"  >
+    <font face="Arial, Helvetica, sans-serif" size="3">Group Name </font>
+    <font face="Arial, Helvetica, sans-serif" size="2"><br></font>
+  </td>
+  <td valign="top" colspan="2">
+    <input
+      type="text"
+      id="groupname"
+      name="groupname"
+      value="<!-- TMPL_VAR NAME=groupname_variable_string -->"
+      size="50"
+      maxlength="50"
+    >
+    <!-- TMPL_VAR NAME=groupname_error_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top"  >
+    <font face="Arial, Helvetica, sans-serif" size="3">Group Approval Status </font>
+    <font face="Arial, Helvetica, sans-serif" size="2"><br></font>
+  </td>
+  <td valign="top" colspan="2">
+    <b><!-- TMPL_VAR NAME=group_status_variable_string --></b>
+    (<a href='admin_group_check.php?group_id=<!-- TMPL_VAR NAME=group_id_variable_string -->'>CHANGE</a>)
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top"  >
+    <font face="Arial, Helvetica, sans-serif" size="3">Groups with Similar Names </font>
+    <font face="Arial, Helvetica, sans-serif" size="2"><br></font>
+  </td>
+  <td valign="top" colspan="2">
+    Name Base: <b><!-- TMPL_VAR NAME=group_name_base_variable_string --></b>
+    (<a href='admin_group_check.php?search=<!-- TMPL_VAR NAME=group_name_base_variable_string -->'><!-- TMPL_VAR NAME=same_name_base_variable_string --></a>)
+    <br/>
+    SoundeX: <b><!-- TMPL_VAR NAME=group_soundex_variable_string --></b>
+    (<a href='admin_group_check.php?search=<!-- TMPL_VAR NAME=group_soundex_variable_string -->'><!-- TMPL_VAR NAME=same_soundex_variable_string --></a>)
+    <br/>
+    Metaphone: <b><!-- TMPL_VAR NAME=group_metaphone_variable_string --></b>
+    (<a href='admin_group_check.php?search=<!-- TMPL_VAR NAME=group_metaphone_variable_string -->'><!-- TMPL_VAR NAME=same_metaphone_variable_string --></a>)
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top" >First Choice</td>
+  <td valign="top" align="left" colspan="2">
+  <select
+    id="first_block_choice"
+    name="first_block_choice"
+    onChange="check_block_answers()"
+  >
+  <option SELECTED>
+    <!-- TMPL_VAR NAME=first_block_choice_variable_string -->
+  </option>
+  <!-- TMPL_VAR NAME=block_list -->
+  </select>
+  <span id="block_1_comment" style='font-weight:bold; color:red'>checking ...</span>
+  <!-- TMPL_VAR NAME=first_block_choice_error_string -->
+  </td>
+</tr>
+<tr>
+  <td height="35" valign="top"  >Second Choice</td>
+  <td valign="top" colspan="2">
+  <select
+    id="second_block_choice"
+    name="second_block_choice"
+    onChange="check_block_answers()"
+  >
+  <option SELECTED>
+    <!-- TMPL_VAR NAME=second_block_choice_variable_string -->
+  </option>
+  <!-- TMPL_VAR NAME=block_list -->
+  </select>
+  <span id="block_2_comment" style='font-weight:bold; color:red'>checking ...</span>
+  <!-- TMPL_VAR NAME=second_block_choice_error_string -->
+  </td>
+</tr>
+
+<tr>
+<td height="35" valign="top"  >Third Choice</td>
+<td valign="top" colspan="2">
+  <select
+    id="third_block_choice"
+    name="third_block_choice"
+    onChange="check_block_answers()"
+  >
+  <option SELECTED>
+  <!-- TMPL_VAR NAME=third_block_choice_variable_string -->
+  </option>
+  <!-- TMPL_VAR NAME=block_list -->
+  </select>
+  <span id="block_3_comment" style='font-weight:bold; color:red'>checking ...</span>
+  <!-- TMPL_VAR NAME=third_block_choice_error_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top"  >Fourth Choice</td>
+  <td valign="top" colspan="2">
+  <select
+    id="fourth_block_choice"
+    name="fourth_block_choice"
+    onchange="check_block_answers()"
+  >
+  <option SELECTED>
+  <!-- TMPL_VAR NAME=fourth_block_choice_variable_string -->
+  </option>
+  <!-- TMPL_VAR NAME=block_list -->
+  </select>
+  <span id="block_4_comment" style='font-weight:bold; color:red'>checking ...</span>
+  <!-- TMPL_VAR NAME=fourth_block_choice_error_string -->
+  </td>
+</tr>
+
+<tr>
+  <td>Block choices valid: (don't edit!)</td>
+  <td valign="top" colspan="2">
+    <input
+      type="text"
+      name="block_choices_valid"
+      id="block_choices_valid"
+      value="<!-- TMPL_VAR NAME=block_choices_valid>"
+    />
+  </td>
+</tr>
+
+
+<tr><td colspan='3'><hr color='blue' /></td></tr>
+
+<tr>
+  <td height="35" valign="top"  >Final Location</td>
+  <td valign="top" colspan="2">
+  <select
+    name="final_block_location"
+  >
+  <option SELECTED>
+    <!-- TMPL_VAR NAME=final_block_location_variable_string -->
+  </option>
+  <!-- TMPL_VAR NAME=block_list -->
+  </select>
+  <!-- TMPL_VAR NAME=final_block_location_error_string -->
+  </td>
+</tr>
+
+<tr><td colspan='3'><hr color='blue' /></td></tr>
+
+<tr>
+  <td height="35" valign="top">On Site Rep Name<br>ex: Lord Fred Freddssonn</td>
+  <td valign="top" colspan="2">
+  <input
+    type="text"
+    name="on_site_representative"
+    value="<!-- TMPL_VAR NAME=on_site_representative_variable_string -->"
+    size="50"
+    maxlength="50"
+  >
+  <!-- TMPL_VAR NAME=on_site_representative_error_string -->
+  </td>
+</tr>
+
+<tr>
+  <td valign="top" height="18" colspan="3">
+  <!-- Spacer -->&nbsp;
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top"  >Compression Percentage</td>
+  <td valign="top" colspan="2">
+  <select
+    name="compression_percentage"
+  >
+  <option SELECTED>
+    <!-- TMPL_VAR NAME=compression_percentage_variable_string -->
+  </option>
+  <option>0</option>
+  <option>5</option>
+  <option>10</option>
+  <option>15</option>
+  <option>20</option>
+  </select>
+  <!-- TMPL_VAR NAME=compression_percentage_error_string -->
+  </td>
+</tr>
+
+<tr><td colspan="3">Land Agent Notes:</td></tr>
+<tr>
+  <td height="36" colspan="3" valign="top">
+  <div align="center">
+  <textarea
+    name="other_group_information"
+    cols="60"
+    rows="10"><!-- TMPL_VAR NAME=other_group_information_variable_string --></textarea>
+    <br>
+    <!-- TMPL_VAR NAME=other_group_information_error_string -->
+  </div>
+  </td>
+</tr>
+
+<tr><td colspan="3">Administrative Notes (not visible to land agent):</td></tr>
+<tr>
+  <td height="36" colspan="3" valign="top">
+  <div align="center">
+  <textarea
+    name="other_admin_information"
+    cols="60"
+    rows="10"><!-- TMPL_VAR NAME=other_admin_information_variable_string --></textarea>
+    <br>
+    <!-- TMPL_VAR NAME=other_admin_information_error_string -->
+  </div>
+  </td>
+</tr>
+
+<tr>
+  <td height="38" valign="top"  >
+  <font face="Arial, Helvetica, sans-serif" size="3">Reserved</font><br>
+  <font face="Arial, Helvetica, sans-serif" size="2">ex: 1 or 0</font>
+  </td>
+  <td valign="top" width="*"  >
+  <input
+    type="text"
+    name="reserved_group"
+    value="<!-- TMPL_VAR NAME=reserved_group_variable_string -->"
+    size="2"
+    maxlength="1" />
+    <!-- TMPL_VAR NAME=reserved_group_error_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="38" valign="top"  >
+  <font face="Arial, Helvetica, sans-serif" size="3">New Group</font><br>
+  <font face="Arial, Helvetica, sans-serif" size="2">ex: 1 or 0</font>
+  </td>
+  <td valign="top" width="*"  >
+  <input
+    type="text"
+    name="new_group"
+    value="<!-- TMPL_VAR NAME=new_group_variable_string -->"
+    size="2"
+    maxlength="1">
+  <!-- TMPL_VAR NAME=new_group_error_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="38" valign="top"  >
+  <font face="Arial, Helvetica, sans-serif" size="3">Staff Group</font><br>
+  <font face="Arial, Helvetica, sans-serif" size="2">ex: 1 or 0</font>
+  </td>
+  <td valign="top" width="*"  >
+  <input
+    type="text"
+    name="staff_group"
+    value="<!-- TMPL_VAR NAME=staff_group_variable_string -->"
+    size="2"
+    maxlength="1">
+  <!-- TMPL_VAR NAME=staff_group_error_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="38" valign="top"  >
+  <font face="Arial, Helvetica, sans-serif" size="3">Registration Complete</font><br>
+  <font face="Arial, Helvetica, sans-serif" size="2">ex: 1 or 0</font>
+  </td>
+  <td valign="top" width="*"  >
+  <input
+    type="text"
+    name="registration_complete"
+    value="<!-- TMPL_VAR NAME=registration_complete_variable_string -->"
+    size="2"
+    maxlength="1">
+  <!-- TMPL_VAR NAME=registration_complete_error_string -->
+  <!-- TMPL_VAR NAME=complete_registration_linkcode -->
+  </td>
+</tr>
+
+<tr>
+  <td height="38" valign="top"  >
+  <font face="Arial, Helvetica, sans-serif" size="3">Time Registered</font><br>
+  </td>
+  <td valign="top" width="*"  >
+  <!-- TMPL_VAR NAME=time_registered_variable_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top">
+  <font face="Arial, Helvetica, sans-serif" size="3">Fixed Land Allocation</font><br>
+  <font size="2" face="Arial, Helvetica, sans-serif" >ex: 10000</font>
+  </td>
+  <td valign="top" colspan="2">
+  <input
+    type="text"
+    name="exact_land_amount"
+    value="<!-- TMPL_VAR NAME=exact_land_amount_variable_string -->"
+    size="10"
+    maxlength="10"
+  >
+  <!-- TMPL_VAR NAME=exact_land_amount_error_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="38" valign="top"  >
+  <font face="Arial, Helvetica, sans-serif" size="3">Calcuated Square Footage</font><br>
+  </td>
+  <td valign="top" width="*"  >
+  <!-- TMPL_VAR NAME=calculated_square_footage_variable_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="38" valign="top"  >
+  <font face="Arial, Helvetica, sans-serif" size="3">Alloted Square Footage</font><br>
+  </td>
+  <td valign="top" width="*"  >
+  <!-- TMPL_VAR NAME=alloted_square_footage_variable_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="38" valign="top"  >
+  <font face="Arial, Helvetica, sans-serif" size="3">GroupID</font><br>
+  </td>
+  <td valign="top" width="*"  >
+  <!-- TMPL_VAR NAME=group_id_variable_string -->
+  </td>
+</tr>
+
+<input name="id" type="HIDDEN" value="<!-- TMPL_VAR NAME=group_id_variable_string -->">
+
+<tr>
+  <td height="35" valign="top">
+  <font face="Arial, Helvetica, sans-serif" size="3">UserID</font><br>
+  <font size="2" face="Arial, Helvetica, sans-serif" ></font>
+  </td>
+  <td valign="top" colspan="2">
+  <input
+    type="text"
+    name="user_id"
+    value="<!-- TMPL_VAR NAME=user_id_variable_string -->"
+    size="10"
+    maxlength="10"
+  >
+  &nbsp;
+  <a href="admin_users.php?id=<!-- TMPL_VAR NAME=user_id_variable_string -->" target="_blank">Edit&nbsp;User</a>
+  &nbsp;
+  <a href="admin_masquerade.php?id=<!-- TMPL_VAR NAME=user_id_variable_string -->" target="_blank">BECOME&nbsp;USER</a>
+  &nbsp;
+  <!-- TMPL_VAR NAME=user_id_error_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top">
+  <font face="Arial, Helvetica, sans-serif" size="3">Bonus Footage</font><br>
+  <font size="2" face="Arial, Helvetica, sans-serif" ></font>
+  </td>
+  <td valign="top" colspan="2">
+  <input
+    type="text"
+    name="bonus_footage"
+    value="<!-- TMPL_VAR NAME=bonus_footage_variable_string -->"
+    size="10"
+    maxlength="10"
+  >
+  <!-- TMPL_VAR NAME=bonus_footage_error_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top">
+  <font face="Arial, Helvetica, sans-serif" size="3">Bonus Reason</font><br>
+  <font size="2" face="Arial, Helvetica, sans-serif" ></font>
+  </td>
+  <td valign="top" colspan="2">
+  <input
+    type="text"
+    name="bonus_reason"
+    value="<!-- TMPL_VAR NAME=bonus_reason_variable_string -->"
+    size="50"
+    maxlength="255"
+  >
+  <!-- TMPL_VAR NAME=bonus_reason_error_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top">
+    <font face="Arial, Helvetica, sans-serif" size="3">Email Merge</font><br>
+    <font size="2" face="Arial, Helvetica, sans-serif" ></font>
+  </td>
+  <td height="35" valign="top" colspan="3">
+      <span style="color:green; font-weight:bold">
+    A total of
+    <a href='admin_email_history.php?group_id=<!-- TMPL_VAR NAME=group_id_variable_string -->'>
+      <!-- TMPL_VAR NAME=email_merges_count_string --> email merges</a>
+    have been sent to this group.
+      </span>
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top">
+  <font face="Arial, Helvetica, sans-serif" size="3">Group History</font><br>
+  <font size="2" face="Arial, Helvetica, sans-serif" ></font>
+  </td>
+  <td valign="top" colspan="2">
+      <span style="color:blue; font-weight:bold">
+    This group has
+    <a href='admin_history.php?id=<!-- TMPL_VAR NAME=group_id_variable_string -->'>
+      <!-- TMPL_VAR NAME=group_history_count_string --> years of history</a>
+    since its creation.
+      </span>
+  </td>
+</tr>
+
+<tr>
+  <td height="20" colspan="3" valign="top">&nbsp;</td>
+</tr>
+<tr >
+  <td height="33" colspan="3" valign="top"  >
+  <input
+    type="submit"
+    value="Continue"
+    name="action"
+  >
+  <input
+    type="reset"
+    value="Reset"
+  >
+  </td>
+</tr>
+
+</table>
+
+</form>

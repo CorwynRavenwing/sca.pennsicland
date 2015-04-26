@@ -1,0 +1,157 @@
+<style>
+
+.BRB {    /* big red button */
+  font-size: 1.5em;
+  color:#FFFF00;
+  background-color:#FF0000;
+  white-space:normal;
+}
+
+.header_row {
+  background-color:silver;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.prev {
+  color:#555555;
+  white-space:nowrap;
+}
+
+.past {
+  color:#555555;
+  font-size:0.75em;
+  white-space:nowrap;
+  text-decoration:line-through;
+}
+
+.prev .dontshow {
+  text-decoration:line-through;
+}
+
+.prev .showprev {
+  font-size:1.15em;
+  font-weight:bold;
+  background-color:yellow;
+  text-decoration:none;
+}
+
+.current {
+  font-size:1.15em;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.next {
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.future {
+  font-size:0.75em;
+  white-space:nowrap;
+}
+
+.mode {
+
+}
+
+.submode {
+  font-size:0.75em;
+}
+
+.description {
+  font-size:0.75em;
+  white-space:normal;
+}
+
+</style>
+
+<h1>Calendar - administration view</h1>
+
+<h2>
+  Present Mode:
+  <font color='red'><!-- TMPL_VAR NAME=current_mode -->
+  (<!-- TMPL_VAR NAME=current_submode -->)</font><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<font color='blue'><!-- TMPL_VAR NAME=admin_message --></font>
+</h2>
+
+<h4>User message: <font color='green'><!-- TMPL_VAR NAME=user_message --></font></h4>
+
+<table border="1">
+    <tr class="header_row">
+  <td>Mode</td>
+  <td>Description</td>
+  <td>Transition<br/>to Next Mode</td>
+    </tr>
+
+    <tr class="<!-- TMPL_VAR NAME=class_normal;not open yet -->">
+  <td class="mode dontshow">normal<br/><span class="submode">(not open yet)</span></td>
+  <td class="description dontshow">Ready to open.  Groups may not register.</td>
+  <td class="dontshow">Registration Open<br/><!-- TMPL_VAR NAME=registration_open_date --></td>
+    </tr>
+
+    <tr class="<!-- TMPL_VAR NAME=class_normal;reg open -->">
+  <td class="mode dontshow">normal<br/><span class="submode">(reg open)</span></td>
+  <td class="description dontshow">Open for business.  Groups may register and choose locations.</td>
+  <td class="dontshow">Registration Close<br/><!-- TMPL_VAR NAME=registration_close_date --></td>
+    </tr>
+
+    <tr class="<!-- TMPL_VAR NAME=class_normal;reg closed -->">
+  <td class="mode dontshow">normal<br/><span class="submode">(reg closed)</span></td>
+  <td class="description dontshow">Can't register new groups, but existing groups can change locations.</td>
+  <td class="BRB showprev"><a href="admin_bigredbutton.php">BIG RED BUTTON</a></td>
+    </tr>
+
+    <tr class="<!-- TMPL_VAR NAME=class_locked -->">
+  <td class="mode">locked</span></td>
+  <td class="description">
+      Groups can no longer change their locations or compression.  You begin moving groups into their blocks.
+      When you are done, use "Email Merge" to send out the block-allocation letters, then press the
+      "DECLARE THAT YOU HAVE SENT EMAILS TO EVERYONE ..." link on the Email Merge tool.
+  </td>
+  <td class="dontshow">Block Emails<br/>~ July 8th ?</td>
+    </tr>
+
+    <tr class="<!-- TMPL_VAR NAME=class_pennsic prep;negotiate -->">
+  <td class="mode">pennsic prep<br/><span class="submode">(negotiate)</span></td>
+  <td class="description">
+      Groups can now see the block they have been assigned to and the names, sizes, and land agents of other groups on their block.
+      They begin sending emails to each other to negotiate position on the block.
+  </td>
+  <td class="dontshow">Pennsic Open<br/><!-- TMPL_VAR NAME=pennsic_open_date --></td>
+    </tr>
+
+    <tr class="<!-- TMPL_VAR NAME=class_pennsic prep;pennsic -->">
+  <td class="mode">pennsic prep<br/><span class="submode">(pennsic)</span></td>
+  <td class="description">Pennsic is happening.  Groups can no longer contact one another electronically.</td>
+  <td class="dontshow">Pennsic Close<br/><!-- TMPL_VAR NAME=pennsic_close_date --></td>
+    </tr>
+
+    <tr class="<!-- TMPL_VAR NAME=class_pennsic prep;done -->">
+  <td class="mode">pennsic prep<br/><span class="submode">(done)</span></td>
+  <td class="description">
+      Pennsic is over.  Everything is turned off, showing "closed until next year" message.  You finish moving groups around
+      in the system to account for changes made on-the-fly at Pennsic.  When you're done:
+  </td>
+  <td class="dontshow"><a href="admin_eoy_close.php">Close Year</a></td>
+    </tr>
+
+    <tr class="<!-- TMPL_VAR NAME=class_data moved -->">
+  <td class="mode">data moved</span></td>
+  <td class="description">
+      This year's attendance has been moved into History; all groups have been un-registered for next year.
+      Use the "Setup Year" button to set the open/close dates and Pennsic number for next year's Pennsic.
+  </td>
+  <td class="showprev"><a href="admin_eoy_setup.php">Setup Year</a></td>
+    </tr>
+
+    <tr class="<!-- TMPL_VAR NAME=class_end of year -->">
+  <td class="mode">end of year</span></td>
+  <td class="description">
+      Once you've used the "Setup Year" button once, you're in this mode.  Once the new dates are all ready:
+  </td>
+  <td class="dontshow"><a href="admin_eoy_open.php">Re-open Year</a></td>
+    </tr>
+
+</table>

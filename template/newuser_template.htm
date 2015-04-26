@@ -1,0 +1,242 @@
+
+<div id=context> 
+<!--sansserif style="float:left; padding:10px"-->
+
+<form method="post" action="?" >
+<table border="1" cellpadding="4" cellspacing="0" align="left" >
+	<tr>
+		<td align="center" colspan="4">
+			<span style="font-size:18; font-weight:bold;">Create Land Agent Username</span>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" colspan="4">
+			<span style="font-size:16;">
+				You can use this form to create a new username for the Land Agent system.<br /> <b>NOTE:</b> If you already have a username from last year, click here to <a href="login.php">log on using your old username</a> instead of creating a new one.
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" colspan="4">
+			<span style="font-size:18; font-weight:bold;">Land Agent Information</span>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" height="18" colspan="2" >
+			<font face="Arial, Helvetica, sans-serif" size="2" color="#000000" >
+			<!-- TMPL_VAR NAME=top_message -->  
+			</font>
+		</td>
+	</tr>
+	<tr> 
+		<td height="38" width="218" valign="top"  >
+			<font face="Arial, Helvetica, sans-serif" size="3" >Legal 
+			Name </font><br>
+			ex: John Doe
+		</td>
+		<td valign="top" width="*" > 
+			<input type="text" name="legal_name"  value="<!-- TMPL_VAR NAME=legal_name_variable_string -->" size="50" maxlength="50">
+			<!-- TMPL_VAR NAME=legal_name_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td height="35" valign="top"  ><font size="3" face="Arial, Helvetica, sans-serif" >SCA 
+			Name</font><br>
+			<font size="2" face="Arial, Helvetica, sans-serif" >ex: THL Jonathan 
+			The Doe </font>
+		</td>
+		<td valign="top" width="*" > 
+			<input type="text" name="alias" value="<!-- TMPL_VAR NAME=alias_variable_string -->" size="50" maxlength="50">
+			<!-- TMPL_VAR NAME=alias_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td height="35" valign="top"  >
+			<font size="3" face="Arial, Helvetica, sans-serif" >
+			Address Line 1</font><br>
+			<font size="2" face="Arial, Helvetica, sans-serif" >
+			ex: 205 North Loop Road </font>
+		</td>
+		<td valign="top" width="*" > 
+			<input type="text" name="street_1" value="<!-- TMPL_VAR NAME=street_1_variable_string -->" size="50" maxlength="50" >
+			<!-- TMPL_VAR NAME=street_1_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td height="35" valign="top"  >
+			<font size="3" face="Arial, Helvetica, sans-serif" >
+			Address Line 2</font><br>
+			<font size="2" face="Arial, Helvetica, sans-serif" >
+			ex: Math Building, Rm. 321 </font>
+		</td>
+		<td valign="top" width="*" > 
+			<input type="text" name="street_2" value="<!-- TMPL_VAR NAME=street_2_variable_string -->" size="50" maxlength="50" >
+			<!-- TMPL_VAR NAME=street_2_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td height="38" valign="top"  >
+			<font face="Arial, Helvetica, sans-serif" size="3" >
+			City</font><br>
+				<font size="2" face="Arial, Helvetica, sans-serif" >
+			ex: Stony Brook</font>
+		</td>
+		<td valign="top" width="*"  > 
+			<input type="text" name="city" value="<!-- TMPL_VAR NAME=city_variable_string -->" size="50" maxlength="50" >
+			<!-- TMPL_VAR NAME=city_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td height="38" valign="top"  >
+			<font face="Arial, Helvetica, sans-serif" size="3" >
+			State/Province</font><br>
+				<font size="2" face="Arial, Helvetica, sans-serif" >
+			ex: NY, Ontario</font>
+		</td>
+		<td valign="top" width="*" > 
+			<input type="text" name="state" value="<!-- TMPL_VAR NAME=state_variable_string -->" size="20" maxlength="20" >
+			<!-- TMPL_VAR NAME=state_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td height="39" valign="top"  >
+			<font face="Arial, Helvetica, sans-serif" size="3" >
+			Zip or Postal Code</font><br>
+				<font size="2" face="Arial, Helvetica, sans-serif" >
+			ex: 11768, 11768-1223, NG4 HV8</font>
+		</td>
+		<td valign="top" width="*" height="39" > 
+			<input type="text" name="postal_code" value="<!-- TMPL_VAR NAME=postal_code_variable_string -->" size="10" maxlength="10" >			        <!-- TMPL_VAR NAME=postal_code_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td height="38" valign="top"  >
+			<font face="Arial, Helvetica, sans-serif" size="3" >
+			Country</font><br>
+				<font size="2" face="Arial, Helvetica, sans-serif" >
+			ex: United States</font>
+		</td>
+		<td width="*" valign="top"  > 
+			<input type="text" name="country" value="<!-- TMPL_VAR NAME=country_variable_string -->" size="20" maxlength="20" >
+			<!-- TMPL_VAR NAME=country_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td valign="top" colspan="2" > 
+			We will be e-mailing you a test letter to make sure that you 
+			entered your e-mail address correctly as soon as you are done 
+			registering. Considering most interblock land negotiation happens 
+			via e-mail make sure you enter it correctly. AOL users make sure 
+			you place the @aol.com at the end of your username.
+		</td>
+	</tr>
+	<tr> 
+		<td height="38" valign="top"  >
+			<font face="Arial, Helvetica, sans-serif" size="3" > 
+			E-mail Address </font><br>
+			<font size="2" face="Arial, Helvetica, sans-serif" > ex: lordfred@pennsicwar.org</font> 
+		</td>
+		<td valign="top" width="*"  > 
+			<input type="text" name="email_address" value="<!-- TMPL_VAR NAME=email_address_variable_string -->" size="30" maxlength="50" >
+			<!-- TMPL_VAR NAME=email_address_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td height="38" valign="top"  >
+			<font face="Arial, Helvetica, sans-serif" size="3" >
+			Telephone</font><br>
+				<font size="2" face="Arial, Helvetica, sans-serif" >
+			(without spaces)<br />
+			ex: 2345551212</font>
+		</td>
+		<td valign="top" width="*"  > 
+			<input type="text" name="phone_number" value="<!-- TMPL_VAR NAME=phone_number_variable_string -->" size="10" maxlength="10" >
+			extention
+			<input type="text" name="extension" value="<!-- TMPL_VAR NAME=extension_variable_string -->" size="4" maxlength="4" >
+			<!-- TMPL_VAR NAME=phone_number_error_string -->
+			<!-- TMPL_VAR NAME=extension_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td colspan="2" valign="top" > 
+			<p>Enter a username that you will log into the system with. It can 
+			be up to 10 characters long and may consist of only upper and 
+			lowercase letters. Capitalization counts when creating a username.</p>
+		</td>
+	</tr>
+	<tr> 
+		<td height="38" valign="top"  >
+			<font face="Arial, Helvetica, sans-serif" size="3">Username</font><br>
+				<font size="2" face="Arial, Helvetica, sans-serif" >
+			ex: lordfred</font>
+		</td>
+		<td valign="top" width="*"  > 
+			<input type="text" name="requested_user_name" value="<!-- TMPL_VAR NAME=user_name_variable_string -->" size="10" maxlength="10" >
+			<!-- TMPL_VAR NAME=user_name_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td colspan="2" valign="top" > 
+			<p>Enter a password for your land account. Type it twice in both 
+			places. This is to ensure that you did not make a typographical 
+			error. Please use a combination of upper and lowercase letters 
+			and numbers when creating your password. Your password must be 
+			from 5 to 10 characters long. Remember Pennsic Staff does not 
+			need your password to change your account and will never ask for 
+			your password.</p>
+		</td>
+	</tr>
+	<tr  > 
+		<td height="33" valign="top"  >
+			<font size="3" face="Arial, Helvetica, sans-serif" >
+			<nobr>Password (first time)</nobr></font>
+		</td>
+		<td valign="top" width="*" > 
+			<input type="password" name="requested_password_1" value="<!-- TMPL_VAR NAME=password_1_variable_string -->" size="11" maxlength="10" >
+		</td>
+	</tr>
+	<tr> 
+		<td height="33" valign="top"  >
+			<font size="3" face="Arial, Helvetica, sans-serif" >
+			<nobr>Password (second time)</nobr></font>
+		</td>
+		<td valign="top" width="*" > 
+			<input type="password" name="requested_password_2" value="<!-- TMPL_VAR NAME=password_2_variable_string -->" size="11" maxlength="10" >
+			<!-- TMPL_VAR NAME=password_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td colspan="3" valign="top" > 
+			<p>Enter a hint that you will be asked if you goto the &quot;forgot password&quot; 
+			option on the log in screen. Do not use something that people will easily 
+			guess. Do make sure that it is something that you can remember and answer 
+			correctly.</p>
+		</td>
+	</tr>
+	<tr> 
+		<td height="38" valign="top"  >
+			<font size="3" face="Arial, Helvetica, sans-serif" >Password Hint</font></td>
+			<td valign="top" width="*" height="38" > 
+			<input type="text" name="password_hint" value="<!-- TMPL_VAR NAME=password_hint_variable_string -->" size="50" >
+			<!-- TMPL_VAR NAME=password_hint_error_string --> 
+		</td>
+	</tr>
+	<tr> 
+		<td height="33" valign="top"  >
+			<font size="3" face="Arial, Helvetica, sans-serif" >
+			Password Hint Answer</font>
+		</td>
+		<td valign="top" width="*" > 
+			<input type="text" name="password_answer" value="<!-- TMPL_VAR NAME=password_answer_variable_string -->" size="50" maxlength="50" >
+			<!-- TMPL_VAR NAME=password_answer_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td height="33" colspan="3" valign="top"  > 
+			<input type="submit" value="Continue" name="action" >
+			<p><a href="index.php">Cancel Registration</a></p>
+		</td>
+	</tr>
+</table>
+</form>
+</div>

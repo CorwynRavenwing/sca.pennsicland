@@ -1,0 +1,227 @@
+<form
+  name="form1"
+  method="post"
+  action="?"
+  onsubmit="<!-- TMPL_VAR NAME=form_onsubmit -->"
+>
+<table border="0" cellpadding="4" cellspacing="0" align="left" >
+<tr>
+  <td valign="top" height="18" colspan="2" >
+    <font face="Arial, Helvetica, sans-serif" size="2" color="#000000" >
+      <!-- TMPL_VAR NAME=top_message  -->
+    </font>
+  </td>
+</tr>
+<tr>
+  <td valign="top">
+    Group:
+  </td>
+  <td colspan="2" valign="top">
+    <input type="text" disabled="disabled" name="groupname" id="groupname" value="<!-- TMPL_VAR NAME=groupname_variable_string -->" />
+  </td>
+</tr>
+<tr>
+  <td height="36" colspan="3" valign="top">
+    <p>Your group gets to choose where they want to camp. If you have
+    not done so already take a look at the
+    <a HREF="../map.php" target="_blank">map</a>.
+    If you already know where you want to camp please fill in the
+    options below. You are required to fill in all four choices with
+    <b>different</b> blocks.  This is in your best interest, because
+    in past years, if you said 'Other' or listed the same block more
+    than once, you probably meant to say 'I <b>really</b> want this block'
+    but it actually meant we had your permission to put you anywhere
+    we like.</p>
+
+    <p>If you have a special arrangement with the Coopers for camping
+    space please select the name of your X block in all four
+    spaces.  If this is a <b>new</b> arrangement and your X block does
+    not appear in the list below, then select 'Other' in the first
+    location and explain the situation in the Comments section below,
+    including the X block name if you know it and the description of
+    where the location is, i.e. 'Xavier Cooper's side yard' or 'across
+    Sedalia Way from block N85'.  We will contact you in the weeks
+    before land decisions are rendered to verify your location
+    and information.</p>
+    <br>
+  </td>
+</tr>
+
+<tr>
+  <td colspan='3' align='center'>
+    <h4><!-- TMPL_VAR NAME=block_changes_label --><!-- TMPL_VAR NAME=blocks_locked_reason --></h4>
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top" >First Choice</td>
+  <td valign="top" align="left" colspan="2">
+  <select
+    <!-- TMPL_VAR NAME=block_choice_disabled -->
+    name="first_block_choice"
+    id="first_block_choice"
+    onchange="check_block_answers()"
+  >
+    <OPTION SELECTED><!-- TMPL_VAR NAME=first_block_choice_variable_string --></OPTION>
+    <!-- TMPL_VAR NAME=block_list -->
+  </select>
+  <span id="block_1_comment" style='font-weight:bold; color:red'>checking ...</span>
+  <!-- TMPL_VAR NAME=first_block_choice_error_string -->
+  </td>
+</tr>
+
+
+<tr>
+<td height="35" valign="top">Second Choice</td>
+<td valign="top" colspan="2">
+  <select
+    <!-- TMPL_VAR NAME=block_choice_disabled -->
+    name="second_block_choice"
+    id="second_block_choice"
+    onchange="check_block_answers()"
+  >
+    <OPTION SELECTED><!-- TMPL_VAR NAME=second_block_choice_variable_string --></OPTION>
+    <!-- TMPL_VAR NAME=block_list -->
+  </select>
+  <span id="block_2_comment" style='font-weight:bold; color:red'>checking ...</span>
+  <!-- TMPL_VAR NAME=second_block_choice_error_string -->
+</td>
+</tr>
+
+
+<tr>
+<td height="35" valign="top">Third Choice</td>
+<td valign="top" colspan="2">
+  <select
+    <!-- TMPL_VAR NAME=block_choice_disabled -->
+    name="third_block_choice"
+    id="third_block_choice"
+    onchange="check_block_answers()"
+  >
+    <OPTION SELECTED><!-- TMPL_VAR NAME=third_block_choice_variable_string --></OPTION>
+    <!-- TMPL_VAR NAME=block_list -->
+  </select>
+  <span id="block_3_comment" style='font-weight:bold; color:red'>checking ...</span>
+  <!-- TMPL_VAR NAME=third_block_choice_error_string -->
+</td>
+</tr>
+
+
+<tr>
+<td height="35" valign="top">Fourth Choice</td>
+<td valign="top" colspan="2">
+  <select
+    <!-- TMPL_VAR NAME=block_choice_disabled -->
+    name="fourth_block_choice"
+    id="fourth_block_choice"
+    onchange="check_block_answers()"
+  >
+    <OPTION SELECTED><!-- TMPL_VAR NAME=fourth_block_choice_variable_string --></OPTION>
+    <!-- TMPL_VAR NAME=block_list -->
+  </select>
+  <span id="block_4_comment" style='font-weight:bold; color:red'>checking ...</span>
+  <!-- TMPL_VAR NAME=fourth_block_choice_error_string -->
+</td>
+</tr>
+
+<input type="hidden" name="block_choices_orig" value="<!-- TMPL_VAR NAME=block_choices_valid -->" />
+<input type="hidden" name="block_choices_valid" id="block_choices_valid" value="<!-- TMPL_VAR NAME=block_choices_valid -->" />
+
+<tr>
+<td height="36" colspan="3" valign="top">
+<p>The on-site representative is the person who is going to be at
+Pennsic on land grab weekend, and negotiate on site for their
+group. This is most likely yourself but in some cases it is not.
+Please enter that persons name below</p>
+</td>
+</tr>
+<tr>
+<td valign="top" height="18" colspan="3">
+<!-- Spacer -->
+&nbsp;
+</td>
+</tr>
+<tr>
+<td height="35" valign="top">
+On Site Rep Name<br>
+ex: Lord Fred Freddssonn
+</td>
+<td valign="top" colspan="2">
+<input type="text" name="on_site_representative" value="<!-- TMPL_VAR NAME=on_site_representative_variable_string -->" size="50" maxlength="50">
+<!-- TMPL_VAR NAME=on_site_representative_error_string -->
+</td>
+</tr>
+<tr>
+<td valign="top" height="18" colspan="3">
+<!-- Spacer -->
+&nbsp;
+</td>
+</tr>
+<tr>
+<td height="36" colspan="3" valign="top">
+<p>Most groups would rather lose a little space
+than be removed from their block because they no
+longer fit. Please choose a compression percentage
+that we will compress your group by, from 0 to 20 percent.</p>
+</td>
+</tr>
+
+<tr>
+  <td colspan='3' align='center'>
+    <h4><!-- TMPL_VAR NAME=compression_changes_label --><!-- TMPL_VAR NAME=compress_locked_reason --></h4>
+  </td>
+</tr>
+
+<tr>
+<td height="35" valign="top">Compression Percentage</td>
+<td valign="top" colspan="2">
+  <select
+    <!-- TMPL_VAR NAME=block_choice_disabled -->
+    name="compression_percentage"
+  >
+    <OPTION SELECTED><!-- TMPL_VAR NAME=compression_percentage_variable_string --></OPTION>
+    <OPTION>0</OPTION>
+    <OPTION>5</OPTION>
+    <OPTION>10</OPTION>
+    <OPTION>15</OPTION>
+    <OPTION>20</OPTION>
+  </select>
+  <!-- TMPL_VAR NAME=compression_percentage_error_string -->
+</td>
+</tr>
+
+<tr>
+<td valign="top" height="18" colspan="3">
+<!-- Spacer -->
+&nbsp;
+</td>
+</tr>
+<tr>
+<td height="36" colspan="3" valign="top">
+<p>Finally your group may want to bring some considerations to the
+Land Officers that they are not currently aware of. If you have
+considerations that you would like to make known please write
+them below:</p>
+<br>
+</td>
+</tr>
+<tr>
+<td height="36" colspan="3" valign="top">
+<div align="center">
+<textarea name="other_group_information" cols="60" rows="10"><!-- TMPL_VAR NAME=other_group_information_variable_string --></textarea><br>
+<!-- TMPL_VAR NAME=other_group_information_error_string -->
+</div>
+</td>
+</tr>
+
+<tr>
+<td height="20" colspan="3" valign="top">&nbsp;</td>
+</tr>
+<tr>
+<td height="33" colspan="3" valign="top">
+<input type="submit" value="Save Changes" name="action" />
+<input type="reset" value="Reset Form" />
+</td>
+</tr>
+</table>
+</form>

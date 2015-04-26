@@ -1,0 +1,404 @@
+
+<script script type="text/javascript" language="javascript" >
+
+var groupIdArray = new Array( <!-- TMPL_VAR NAME=group_ids --> );
+var groupPreReg  = new Array( <!-- TMPL_VAR NAME=group_prereg --> );
+var exactAmount  = new Array( <!-- TMPL_VAR NAME=exact_amount --> );
+var campable_footage = <!-- TMPL_VAR NAME=campable_square_footage -->;
+
+function calculate_footage()
+{
+	var used_footage = 0;
+	var checked_move = new Array();
+	
+	var move_master_ob = document.getElementById( "move_all" );
+	var move_master_checked = 0;
+	if (move_master_ob) { move_master_checked = move_master_ob.checked; }
+	
+	//loop though each row
+	for(var i=0; i < groupIdArray.length; i++) 
+	{
+		var group_id = 0;		
+		var allocated_number = 0;
+		var compression_number = 0;
+		var bonus_number = 0;
+		var keep_number = 0;
+		var allocated_footage = 0; 
+		var row = 0;
+		var used_footage_with = 0;
+
+		group_id = groupIdArray[i];
+				
+		//get the element number for the right fields
+		allocated_number    = find_element( "allocatedsquarefootage", group_id );
+		compression_number  = find_element( "calculatedcompression", group_id );
+		bonus_number        = find_element( "bonus", group_id );
+		keep_number         = find_element( "keep", group_id );
+		changed_number      = find_element( "changed", group_id );
+		
+		//alert( compression_number );
+		
+		//get the values contained in those fields
+		calculatedcompression  = document.test.elements[ compression_number ].value;
+		bonus                  = document.test.elements[bonus_number].value;
+		changed                = document.test.elements[changed_number].value;
+		number_pre_reg         = groupPreReg[0];
+		
+		//alert( groupPreReg[i]+" "+ bonus+" "+ calculatedcompression+" "+campable_footage );
+		
+		//calculate the used square footage by the group
+		
+		var int_exact    = parseInt( exactAmount[i]        );
+		var int_prereg   = parseInt( groupPreReg[i]        );
+		var int_bonus    = parseInt( bonus                 );
+		var int_compress = parseInt( calculatedcompression );
+		var int_changed  = parseInt( changed               );
+		
+		// NOTE: new formula.  Never compress exact values, never compress bonuses [Corwyn 2007]
+		// NOTE: must agree with forumula in LandGroup.pm roll_up_used_space() SQL call.
+		if( int_exact != 0 )
+		{
+			allocated_footage  = int_exact + int_bonus;
+		}
+		else
+		{
+			allocated_footage  = ( (int_prereg * 250) * ( 1 - int_compress / 100 ) ) + int_bonus;
+		}
+		                   
+		//set the allocated numbers		              
+		document.test.elements[ allocated_number ].value = allocated_footage;
+		                        
+		//figure out the row color
+		row = document.getElementById(group_id);
+		used_footage_with = used_footage + allocated_footage;
+		var move_checked = false;
+		
+	    // alert("debug: changed_number = '" + changed_number + "'; changed = '" + changed + "'; int_changed = '" + int_changed + "'");
+
+		// NOTE: no longer make the row pink [Corwyn 2008-07-08]
+		
+		/* if (int_changed)
+		{
+			row.className = "pink";
+			move_checked =  false;
+		}
+		else */ if (allocated_footage == 0)
+		{
+			row.className = "yellow";
+			move_checked =  false;
+		}
+		else if( used_footage_with > campable_footage )
+		{
+			row.className = "red";
+			move_checked =  true;
+		}
+		else
+		{
+			row.className = "green";
+			move_checked =  false;
+		}
+		
+		if( int_exact != 0 ) {
+			row.className = row.className + " kingdom";
+			move_checked = false;  // never assume you're moving a kingdom camp
+		}
+		
+		// alert("move_master_checked = " + move_master_checked);
+		
+		if ( ! move_master_checked ) {
+			move_checked = false;		// never check anything if the master checkbox is not checked
+		}
+		
+		check_or_uncheck_move( group_id, move_checked );
+		
+		// only count footage of groups we're NOT marking to move:
+		if (! move_checked) {
+			used_footage  = used_footage + allocated_footage;
+		}
+	}
+	
+	calculate_groups_in_block();
+}
+
+// why are we reinventing the wheel again?
+// usage: ob = find_element_id("move", "13"); v = ob.value;
+function find_element_id(field_type, gid)
+{
+	return document.getElementById( field_type + "_" + gid );
+}
+
+function find_element(field_type, gid)
+{
+	var element_number;
+	
+	for (var j=0; j < document.test.elements.length; j++)
+	{
+   			var current = document.test.elements[j].name;
+   			var groupid_and_field = current.split('_');
+   			
+   			//alert( groupid_and_field[0] +  ',' + field_type + ',' + gid + ',' + groupid_and_field[1] + ',' + j );
+
+   			if( groupid_and_field[1] == gid && groupid_and_field[0] == field_type )
+   			{
+	   			element_number = j;	
+   			}
+	}
+   
+	return ( element_number );
+}
+
+// new series of functions [Corwyn 2007]
+function enable_if_checked( move_ob, group_id )
+{
+	moveto_number = find_element( "moveto", parseInt( group_id )  );
+
+	document.test.elements[ moveto_number ].disabled = (! move_ob.checked);
+}
+
+function check_or_uncheck_move( group_id, check_value )
+{
+	move_number = find_element( "move", parseInt( group_id )  );
+	move_ob = document.test.elements[ move_number ];
+
+	move_ob.checked = check_value;
+	
+	enable_if_checked(move_ob, group_id);
+}
+
+function get_value(ob)
+{
+	var v = null;  if (! ob) { return v; }
+	v = ob.value;     if (v) { return v; }
+	v = ob.innerHTML; if (v) { return v; } // this one is working
+	v = ob.innerText; if (v) { return v; }
+	v = ob.nodeValue; if (v) { return v; }
+	v = 0;                     return v;
+}
+
+function set_all_values( ob, field_type, cap_field )
+{
+	var master_value = ob.value;
+	// alert("setting all " + field_type + " values to " + master_value + ":");
+	for (var i = 0; i < groupIdArray.length; i++) 
+	{		
+		var field_ob,cap_ob,cap_value,use_value;
+		
+		field_ob = find_element_id( field_type, parseInt( groupIdArray[i] ) );
+		cap_ob   = find_element_id( cap_field,  parseInt( groupIdArray[i] ) );
+		if (cap_ob) {
+			cap_value = get_value(cap_ob);
+			use_value = Math.min(master_value,cap_value);
+		} else {
+			cap_value = "---";
+			use_value = master_value;
+		}
+		field_ob.value = use_value;
+	}
+	calculate_footage();
+}
+
+function set_all_bonus( ob )
+{
+	set_all_values( ob, "bonus" );
+}
+
+function set_all_compression( ob )
+{
+	set_all_values( ob, "calculatedcompression", "compression_max" );
+}
+
+function check_move_all( ob  )
+{
+	// not set all = (yes) or (no), but set all = (yes only if line is red) or (no)
+	var master_checked = ob.checked;
+		
+	for (var i = 0; i < groupIdArray.length; i++) 
+	{
+		if (master_checked) {
+			row = document.getElementById( groupIdArray[i] );
+			myClass = row.className;
+			checked = (myClass == "red");		// meaning, only if not enough room AND not a kingdom
+		} else {
+			checked = master_checked;
+		}
+		check_or_uncheck_move( groupIdArray[i], checked );
+	}
+	calculate_groups_in_block();
+}
+// end new functions section [Corwyn 2007]
+
+function calculate_groups_in_block(  )
+{
+  	//check table for checked objects to add
+	var used_footage = 0;
+	var in_block_used_footage = 0
+	var total_used_footage = 0
+	var checked_keep = new Array();
+	
+	//loop though each row
+	for (var i=0; i < groupIdArray.length; i++) 
+	{
+		var group_id = groupIdArray[i];		
+		var keep_number = 0;
+		
+		//alert( group_id );
+		
+		var move_number      = find_element( "move", group_id  );
+		var allocated_number = find_element( "allocatedsquarefootage", group_id  )
+		
+		var used_by_this_group = parseInt( document.test.elements[ allocated_number ].value );
+		
+		if( document.test.elements[ move_number ].checked == false )
+		{
+			in_block_used_footage += used_by_this_group;
+		}
+		total_used_footage += used_by_this_group;
+	}
+	
+	//alert( in_block_used_footage );
+	
+	var space_remaining             = campable_footage - total_used_footage;
+	var people_remaining		= Math.floor(space_remaining / 250);
+	
+	if (space_remaining < 0) {
+		color_1  = "red";
+		label_1  = "OVER BY";
+		units_1  = "SQ FT";
+		space_1  = (- space_remaining);
+		people_1 = (- people_remaining);
+	} else {
+		color_1  = "black";
+		label_1  = "Space remaining";
+		units_1  = "sq ft";
+		space_1  = space_remaining;
+		people_1 = people_remaining;
+	}
+	
+	document.getElementById("free_used_1").innerHTML =
+		"<font color='" + color_1 + "'>" +
+		"Footage used by groups NOW in block: " + total_used_footage + "; " +
+		label_1 + " " + space_1 + " " + units_1 + " (" + people_1 + ")" +
+		"</font>";
+	
+	if (total_used_footage == in_block_used_footage) {
+		document.getElementById("free_used_2").innerHTML =
+			"(no moves pending)";
+	} else {
+		var space_remaining_after_moves = campable_footage - in_block_used_footage;
+		var people_after_moves		= Math.floor(space_remaining_after_moves / 250);
+		
+		if (space_remaining_after_moves < 0) {
+			color_2  = "red";
+			label_2  = "OVER BY";
+			units_2  = "SQ FT";
+			space_2  = (- space_remaining_after_moves);
+			people_2 = (- people_after_moves);
+		} else {
+			color_2  = "black";
+			label_2  = "Space remaining";
+			units_2  = "sq ft";
+			space_2  = space_remaining_after_moves;
+			people_2 = people_after_moves;
+		}
+		
+		document.getElementById("free_used_2").innerHTML =
+			"<font color='" + color_2 + "'>" +
+			"Footage used AFTER selected moves: " + in_block_used_footage + "; " +
+			label_2 + " " + space_2 + " " + units_2 + " (" + people_2 + ")" +
+			"</font>";
+	}
+}
+
+</script>
+
+<body>
+
+<h2>
+	Block <!-- TMPL_VAR NAME=block_name -->:
+	<!-- TMPL_VAR NAME=campable_square_footage --> campable square feet
+	<br /><font color="blue"><!-- TMPL_VAR NAME=block_description --></font>
+</h2>
+
+<form name="test" method="post" action="?">
+
+<!-- TMPL_VAR NAME=table -->
+
+<h2>
+	<span id="free_used_1">(free_used_1)</span><br />
+	<span id="free_used_2">(free_used_2)</span>
+</h2>
+
+<h3>
+	<font color='green'>Click <span id="email_href">(email_href)</span> to send an email to the land agents of these groups.</font>
+</h3>
+
+<h3>
+	<input type="checkbox" name="mark_sent" value="1" />
+	<font color='blue'>CLEAR ALL "CHANGED SIZE" FLAGS: ALL GROUPS HAVE BEEN CONTACTED</font>
+</h3>
+
+<input 
+	type="submit" 
+	value="save and update with changes" 
+	name="update"
+> 
+<!-- input 
+	type="submit" 
+	value="save and go back to block list" 
+	name="update"
+--> 
+<!-- input 
+	type="submit" 
+	value="cancel" 
+	name="update"
+--> 
+
+<input name=block_id type=hidden value="<!-- TMPL_VAR NAME=block_id -->" />
+<input name=block_name type=hidden value="<!-- TMPL_VAR NAME=block_name -->" />
+
+</form>
+
+<script language="javascript">
+function show_neighbors()
+{
+	ob = document.getElementById('neighbors_div');
+	if (ob) { ob.style.display = "block"; } else { alert("can't find neighbors div"); }
+
+	ob = document.getElementById('button_div');
+	if (ob) { ob.style.display = "none"; } else { alert("can't find button div"); }
+}
+</script>
+
+<div id='button_div' style='display:block'>
+  <font size='+1' color='red'><b>
+	Click <a href="javascript:void(0);" onclick="show_neighbors();">here</a> to show "neighbors" text for block assignment letter
+  </b></font>
+</div>
+
+<div id='neighbors_div' style='display:none'>
+
+<table border='1'>
+  <tr>
+	<td align='center'>
+	
+	<font size='+1'>
+	<b>Neighbors text for block assignment letter:</b>
+	</font>
+	
+	</tr>
+  </tr>
+  
+  <tr bgcolor='#FFFFCC'>  <!-- a light yellow -->
+	<td>
+	
+<font size='+1'>
+<pre>
+<!-- TMPL_VAR NAME=generate_neighbors -->
+</pre>
+</font>
+  
+	</td>
+  </tr>
+</table>
+
+</div>

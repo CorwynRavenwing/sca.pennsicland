@@ -1,0 +1,42 @@
+<div id=context width="100%">
+<!--sansserif style="float:left; padding:10px"-->
+<h2><nobr>All Unregistered Existing Groups</nobr></h2>
+<form method="post" action="?">
+<table width="100%" border="0" cellpadding="4" cellspacing="0" >
+	<tr> 
+		<td valign="top" height="18" colspan="4">
+			<font face="Arial, Helvetica, sans-serif" size="3" color="#000000">
+			<!-- TMPL_VAR NAME=top_message --></font>
+		</td>
+	</tr>
+	<tr> 
+		<td height="78" colspan="4" valign="top"> 
+			<p>Please select your group name from the following list.</p>
+		</td>
+	</tr>
+</table>
+<!-- TMPL_VAR NAME=possible_matchings -->
+<table width="100%" border="0" cellpadding="4" cellspacing="0" >
+	<tr>
+		<td height="33" colspan="1" valign="top">
+			&nbsp;
+		</td>
+		<td height="33" colspan="3" valign="top"> 
+			<input type="submit" value="Continue" name="action" >
+		</td>
+	</tr>
+	<tr> 
+		<td height="19" colspan="4" valign="top"> 
+			<p>
+				If your groupname is not in the list above, it has either never camped at Pennsic
+				before, or it has already been registered by another land agent.  If you are sure
+				that neither of these should apply to your camp,
+				contact the "land web" link below and send me your username and desired group name,
+				and I will look into what has gone wrong.
+			</p>
+			<p>
+			<a href="index.php?message=Registration cancelled at user request.">Cancel Registration</a></p>
+		</td>
+	</tr>
+</table>
+</form>

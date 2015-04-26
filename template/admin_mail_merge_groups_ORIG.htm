@@ -1,0 +1,647 @@
+<!-- TMPL_INCLUDE template_admin_head.html -->
+
+<script language="JavaScript" type="text/javascript">
+
+var groupIdArray = new Array( <!-- TMPL_VAR NAME=groupNames --> );
+var groupNameArray = new Array( <!-- TMPL_VAR NAME=groupNames --> );
+var firstChoiceArray = new Array( <!-- TMPL_VAR NAME=firstChoice -->);
+var secondChoiceArray = new Array( <!-- TMPL_VAR NAME=secondChoice -->);
+var thirdChoiceArray = new Array( <!-- TMPL_VAR NAME=thirdChoice -->);
+var fourthChoiceArray = new Array( <!-- TMPL_VAR NAME=fourthChoice -->);
+var finalLocationArray = new Array( <!-- TMPL_VAR NAME=finalLocation -->);
+
+var blockArray = new Array(<!-- TMPL_VAR NAME=block_list -->);
+
+var inMergeNames = new Array();
+var inMergeFrom  = new Array();
+
+function addElements(theSel)
+{
+	var newOpt = new Option("Bunny1", "Bunny");
+	var selLength = theSel.length;
+}
+
+function populate_group_list(theSel) 
+{
+   for (var i=0; i < groupIdArray.length; i++) 
+   {
+   		var newOpt = new Option( groupNameArray[i], groupIdArray[i] ); 	
+		var selLength = theSel.length;
+   		theSel.options[selLength] = newOpt;	
+   }
+   
+   sortSelect( theSel );
+}
+
+function populate_block_list(theSel) 
+{
+   for (var i=0; i <= blockArray.length-1; i++) 
+   {
+   		var newOpt = new Option( blockArray[i], blockArray[i] ); 	
+		var selLength = theSel.length;
+   		theSel.options[selLength] = newOpt;	
+   }
+}
+
+function printError(error)
+{
+	alert (error);
+}
+
+function addOption(theSel, theText, theValue)
+{
+	var newOpt = new Option(theText, theValue);
+	var selLength = theSel.length;
+	theSel.options[selLength] = newOpt;
+}
+
+function deleteOption(theSel, theIndex)
+{	
+	var selLength = theSel.length;
+	if(selLength>0)
+	{
+		theSel.options[theIndex] = null;
+	}
+}
+
+function addGroup(gFrom, gTo)
+{
+	var matchArray = new Array();
+
+	field = "single"; 
+
+	var moveGroups = new Array();
+	
+    for(i=gFrom.length-1; i>=0 ; i--)
+    {
+      if(gFrom.options[i].selected)
+      {
+		inMergeNames[inMergeNames.length] = gFrom.options[i].text;
+		inMergeFrom[ inMergeFrom.length ] = field;
+		
+		moveGroups[moveGroups.length] = gFrom.options[i].text;
+  	  }		
+	}
+		
+	for( i=moveGroups.length-1; i>=0; i-- )
+	{
+		for(k=gFrom.length-1; k>=0; k--)
+		{
+			if( moveGroups[i] == gFrom.options[k].text )
+			{
+				gFrom.options[k]=null;
+			}
+		}
+	}   
+	
+    updateInMerge( gTo );
+    
+	sortSelect( gFrom );
+	sortSelect( gTo	);
+}
+
+function removeGroup(gFrom, gTo)
+{
+	var field = "single"; 
+	
+	var moveGroups = new Array();
+	
+    for(i=gFrom.length-1; i>=0 ; i--)
+    {
+      if(gFrom.options[i].selected)
+      {
+	      for(k=gFrom.length-1; k>=0; k--)
+		  {
+			if( gFrom.options[i].text == inMergeNames[k] && inMergeFrom[k] == field )
+			{
+				inMergeNames = deleteArrayElement( inMergeNames, k );
+				inMergeFrom  = deleteArrayElement( inMergeFrom,  k );
+			}
+		 }		
+	   }	
+	}	
+     
+	updateInMerge( gFrom );
+    
+	//if group not in merge then needs to be in the all groups
+	
+	var elements = new Array();
+	elements = groupNameArray.slice();
+	
+	for( i = gFrom.options.length-1; i>=0 ; i-- )
+	{
+		//alert( gFrom.options[i].text );
+		
+		elements = deleteMatchFromArray( elements, gFrom.options[i].text );
+	}
+	
+	for( i = gTo.options.length-1; i>=0 ; i-- )
+	{
+		//alert( gTo.options[i].text );
+		elements = deleteMatchFromArray( elements, gTo.options[i].text );
+	}
+		
+	//anything left dump into the all groups list
+    for(i=0; i <= elements.length-1; i++)
+    {	    
+	    //alert( elements[i] );
+	    
+		gTo[gTo.length] = new Option(elements[i],elements[i]);
+    }  
+	
+	sortSelect( gFrom );
+	sortSelect( gTo	);
+}
+
+function arrayCopy( inArray )
+{
+	var i;
+	var out = new Array();
+	for(i=0; i<=inArray.length-1; i++)
+	{
+		out[i] = inArray[i];
+	}
+}
+
+function addBlock(field, from, to, gFrom, gTo )
+{
+	var matchArray = new Array();
+
+	if( field == "firstChoiceArray" ) 
+	{
+		matchArray = firstChoiceArray.slice();
+	}
+	if( field == "secondChoiceArray" ) 
+	{
+		matchArray = secondChoiceArray.slice();
+	}
+	if( field == "thirdChoiceArray" ) 
+	{
+		matchArray = thirdChoiceArray.slice();
+	}
+	if( field == "fourthChoiceArray" ) 
+	{
+		matchArray = fourthChoiceArray.slice();
+	}
+	if( field == "finalLocationArray" ) 
+	{
+		matchArray = finalLocationArray.slice();
+	}
+	
+	var moveGroups = new Array();
+	
+    for(i=from.length-1; i>=0 ; i--)
+    {
+
+      if(from.options[i].selected)
+      {
+        to.options[to.length]=new Option(from.options[i].text,from.options[i].text);
+        
+        //printError(  from.length + "_i2=" + i + "_"  ); 
+         
+        //loop though the choice array match equals index of groupname 
+        for(j=matchArray.length; j>=0; j--)
+		{
+			if( from.options[i].text == matchArray[j] )
+			{
+				//alert( groupNameArray[j] + "_->" + field);
+        		inMergeNames[inMergeNames.length] = groupNameArray[j];
+        		inMergeFrom[ inMergeFrom.length ] = field;
+        		
+        		for(k=gFrom.length-1; k>=0; k--)
+				{	
+					if( groupNameArray[j] == gFrom.options[k].text )
+					{
+        				gFrom.options[k]=null;
+    				}
+				}			
+			}
+		}
+		
+		from.options[i]=null;
+	  }		
+    }   
+
+    updateInMerge( gTo );
+    
+	sortSelect( gFrom );
+	sortSelect( gTo	);
+	
+	sortSelect( to );
+	sortSelect( from );
+}
+
+function removeBlock( field, from, to, gFrom, gTo )
+{
+	var matchArray = new Array();
+
+	if( field == "firstChoiceArray" ) 
+	{
+		matchArray = firstChoiceArray.slice();
+	}
+	if( field == "secondChoiceArray" ) 
+	{
+		matchArray = secondChoiceArray.slice();
+	}
+	if( field == "thirdChoiceArray" ) 
+	{
+		matchArray = thirdChoiceArray.slice();
+	}
+	if( field == "fourthChoiceArray" ) 
+	{
+		matchArray = fourthChoiceArray.slice();
+	}
+	if( field == "finalLocationArray" ) 
+	{
+		matchArray = finalLocationArray.slice();
+	}
+
+	var moveGroups = new Array();
+	
+    for(i=from.length-1; i>=0 ; i--)
+    {
+      if(from.options[i].selected)
+      {
+        to.options[to.length]=new Option(from.options[i].text,from.options[i].text);
+         
+        //loop though the choice array match equals index of groupname 
+        for(j=matchArray.length-1; j>=0; j--)
+		{			
+			if( from.options[i].text == matchArray[j] )
+			{        		
+        		for(k=inMergeNames.length-1; k>=0; k--)
+				{	
+					if( groupNameArray[j] == inMergeNames[k] && inMergeFrom[k] == field )
+					{
+						inMergeNames = deleteArrayElement( inMergeNames, k );
+        				inMergeFrom  = deleteArrayElement( inMergeFrom,  k );
+    				}
+				}	
+			}
+		}
+		
+		from.options[i]=null;
+	  }		
+    }   
+
+	updateInMerge( gFrom );
+    
+	//if group not in merge then needs to be in the all groups
+	
+	var elements = new Array();
+	elements = groupNameArray.slice();
+
+	for( i = gFrom.options.length-1; i>=0 ; i-- )
+	{
+		//alert( gFrom.options[i].text );
+		
+		elements = deleteMatchFromArray( elements, gFrom.options[i].text );
+	}
+	
+	for( i = gTo.options.length-1; i>=0 ; i-- )
+	{
+		//alert( gTo.options[i].text );
+		elements = deleteMatchFromArray( elements, gTo.options[i].text );
+	}
+		
+	//anything left dump into the all groups list
+    for(i=0; i <= elements.length-1; i++)
+    {	    
+	    //alert( elements[i] );
+	    
+		gTo[gTo.length] = new Option(elements[i],elements[i]);
+    }  
+	
+	sortSelect( gFrom );
+	sortSelect( gTo	);
+	
+	sortSelect( to );
+	sortSelect( from );
+}
+
+function updateInMerge( gTo, hide )
+{
+	var i;
+	var j;
+	var elements = new Array();
+	var flag;
+		
+	//remove all elements from in merge
+	for(i=gTo.length-1; i>=0 ; i--) 
+    {
+		gTo.options[i] = null;
+    }	
+	
+	for(i=inMergeNames.length-1; i>=0 ; i--) 
+    {
+		flag = 0;
+	    
+	    for(j=0; j <= elements.length-1; j++)
+	    {
+			if( inMergeNames[i] == elements[j] )
+			{
+				flag = 1;
+			}
+		}
+		
+		if( flag == 0 )
+		{
+			elements[elements.length] = inMergeNames[i];	
+		}
+    }	
+	
+    elements.sort();
+    
+    for(i=0; i <= elements.length-1; i++)
+    {
+	    //alert( elements[i] )
+	    
+		gTo.options[i] = new Option(elements[i],elements[i]);
+    }
+}
+
+function deleteArrayElement( myArray, element )
+{
+	var outArray = new Array();
+	var i;
+	
+	for(i=myArray.length-1; i>=0; i--)
+	{		
+		if( i != element )
+		{
+			outArray[outArray.length] = myArray[i];
+		}
+	}
+	
+	return outArray;
+}
+
+function deleteMatchFromArray( myArray, element )
+{
+	var outArray = new Array();
+	var i;
+	
+	for(i=myArray.length-1; i>=0; i--)
+	{		
+		if( myArray[i] != element )
+		{
+			outArray[outArray.length] = myArray[i];
+		}
+	}		
+	
+	return outArray;
+}
+
+function sortSelect( theSel )
+{
+	var elements = new Array();
+	
+    for(i=theSel.length-1; i>=0 ; i--) 
+    {
+	    //alert( theSel.options[i].text + "_" + i );
+	    
+		elements[i] = theSel.options[i].text;
+    }
+    
+    for(i=theSel.length-1; i>=0 ; i--) 
+    {
+		theSel.options[i] = null;
+    }	
+    
+	elements.sort();
+ 
+    for(i=0; i <= elements.length-1; i++)
+    {
+		theSel.options[i] = new Option(elements[i],elements[i]);
+    }
+}
+
+function selectedGroups( theSel, theHidden )
+{
+	var elements = new Array();
+	var out;
+	
+    for(i=theSel.length-1; i>=0 ; i--) 
+    {
+	    //alert( theSel.options[i].text + "_" + i );
+	    
+		out = out + "|" + theSel.options[i].text;
+    }	
+	
+    //alert( out );
+    
+	theHidden.value = out;
+}
+
+</script>
+
+<body onLoad="populate_group_list(window.document.test.all_groups);
+              populate_block_list(window.document.test.first_choice_neg);
+              populate_block_list(window.document.test.second_choice_neg);
+              populate_block_list(window.document.test.third_choice_neg);
+              populate_block_list(window.document.test.fourth_choice_neg);
+              populate_block_list(window.document.test.final_location_neg);" >
+
+<!-- TMPL_VAR NAME= top_message -->
+<!-- TMPL_VAR NAME=in_merge_error_string -->	
+<form name="test" method=post onSubmit="selectedGroups(window.document.test.in_merge,window.document.test.in_merge_items);">
+<pre>Directions: To send an email to all groups click the "Include All Registered Groups" button.  
+To send an email to a specific group select the group from All Groups list and click the bottom arrow pointing to the right.  
+To send an email to all groups assocaited to a block, under the proper heading, select the block and press the right arrow next to the listing.  
+Once all of the groups have been selected press the "Continue" button.  
+If a group is to be removed from the email, select the group/block and clock the approperate left arrow.</pre>
+<table border="0">
+	<tr>
+		<td align="center">
+			All Groups
+		</td>
+		<td colspan=3 align="center">
+			First Choice
+		</td>
+		<td colspan=3 align="center">
+			Second Choice
+		</td>		
+		<td align="center"> 
+			In Merge
+		</td>
+	</tr>	
+	
+	<tr>	
+		<td rowspan=10 align="center" valign="top">
+			<select name="all_groups" size="50" multiple>
+			</select>
+		</td>
+		
+		<td>
+			<select name="first_choice_neg" size="10" multiple>
+			</select>
+		</td>
+		<td align="center" valign="middle">
+			<input type="button" value="-->"
+			 onClick="addBlock('firstChoiceArray',this.form.first_choice_neg,this.form.first_choice_pos, this.form.all_groups, this.form.in_merge);" /><br />
+			<input type="button" value="<--"
+			 onClick="removeBlock('firstChoiceArray',this.form.first_choice_pos,this.form.first_choice_neg, this.form.in_merge, this.form.all_groups);" />
+		</td>
+		<td>
+			<select name="first_choice_pos" size="10" multiple>
+			</select>
+		</td>
+		
+		<td>
+			<select name="second_choice_neg" size="10" multiple>
+			</select>
+		</td>
+		<td align="center" valign="middle">
+			<input type="button" value="-->"
+			 onClick="addBlock('secondChoiceArray',this.form.second_choice_neg,this.form.second_choice_pos, this.form.all_groups, this.form.in_merge);" /><br />
+			<input type="button" value="<--"
+			 onClick="removeBlock('secondChoiceArray',this.form.second_choice_pos,this.form.second_choice_neg,this.form.in_merge,this.form.all_groups);" />
+		</td>
+		<td>
+			<select name="second_choice_pos" size="10" multiple>
+			</select>
+		</td>		
+
+		<td rowspan=10 align="center" valign="top">
+			<select name="in_merge" size="50" multiple>
+			</select>
+		</td>
+	</tr>
+	<tr>	
+		<td colspan=3 align="center">
+			Third Choice
+		</td>		
+		
+		<td colspan=3 align="center">
+			Fourth Choice
+		</td>	
+	</tr>		
+	
+	<tr>
+		<td>
+			<select name="third_choice_neg" size="10" multiple>
+			</select>
+		</td>
+		<td align="center" valign="middle">
+			<input type="button" value="-->"
+			 onClick="addBlock('thirdChoiceArray',this.form.third_choice_neg,this.form.third_choice_pos, this.form.all_groups, this.form.in_merge);" /><br />
+			<input type="button" value="<--"
+			 onClick="removeBlock('thirdChoiceArray',this.form.third_choice_pos,this.form.third_choice_neg,this.form.in_merge,this.form.all_groups);" />
+		</td>
+		<td>
+			<select name="third_choice_pos" size="10" multiple>
+			</select>
+		</td>
+
+		<td>
+			<select name="fourth_choice_neg" size="10" multiple>
+			</select>
+		</td>
+		<td align="center" valign="middle">
+			<input type="button" value="-->"
+			 onClick="addBlock('fourthChoiceArray',this.form.fourth_choice_neg,this.form.fourth_choice_pos, this.form.all_groups, this.form.in_merge);" /><br />
+			<input type="button" value="<--"
+			 onClick="removeBlock('fourthChoiceArray',this.form.fourth_choice_pos,this.form.fourth_choice_neg, this.form.in_merge, this.form.all_groups);" />
+		</td>
+		<td>
+			<select name="fourth_choice_pos" size="10" multiple>
+			</select>
+		</td>
+	</tr>
+	
+	<tr>	
+		<td colspan=3 align="center">
+			Final Location
+		</td>	
+		<td colspan=3 align="center">
+			Other Option
+		</td>	
+	</tr>	
+	
+	<tr>
+		<td>
+			<select name="final_location_neg" size="10" multiple>
+			</select>
+		</td>
+		<td align="center" valign="middle">
+			<input type="button" value="-->"
+			 onClick="addBlock('finalLocationArray',this.form.final_location_neg,this.form.final_location_pos, this.form.all_groups, this.form.in_merge);" /><br />
+			<input type="button" value="<--"
+			 onClick="removeBlock('finalLocationArray',this.form.final_location_pos,this.form.final_location_neg,this.form.in_merge,this.form.all_groups);" />
+
+			 </td>
+		<td>
+			<select name="final_location_pos" size="10" multiple>
+			</select>
+		</td>
+		
+		<td>
+			&nbsp
+		</td>
+		<td align="center" valign="middle">
+			&nbsp
+		</td>
+		<td>
+			&nbsp
+		</td>
+		
+	</tr>
+	
+	<tr>	
+		<td colspan=6 align="center">
+			<input type="button" value="-->"
+			 onClick="addGroup(this.form.all_groups, this.form.in_merge);" /><br />
+			<input type="button" value="<--"
+			 onClick="removeGroup(this.form.in_merge,this.form.all_groups);" />
+		</td>	
+	</tr>	
+	
+	<tr > 
+  <td height="33" colspan="8" align="center" valign="top"  > 
+
+  </td>
+</tr>
+		
+</table>
+  <input 
+  	type="submit" 
+  	value="Continue" 
+  	name="Continue"
+  	onClick=""
+  >
+  
+  <input 
+  	type="submit" 
+  	value="Include All Registered Groups" 
+  	name="Continue"
+  	onClick=""
+  >
+
+  <input 
+  	type="reset"
+  	value="Reset"
+  >
+
+<! Linkcode that refers this page to the PLS DO NOT EDIT !>
+<INPUT 
+	TYPE="hidden" 
+	NAME="linkcode" 
+	VALUE="<!-- TMPL_VAR NAME=current_linkcode -->"
+>
+
+<INPUT 
+	TYPE="hidden" 
+	NAME="in_merge_items" 
+	VALUE=""
+>
+
+<INPUT 
+	TYPE="hidden" 
+	NAME="merge_type" 
+	VALUE="group_merge"
+> 
+      
+</form>	
+
+</body>
+</html>

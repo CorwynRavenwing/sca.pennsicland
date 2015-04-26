@@ -1,0 +1,129 @@
+<form
+	name="form1"
+	method="post"
+	action="?"
+>
+<table border="0" cellpadding="4" cellspacing="0" align="left">
+<tr>
+	<td valign="top" height="18" colspan="4">
+		<font face="Arial, Helvetica, sans-serif" size="2" color="#000000">
+			<!-- TMPL_VAR NAME=top_message --> 
+		</font>
+	</td>
+</tr>
+<tr>
+	<td height="38" width="218" valign="top"  >
+		<font face="Arial, Helvetica, sans-serif" size="3">Legal Name </font><br>
+		ex: John Doe
+	</td>
+	<td valign="top" width="*" colspan="3">
+		<input type="text" name="legal_name" value="<!-- TMPL_VAR NAME=legal_name_variable_string -->" size="50" maxlength="50">
+		<!-- TMPL_VAR NAME=legal_name_error_string -->
+	</td>
+</tr>
+<tr>
+	<td height="35" valign="top">
+		<font size="3" face="Arial, Helvetica, sans-serif">SCA Name</font><br>
+		<font size="2" face="Arial, Helvetica, sans-serif">ex: THL Jonathan The Doe </font>
+	</td>
+	<td valign="top" width="*" colspan="3">
+		<input type="text" name="alias" value="<!-- TMPL_VAR NAME=alias_variable_string -->" size="50" maxlength="50">
+		<!-- TMPL_VAR NAME=alias_error_string -->
+	</td>
+</tr>
+<tr>
+	<td height="35" valign="top">
+		<font size="3" face="Arial, Helvetica, sans-serif">Address Line 1</font><br>
+		<font size="2" face="Arial, Helvetica, sans-serif">ex: 205 North Loop Road </font>
+	</td>
+	<td valign="top" width="*" colspan="3">
+	<input type="text" name="street_1" value="<!-- TMPL_VAR NAME=street_1_variable_string -->" size="50" maxlength="50">
+	<!-- TMPL_VAR NAME=street_1_error_string -->
+	</td>
+</tr>
+<tr>
+	<td height="35" valign="top">
+		<font size="3" face="Arial, Helvetica, sans-serif">
+		Address Line 2</font><br>
+		<font size="2" face="Arial, Helvetica, sans-serif">ex: Math Building, Rm. 321 </font>
+	</td>
+	<td valign="top" width="*" colspan="3">
+		<input type="text" name="street_2" value="<!-- TMPL_VAR NAME=street_2_variable_string -->" size="50" maxlength="50">
+		<!-- TMPL_VAR NAME=street_2_error_string -->
+	</td>
+</tr>
+<tr>
+	<td height="38" valign="top">
+		<font face="Arial, Helvetica, sans-serif" size="3">City</font><br>
+		<font size="2" face="Arial, Helvetica, sans-serif">ex: Stony Brook</font>
+	</td>
+	<td valign="top" width="*" colspan="3">
+		<input type="text" name="city" value="<!-- TMPL_VAR NAME=city_variable_string -->" size="50" maxlength="50">
+		<!-- TMPL_VAR NAME=city_error_string -->
+	</td>
+</tr>
+<tr>
+	<td height="38" valign="top">
+		<font face="Arial, Helvetica, sans-serif" size="3">State/Province</font><br>
+		<font size="2" face="Arial, Helvetica, sans-serif">ex: NY, Ontario</font>
+	</td>
+	<td valign="top" width="*" colspan="3">
+		<input type="text" name="state" value="<!-- TMPL_VAR NAME=state_variable_string -->" size="20" maxlength="20">
+		<!-- TMPL_VAR NAME=state_error_string -->
+	</td>
+</tr>
+<tr>
+	<td height="39" valign="top">
+		<font face="Arial, Helvetica, sans-serif" size="3">ZIP or Postal Code</font><br>
+		<font size="2" face="Arial, Helvetica, sans-serif">
+		ex: 11768, 11768-1223, NG4 HV8</font>
+	</td>
+	<td valign="top" width="*" height="39">
+		<input type="text" name="postal_code" value="<!-- TMPL_VAR NAME=postal_code_variable_string -->" size="10" maxlength="10">
+		<!-- TMPL_VAR NAME=postal_code_error_string -->
+	</td>
+	<td height="38" valign="top" align="right">
+		<font face="Arial, Helvetica, sans-serif" size="3">Country:</font><br>
+		<font size="2" face="Arial, Helvetica, sans-serif">
+		ex: United States</font>
+	</td>
+	<td width="*" valign="top">
+		<input type="text" name="country" value="<!-- TMPL_VAR NAME=country_variable_string -->" size="20" maxlength="20">
+		<!-- TMPL_VAR NAME=country_error_string -->
+	</td>
+</tr>
+<tr>
+	<td height="38" valign="top">
+		<font face="Arial, Helvetica, sans-serif" size="3">E-mail Address </font><br>
+		<font size="2" face="Arial, Helvetica, sans-serif">ex: lordfred@pennsicwar.org</font>
+	</td>
+	<td valign="top" width="*" colspan="3">
+		<input type="text" name="email_address" value="<!-- TMPL_VAR NAME=email_address_variable_string -->" size="30" maxlength="50">
+		<!-- TMPL_VAR NAME=email_address_error_string -->
+	</td>
+</tr>
+<tr>
+	<td height="38" valign="top">
+		<font face="Arial, Helvetica, sans-serif" size="3">Telephone</font><br>
+		<font size="2" face="Arial, Helvetica, sans-serif">ex: 631 867 5309</font>
+	</td>
+	<td valign="top" width="*" colspan="3"> 
+		<input type="text" name="phone_number" value="<!-- TMPL_VAR NAME=phone_number_variable_string -->" size="10" maxlength="10">
+		ext:
+		<input type="text" name="extension" value="<!-- TMPL_VAR NAME=extension_variable_string -->" size="4" maxlength="4">
+		<!-- TMPL_VAR NAME=phone_number_error_string -->
+		<!-- TMPL_VAR NAME=extension_error_string -->
+	</td>
+</tr>
+<tr>
+	<td height="38" valign="top">
+		&nbsp;
+	</td>
+	<td colspan="2" valign="top" colspan="3">
+		<input type="submit" name="action" value="Continue">
+		<input type="submit" name="action" value="Reset">
+	</td>
+</tr>
+
+</table>
+</form>

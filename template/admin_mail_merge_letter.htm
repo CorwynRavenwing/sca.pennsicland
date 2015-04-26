@@ -1,0 +1,152 @@
+<script language="JavaScript" type="text/javascript">
+
+var mergeElements  = new Array( <!-- TMPL_VAR NAME=mergeElements --> );
+var mergeFunctions = new Array( <!-- TMPL_VAR NAME=mergeFunctions --> );
+var last_option;
+
+function populateElementList( theSel )
+{
+   for (var i=0; i < mergeElements.length; i++) 
+   {
+   		var newOpt = new Option( mergeElements[i], mergeFunctions[i] ); 	
+		var selLength = theSel.length;
+   		theSel.options[selLength] = newOpt;	
+   }
+
+   sortSelect( theSel );
+}
+
+function sortSelect( theSel )
+{
+	var elements = new Array();
+	
+    for(i=theSel.length-1; i>=0 ; i--) 
+    {
+	    //alert( theSel.options[i].text + "_" + i );
+	    
+		elements[i] = theSel.options[i].text;
+    }
+    
+    for(i=theSel.length-1; i>=0 ; i--) 
+    {
+		theSel.options[i] = null;
+    }	
+    
+	elements.sort();
+ 
+    for(i=0; i <= elements.length-1; i++)
+    {
+		theSel.options[i] = new Option(elements[i],elements[i]);
+    }
+}
+
+function moveElement( theSel )
+{
+	var myMessage = window.document.form1.letter.value;
+	
+	for(i=theSel.length-1; i>=0 ; i--) 
+    {
+		if( theSel.options[i].selected )
+		{
+			//alert( theSel.options[i].value );
+			
+			//prevent double click from adding twice
+			if( theSel.options[i].value == last_option )
+			{
+				last_option = '';
+			}
+			else
+			{
+				myMessage = myMessage + "<[" + theSel.options[i].value + "]>";		
+				last_option = theSel.options[i].value;
+				window.document.form1.merge_var_comments.value = "added '" + theSel.options[i].value + "' to end of message";
+			}
+		}
+    }	
+   window.document.form1.letter.value = myMessage;
+   
+   window.document.form1.letter.focus();
+}
+
+</script>
+
+<!-- TMPL_VAR NAME=top_message -->
+<!-- TMPL_VAR NAME=letter_error_string -->
+<!-- TMPL_VAR NAME=subject_error_string -->	
+
+<form name="form1" method="post" action="?merge_id=<!-- TMPL_VAR NAME=merge_id -->">
+<table border="0">
+<tr>
+	<td align="center" valign="top">
+		Mail Merge Letter Generation
+	</td>
+	<td align="center" valign="top">&nbsp;
+	
+	</td>
+</tr>		
+<tr>
+	<td align="center" valign="top">
+		<select 
+			name="mergeElements" 
+			size="10" 
+			onClick="moveElement( this.form.mergeElements );" 
+		>
+		</select>
+	</td>
+	<td>
+		<input name="merge_var_comments" value="COMMENTS" size="50"/>
+	</td>
+</tr>		
+<tr>	
+		<td align="center" valign="top">
+			Subject
+		</td>	
+		<td  align="center" valign="top">
+			<input type="text" size="60" name="subject" value="<!-- TMPL_VAR NAME=subject -->" />
+		</td>
+</tr>
+<tr>		
+		<td colspan=2 align="center" valign="top">	
+			<textarea name="letter" rows="30" cols="80" wrap="virtual"><!-- TMPL_VAR NAME=letter --></textarea>
+		</td>
+</tr>			
+<tr>
+		<td align="center" valign="top">&nbsp;
+            
+		</td>	
+		<td>
+			<input 
+				type="submit" 
+				name="submit"
+				value="Save" 
+				onClick=""
+			/> 
+			<input 
+				type="submit"
+				name="cancel"
+				value="Cancel"
+			/>
+		</td>		
+</tr>
+
+</table>		
+
+<! Linkcode that refers this page to the PLS DO NOT EDIT !>
+<input 
+	type="hidden" 
+	name="merge_id" 
+	value="<!-- TMPL_VAR NAME=merge_id -->"
+/>
+<input
+	type="hidden"
+	name="action"
+	value="edit_body_save"
+/>
+      
+</form>	
+
+<script language="JavaScript" type="text/javascript">
+	// was in body onLoad
+	populateElementList(window.document.form1.mergeElements);
+</script>
+

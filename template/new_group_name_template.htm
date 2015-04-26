@@ -1,0 +1,71 @@
+<div id=context> 
+<h2>Group Name Selection</h2>
+
+<form method="post" action="?">
+<table width="100%" align="CENTER" border=0 cellpadding=0 cellspacing=0>
+	<tr> 
+		<td valign="top" height="18" colspan="2">
+			<!-- TMPL_VAR NAME=top_message -->
+		</td>
+	</tr>
+	<tr> 
+		<td height="95" colspan="3" valign="top" > 
+			<p>If your group has been registered with the Pennsic Land System 
+			before at a previous Pennsic War, even if you were not the Land
+			Agent then, click on Existing. If this is the first year your group
+			is registering with the Pennsic Land System, select New.
+			</p>
+		</td>
+	</tr>
+	<tr> 
+		<td height="38" valign="top" width="147">
+			<font size="3" face="Arial, Helvetica, sans-serif"><b>Group Status:</b></font>
+			<br>
+		</td>
+		<td width="149" valign="top"> 
+			<div align="center">
+				<a href="choose_group_return.php">Existing Groups: Click Here</a>
+				<br>
+			</div>
+		</td>
+		<td width="180" valign="top"  > 
+			<div align="center">New Groups: Enter Group Name Below<br>
+			<input type="hidden" name="new_group" value="yes" >
+			</div>
+			<!-- TMPL_VAR NAME=new_group_error_string -->
+		</td>
+	</tr>
+	<tr> 
+		<td height="209" colspan="3">
+			<p>
+			Your camping history and seniority are listed under your group record,
+			so it is very important that if you are an EXISTING group, you click on
+			Existing above, and not enter your group name here as if you were a new group.
+			</p>
+			<p>
+			If you are a NEW group please remember that your 
+			history from this time forward will be indexed by the group name 
+			you choose, and your group will be referenced in our system by 
+			that name.
+			</p>
+			<p>
+			Your group name may be up to 30 characters long, and 
+			have numbers, letters, and hyphens. Please spell out numbers
+			(that is, "House 3Skulls" should be "House Three Skulls").
+			</p>
+		</td>
+	</tr>
+	<tr> 
+		<td height="35" valign="top" width="100">
+			<font face="Arial, Helvetica, sans-serif" size="3"><font color="red"><b>*NEW*</b></font> <b>Group&nbsp;Name</b></font>
+			<font face="Arial, Helvetica, sans-serif" size="2"><br></font>
+		</td>
+		<td valign="top" colspan="2"> 
+			<input type="text" name="new_group_name" value="<!-- TMPL_VAR NAME=group_name_variable_string -->" size="50" maxlength="50">
+			<!-- TMPL_VAR NAME=group_name_error_string -->
+		</td>
+	</tr>
+</table>
+	<input type="submit" name="action" value="Continue">
+	<p><a href="index.php?message=Your land group registration has been CANCELLED at your request.  If you wish to register your group, you will need to start this process again.">Cancel Registration</a></p>
+</form>

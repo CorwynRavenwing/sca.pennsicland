@@ -1,0 +1,55 @@
+<table width=90%>
+
+<!-- tmpl_var name=table -->
+
+</table>
+
+<br>
+<br>
+
+<form name="test" method="POST" action="?merge_id=<!-- TMPL_VAR NAME=merge_id -->">
+
+<!--
+<select 
+	name="operation"
+	size="1" 
+>
+<option>email merge</option>
+<option>paper merge</option>
+</select>
+-->
+
+<h4> Enter Email Address of the Sender (used in From:) </h4>
+<input 
+	type="text" 
+	size="50"
+	value="<!-- TMPL_VAR NAME=my_email -->" 
+	name="sender_email"
+/>
+
+<input
+	type="hidden"
+	name="action"
+	value="edit_from_save"
+/>
+
+<input 
+	type="submit" 
+	name="submit"
+	value="Save" 
+	onClick=""
+/>
+
+<input 
+	type="submit" 
+	name="cancel"
+	value="Cancel"
+/>
+
+<input
+	TYPE="hidden" 
+	NAME="merge_id" 
+	VALUE="<!-- TMPL_VAR NAME=merge_id -->"
+/>
+
+</form>

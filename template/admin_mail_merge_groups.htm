@@ -1,0 +1,284 @@
+<!-- must include javascript.php to use this template -->
+<style type="text/css">
+
+span.checked {
+	color:blue;
+	background-color:yellow;
+	font-weight:bold;
+}
+
+span.unchecked {
+	color:red;
+	font-style:italic;
+	font-weight:normal;
+}
+
+span.enabled {
+	color:blue;
+	font-weight:bold;
+}
+
+span.disabled {
+	color:#444444;
+	font-style:italic;
+	font-weight:normal;
+}
+
+</style>
+
+<script language="JavaScript" type="text/javascript">
+
+var groupIdArray = new Array( <!-- TMPL_VAR NAME=groupIDs --> );
+var groupNameArray = new Array( <!-- TMPL_VAR NAME=groupNames --> );
+var firstChoiceArray = new Array( <!-- TMPL_VAR NAME=firstChoice --> );
+var secondChoiceArray = new Array( <!-- TMPL_VAR NAME=secondChoice --> );
+var thirdChoiceArray = new Array( <!-- TMPL_VAR NAME=thirdChoice --> );
+var fourthChoiceArray = new Array( <!-- TMPL_VAR NAME=fourthChoice --> );
+var finalLocationArray = new Array( <!-- TMPL_VAR NAME=finalLocation --> );
+
+var chosenGroupsArray = new Array( <!-- TMPL_VAR NAME=chosenGroups --> );
+
+var blockArray = new Array(<!-- TMPL_VAR NAME=block_list -->);
+
+function find_checked_value( ob ) {
+	
+	for(i=ob.length-1; i>=0 ; i--) {
+		if (ob[i].checked) {
+			return ob[i].value;
+		}
+	}
+	
+	return "";
+}
+
+function get_block_ob( block_name ) {
+	return getElementById( "block_" + block_name );
+}
+
+function get_block_label_ob( block_name ) {
+	return getElementById( "block_label_" + block_name );
+}
+
+function get_group_ob( group_id ) {
+	return getElementById( "group_" + group_id );
+}
+
+function get_group_label_ob( group_id ) {
+	return getElementById( "group_label_" + group_id );
+}
+
+function set_group_checkbox( group_id, selected ) {
+	// alert("checkbox " + group_id + " to " + selected )
+	
+	ob = get_group_ob( group_id );
+	ob.checked = selected;
+}
+
+function count_selected_groups() {
+	count = 0;
+	groups_chosen_list = "";
+	
+	for(i=groupIdArray.length-1; i>=0; i--) {
+		group_id = groupIdArray[i];
+		ob  = get_group_ob( group_id );
+		ob2 = get_group_label_ob( group_id );
+		if (ob.checked) {
+			count++;
+			ob2.className = "checked";
+			if (groups_chosen_list) { groups_chosen_list += ","; }
+			groups_chosen_list += group_id;
+		} else {
+			ob2.className = "unchecked";
+		}
+	}
+	
+	f = window.document.test;
+	f.groups_chosen.value = groups_chosen_list ;
+
+	return count;
+}
+
+function update_text( text ) {
+	ob = getElementById("count_selected_groups");
+	ob.innerHTML = text;
+}
+
+function update_text_count() {
+	count = count_selected_groups();
+	update_text( count + "&nbsp;Groups" );
+}
+
+function mark_groups_array_value( groups_array, value ) {
+
+	for(i=groups_array.length-1; i>=0 ; i--) {
+		group_id = groups_array[i];
+		if (group_id != "") {
+			set_group_checkbox( group_id, value );
+		}
+	}
+	
+	count_selected_groups();
+	update_text_count();
+}
+
+
+function preload_chosen_groups() {
+	mark_groups_array_value( chosenGroupsArray, true );
+}
+
+function choose_all_groups() {
+	mark_groups_array_value( groupIdArray, true );
+}
+
+function choose_no_groups() {
+	mark_groups_array_value( groupIdArray, false );
+}
+
+function mark_blocks_disabled_value( list, value ) {
+	count = 0;
+	for(i=list.length-1; i>=0 ; i--) {
+		ob = get_block_ob( list[i] );
+		
+		if (ob) {
+			if (ob.disabled != value) { count++; }
+			ob.disabled = value;
+			
+			ob2 = get_block_label_ob( list[i] );
+			if (ob2) {
+				if (value) {
+					ob2.className = "disabled";
+				} else {
+					ob2.className = "enabled";
+				}
+			}
+		}
+	}
+}
+
+function preload_disabled_blocks() {
+	mark_blocks_disabled_value( blockArray,         true  );	// mark all blocks as disabled
+	
+	mark_blocks_disabled_value( firstChoiceArray,   false );	// then mark any blocks a group chose as active instead
+	mark_blocks_disabled_value( secondChoiceArray,  false );
+	mark_blocks_disabled_value( thirdChoiceArray,   false );
+	mark_blocks_disabled_value( fourthChoiceArray,  false );
+	mark_blocks_disabled_value( finalLocationArray, false );
+}
+
+function block_set_magic(action_type)
+{
+	f = window.document.test;
+	
+	block_type  = find_checked_value( f.block_type  );
+	block_id    = find_checked_value( f.block_id    );
+	
+	if (! block_id    ) { update_text("Choose a block name first");      return; }
+	if (! block_type  ) { update_text("Choose 1st..4th or Final"); return; }
+	
+	if        (block_type == "first_choice")   { relevantArray = firstChoiceArray;
+	} else if (block_type == "second_choice")  { relevantArray = secondChoiceArray;
+	} else if (block_type == "third_choice")   { relevantArray = thirdChoiceArray;
+	} else if (block_type == "fourth_choice")  { relevantArray = fourthChoiceArray;
+	} else if (block_type == "final_location") { relevantArray = finalLocationArray;
+	} else {
+		alert("Error: should not be able to reach here, block_type = '" + block_type + "'");
+		return;
+	}
+	
+	// search relevantArray[i] for values of block_id, if so check/uncheck groupIdArray[i]
+	for(i=relevantArray.length-1; i>=0 ; i--) {
+		if (relevantArray[i] == block_id) {
+			// alert("i: " + i + "; group " + groupIdArray[i] );
+			set_group_checkbox( groupIdArray[i], action_type )
+		}
+	}
+	
+	update_text_count();
+}
+
+</script>
+
+<!-- TMPL_VAR NAME=top_message -->
+<!-- TMPL_VAR NAME=in_merge_error_string -->	
+<form name="test" method="post" action="?merge_id=<!-- TMPL_VAR NAME=merge_id -->">
+<p>Directions:
+<ul>
+<li>To select one or more specific groups by hand, check the box to the left of their names in the bottom pane below.</li>
+<li>To select or un-select all groups press the "EVERYBODY" or "NOBODY" button.</li>
+<li>To select all groups that chose a certain block, choose the block in the left pane
+and which choice it was in the right pane.  Choice "Final" means the block they are currently assigned to.
+Then press the "ADD Groups" button.  The "REMOVE Groups" button does the inverse.</li>
+<li>Blocks names that are greyed out, were not chosen by any groups.</li>
+</ul>
+When you are done selecting groups, press the "Save" button at the bottom of the form.  To cancel your changes, press the "Cancel" button.
+</p>
+
+<table border="1">
+	<tr>
+		<td>
+			<!-- TMPL_VAR NAME=block_radio_buttons -->
+		</td>
+		<td valign="top">
+			<div style="font-weight:bold; text-align:center">Block&nbsp;Choice:</div>
+			<!-- TMPL_VAR NAME=type_radio_buttons -->
+			<br/>
+			<br/>
+			<br/>
+			<div style="text-align:center">
+				<!-- TMPL_VAR NAME=action_radio_buttons -->
+			</div>
+			<br/>
+			<div id="count_selected_groups" style="font-weight:bold; text-align:center">0&nbsp;Groups</div>
+			<hr>
+			<div style="text-align:center">
+				<input type="button" value="EVERYBODY" onClick="choose_all_groups();" />
+				<input type="button" value="NOBODY"    onClick="choose_no_groups();"  />
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<!-- TMPL_VAR NAME=group_checkboxes -->
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align:center">
+			<input
+				type="submit"
+				name="submit"
+				value="Save"
+			/>
+			<input 
+				type="submit"
+				name="cancel"
+				value="Cancel"
+			/>
+		</td>
+	</tr>
+</table>
+
+<!-- Linkcode that refers this page to the PLS DO NOT EDIT -->
+<input 
+	type="hidden" 
+	name="merge_id" 
+	value="<!-- TMPL_VAR NAME=merge_id -->"
+/>
+
+<input 
+	type="hidden" 
+	name="groups_chosen" 
+	value=""
+/>
+
+<input 
+	type="hidden" 
+	name="action" 
+	value="edit_groups_save"
+/>
+
+</form>	
+
+<script type="text/javascript" language="javascript">
+	preload_chosen_groups();
+	preload_disabled_blocks();
+</script>

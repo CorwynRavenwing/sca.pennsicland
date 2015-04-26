@@ -1,0 +1,66 @@
+
+<!-- script type="text/javascript" language="javascript">
+function update_year() {
+	alert("called update_year()");
+}
+</script -->
+
+<form name="form1" method="post" action="?">
+	    
+<table border='1'>
+	<tr>
+		<td>CURRENT YEAR:</td>
+		<td>
+			<input type="text" name="current_year" value="<!-- TMPL_VAR NAME=current_year -->" size="5" length="5" maxlength="5" />
+			<!-- TMPL_VAR NAME=current_year_error_string -->
+		</td>
+	</tr>
+	<tr>
+		<td>PENNSIC NUMBER:</td>
+		<td>
+			<input type="text" name="pennsic_number" value="<!-- TMPL_VAR NAME=pennsic_number -->" size="2" length="2" maxlength="2" />
+			<!-- TMPL_VAR NAME=pennsic_number_error_string -->
+		</td>
+	</tr>
+</table>
+<br />
+<table border='1'>
+	<tr>
+		<td>REGISTRATION:</td>
+		<td>Open:
+			<input type="text" name="registration_open_date" value="<!-- TMPL_VAR NAME=registration_open_date -->" size="10" length="10" maxlength="10" />
+			<!-- TMPL_VAR NAME=registration_open_date_error_string -->
+		</td>
+		<td>Close:
+			<input type="text" name="registration_close_date" value="<!-- TMPL_VAR NAME=registration_close_date -->" size="10" length="10" maxlength="10" />
+			<!-- TMPL_VAR NAME=registration_close_date_error_string -->
+		</td>
+	</tr>
+	<tr>
+		<td>PENNSIC:</td>
+		<td>Open:
+			<input type="text" name="pennsic_open_date" value="<!-- TMPL_VAR NAME=pennsic_open_date -->" size="10" length="10" maxlength="10" />
+			<!-- TMPL_VAR NAME=pennsic_open_date_error_string -->
+		</td>
+		<td>Close:
+			<input type="text" name="pennsic_close_date" value="<!-- TMPL_VAR NAME=pennsic_close_date -->" size="10" length="10" maxlength="10" />
+			<!-- TMPL_VAR NAME=pennsic_close_date_error_string -->
+		</td>
+	</tr>
+	<!-- must not change current_mode using this tool -->
+	<tr>
+		<td colspan='5' align='center'>
+	 <!-- input type="button" name="nextyear" value="Update Year" onClick="javascript:update_year();" / -->
+         <input type="submit" name="submit" value="Change Data" />
+		</td>
+	</tr>
+<!--
+	<tr>
+		<td colspan='5' align='center'>
+			<a href="land.cgi?linkcode=< ! - - TMPL_VAR NAME=again_linkcode - - >">Click here</a> to see this data again
+		</td>
+	</tr>
+-->
+</table>
+
+</form>

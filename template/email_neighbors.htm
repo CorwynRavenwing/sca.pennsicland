@@ -1,0 +1,29 @@
+<form method="post" action="">
+      This form will send an E-mail to all the groups that are registered
+      in the block that you are placed in. It will send to your email as well. 
+      <br>
+      The return address will be set as your current e-mail address in the land 
+      system. This way when people respond to the e-mail it will go back to your
+      registered e-mail address and not to the Pennsic Land System.
+	<p>
+	<table width="100%" border="1">
+		<!-- TMPL_VAR NAME=email_table -->
+	</table>
+
+	<input type="hidden" name="recipient_email_addresses" value="<!-- TMPL_VAR NAME=recipient_email_addresses -->" />
+	<br>
+	Subject:<br>
+	<b>[Pennsic&nbsp;Block&nbsp;<!-- TMPL_VAR NAME=block_name -->]&nbsp;</b><input type="text" name="subject" value="<!-- TMPL_VAR NAME=subject -->" size="50" maxlength="100"><br>
+	<span style="color:red"><!-- TMPL_VAR NAME=subject_error --></span><br>
+	<br>
+	Message:<br>
+	<textarea name="message" cols="60" rows="30"><!-- TMPL_VAR NAME=message --></textarea><br>
+	<span style="color:red"><!-- TMPL_VAR NAME=message_error --></span><br>
+	<br>
+	<span style="valign:right">
+		<input name="submit" type="submit" value="Send E-mail">
+		<input name="reset" type="reset"  value="Reset Form" >
+	</span>
+	<input type="hidden" name="block_name" value="<!-- TMPL_VAR NAME=block_name -->" >
+	<input type="hidden" name="email_list" value="<!-- TMPL_VAR NAME=email_list -->" >
+</form>

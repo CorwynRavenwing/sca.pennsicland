@@ -1,0 +1,244 @@
+
+<form name="form1" method="post" action="?">
+
+<table border="1" cellpadding="4" cellspacing="0" align="left">
+  <tr>
+    <td valign="top" height="18" colspan="2">
+      <font size="2" color="#000000">
+      <!-- TMPL_VAR NAME=top_message -->
+      </font>
+    </td>
+  </tr>
+  <tr>
+    <td height="38" width="218" valign="top">
+      <font size="3">Legal Name</font><br>
+      <font size="2">ex: John Doe</font>
+    </td>
+    <td valign="top" width="*">
+      <input type="text" name="legal_name"  value="<!-- TMPL_VAR NAME=legal_name_variable_string -->" size="50" maxlength="50" />
+      <!-- TMPL_VAR NAME=legal_name_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="35" valign="top">
+      <font size="3">SCA Name</font><br>
+      <font size="2">ex: THL Jonathan The Doe</font>
+    </td>
+    <td valign="top" width="*">
+      <input type="text" name="sca_name" value="<!-- TMPL_VAR NAME=sca_name_variable_string -->" size="50" maxlength="50" />
+      <!-- TMPL_VAR NAME=sca_name_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="35" valign="top">
+      <font size="3">
+      Address Line 1</font><br>
+      <font size="2">ex: 205 North Loop Road </font>
+    </td>
+    <td valign="top" width="*">
+      <input type="text" name="address_line_1" value="<!-- TMPL_VAR NAME=address_line_1_variable_string -->" size="50" maxlength="50" />
+      <!-- TMPL_VAR NAME=address_line_1_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="35" valign="top">
+      <font size="3">
+      Address Line 2</font><br>
+      <font size="2">ex: Math Building, Rm. 321</font>
+    </td>
+    <td valign="top" width="*">
+      <input type="text" name="address_line_2" value="<!-- TMPL_VAR NAME=address_line_2_variable_string -->" size="50" maxlength="50" />
+      <!-- TMPL_VAR NAME=address_line_2_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="38" valign="top">
+      <font size="3">City</font><br>
+      <font size="2">ex: Stony Brook</font>
+    </td>
+    <td valign="top" width="*">
+      <input type="text" name="city" value="<!-- TMPL_VAR NAME=city_variable_string -->" size="50" maxlength="50" />
+      <!-- TMPL_VAR NAME=city_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="38" valign="top">
+      <font size="3">State/Province</font><br>
+      <font size="2">ex: NY, Ontario</font>
+    </td>
+    <td valign="top" width="*">
+      <input type="text" name="state" value="<!-- TMPL_VAR NAME=state_variable_string -->" size="20" maxlength="20" />
+      <!-- TMPL_VAR NAME=state_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="39" valign="top">
+      <font size="3">ZIP or Postal Code</font><br>
+      <font size="2">ex: 11768, 11768-1223, NG4 HV8</font>
+    </td>
+    <td valign="top" width="*" height="39">
+      <input type="text" name="postal_code" value="<!-- TMPL_VAR NAME=postal_code_variable_string -->" size="10" maxlength="10" />
+      <!-- TMPL_VAR NAME=postal_code_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="38" valign="top">
+      <font size="3">Country</font><br>
+      <font size="2">ex: United States</font>
+    </td>
+    <td width="*" valign="top">
+      <input type="text" name="country" value="<!-- TMPL_VAR NAME=country_variable_string -->" size="20" maxlength="20" />
+      <!-- TMPL_VAR NAME=country_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="38" valign="top">
+      <font size="3">E-mail Address </font><br>
+      <font size="2">ex: lordfred@pennsicwar.org</font>
+    </td>
+    <td valign="top" width="*">
+      <input type="text" name="email_address" value="<!-- TMPL_VAR NAME=email_address_variable_string -->" size="30" maxlength="50" />
+      <!-- TMPL_VAR NAME=email_address_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="38" valign="top">
+      <font size="3">Telephone</font><br>
+      <font size="2">ex: 2345678910 (no spaces)</font>
+    </td>
+    <td valign="top" width="*">
+      <input type="text" name="phone_number" value="<!-- TMPL_VAR NAME=phone_number_variable_string -->" size="10" maxlength="10" />
+      ext:
+      <input type="text" name="extension" value="<!-- TMPL_VAR NAME=extension_variable_string -->" size="4" maxlength="4" />
+      <!-- TMPL_VAR NAME=phone_number_error_string -->
+      <!-- TMPL_VAR NAME=extension_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" valign="top">
+      <p>username: up to 10 characters long and may consist of only upper and
+      lowercase letters AND NUMBERS. Capitalization counts BUT IT SHOULDN'T.</p>
+    </td>
+  </tr>
+  <tr>
+    <td height="38" valign="top">
+      <font size="3">Username</font>
+    </td>
+    <td valign="top" width="*">
+      <input type="text" name="username" value="<!-- TMPL_VAR NAME=username_variable_string -->" size="10" maxlength="10" />
+      <!-- TMPL_VAR NAME=username_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" valign="top">
+      <p>password: a combination of upper and lowercase letters
+      and numbers, 5 to 10 characters long.  Capitalization counts.</p>
+    </td>
+  </tr>
+  <tr>
+    <td height="33" valign="top">
+      <font size="3">
+      Password (first time)</font>
+    </td>
+    <td valign="top" width="*">
+      <input type="password" name="password_1" value="<!-- TMPL_VAR NAME=password_1_variable_string -->" size="13" maxlength="12" />
+      <!-- TMPL_VAR NAME=password_1_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="33" valign="top">
+      <font size="3">
+      Password (second time)</font>
+    </td>
+    <td valign="top" width="*">
+      <input type="password" name="password_2" value="<!-- TMPL_VAR NAME=password_2_variable_string -->" size="13" maxlength="12" />
+      <!-- TMPL_VAR NAME=password_2_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3" valign="top">
+      <p>Hint for the &quot;forgot password&quot; option on the log in screen</p>
+    </td>
+  </tr>
+  <tr>
+    <td height="38" valign="top">
+      <font size="3">Password Hint</font>
+    </td>
+    <td valign="top" width="*" height="38">
+      <input type="text" name="password_hint" value="<!-- TMPL_VAR NAME=password_hint_variable_string -->" size="50" />
+      <!-- TMPL_VAR NAME=password_hint_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="33" valign="top">
+      <font size="3">Password Hint Answer</font>
+    </td>
+    <td valign="top" width="*">
+      <input type="text" name="password_hint_answer" value="<!-- TMPL_VAR NAME=password_hint_answer_variable_string -->" size="50" maxlength="50" />
+      <!-- TMPL_VAR NAME=password_hint_answer_error_string -->
+    </td>
+  </tr>
+  <tr style="display:none">    <!-- NO LONGER SHOWING THIS: WCH 2011-01-31 -->
+    <td height="38" valign="top">
+      <font size="3">User Active</font><br>
+      <font size="2">(T or F)</font>
+    </td>
+    <td valign="top" width="*">
+      <input type="text" name="user_active" value="<!-- TMPL_VAR NAME=user_active_variable_string -->" size="2" maxlength="1" />
+      <!-- TMPL_VAR NAME=user_active_error_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="38" valign="top">
+      <font size="3">Time Created</font><br>
+    </td>
+    <td valign="top" width="*">
+          <!-- TMPL_VAR NAME=time_created_variable_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="38" valign="top">
+      <font size="3">UserID</font><br>
+    </td>
+    <td valign="top" width="*">
+      <!-- TMPL_VAR NAME=user_id_variable_string -->
+      <input type="hidden" name="id" value="<!-- TMPL_VAR NAME=user_id_variable_string -->" />
+    </td>
+  </tr>
+  <tr>
+    <td height="33" colspan="3" valign="top">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Administrative Links:
+    </td>
+    <td>
+      <a href="<!-- TMPL_VAR NAME=reset_password_linkcode -->" target="_blank"><b>RESET&nbsp;PASSWORD</b></a>
+      &nbsp;&nbsp;&nbsp;
+      <a href="<!-- TMPL_VAR NAME=test_email_linkcode -->" target="_blank"><b>TEST&nbsp;EMAIL</b></a>
+      &nbsp;&nbsp;&nbsp;
+      <a href="<!-- TMPL_VAR NAME=become_user_linkcode -->" target="_blank"><b>BECOME&nbsp;USER</b></a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Group Links:
+    </td>
+    <td>
+      Group: <!-- TMPL_VAR NAME=groupname_variable_string -->
+    </td>
+  </tr>
+  <tr>
+    <td height="33" colspan="3" valign="top">
+      <input type="submit" value="Update" name="action">
+        <span style="<!-- TMPL_VAR NAME=submit_override_style -->">
+      &nbsp;&nbsp;&nbsp;
+      <input type="submit" value="Update, ignoring errors" name="override">
+        </span>
+    </td>
+  </tr>
+</table>
+
+</form>
