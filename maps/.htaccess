@@ -1,0 +1,4 @@
+RewriteEngine off
+# DirectoryIndex index.html
+# RewriteEngine on
+# RewriteRule ^.*$ http://land.pennsicwar.org/land_php/map.php [R]

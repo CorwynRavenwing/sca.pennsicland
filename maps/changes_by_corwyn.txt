@@ -1,0 +1,5 @@
+2007-01-03	Updated make_map_pages.pl to refer to Pennsic 36, not 35.
+2007-01-03	Updated *.html to refer to Pennsic 36.
+2009-06-15	auto refresh to new maps page
+2012-08-12	remove .htaccess redirect, HTML redirect to *new* new maps page,
+		move maps subdirectory here
