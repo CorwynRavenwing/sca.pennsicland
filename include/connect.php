@@ -60,22 +60,17 @@ switch ($test_mode) {
 
 if (headers_sent()) { print "<!-- db_name: " . $db_name . " -->\n"; }
 
-# my $cfg = new Config::IniFiles( -file => "map.conf" );
-# $dsn          = $cfg->val( $db_name, 'dsn' );
-# $db_user_name = $cfg->val( $db_name, 'db_user_name' );
-# $db_password  = $cfg->val( $db_name, 'db_password' );
-
 switch ($db_name) {
   case "land_db":
-    require_once("db_data_live.php");
+    require_once("pw_db_live.php");
     break;
 
   case "test_db":
-    require_once("db_data_test.php");
+    require_once("pw_db_test.php");
     break;
 
   case "laptop_db":
-    require_once("db_data_laptop.php");
+    require_once("pw_db_laptop.php");
     break;
 
   default:
