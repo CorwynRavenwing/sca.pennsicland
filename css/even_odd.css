@@ -1,0 +1,9 @@
+/* extra rules for even and odd rows */
+.even {
+	background-color: #eeeeee;
+}
+
+.odd {
+	background-color: #cccccc;
+}
+

@@ -1,0 +1,103 @@
+html {height:101%}
+
+BODY { font-size:90%; background-color:white; #F8F8FF; margin:0; width:100%  overflow-x: hidden; }
+
+div, body {font-family: verdana, sans-serif}
+
+
+#header_320-365 {display:none}
+#header_366-540 {display:none}
+#header_541-599 {display:none}
+#header_600-948 {display:none}
+
+
+.indent10 {margin-left:10px}
+h2.short {margin-bottom:3px}
+
+div.spacer {line-height:.5em}
+
+a:link {color:mediumblue}
+a:visited{color:purple}
+ 
+ h1, h2, h3 , h4{font-family:cagliostro; color:black}
+ h1 {font-size:150%;}
+ h2 {font-size:125%}
+ h3 {font-size:115%}
+	
+	
+	
+@media screen and (max-width: 760px) 
+   {	
+ 
+	
+	img.screen {display:none}
+	}
+ 
+ 
+#headerimage { background-color:white;   border: solid 0px  #96a6b6; border-bottom: 0px;}
+
+#header-title {
+position:absolute; top:10px; left:15px;
+  color:black; 
+  font-family:MedievalSharp; font-weight: bold;  font-size:2.5em;  
+   
+   
+}
+ 
+
+#header-title span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 100%;
+  height: 100%;
+  color:   black; 
+}
+#header-title span.last {
+  top: 0px;
+  left: 0px;
+  color:    white;
+  }
+  
+#header-title span.last a {  color:black; white; }
+
+  
+#subbanner{	color:white;    position:absolute; top:47px; left:14px; margin-left:4px; font-weight:bold; 
+	 font-size:.9em; font-family:'cagliostro';	text-shadow: 2px 1px 0px black;}
+
+	 
+#searchtext{ font-family:verdana, arial, sans-serif; font-variant:normal; font-size:70%; border:solid 1px  black; width:208px;
+   padding:2px; background-color:#F8F8FF;  }
+
+ 
+ 
+}
+
+   
+ 
+#frontpage-box {border: #607B8B solid 3px; background-color:#ECF3F9; margin-top:0px;  margin-left:5px; xpadding: 15px; padding-top:0px; font-size:90%; width:50%; float:left;}
+
+
+
+ #panix { float:left; width:10%}
+
+#footer{font-size:85%; font-family: verdana, sans-serif;  padding: 5px;}
+
+#disclaimer {xfloat:center;  width:99%; margin: 0;   padding: 5px; background: #F0F0F0; 
+	font-family: arial, sans-serif; font-size:.75em; color: #333333}
+
+
+
+.smallcaps { font-variant: small-caps; font-size:100%; line-height:1em;}
+
+
+
+.depttitle {font-size: 160%; text-align:center; }
+.depthead {font-size: 100%; font-weight: normal; margin:0 0 0 5px;}
+
+
+#hide {display:none}
+ 
+#pw42 {visibility:visible}
+
+a:hover{xbackground-color:white}

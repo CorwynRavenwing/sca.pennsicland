@@ -1,0 +1,36 @@
+BODY {
+	background-color: white;
+}
+
+.depttitle {
+	font-size: 160%;
+	text-align:center;
+	font-family: arial,sans-serif
+}
+
+.depthead {
+	font-size: 100%;
+	font-weight: normal;
+	margin:0 0 0 5px
+}
+
+.deptname {
+	font-size: 125%;
+	font-weight: normal;
+	float:left
+}
+
+.deptindent{
+	margin-left:5cm;
+	font-family: arial, sans-serif;
+	font-size:90%
+}
+
+.deptmayor {
+	font-size:130%
+}
+
+.deputy {
+	padding:2px;
+	font-size:120%
+}

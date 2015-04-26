@@ -1,0 +1,6 @@
+navbar.html: SYNC
+Warning: rename(synch/pwnew.css.tmp,synch/pwnew.css) [function.rename]: No such file or directory in /home/wharmon/websites/pennsicland/include/nav1.php on line 817
+pwnew.css: OK
+Warning: rename(synch/menu.css.tmp,synch/menu.css) [function.rename]: No such file or directory in /home/wharmon/websites/pennsicland/include/nav1.php on line 817
+menu.css: OK 
+

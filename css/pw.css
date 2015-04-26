@@ -1,0 +1,91 @@
+BODY {background:  #f8f8f8; font-family:arial, sans-serif; }
+
+.blueimage { background-image:url("../image/blueback.jpg");}
+
+a:link {color:mediumblue}
+a:visited{color:purple}
+
+#pennhdr{width: 99%;  padding: 6px; 
+	border-color:  azure  #66668b   #483D8B #e0e0e0;
+	border-style: solid; border-width:2px 2px 2px 2px;
+	 background:url('../image/blueback.jpg');
+	 font-family: garamond, times; font-variant: small-caps;
+	font-size:170%;  color: black; background-color: #333333;
+	}
+
+#deadlines{ float:right; padding:5; margin-top:15px; margin-right: 5px;
+	 border-width: 0px ; font-family: arial, sans-serif; color: #333333}
+
+table.sidebar {font-size:90%}
+
+
+
+/* navigation bar defs */
+
+#navbar {margin-top:0; text-align:center; width: 99%;
+ 	border-width: 0px ; font-family: arial, sans-serif;
+  	color: #333333;}
+
+td.current {background:navy; 
+	text-align:center;  
+	border-color:  azure  #66668b   #483D8B #e0e0e0;
+	border-style: solid; border-width:0px 0px 1px 0px; font-size:90%} 
+
+td.current a:visited { color:white; text-decoration: none; text-align:center;}
+
+td.nav {   text-align:center; background:url('blue2.jpg');
+	border-color:  azure  #66668b   #483D8B #e0e0e0;
+	border-style: solid; border-width:0px 0px 1px 0px; font-size:90%} 
+
+
+.nav a:link {color:black; text-decoration: none;}
+.nav a:visited { color:black; text-decoration: none;}
+.nav a:active { color:black; text-decoration: none; text-align:center;}
+
+ a:hover {background: navy; color:white;}
+
+.nav a:hover {background: navy; color:white; display:block;}
+
+
+#rightsidebar{float:right; width:23%;
+	 background:url('../image/blueback.jpg');
+ 	padding:5px; margin-right:8px;
+	border-color:azure #66668b #483D8B #e0e0e0;
+	border-style:solid; border-width:2 2 2 2;
+	font-family:arial,sans-serif;}
+
+
+
+#armsbox{ float:right; margin-top:15px;margin-right:15px; width:25%;
+	/* horizontal-align:center; */
+	 padding:5px;
+	font-family: arial, sans-serif; font-size:80%;
+	  color: #333333;}
+
+#context{  width:55%; float:left; font-family: arial, sans-serif;
+	padding-left:10px ;  margin: 0;}
+
+#contextwide{  width:99%; float:left; font-family: arial, sans-serif; 
+	padding-left:10px ;  margin: 0}
+
+
+
+#footer{
+	/* float:center; */
+	width:99%;
+	 margin: 0;   padding: 5px;
+	 background: #F0F0F0; 
+	font-family: arial, sans-serif;
+	font-size:80%;
+	 color: #333333;
+}
+
+.smallcaps { font-variant: small-caps;}
+
+.sansserif {font-family: arial, sans-serif;}
+
+
+
+
+.depttitle {font-size: 160%; text-align:center; font-family: arial,sans-serif;}
+.depthead {font-size: 100%; font-weight: normal; margin:0 0 0 5px;}

@@ -1,0 +1,227 @@
+<pre>&lt;?php header('Content-Type: text/css; charset=ISO-8859-1'); ?&gt;
+
+/* Begin CSS 
+Drop Down Menu 
+<a href="http://sperling.com/examples/new-menuh/" target=_blank class="m1">http://sperling.com/examples/new-menuh/</a>  */
+
+
+
+#landmenu-container		/* 
+this is the main container position as you want*/
+	{
+	font-size: 1em;		/* do not remove 
+or alter */
+	position:relative; absolute; z-index: 10;			/* do not remove or alter - 
+topmost level*/   
+ 
+
+	}
+
+#landmenu							/* this is where you may change font and font 
+size */
+	{ 
+	font-size: 0.9em;								/* size of the text in the menu */
+	font-family: 
+trebuchet, sans-serif; 			/* font */
+	font-weight:  normal;							/* weight (i.e., bold, 
+italic, ect.)  */
+	float: none;									/* do not remove or alter */
+	width: 
+1000px;									/* *** PLEASE *** note the comment below */
+	position:absolute; 
+top:177px;  height:17px; 
+	}
+
+
+	
+/* === comment ===
+The width value above can be critical 
+to your design. If you leave the value at 100%, then 
+the menu will wrap if the browser 
+window is reduced to a size where the menu can't fit. 
+If you want your menu to not wrap, 
+then you must set it to a specific size.
+***PENNSICWAR.ORG - if menu wraps, it will 
+either cover up or vanish under the following crumbtrail horizontal bar ***
+
+To determine 
+what specific size you need, simply count the number of grandparents and 
+multiply that 
+number by the width given in the menh ul and landmenu lu rules. For example, 
+this menu 
+has five grandparents and the width for the landmenu ul and li is 9em. Therefore, 
+a 
+width of 400 em would stop this menu from wrapping.
+*/
+
+#landmenu a, #landmenu 
+a:visited				/* menu at rest */
+	{
+	height:1%;							/* do not remove or alter 
+*/
+	display: block;						/* do not remove or alter */
+	x-white-space: nowrap;				/* 
+removing nowrap allows menu items to be multiple lines */
+
+	padding-top: 0.4em;					/* 
+height of the menu box above text */
+	padding-bottom: 0.4em;				/* height of the menu box 
+below text */
+	text-align: center; 				/* if you change this, you'll have to add padding 
+*/
+	text-decoration: none;				/* this stops the default underline of links */
+	color: 
+black; #FFF;						/* color of the text */
+	background-color:#D0C0C0; #CFAFAF; 
+#506987;			/* color of the background */
+	}	
+
+
+	
+#landmenu a.grandparent, #landmenu 
+a.grandparent:hover  /* attaches down-arrow to all top-parents */
+	{
+	background-image: 
+url(menu-arrow.gif);		/* do not remove or alter */
+	background-position: right 
+center;			/* do not remove or alter */
+	background-repeat: no-repeat				/* do not remove 
+or alter */
+	}
+	
+#landmenu a.parent, #landmenu a.parent:hover 	/* attaches side-arrow to 
+all parents */
+	{
+	
+ 	background-image: url(menu-arrow-down.gif);	/* do not remove or 
+alter */
+	background-position: right center;			/* do not remove or alter 
+*/
+	background-repeat: no-repeat				/* do not remove or alter */
+	}
+
+#landmenu 
+a:hover								/* menu at mouse-over  */
+	{
+	color: #FFF; black;							/* color of text 
+*/
+	background-color: #A96E6E; #B7C4D4;				/* color of background */
+	}	
+	
+#landmenu  
+a.inactive  {background-color: #999; color:#555;}		/* gray out inaccessible menu items  
+*/
+
+
+/* NOTE  the width attribute below is REQUIRED IN BOTH #landmenu ul and #landmenu li 
+rules below. */
+/* If you remove these, the menu will automatically adjust to the length 
+of the menu text. */
+/* In other words, the menu becomes a variable width menu (some 
+menus require that) */
+/* HOWEVER, you mist add padding to left and right make the menu 
+text readable */
+	
+#landmenu ul
+	{
+	list-style: none;			/* do not remove or alter */
+	margin: 0;				/* do not remove or alter */
+	padding: 0;				/* do not remove or alter */
+	float: left;				/* do not remove or alter */
+	width:11em;				/* width of all menu boxes -- read note above*/
+	}
+
+#landmenu li
+	{
+	position: relative;	/* do not remove or alter */
+    min-height: 1px;		/* do not remove or alter */ 
+    
+vertical-align: bottom;		/* do not remove or alter */
+    width: 11em;		/* width of all menu boxes -- read note above*/
+}
+
+	#landmenu ul ul li {border-top: 1px solid #777; 
+margin-top:0px;}
+
+#landmenu ul ul ul li  a, #landmenu  ul ul ul li  a:visited			/* 
+fly out to right */
+{ margin-left:5px; margin-top:0px;
+   }
+	
+	.sub {background-color:  
+gold;    }
+	
+/* ===== DO NOT REMOVE OR ALTER ANYTHING BELOW ===== */
+
+#landmenu ul 
+ul			/* parent menu */
+	{
+	position:absolute;
+	top: auto; 
+	left: 
+auto;
+	display:none;
+	padding: 0; 
+	margin: 0;
+	z-index: 20;	
+	}
+
+#landmenu ul ul ul	/* 
+child menu */
+	{
+	position:absolute;
+	top: 0;
+	left: 100%;
+	}
+
+div#landmenu 
+li:hover
+	{
+	cursor:pointer;
+	}
+
+div#landmenu li:hover ul ul,
+div#landmenu li li:hover ul 
+ul,
+div#landmenu li li li:hover ul ul,
+div#landmenu li li li li:hover ul 
+ul
+{display:none;}
+
+div#landmenu li:hover ul,
+div#landmenu li li:hover ul,
+div#landmenu 
+li li li:hover ul,
+div#landmenu li li li li:hover 
+ul
+{display:block;}
+
+
+
+#landmenu						/* IE stuff */
+	{
+	float:none;
+	}
+	
+body						/* IE 
+stuff */
+	{
+	behavior:url(csshover.htc);
+	}
+	
+#landmenu ul li				/* IE stuff 
+*/
+	{
+	float:left;
+	}
+	
+#landmenu a					/* IE stuff */
+	{
+	height:1%;
+	}
+
+	
+
+/* End CSS 
+Drop Down Menu */
+</pre>

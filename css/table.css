@@ -1,0 +1,41 @@
+.nowrap { white-space: nowrap; }
+.columnhead {color:lightgoldenrodyellow; text-align:center; vertical-align:middle; background:darkmagenta}
+
+
+ul	{margin-left: -1px; }
+
+.top 	{background:url('blue2.jpg');
+	text-align:center; font-size: 110%;  
+	border-color:  Azure #66668b   #483D8B  #e0e0e0;
+	border-style: solid; border-width:2 2 2 2;		}
+
+
+.info	{background: #f0f0ff; 
+	text-align:center; white-space: nowrap;
+	border-color: Azure #66668b   #483D8B  #e0e0e0;
+	border-style: solid; border-width:2 2 2 2;
+	margin: 0; padding:2px; 
+	
+	}
+
+
+
+.nav a:hover {	display: block; color: #333333; padding:0;
+		background: navy; color:white;
+		text-decoration: none;}
+
+nav a:link { text-decoration: none}
+nav a:visited { text-decoration: none}
+nav a:active { text-decoration: none}
+
+th		{border-color:  azure #66668b   #483D8B #e0e0e0;
+		border-style: solid; border-width:2px 2px 2px 2px;}
+
+.even {
+	background-color: #DDDDDD;
+}
+
+.odd {
+	background-color: #FFFFFF;
+}
+

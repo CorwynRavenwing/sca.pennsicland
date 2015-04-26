@@ -1,0 +1,8 @@
+# ignore all password-containing files for security reasons
+pw_*
+# except the example files
+!pw_*_EXAMPLE*
+
+# ignore any INSECURE files
+*INSECURE*
+

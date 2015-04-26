@@ -1,0 +1,10 @@
+
+# ignore OLD files
+*_OLD*
+*_old*
+
+# ignore any html files
+*.html
+
+# except the index redirector
+!index.html

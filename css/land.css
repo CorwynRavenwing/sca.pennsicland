@@ -1,0 +1,91 @@
+/* land.css -- information for pennsic land webpages */
+
+.header {
+	font-size: 90%;
+	height: 5em;
+	width: 100%;
+	margin-top: 0em;
+	margin-left: 5px;
+	padding-top: 0.25em;
+	padding-bottom: 1em;
+	padding-left: 0px;
+	border: medium solid #000000;
+	border: 0px 5px 5px 0px;
+	background-color: #DDDDFF;
+	font-variant: small-caps;
+}
+
+.header .title {
+	/* float:left; */
+	margin-top:0;
+	margin-bottom:0;
+	font-size:175%;
+	font-weight: bold;
+	/* filter:dropshadow(color=#cfcfcf,offX=3,offY=3) */
+	clear: both;
+	border: none;
+}
+
+.header .body {
+	margin-top:0;
+	margin-bottom:0;
+	font-weight:normal;
+	clear: both;
+	border: none;
+}
+
+.leftnav {
+	margin: 5px;
+	padding: 5px;
+	border: thin solid #000000;
+	float: left;
+	width: 20%;
+	background-color: #9999FF;
+}
+
+.leftnav div {
+	/* padding-top: 1em; */
+}
+
+.leftnav li {
+	padding-top: 0.5em;
+	padding-left: -15px;
+	list-style-type: none;
+	list-style-position: inside;
+	font-weight: bold;
+}
+
+.leftnav li div.count {
+	float:right;
+	font-size:0.75em;
+	vertical-align:top;	/* was text-top */
+}
+
+.leftnav li.sub {
+	padding-top: 0em;
+	padding-left: 15px;
+}
+
+.body {
+	margin: 5px;
+	padding: 5px;
+	border: thin solid #000000;
+	float: left;
+	width: 75%;
+}
+
+.footer {
+	clear: both;
+}
+
+.footer .credits {
+	margin: 5px;
+	padding: 5px;
+	border: thin solid #000000;
+}
+
+.footer .disclaimer {
+	margin: 5px;
+	padding: 5px;
+	border: thin solid #000000;
+}
