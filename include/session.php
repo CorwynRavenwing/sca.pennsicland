@@ -61,7 +61,7 @@ function current_user_sessions_files() {
     while (($file = readdir($dh)) !== false) {
       $filename = $session_path . "/" . $file;
       if ( filetype($filename) == "file" ) {
-        if ( substr($string, 0, strlen($query)) === $query ) ) {
+        if ( substr($string, 0, strlen($query)) === $query ) {
           // echo "<!-- session filename: $file -->\n";
           array_push($retVal, $filename);
         }
