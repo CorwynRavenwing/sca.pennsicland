@@ -46,25 +46,25 @@ if (! $admin) {
     $total = 0;
     while ($result = mysql_fetch_assoc($query)) {
       $class = (++$count % 2) ? "odd" : "even";
-      $id            = $result['group_id'];
+      $g_id          = $result['group_id'];
       $group_name    = $result['group_name'];
       $exact_footage = $result['exact_land_amount'];
-      $user_id       = $result['user_id'];
+      $u_id          = $result['user_id'];
       $total += $exact_footage;
       ?>
   <tr class='<?=$class?>'>
-    <td align='right'><?=$id?></td>
+    <td align='right'><?=$g_id?></td>
     <td>
-      <a href='admin_groups.php?id=<?=$id?>' target='_blank'>
+      <a href='admin_groups.php?id=<?=$g_id?>' target='_blank'>
         <?=$group_name?>
       </a>
     </td>
     <td align='right'><?=$exact_footage?></td>
     <td align='center'>
       <?
-      if ($user_id) {
+      if ($u_id) {
         ?>
-      <a href='admin_users.php?id=<?=$user_id?>' target='_blank'><?=$user_id?></a>
+      <a href='admin_users.php?id=<?=$u_id?>' target='_blank'><?=$u_id?></a>
         <?
       } else {
         ?>
