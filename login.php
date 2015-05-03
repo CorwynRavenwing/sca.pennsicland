@@ -48,7 +48,7 @@ if ($action == "Submit") {
     template_param("login_error_string",  $error_string);
     print template_output();
 
-    load_template_login();
+    nav_template("template_login.htm");
   } // endif user found
 } else {
   // submit not pressed: show the menu instead:
@@ -56,7 +56,7 @@ if ($action == "Submit") {
     $redirect_to = @$_SERVER['HTTP_REFERER'];
 
     nav_template("welcome_template.htm");
-    load_template_login();
+    nav_template("template_login.htm");
 } // endif submit
 
 nav_right_end();
@@ -65,14 +65,4 @@ nav_footer_panix();
 nav_footer_disclaimer();
 
 nav_end();
-
-function load_template_login() {
-  global $redirect_to;
-
-  // nav_template("template_login.htm");
-
-  template_load("template_login.htm");
-  template_param("redirect_to",  $redirect_to);
-  print template_output();
-} // end function load_template_login
 ?>

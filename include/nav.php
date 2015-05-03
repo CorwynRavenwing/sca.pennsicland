@@ -67,9 +67,12 @@ function nav_start($html_head_block = "", $body_onload = "") {
   print template_output();
 } // end function nav_start
 
-// load a template and print it without variable substitution:
+// load a template and print it without variable substitution
+// ... except for $redirect_to, which is needed for login redirect
 function nav_template($template) {
+  global $redirect_to;
   template_load($template);
+  template_param("redirect_to",  $redirect_to);
   print template_output();
 } // end function nav_template
 
