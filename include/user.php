@@ -663,7 +663,8 @@ function reset_password($user_id) {
 
 function redirect_to($url) {
   $url = addslashes($url);    # was urlencode()
-  print "Please wait while you are redirected to <a href='$url'>$url</a><br />\n";
+  $url_display = preg_replace("/\?.*$/", "...", $url);
+  print "Please wait while you are redirected to <a href='$url'>$url_display</a><br />\n";
   flush();
   sleep(2);
   print "
