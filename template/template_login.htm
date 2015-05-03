@@ -3,8 +3,8 @@
 <form action="login.php" method="POST" name="plslogin">
     <p>USERNAME <input type="text" size="20" name="user_name" value="" /></p>
     <p>PASSWORD <input type="password" size="20" name="password" value="" /></p>
-    <p>
-      (redirect to: <!-- TMPL_VAR NAME=redirect_to -->)
+    <p style="display:none;">
+      (<!-- TMPL_VAR NAME=redirect_to -->)
       <input type="hidden" name="redirect_to" value="<!-- TMPL_VAR NAME=redirect_to -->" />
     </p>
     <p><input type="submit" name="action" value="Submit" /></p>
