@@ -71,7 +71,7 @@ function load_template_login() {
 
   // nav_template("template_login.htm");
 
-  template_load($template);
+  template_load("template_login.htm");
   template_param("redirect_to",  $redirect_to);
   print template_output();
 } // end function load_template_login
