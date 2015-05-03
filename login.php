@@ -54,6 +54,10 @@ if ($action == "Submit") {
   // submit not pressed: show the menu instead:
 
     $redirect_to = @$_SERVER['HTTP_REFERER'];
+    if (strpos($redirect_to, 'logout.php') !== FALSE) {
+      // if 'logout.php' is the referrer, ignore it
+      $redirect_to = "SKIP";
+    }
 
     nav_template("welcome_template.htm");
     nav_template("template_login.htm");
