@@ -1,0 +1,363 @@
+================================================================================
+New 2014:
+--------------------------------------------------------------------------------
+The Burning Frog / burningfrog issue suggests to me that I should prevent people from creating new groups if their names are that similar (differ in only spacing, capitalization, as well as punctuation).
+================================================================================
+Huge list from 2006-12-29:
+--------------------------------------------------------------------------------
+* Some A TITLE tags would not be amiss to explain what the link is going to do in other parts of the website.  As you come across any link that is unclear, either clarify the text, add an explanation next to it, or put an A TITLE tag as a help to the user.
+
+* Changes on General Group page 2, details of a group: all the true/false fields at the bottom are labeled "example: 1 or 0": how about having them be checkboxes?
+
+* Changes to Onsite View: what is this page for, in the first place?  If it's needed at all, reformat it so that the "neighbors" column is readable and so that it doesn't make each row three inches tall.  can't we create this same data by grouping each "final location" together and only showing the address data of each contact person once, rather than reproducing it for each row?  Or is the point that this page is in order by groupname so you can find the group, but has that group's neighbor's contact person's info?  And if so, wouldn't it be better off replaced by a group-to-block index in group order followed by a block-contacts list in block number order?  This is probably a question for Angus.
+
+- Corwyn
+================================================================================
+Ideas for changes, from Angus, 2007-01-16
+
+* re-name a camp, from the admin page, without removing their seniority
+
+* "is this still your address" commentary on main page
+
+* check for accounts that are no longer used, contact owner, then delete them
+
+* check for multiple accounts by the same person, delete the unnecessary ones
+
+* allow user to mark account as "please delete me"
+================================================================================
+From various emails, 2008-03-30:
+=========================================================================================
+landpenn36@aol.com wrote on 06/27/2007 08:31:34 AM:
+> Greetings,
+>
+> The compression block is only letting me use whole numbers.  Can
+> that be changed to allow decimal to two places?
+>
+> Christopher
+
+Unfortunately making that field a different type of number, is a huge deal.
+Especially since it's referenced in so many different places by different
+kinds of program (javascript, sql, perl).
+
+A 1% change is 2 and a half square feet per person, which is just about what I take up sitting down.  Are you really finding that you want to change a group by less than that?
+:-)
+
+If you really find you need this, put it on the list for next year, but it's not simple enough for me to attempt it before Pennsic.
+
+- Corwyn
+
+Hello,
+ 
+:-)  Now I am really disappointed in you!  :-)
+ 
+Okay, I understand.  However, when a camp is large and they are willing to compress, a 1/2% compression over 30 or 40 people adds up fast.  :-)
+ 
+Please add it to your "for next next year" list but it will still be a lower priority.
+ 
+Christopher
+=========================================================================================
+[description of the Percent Increase from Last Year report]
+
+-TO BE APPLIED FOR NEXT YEAR-
+
+I want to be able to PRINT this letter from the Land program site.  The letter will need to be altered some so that when it is generated the camp name and camp size information is pulled from our records to go into it.  When the following year starts the camp(s) that received a letter should still be flagged somehow noting that they were warned.  Then if they grow again by (Some factor to be determined) they can be the first to move.  If they have not grown, or shrank, it should be indicated somehow.
+
+If you have questions or would like things cleared up some please let me know.  Emerson, I CC you so you can make note of this and add your suggestions or other comments.
+
+Corwyn, just note for the time line that sending these letters would be a function that would happen AFTER the Land allotment letters are sent out and a printed copy would go into the camps land packet at Pennsic.
+
+Angus 
+=========================================================================================
+Regarding this task, the pre-reg numbers are stored in the history (except last year, P35, which I know I need to fix), so this information should be easily accessible even from on the system (e.g. on the block details view of the make-decisions page) as opposed to needing to be only in Excel.  Obviously an extract of all the groups whose growth is higher than N% is also possible and is more in keeping with what you're asking Finn for.
+
+- Corwyn
+=========================================================================================
+
+1) some groups will have one land agent for multiple groups, sort of like
+a conglomerate.  Want an option to indicate that the land agent is for
+than more than one group and if so, drop down a table with the list of
+groups that the land agent is working for. (Willow Point NA is an
+example)
+
+2) Land Agent Survey - eLeri has a template - will post to yahoo group
+
+3) pictures/satalite photo (broken down in to blocks) with link and then overlay with Pennsic map
+
+4) contact Land Office -> new page with form that is then emailed to
+respected person has block drop down and date stamp, if not a land agent
+
+7) end date for all emails - Land1 can turn on and off?
+
+8) rule read confirmation - confirmation sent to Land1
+
+9) new/important rules bolded
+
+10) Listing of rules and SOP that are used in land allocation
+
+11) pre-reg caps - land agent set value - default to 999 (unlimited)
+
+12) more transparent spam blocking in posted email addresses (store
+emails on the back side (code/db))
+
+13) link to page with area calculations for different shapes
+
+14) system to provide possible camp layout based on block size and camps
+location and sizes
+
+15) wooded area calculations (fully wooded and partially wooded areas)
+
+=========================================================================================
+"Adrienne R. Ferrell" <aferrell@greatambience.com> wrote on 03/24/2008
+08:33:30 PM:
+
+> > Out of curiosity, how did you end up registering two groups at once?
+>
+> It's been sometime since I tried to set up the accounts, ( around January
+> 21 ) but I believe I just logged in  using  my  user name and password
+> from previous years.   I think I  logged in twice. Once for each group.
+> I don't know if you can go back that far in the logs to find out.
+
+Ahhhhh.  That makes sense.  The check for whether you already have a group
+is done earlier, when you try to go to the register-groups page, which you did
+twice at once.
+
+I'll have to add something to check for that.
+
+- Corwyn
+=========================================================================================
+Greetings all,
+
+We are at 559 camps
+Most camps are down in numbers.
+57 have increased but is it really only by a few people each.
+There are 49 new camps.
+Only Vlads still have over 100 people.
+
+Corwyn, can this information be generated in a list at the bottom of the Land on view?  Low (but curious) priority.
+
+Christopher
+Angus
+=========================================================================================
+In a message dated 6/9/2008 11:38:03 A.M. Eastern Daylight Time, Warren.Harmon@onqlegrand.com writes:
+Angus -
+
+> Lets get the registration program shut down when you can.  The last
+> two Kingdoms need to contact us.
+
+All three leftover kingdoms have now registered.  On that subject:
+
+The following groups named "*populace*" have not registered:
+      Populace of Ealdormere
+      Populace of Caid
+      Populace of Meridies
+=========================================================================================
+Pennsiclandstaff@yahoogroups.com wrote on 06/10/2008 05:44:45 PM:
+
+> Corwyn,
+>
+> I see this group in the unregistered list, but I've been told that
+> people are finding it in the drop down menu of the Pennsic Pre-
+> registration form.
+>
+> Is this a glitch?  Or can people pre-reg for a group that's not in the
+> current year's list of registered groups?
+>
+> a very confused, Leri
+
+You are correct, we've had quite a lot of that this year.  It seems that
+unlike last year when Fred cleared out the database of camps from his site,
+this year he left in all the groups from last year.  So there are a few
+groups that have people registered to them that nobody has signed up as
+the land agent for.  From page Clean Up Prereg Count:
+
+Group Name                 People      On-site Rep Name
+Clan of the Arctic Winds       1     Michael Kiefer
+House Fabri                    2     Cadifor Cynan
+Iron Cross                     2     Cynthia Sues
+Lochleven                     52     Matt Adwin
+Mirage Forest                  9     Benjamin T Zonker
+-----
+Individual Camping            11
+Landgroup not Listed          22
+None Selected                 17
+Not filled in                 52
+MERCHANT                      50
+RV CAMPING                     9
+
+The top five are real camps that have campers but no land agent.  Freehold and
+Coldwood was in this list until recently, when their land agent did register
+them.  The bottom six are actually administrative groups that shouldn't have
+a land agent: we want to give them an imaginary land agent, preferably automatically,
+so that they don't show up in this list.
+
+Does anyone have an idea as to what we should do about these last few
+groups?
+
+- Corwyn
+=========================================================================================
+from 2008-06-18:
+--------------------------------------------------------------------------------
+TO DO:
+	deal with people in fictional groups (None Listed), find them homes: produce a tool that shows this list of groups in a helpful way
+	
+	admin_view_all_users: show groupname of group I'm responsible for, if any; add link allow editing of group info "EDIT groupname"; rename link in first column to "EDIT username"
+	
+	Jan 1 button: record this year's land agent id in a previous_user_id field right before you zero out this year's user_id.
+	
+	NEXT YEAR: possible newsgroups for each block discussion?
+	
+	Must flag groups with a land agent but no campers.
+--------------------------------------------------------------------------------
+THINGS INVOLVING SCHEMA CHANGES:
+	create flag "system_camp" on land_groups, default false, set to true for e.g. MERCHANT.  System camps are neither registered nor unregistered, they are a separate class of thing.  Do not allow people to choose system camps in the camp registration list.  Automatically register all system camps with the Coopers on Jan 1st.  Automatically link a fake land agent record to all system camps on Jan 1st?  Or, automatically delete all fake land agent records on Jan 1st.
+================================================================================
+From 2008-07-09:
+================================================================================
+Greetings,
+
+Can you change the Mail merge to include an auto CC to land 1 and Land 2 when the system is used?
+
+Angus
+------------------------------
+> Yes.  I will make that modification while I'm in there working on the error
+> dealing with apostrophes.
+> 
+> Just checking, that will give you over 500 incoming email messages when you
+> send out the land allotment letters, is that okay with you?  Last year it
+> would have been 857.
+> 
+> Second question: CC or BCC?
+------------------------------
+I think this is fine.  They would all be saved as soon as they came in.  It will
+give us a record so that we can say "Yes, Your Grace we did send you your Land
+assignment, I have a copy of it here."
+
+CC should be fine.  Then the Land Agents will see that we have been included.
+ 
+Emerson what are your thoughts?
+ 
+Angus
+------------------------------
+Is there a way that they can be cc'd to a file on the admin section of the
+land site so we can access them without having all the emails come in?
+Some sort of archive that we can print them from if we need them?
+Actually, an archive of all the land related emails would be great as it
+would give us a historical file to refer to as needed in the future.
+------------------------------
+Actually, there *IS* an archive of all emails that were ever sent by the
+mail merge tool, possibly only starting last year?, there just isn't any way to get to them
+presently.  If you would like me to add an interface that lets you see those emails, I
+can do that with no problem, it'll just be a bit of work.  Just let me know.
+
+If we want a log of "we sent canned email X to person Y at time Z", I can probably create that more simply.  Just let me know what it is that we need.
+------------------------------
+Speaking personally, I don't think I need the cc's for this year.  Having
+the ability to pull the information would be a good to have in the future.
+================================================================================
+From 2008-07-15:
+================================================================================
+Greetings Corwyn et al,  :-)
+
+Can notes about the blocks be added to the   admin_generate_decide_block&block_id=   type pages?  For example on N19 they have a structure that is permanent and is there with permission of the Coopers.  If a New Land Staff was made and told them to take it down because it is too tall they would complain.  But, if the block info had a note on it state when the structure was made, how tall, who gave the permission, etc. it could help.
+
+Same with bridges that are too old. The note could say bridge torn down PWX after winter damage.  Coopers gave permission for new structure.  Bla bla bla...
+
+Comments, anyone?
+
+Angus
+------------------------------
+Garowyn also had this idea.  Last year she created a book that with
+information, by block, about decisions that have been made.  I was filling
+it in last year with as much information as I had and adding decisions that
+were made at Pennsic.  Having this available as an on-line resource would
+be even better.  A paper copy could be printed to bring to Pennsic for all
+the land staff to see.  When any of us go out for a 'service call' we have
+the records of what has happened in the past with the block.  A very good
+resource for us to have.  We could potentially also include pictures of
+structures too.  That way we can see if anything has changed.
+
+Emerson
+------------------------------
+I can bring my camera and if Corwyn does not mind doing the work during Pennsic the images could be uploaded on site.
+
+Could or should Land agents have access to some of this info like the images of the structures?
+
+Angus
+------------------------------
+With everything we have going on, I don't think we need to load them up on
+to the website while on site.  It can be a post-Pennsic project.
+
+I'm not sure why land agents would need access to the photos.  I'm sure
+they have lots of photos that they've taken of their site.
+
+Emerson
+================================================================================
+[land agent quits, need to transfer to different land agent]
+
+I think I was already sent a copy of this letter: i sent a "is this for
+real" letter to both parties and have not heard back from them.
+
+Tangential question: there seem to have been a lot of these this year.  Is
+it worth automating the process, in your opinion?
+
+- Corwyn
+------------------------------
+We have talked a little about doing this.  I think for now we should leave it manual.
+We have a TON on out collective plate to deal with that will take at least the next
+two years.
+
+Angus
+------------------------------
+I think automating this process would make a lot of sense.  We just need to
+be sure that we still retain some sort of controls over the changes so we
+know when it's happening.
+
+Emerson
+================================================================================
+Why does registering a group, set that group's final location to "", even if it had already been set correctly?  Was I resetting this to "" because the global set-everyone-to-"" at Jan 1st had not yet been written?
+================================================================================
+The list of land administrators should be a flag on the user, not a hard-coded list in the program.  Maybe have a fallback-admin-if-we-lose-all-our-admins user hardcoded, but certainly not the entire list.
+================================================================================
+2008-07-16:
+================================================================================
+How big a headache would it be to make a place where people could upload block map files?  Not asking you to do it as we have not decided if we want to pre approve maps yet.
+================================================================================
+2008-07-17:
+================================================================================
+I am thinking that for next year when a Land Agent is signing up their camp they should be listed this way in all locations.  So as they are filling in their name it should be labeled as Land Agent information.  On the page that currently says onsite contact, that too should read Land Agent and the name should auto fill in from when the persons name was filled in the first time.
+
+Makes sense?
+
+Angus
+================================================================================
+2008-07-18:
+================================================================================
+Mail merge tool, Edit/View page: Allow viewing of details of entire letter for each person, but only if it has been sent already.
+================================================================================
+block decisions list: Angus was suggesting showing two different "change" columns on the page, one for numbers changes and one for personnel changes.  emailed him to define this last.  also might need to know group-has-changed-blocks changes on the block level.
+================================================================================
+2008-07-22:
+================================================================================
+user view-prereg page: link for missing a person; link for extra person (create move request, with name of new group if known); notice if land agent does not camp in group; link to accept incoming people from move-person link listed above; ability to mark people as being accepted so you don't have to look them up twice; possibly show the people who have transferred out of the group?
+================================================================================
+admin view-prereg page: list of people who have left this group, and where they have gone to; list of pending and completed transfers from user page, possibly with ability to approve/deny the xfer; list of accepted / unaccepted people from user page
+================================================================================
+auto-change land agent (request replacement by old land agent, accept change by new land agent)
+================================================================================
+admin prereg list: add details to changed=yes i.e. Add, Moved in from X, Refund, Moved out to X, etc.  Therefore on landone-view and block-details, allow linking 0 people so we can see their history, possibly only if there is any history.
+================================================================================
+cutting off making number changes: when do the coopers print the paperwork that says where each person is camping?  we need to cut off moving people earlier than that.  we also need to cut off downloading new cooper data at that point.  is this a date, or is this a new mode (groups locked) that starts when a button is pressed immediately prior to pennsic sometime?
+================================================================================
+block details page: the first choice is often blue, even when for other groups in the same block it's green.  Are we colorizing based on whether the group would fit AGAIN into the block?  Based on sizes of camps with blue vs. green links, it seems that we are.
+================================================================================
+group labels: need to be grouped by block, then alpha by group name; need only block name and group name, not land agent name or on-site-rep per Emerson.  "With Emerson  N03".  CSV export?  PHP/PDF ?
+================================================================================
+next year, be sure to label each email with the block number and sort them by block then oldest in back to youngest in front.  they need to be that way in the land one box
+================================================================================
+From PW40 notes:
++ Upon creating a group, mark it as Provisional / New.
+* Create a tool that allows admins to change that to Approved or Disapproved, with email to the land agent when that happens.  Disapproved groups should fall off of various lists, and possibly be forcibly un-registered, as well as deleted from Coopers.  (Or only create at Coopers when we mark them approved.)  This tool should look up other groups with *similar* names, with different punctuation and spacing, removal of "the" and other null words, SOUNDEX and other similarity markings.
+* Once a group-rename tool (which should deal with connected Cooper updates concurrently) is created, the group name should no longer be editable on the admin Group screen, but instead have a link to the group-rename tool next to the name.
+* Upon renaming a group, a new group should be created with the old name, Disapproved status, and the comment text "Group renamed to New-name on Rename-Date (PWnn) by Admin-name".
+* We should fill in any recent renames we can remember, with this kind of record.
+================================================================================

@@ -1,0 +1,50 @@
+# UPDATES TO DO AFTER EVERY PENNSIC, TO CLEAR THE SLATE FOR THE NEW YEAR
+
+*** already in admin_move_data_page
+### moved to admin_eoy_close.php:
+
+
+*** ###	# MOVE PRESENT HISTORY INTO PAST HISTORY:
+*** ###	insert into land_group_history (group_id, year, block_id, attendance) select group_id,
+*** ###	$LASTYEAR_PENNSICNUMBER, final_block_location, pre_registration_count from land_groups
+*** ###	where final_block_location <> ""
+
+*** ###	# CLEAR REGISTRATION INFORMATION:
+*** ###	update land_groups set user_id = 0, registration_complete = 0, time_registered = 0,
+*** ###	pre_registration_count = 0, final_block_location = "", group_data = "" where 1;
+
+*** ###	# TURN OFF ALL STAFF FLAGS:
+*** ###	update land_groups set staff_group = 0 where 1;
+
+*** ###	# MAKE ALL ACCOUNTS INACTIVE?
+*** ###	update user_information SET active_account = 'F', last_update = last_update WHERE 1;
+
+
+# UPDATES TO DO PERIODICALLY, TO CLEAN UP THE DATABASE, BECAUSE WE CAN'T SEE
+# NEW USERS LOGGING ON FOR SOME REASON:
+
+	# GIVE EVERYBODY A REAL TIME-CREATED:
+	update user_information SET time_created = last_update, last_update = last_update
+	WHERE time_created = 0;
+
+	# CLEAN UP TEMPORARY-ACCOUNT FIELD:
+	update user_information SET temporary_account = 'T', last_update = last_update
+	WHERE temporary_account IS NULL;
+	update user_information SET temporary_account = 'T', last_update = last_update
+	WHERE temporary_account = '';
+	update user_information SET temporary_account = 'F', last_update = last_update
+	WHERE user_name NOT LIKE "TEMP\_%";
+	update user_information SET temporary_account = 'T', last_update = last_update
+	WHERE user_name     LIKE "TEMP\_%";
+	delete from user_information where temporary_account = 'T'
+	and last_update < date_sub(now() , interval 180 DAY)
+	and time_created < date_sub(now() , interval 180 DAY);
+	# NB: shouldn't we do this much, much more often than 180 days?
+
+	# CLEAN UP ACTIVE_ACCOUNT FIELD:
+	update user_information SET active_account = 'F', last_update = last_update
+	WHERE active_account IS NULL;
+	update user_information SET active_account = 'F', last_update = last_update
+	WHERE active_account = '';
+	update user_information SET active_account = 'T', last_update = last_update
+	WHERE user_id in (SELECT user_id FROM `land_groups` where user_id <> 0);
