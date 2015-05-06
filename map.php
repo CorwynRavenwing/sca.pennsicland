@@ -126,13 +126,13 @@ if (! $block) {
   Clicking on map to zoom has been temporarily disabled.
   <br />
   <span style="color:green; font-weight:bold;">
-    NEW: click <a href=<?=image("maps/${pennsic_number}/pennsic${pennsic_number}_L.png");?> target="_blank">here</a>
+    NEW: click <a href=<?=image("maps/${pennsic_number}/pennsic_L.png");?> target="_blank">here</a>
     for a larger version of this map.
   </span>
   <br />
   <!-- form starts here -->
   <img
-    src=<?=image("maps/${pennsic_number}/pennsic${pennsic_number}.gif");?>
+    src=<?=image("maps/${pennsic_number}/pennsic.gif");?>
     alt="Pennsic <?=$pennsic_number?> Map"
     border="1"
   />
