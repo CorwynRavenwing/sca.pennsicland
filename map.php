@@ -126,13 +126,13 @@ if (! $block) {
   Clicking on map to zoom has been temporarily disabled.
   <br />
   <span style="color:green; font-weight:bold;">
-    NEW: click <a href=<?=image("maps/pennsic${pennsic_number}_L.png");?> target="_blank">here</a>
+    NEW: click <a href=<?=image("maps/${pennsic_number}/pennsic${pennsic_number}_L.png");?> target="_blank">here</a>
     for a larger version of this map.
   </span>
   <br />
   <!-- form starts here -->
   <img
-    src=<?=image("maps/pennsic${pennsic_number}.gif");?>
+    src=<?=image("maps/${pennsic_number}/pennsic${pennsic_number}.gif");?>
     alt="Pennsic <?=$pennsic_number?> Map"
     border="1"
   />
@@ -144,10 +144,10 @@ if (! $block) {
   <b>Click on block map to view PDF file,</b><br />
   or choose another block from the menu above.<br />
 
-  <!-- <a href="maps/<?=$pennsic_number?>_<?=$block?>_L.pdf" > -->
-  <a href=<?=image("maps/${pennsic_number}_${block}_L.pdf");?> >
+  <!-- <a href="maps/<?=$pennsic_number?>/<?=$block?>_L.pdf" > -->
+  <a href=<?=image("maps/${pennsic_number}/${block}_L.pdf");?> >
      <img
-      src=<?=image("maps/${pennsic_number}_${block}_S.png");?>
+      src=<?=image("maps/${pennsic_number}/${block}_S.png");?>
       alt="Pennsic <?=$pennsic_number?> Block <?=$block?> Map"
         border="1"
       />
