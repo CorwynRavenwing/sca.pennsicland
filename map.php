@@ -120,7 +120,17 @@ global $pennsic_number;
 $map_dir = "maps/${pennsic_number}";
 
 if (! is_dir($map_dir)) {
+    ?>
+<h1 style="color:red">Note: map files missing; using last year&rsquo;s maps</h1>
+    <?
+    $map_dir = "maps/${pennsic_number-1}";
 
+    if (! is_dir($map_dir)) {
+        ?>
+<h2 style="color:red">... which are also missing!</h1>
+        <?
+        $map_dir = "maps/missing";
+    }
 }
 
 if (! $block) {
@@ -131,13 +141,13 @@ if (! $block) {
   Clicking on map to zoom has been temporarily disabled.
   <br />
   <span style="color:green; font-weight:bold;">
-    NEW: click <a href=<?=image("maps/${pennsic_number}/pennsic_L.png");?> target="_blank">here</a>
+    NEW: click <a href=<?=image("${map_dir}/pennsic_L.png");?> target="_blank">here</a>
     for a larger version of this map.
   </span>
   <br />
   <!-- form starts here -->
   <img
-    src=<?=image("maps/${pennsic_number}/pennsic.gif");?>
+    src=<?=image("${map_dir}/pennsic.gif");?>
     alt="Pennsic <?=$pennsic_number?> Map"
     border="1"
   />
@@ -150,9 +160,9 @@ if (! $block) {
   or choose another block from the menu above.<br />
 
   <!-- <a href="maps/<?=$pennsic_number?>/<?=$block?>_L.pdf" > -->
-  <a href=<?=image("maps/${pennsic_number}/${block}_L.pdf");?> >
+  <a href=<?=image("${map_dir}/${block}_L.pdf");?> >
      <img
-      src=<?=image("maps/${pennsic_number}/${block}_S.png");?>
+      src=<?=image("${map_dir}/${block}_S.png");?>
       alt="Pennsic <?=$pennsic_number?> Block <?=$block?> Map"
         border="1"
       />
