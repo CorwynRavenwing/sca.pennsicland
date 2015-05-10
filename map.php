@@ -36,11 +36,10 @@ if (! $block) {
 } else {
   $crumb = array(
     "Zoning and Planning (Land)"    => "http://land.pennsicwar.org/",
-    "Pennsic War Official Land Maps"  => "map.php",        // REMOVE 1 WHEN PUBLISHING
+    "Pennsic War Official Land Maps"  => "map.php",
   );
   $title = "Block $block";
 }
-//         <li><a href="../LAND_SYSTEM/land.cgi?linkcode=$jump_to&pg=return_from_map">Land Agent Menu</a></li>
 
 nav_head($title, $crumb);
 ?>
@@ -117,6 +116,12 @@ $current_date = date("Y-m-d");
 nav_right_begin();
 
 global $pennsic_number;
+
+$map_dir = "maps/${pennsic_number}";
+
+if (! is_dir($map_dir)) {
+
+}
 
 if (! $block) {
   // overall map page
