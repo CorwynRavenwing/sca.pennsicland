@@ -1,0 +1,32 @@
+
+* create a group and register it, and determine why people aren't completing registrations
+
+* possibly change history page so you can switch between person-count mode and block-assigned mode
+
+* possibly allow email merges to "all half-registered groups"
+
+* record previous land agent for block, don't overwrite until group is registered again by a different person
+
+* prevent people from registering groups that are marked as "FORBID"
+
+* warn groups that are not yet marked as "ALLOW", or perhaps only groups that are marked as "PROBLEM"
+
+* ask Fred to return all groups that exist on his site, not just those with campers (return "0" for empty groups)
+
+* ask Fred to disallow group names with special characters in them (OR) just don't create them ourselves
+
+* help screens for every page that needs one
+
+
+================
+
+* N03 subtract 900 usable feet
+* E11 subtract UNKNOWN size
+* N21 new map, possible new numbers, per Edward, pending devon's approval
+* N03 new map, per Angus, pending devon's approval
+
+*** SKIP ALL FOUR, PER DAGMAR
+
+Password for website
+hamilton
+edseznocue
