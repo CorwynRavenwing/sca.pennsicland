@@ -18,7 +18,7 @@ nav_right_begin();
 
 $new_user_id = @$_REQUEST['id'];
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } elseif ($new_user_id) {
 
@@ -42,7 +42,7 @@ if (! $admin) {
 
   $errors_found = 0;
 
-    if ($action or $override) {
+    if ($w_admin and ($action or $override)) {
 
   print("<h3>UPDATING RECORD ...</h3>\n");
 
@@ -318,7 +318,7 @@ if (! $admin) {
     <?
   }
   mysql_free_result($query);              # delete query object
-} // endif id, admin
+} // endif id, r_admin
 
 nav_right_end();
 

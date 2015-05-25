@@ -16,7 +16,7 @@ nav_admin_leftnav();  // special Admin left nav
 
 nav_right_begin();
 
-if (! $admin) {
+if (! $w_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
 
@@ -99,7 +99,7 @@ if (! $admin) {
   print "<h2>Close Year cannot be run at this time.</h2>\n";
     } // endif mode
 
-} // endif admin
+} // endif w_admin
 
 nav_right_end();
 

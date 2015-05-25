@@ -138,7 +138,7 @@ Please log on to edit your group information.
         ) {
 
       /*
-      if ($admin) {
+      if ($r_admin) {
           ?>
 <div>
   <br/>
@@ -152,7 +152,7 @@ Please log on to edit your group information.
 
 </div>
           <?
-      } // endif admin
+      } // endif r_admin
       */
 
       if ($block_locked_reason) {

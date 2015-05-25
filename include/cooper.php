@@ -496,22 +496,22 @@ function untouch_cooper_records($group_name) {
 } // end function untouch_cooper_records
 
 function save_cooper_data($group_name, $penn_number, $first, $last, $sca) {
-  global $admin;
+  global $r_admin;
 
   $old_group = find_cooper_group_by_penn($penn_number);
   if ($old_group == $group_name) {
     touch_cooper_record($penn_number)
       or print "ERROR: failed to touch record '$penn_number'<br />\n";
   } elseif ($old_group) {
-    if ($admin) { print("<br/>&nbsp;&nbsp;&nbsp;&nbsp;(m <a title='$sca'>$penn_number</a> '$old_group'->'$group_name'"); @ob_flush(); }
+    if ($r_admin) { print("<br/>&nbsp;&nbsp;&nbsp;&nbsp;(m <a title='$sca'>$penn_number</a> '$old_group'->'$group_name'"); @ob_flush(); }
     move_cooper_record($group_name, $penn_number)
       or print "ERROR: failed to move record '$penn_number' to '$group_name'<br />\n";
-    if ($admin) { print(")"); @ob_flush(); }
+    if ($r_admin) { print(")"); @ob_flush(); }
   } else {
-    if ($admin) { print("<br/>&nbsp;&nbsp;&nbsp;&nbsp;(c <a title='$sca'>$penn_number</a>    -> '$group_name'"); @ob_flush(); }
+    if ($r_admin) { print("<br/>&nbsp;&nbsp;&nbsp;&nbsp;(c <a title='$sca'>$penn_number</a>    -> '$group_name'"); @ob_flush(); }
     create_cooper_record($group_name, $penn_number, $first, $last, $sca)
       or print "ERROR: failed to create record ('$group_name', '$penn_number', '$first', '$last', '$sca')<br />\n";;
-    if ($admin) { print(")"); @ob_flush(); }
+    if ($r_admin) { print(")"); @ob_flush(); }
   } # endif old_group
 } // end function save_cooper_data
 
@@ -1110,25 +1110,25 @@ function load_groups_by_final_location_in_match_order($block_id) {
 $global_time = 0;
 function show_elapsed_time($display = 1) {
   global $global_time;
-  global $admin;
+  global $r_admin;
 
   $prev_time = $global_time;
   $global_time = time();
 
   if (! $prev_time) {
     if ($display) {
-      if ($admin) { print("<span style='font-size:0.75em; color:blue;'>{X}</span>"); @ob_flush(); }
+      if ($r_admin) { print("<span style='font-size:0.75em; color:blue;'>{X}</span>"); @ob_flush(); }
     }
     $elapsed_time = 0;
   } else {
     $elapsed_time = $global_time - $prev_time;
     if (! $elapsed_time) {
       if ($display) {
-        if ($admin) { print("<span style='font-size:0.75em; color:blue;'>{" . $elapsed_time . "}</span>"); @ob_flush(); }
+        if ($r_admin) { print("<span style='font-size:0.75em; color:blue;'>{" . $elapsed_time . "}</span>"); @ob_flush(); }
       }
     } else {
       if ($display) {
-        if ($admin) { print("<span style='font-size:0.75em; color:red;'>{" . $elapsed_time . "}</span>");  @ob_flush(); }
+        if ($r_admin) { print("<span style='font-size:0.75em; color:red;'>{" . $elapsed_time . "}</span>");  @ob_flush(); }
       }
     }
   }

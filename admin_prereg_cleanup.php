@@ -17,61 +17,66 @@ nav_admin_leftnav();  // special Admin left nav
 
 nav_right_begin();
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
   # no template
 
-  $create_group = @$_GET['create_group'];
-  if ( $create_group ) {
+  if ($w_admin) {
+    # only write-admins can make these changes.
 
-    $new_groupid = create_group($create_group);
+    $create_group = @$_GET['create_group'];
+    if ( $create_group ) {
 
-    $on_site_representative  = "Admin Account: $create_group";
-    $compression_percentage  = 0;
-    $other_group_information = "Group created by " . basename( $_SERVER['PHP_SELF'] ) ;
-    set_group_data($new_groupid, $on_site_representative, $compression_percentage, $other_group_information );
+      $new_groupid = create_group($create_group);
 
-    print("<h2>Creating group $create_group (id $new_groupid)</h2>");
-  } // endif create_group
+      $on_site_representative  = "Admin Account: $create_group";
+      $compression_percentage  = 0;
+      $other_group_information = "Group created by " . basename( $_SERVER['PHP_SELF'] ) ;
+      set_group_data($new_groupid, $on_site_representative, $compression_percentage, $other_group_information );
 
-  $create_agent = @$_GET['create_agent'];
-  $link_group   = @$_GET['link_group'];
-  if ( $create_agent or $link_group ) {
+      print("<h2>Creating group $create_group (id $new_groupid)</h2>");
+    } // endif create_group
 
-    $requested_user_name = "admin_" . create_random(10);
-    $requested_password = create_random(8);      // and store it NOWHERE
+    $create_agent = @$_GET['create_agent'];
+    $link_group   = @$_GET['link_group'];
+    if ( $create_agent or $link_group ) {
 
-    $create_agent = "Admin Account: $create_agent";
-    $legal_name = $create_agent;
-    $alias = $create_agent;
+      $requested_user_name = "admin_" . create_random(10);
+      $requested_password = create_random(8);      // and store it NOWHERE
 
-    $street_1 = "ADMIN";
-    $street_2 = "ADMIN";
-    $city = "ADMIN";
-    $state = "ADMIN";
-    $postal_code = "ADMIN";
-    $country = "ADMIN";
-    $phone = "ADMIN";
-    $extension = "";
-    $email_address = "landweb@pennsicwar.org";
-    $password_hint = "create_random(8)";
-    $password_answer = create_random(8);
+      $create_agent = "Admin Account: $create_agent";
+      $legal_name = $create_agent;
+      $alias = $create_agent;
 
-    create_user($requested_user_name,$requested_password,$legal_name,$alias,
-      $street_1,$street_2,$city,$state,$postal_code,$country,
-      $phone,$extension,$email_address,$password_hint,$password_answer
-      ) or die ("error creating new user: " . mysql_error() );
+      $street_1 = "ADMIN";
+      $street_2 = "ADMIN";
+      $city = "ADMIN";
+      $state = "ADMIN";
+      $postal_code = "ADMIN";
+      $country = "ADMIN";
+      $phone = "ADMIN";
+      $extension = "";
+      $email_address = "landweb@pennsicwar.org";
+      $password_hint = "create_random(8)";
+      $password_answer = create_random(8);
 
-    $new_user_id = user_id_by_username( $requested_user_name );
+      create_user($requested_user_name,$requested_password,$legal_name,$alias,
+        $street_1,$street_2,$city,$state,$postal_code,$country,
+        $phone,$extension,$email_address,$password_hint,$password_answer
+        ) or die ("error creating new user: " . mysql_error() );
 
-    $new_groupid = group_id_by_name($link_group);
+      $new_user_id = user_id_by_username( $requested_user_name );
 
-    register_group($new_groupid, $new_user_id)
-      or print("ERROR: failed to register group $link_group ($new_groupid) to userid $new_user_id");
+      $new_groupid = group_id_by_name($link_group);
 
-    print("<h2>Creating user $create_agent (id $new_user_id): linked to group $link_group (id $new_groupid)</h2>");
-  } // endif $create_agent or $link_group
+      register_group($new_groupid, $new_user_id)
+        or print("ERROR: failed to register group $link_group ($new_groupid) to userid $new_user_id");
+
+      print("<h2>Creating user $create_agent (id $new_user_id): linked to group $link_group (id $new_groupid)</h2>");
+    } // endif $create_agent or $link_group
+
+  } // endif w_admin
 
   $sql = "SELECT
         c.group_name,
@@ -333,7 +338,7 @@ if (! $admin) {
   ?>
 <h4>Done!</h4>
   <?
-} // endif admin
+} // endif r_admin
 
 nav_right_end();
 

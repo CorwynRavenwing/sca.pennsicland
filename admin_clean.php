@@ -4,23 +4,23 @@ require_once("include/nav.php");
 nav_start_admin();
 
 $crumb = array(
-	"Zoning and Planning (Land)"	=> "http://land.pennsicwar.org/",
-	"Land Admin"			=> "admin.php",
+  "Zoning and Planning (Land)"  => "http://land.pennsicwar.org/",
+  "Land Admin"      => "admin.php",
 );
 
 nav_head( "Cooper Data Help", $crumb );
 
-nav_admin_menu();	// special Admin menu nav
+nav_admin_menu();  // special Admin menu nav
 
-nav_admin_leftnav();	// special Admin left nav
+nav_admin_leftnav();  // special Admin left nav
 
 nav_right_begin();
 
-if (! $admin) {
-	print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
+if (! $r_admin) {
+  print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
-	// no template
-	?>
+  // no template
+  ?>
 <h2>COOPER DATA</h2>
 
 <p>
@@ -74,9 +74,9 @@ It might also be a good idea to send such a letter to those in group Landgroup N
 and Not Filled In, and possibly even Individual Camping to ensure these campers don't think they chose a group.
 Anyone who chose a group like MERCHANT or RV CAMPING probably knows what they're doing.
 </p>
-	<?
-} // endif admin
-	
+  <?
+} // endif r_admin
+
 nav_right_end();
 
 nav_footer_panix();

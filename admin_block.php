@@ -17,7 +17,7 @@ nav_admin_leftnav();  // special Admin left nav
 
 nav_right_begin();
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
   template_load("template_redgreen.html");
@@ -25,9 +25,13 @@ if (! $admin) {
 
   $action = @$_POST['action'];
   if ($action == "clear") {
-    print "<h2>Clearing all 'changed' flags ...<br />";
-    mark_everybody_sent();
-    print "Done.<br /></h2>\n";
+    if (! $w_admin) {
+      print "<h2>Your access level does not allow this action.</h2>\n";
+    } else {
+      print "<h2>Clearing all 'changed' flags ...<br />";
+      mark_everybody_sent();
+      print "Done.<br /></h2>\n";
+    } // endif w_admin
   } # endif param action
 
   if ( ! allow_groupmoves() ) {
@@ -219,7 +223,7 @@ if (! $admin) {
 <br />
 <h4>Click here for the <a href="admin_block_list.php" target="_blank">Block Completion Checklist</a>.</h4>
   <?
-} // endif admin
+} // endif r_admin
 
 nav_right_end();
 

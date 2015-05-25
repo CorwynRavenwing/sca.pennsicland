@@ -18,7 +18,7 @@ nav_admin_leftnav();  // special Admin left nav
 
 nav_right_begin();
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
   $out_dir  = "datafiles";
@@ -204,7 +204,7 @@ if (! $admin) {
   }
 
   print "<h3>Download <a href='$out_file' target='_blank'>CSV extract</a> file</h3>\n";
-} // endif admin
+} // endif r_admin
 
 nav_right_end();
 

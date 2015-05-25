@@ -20,22 +20,39 @@ set_user_session_variables();  // call it now
 function set_user_session_variables() {
   global $user_id, $user_name, $user_record;
   global $legal_name, $alias, $group_id, $group_name;
-  global $admin, $masquerade, $user_id_true;
+  global $old_admin, $masquerade, $user_id_true;
 
   if ($user_id) {
     $user_record = user_record($user_id);
 
-    $user_name  = $user_record['user_name'];
+    $user_name   = $user_record['user_name'];
     $legal_name  = $user_record['legal_name'];
-    $alias    = $user_record['alias'];
-    $group_id  = user_group($user_id);
+    $alias       = $user_record['alias'];
+    $group_id    = user_group($user_id);
     $group_name  = group_name($group_id);
-    if ( is_admin_account($user_name) ) {
-      $admin        = 1;
+    if ( is_ro_admin_account($user_name) ) {
+      $old_admin    = 1;
+      $r_admin      = 1;
+      $w_admin      = 0;
+      # $masquerade   = 0;
+      $user_id_true = $user_id;
+    } elseif ( is_rw_admin_account($user_name) ) {
+      $old_admin    = 1;
+      $r_admin      = 1;
+      $w_admin      = 1;
+      # $masquerade   = 0;
+      $user_id_true = $user_id;
+    } elseif ( is_admin_account($user_name) ) {
+      # DELETE THIS WHEN YOU ARE DONE
+      $old_admin    = 1;
+      $r_admin      = 1;
+      $w_admin      = 1;
       # $masquerade   = 0;
       $user_id_true = $user_id;
     } else {
-      $admin        = 0;
+      $old_admin    = 0;
+      $r_admin      = 0;
+      $w_admin      = 0;
       # $masquerade   = 0;
       # $user_id_true = 0;
     } // endif is_admin_account
@@ -45,7 +62,9 @@ function set_user_session_variables() {
     $alias        = "";
     $group_id     = 0;
     $group_name   = "";
-    $admin        = 0;
+    $old_admin    = 0;
+    $r_admin      = 0;
+    $q_admin      = 0;
     $masquerade   = 0;
     $user_id_true = 0;
   }
@@ -56,7 +75,9 @@ function set_user_session_variables() {
   $_SESSION['alias']        = $alias;
   $_SESSION['group_id']     = $group_id;
   $_SESSION['group_name']   = $group_name;
-  $_SESSION['admin']        = $admin;
+  $_SESSION['old_admin']    = $old_admin;
+  $_SESSION['r_admin']      = $r_admin;
+  $_SESSION['w_admin']      = $w_admin;
   $_SESSION['masquerade']   = $masquerade;
   $_SESSION['user_id_true'] = $user_id_true;
 } // end function set_user_session_variables
@@ -454,7 +475,7 @@ function verify_password($input_password, $stored_password, $stored_salt) {
 } // end function verify_password
 
 # SHOULD REALLY PUT THIS IN THE DATABASE [Corwyn 2007]
-function is_admin_account($user_name) {
+function is_rw_admin_account($user_name) {
   switch($user_name) {
     case 'aakin':         # aakin the mapmaker
     case 'angusland':     # angus taylor
@@ -474,14 +495,29 @@ function is_admin_account($user_name) {
     case 'masterjohn':    # master john littleton
     case 'Ursus':         # Gaerwen
     case 'wharmon':       # corwyn ravenwing
-      # print "IS ADMIN ACCOUNT ($user_name)<br />\n";
       return 1;
       break;
 
     default:
-      # print "IS NOT AN ADMIN ACCOUNT ($user_name)<br />\n";
       return 0;
   } // end switch
+} // end function is_rw_admin_account
+
+function is_ro_admin_account($user_name) {
+  switch($user_name) {
+    case 'kegslayer':     # L2 P44
+    case 'corwyn':        # corwyn ravenwing
+    case 'wharmon':       # corwyn ravenwing
+      return 1;
+      break;
+
+    default:
+      return 0;
+  } // end switch
+} // end function is_ro_admin_account
+
+function is_admin_account($user_name) {
+  return is_rw_admin_account($user_name) || is_ro_admin_account($user_name);
 } // end function is_admin_account
 
 function error_string($string) {
@@ -513,20 +549,20 @@ function create_user($requested_user_name,$requested_password,$legal_name,$alias
   $digest = md5( $salt . $requested_password);
   # print "DEBUG: digest $digest<br />\n";
 
-  $requested_user_name  = mysql_real_escape_string($requested_user_name  );
-  $legal_name    = mysql_real_escape_string($legal_name    );
-  $alias      = mysql_real_escape_string($alias    );
-  $street_1    = mysql_real_escape_string($street_1    );
-  $street_2    = mysql_real_escape_string($street_2    );
-  $city      = mysql_real_escape_string($city    );
-  $state      = mysql_real_escape_string($state    );
-  $postal_code    = mysql_real_escape_string($postal_code    );
-  $country    = mysql_real_escape_string($country    );
-  $phone      = mysql_real_escape_string($phone    );
-  $extension    = mysql_real_escape_string($extension    );
-  $email_address    = mysql_real_escape_string($email_address  );
-  $password_hint    = mysql_real_escape_string($password_hint  );
-  $password_answer  = mysql_real_escape_string($password_answer  );
+  $requested_user_name = mysql_real_escape_string($requested_user_name );
+  $legal_name          = mysql_real_escape_string($legal_name          );
+  $alias               = mysql_real_escape_string($alias               );
+  $street_1            = mysql_real_escape_string($street_1            );
+  $street_2            = mysql_real_escape_string($street_2            );
+  $city                = mysql_real_escape_string($city                );
+  $state               = mysql_real_escape_string($state               );
+  $postal_code         = mysql_real_escape_string($postal_code         );
+  $country             = mysql_real_escape_string($country             );
+  $phone               = mysql_real_escape_string($phone               );
+  $extension           = mysql_real_escape_string($extension           );
+  $email_address       = mysql_real_escape_string($email_address       );
+  $password_hint       = mysql_real_escape_string($password_hint       );
+  $password_answer     = mysql_real_escape_string($password_answer     );
 
   $sql = "INSERT INTO user_information
     (user_name,password_salt,password,legal_name,alias,street_1,street_2,
@@ -573,18 +609,18 @@ function update_user($user_id,$legal_name,$alias,
   $street_1,$street_2,$city,$state,$postal_code,$country,
   $phone,$extension,$email_address) {
 
-  $user_id    = mysql_real_escape_string($user_id    );
+  $user_id       = mysql_real_escape_string($user_id       );
   $legal_name    = mysql_real_escape_string($legal_name    );
-  $alias      = mysql_real_escape_string($alias    );
-  $street_1    = mysql_real_escape_string($street_1    );
-  $street_2    = mysql_real_escape_string($street_2    );
-  $city      = mysql_real_escape_string($city    );
-  $state      = mysql_real_escape_string($state    );
-  $postal_code    = mysql_real_escape_string($postal_code    );
-  $country    = mysql_real_escape_string($country    );
-  $phone      = mysql_real_escape_string($phone    );
-  $extension    = mysql_real_escape_string($extension    );
-  $email_address    = mysql_real_escape_string($email_address  );
+  $alias         = mysql_real_escape_string($alias         );
+  $street_1      = mysql_real_escape_string($street_1      );
+  $street_2      = mysql_real_escape_string($street_2      );
+  $city          = mysql_real_escape_string($city          );
+  $state         = mysql_real_escape_string($state         );
+  $postal_code   = mysql_real_escape_string($postal_code   );
+  $country       = mysql_real_escape_string($country       );
+  $phone         = mysql_real_escape_string($phone         );
+  $extension     = mysql_real_escape_string($extension     );
+  $email_address = mysql_real_escape_string($email_address );
 
   $sql = "UPDATE user_information
     SET legal_name    = '$legal_name',

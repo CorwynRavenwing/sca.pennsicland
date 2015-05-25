@@ -24,7 +24,7 @@ nav_right_begin();
 
 $maxlen = 20;
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
 
@@ -62,6 +62,11 @@ if (! $admin) {
     break;
 
   case "MODE":
+    if (! $w_admin) {
+        print "<h2>Sorry, your access level does not allow this action.</h2>";
+        exit(0);
+    } // endif w_admin
+
     $top_message = "<h2>Updating mode to 'pennsic prep'</h2>";
 
     change_mode("pennsic prep");
@@ -71,22 +76,38 @@ if (! $admin) {
     break;
 
   case "NEW":
+    if (! $w_admin) {
+        print "<h2>Sorry, your access level does not allow this action.</h2>";
+        exit(0);
+    } // endif w_admin
+
     $my_merge_id = make_new_merge( );
     redirect_to("?merge_id=$my_merge_id");
     exit(0);
     break;
 
   case "copy":
+    if (! $w_admin) {
+        print "<h2>Sorry, your access level does not allow this action.</h2>";
+        exit(0);
+    } // endif w_admin
+
     if (! $my_merge_id) {
       print("<h2>ERROR: no merge_id passed to action 'copy': quitting</h2>");
       die();
     } // endif my_merge_id
+
     $my_merge_id = copy_merge( $my_merge_id );
     redirect_to("?merge_id=$my_merge_id");
     exit(0);
     break;
 
   case "edit_from":
+    if (! $w_admin) {
+        print "<h2>Sorry, your access level does not allow this action.</h2>";
+        exit(0);
+    } // endif w_admin
+
     if (! $my_merge_id) {
       print("<h2>ERROR: no merge_id passed to action 'edit_from': quitting</h2>");
       die();
@@ -107,6 +128,11 @@ if (! $admin) {
     break;
 
   case "edit_from_save":
+    if (! $w_admin) {
+        print "<h2>Sorry, your access level does not allow this action.</h2>";
+        exit(0);
+    } // endif w_admin
+
     if (! $my_merge_id) {
       print("<h2>ERROR: no merge_id passed to action 'edit_from_save': quitting</h2>");
       die();
@@ -124,6 +150,11 @@ if (! $admin) {
     break;
 
   case "edit_body":
+    if (! $w_admin) {
+        print "<h2>Sorry, your access level does not allow this action.</h2>";
+        exit(0);
+    } // endif w_admin
+
     if (! $my_merge_id) {
       print("<h2>ERROR: no merge_id passed to action 'edit_body': quitting</h2>");
       die();
@@ -173,6 +204,11 @@ if (! $admin) {
     break;
 
   case "edit_body_save":
+    if (! $w_admin) {
+        print "<h2>Sorry, your access level does not allow this action.</h2>";
+        exit(0);
+    } // endif w_admin
+
     if (! $my_merge_id) {
       print("<h2>ERROR: no merge_id passed to action 'edit_body_save': quitting</h2>");
       die();
@@ -196,6 +232,11 @@ if (! $admin) {
     break;
 
   case "edit_groups":
+    if (! $w_admin) {
+        print "<h2>Sorry, your access level does not allow this action.</h2>";
+        exit(0);
+    } // endif w_admin
+
     if (! $my_merge_id) {
       print("<h2>ERROR: no merge_id passed to action 'edit_groups': quitting</h2>");
       die();
@@ -368,6 +409,11 @@ if (! $admin) {
     break;
 
   case "edit_groups_save":
+    if (! $w_admin) {
+        print "<h2>Sorry, your access level does not allow this action.</h2>";
+        exit(0);
+    } // endif w_admin
+
     if (! $my_merge_id) {
       print("<h2>ERROR: no merge_id passed to action 'edit_groups': quitting</h2>");
       die();
@@ -396,6 +442,11 @@ if (! $admin) {
     break;
 
   case "delete":
+    if (! $w_admin) {
+        print "<h2>Sorry, your access level does not allow this action.</h2>";
+        exit(0);
+    } // endif w_admin
+
     if (! $my_merge_id) {
       print("<h2>ERROR: no merge_id passed to action 'delete': quitting</h2>");
       die();
@@ -423,16 +474,16 @@ if (! $admin) {
   foreach ($array as $merge_id => $result) {
     # print "DEBUG: going through loop once<br/>\n";
 
-    $display_from    = $result['from'];
+    $display_from     = $result['from'];
     $display_subject  = $result['subject'];
-    $display_body    = $result['body'];
+    $display_body     = $result['body'];
 
-    $selected_count    = $result['selected_count'];
-    $unselected_count  = $result['unselected_count'];
-    $sent_count    = $result['sent_count'];
-    $unsent_count    = $result['unsent_count'];
+    $selected_count   = $result['selected_count'];
+    $unselected_count = $result['unselected_count'];
+    $sent_count       = $result['sent_count'];
+    $unsent_count     = $result['unsent_count'];
 
-    $status      = $result['status'];
+    $status           = $result['status'];
   } // endfor array
 
   $groups_array = get_merge_recipients_both($my_merge_id);
@@ -462,10 +513,8 @@ if (! $admin) {
   $edit_mode = 0;
   if ( ($status == "SETUP") or ($status == "READY") ) {
     $edit_mode = 1;
-    # $edit_href    = "<a href='?merge_id=$my_merge_id'>(EDIT)</a>";
     $edit_href    = "";  # you're already editing it [Corwyn P40]
   } else {
-    # $edit_href    = "<a href='?merge_id=$my_merge_id'>(VIEW)</a>";
     $edit_href    = "";  # you're already viewing it [Corwyn P40]
   }
 
@@ -488,10 +537,10 @@ if (! $admin) {
   }
 
   $any_data = 0;
-  if (! $display_from)  { $display_from     = $none;    } else { $any_data++; }
-  if (! $display_subject)  { $display_subject = "Subject: $none";  } else { $any_data++; }
-  if (! $display_body)  { $display_body     = "Message: $none";  } else { $any_data++; }
-  if (! $selected_count)  { $selected_count = "0";    } else { $any_data++; }
+  if (! $display_from)    { $display_from    = $none;            } else { $any_data++; }
+  if (! $display_subject) { $display_subject = "Subject: $none"; } else { $any_data++; }
+  if (! $display_body)    { $display_body    = "Message: $none"; } else { $any_data++; }
+  if (! $selected_count)  { $selected_count  = "0";              } else { $any_data++; }
 
   if (! $any_data) {
     $delete_href    = "<a href='?merge_id=$my_merge_id&amp;action=delete'>DELETE</a>";
@@ -501,30 +550,30 @@ if (! $admin) {
 
   $all_href = join(" ", array($copy_href, $edit_href, $send_href, $delete_href, $history_href) );
 
-  $display_body = str_replace("\r\n", "\n",  $display_body);
-  $display_body = str_replace("\n\n", "\n",  $display_body);
-  $display_body = str_replace("\n",   "<br/>\n",  $display_body);
+  $display_body = str_replace("\r\n", "\n",      $display_body);
+  $display_body = str_replace("\n\n", "\n",      $display_body);
+  $display_body = str_replace("\n",   "<br/>\n", $display_body);
 
   $groups_text = "<b>$selected_count&nbsp;groups&nbsp;selected</b>";
 
   if ($edit_mode) {
     $display_from    .= "&nbsp;&nbsp;&nbsp;<a href='?merge_id=$my_merge_id&amp;action=edit_from'>EDIT</a>";
-    $display_subject  .= "&nbsp;&nbsp;&nbsp;<a href='?merge_id=$my_merge_id&amp;action=edit_body'>EDIT</a>";
+    $display_subject .= "&nbsp;&nbsp;&nbsp;<a href='?merge_id=$my_merge_id&amp;action=edit_body'>EDIT</a>";
     $display_body    .= "&nbsp;&nbsp;&nbsp;<a href='?merge_id=$my_merge_id&amp;action=edit_body'>EDIT</a>";
-    $groups_text    .= "&nbsp;&nbsp;&nbsp;<a href='?merge_id=$my_merge_id&amp;action=edit_groups'>EDIT</a>";
+    $groups_text     .= "&nbsp;&nbsp;&nbsp;<a href='?merge_id=$my_merge_id&amp;action=edit_groups'>EDIT</a>";
   }
 
   $groups_text .= $groups_details;
 
-  template_param( "mail_id",  $my_merge_id    );
-  template_param( "from_email",  $display_from    );
-  template_param( "subject",  $display_subject  );
-  template_param( "body",    $display_body    );
-  template_param( "groups",  $groups_text    );
-  template_param( "status",  $status      );
-  template_param( "href",    $all_href    );
-  # template_param( "reset_button",  $reset_button    );
-  # template_param( "submit_button",$submit_button    );
+  template_param( "mail_id",    $my_merge_id     );
+  template_param( "from_email", $display_from    );
+  template_param( "subject",    $display_subject );
+  template_param( "body",       $display_body    );
+  template_param( "groups",     $groups_text     );
+  template_param( "status",     $status          );
+  template_param( "href",       $all_href        );
+  # template_param( "reset_button",  $reset_button );
+  # template_param( "submit_button",$submit_button );
 
   print template_output();
   } else {
@@ -642,7 +691,7 @@ if (! $admin) {
   <?
   } # endif action, merge_id
 
-} // endif admin
+} // endif r_admin
 
 nav_right_end();
 

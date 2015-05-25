@@ -5,20 +5,20 @@ require_once("include/cooper.php");
 nav_start_admin();
 
 $crumb = array(
-	"Zoning and Planning (Land)"	=> "http://land.pennsicwar.org/",
-	"Land Admin"			=> "admin.php",
+  "Zoning and Planning (Land)"  => "http://land.pennsicwar.org/",
+  "Land Admin"      => "admin.php",
 );
 
 nav_head( "Block Assignment Help", $crumb );
 
-nav_admin_menu();	// special Admin menu nav
+nav_admin_menu();  // special Admin menu nav
 
-nav_admin_leftnav();	// special Admin left nav
+nav_admin_leftnav();  // special Admin left nav
 
 nav_right_begin();
 
-if (! $admin) {
-	print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
+if (! $r_admin) {
+  print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
     ?>
 <h1>Block Assignment Process</h1>
@@ -51,7 +51,7 @@ If anything on this page needs to be changed, please contact Corwyn with the upd
 </p>
 
     <?
-} // endif admin
+} // endif r_admin
 
 nav_right_end();
 

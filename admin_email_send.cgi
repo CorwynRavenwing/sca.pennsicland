@@ -26,7 +26,7 @@ require_once("include/mail_merge.php");
 
 $maxlen = 20;
 
-# if (! $admin) {
+# if (! $r_admin) {
 #   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 # } else {
 
@@ -42,7 +42,7 @@ $maxlen = 20;
       print("Click here to <a href='admin_email.php'>return to the email merge page</a>\n");
     } // endif my_merge_id
 
-# } // endif admin
+# } // endif r_admin
 
 # nav_right_end();
 

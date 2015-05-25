@@ -36,7 +36,7 @@ if (! $group_name) {
 </form>
 <?
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } elseif (! $group_name and ! $search) {
 
@@ -175,7 +175,7 @@ if (! $admin) {
 
 <h2>Total of <?=$count?> people</h2>
   <?
-} // endif admin
+} // endif r_admin
 
 nav_right_end();
 

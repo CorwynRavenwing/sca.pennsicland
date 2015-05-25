@@ -16,51 +16,50 @@ nav_admin_leftnav();  // special Admin left nav
 
 nav_right_begin();
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2 color='blue'>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
 
-  $post_group_id   = @$_POST['post_group_id'];
-  $change_status_0 = @$_POST['change_status_0'];
-  $change_status_1 = @$_POST['change_status_1'];
-  $change_status_2 = @$_POST['change_status_2'];
+  if ($w_admin) {
+    // only write-admins can make these changes happen
+    $post_group_id   = @$_POST['post_group_id'];
+    $change_status_0 = @$_POST['change_status_0'];
+    $change_status_1 = @$_POST['change_status_1'];
+    $change_status_2 = @$_POST['change_status_2'];
 
-  if ($post_group_id) {
+    if ($post_group_id) {
 
       $post_status = ( $change_status_0 ? 0 : ( $change_status_1 ? 1 : ( $change_status_2 ? 2 : 3 ) ) );
 
       if ($post_status == 3) {
-    ?>
+        ?>
   <h2 style='color:red'>Unable to change status: invalid POST parameters.</h2>
-    <?
+        <?
       } else {
 
-    $sql2 = "UPDATE land_groups SET status = '$post_status' WHERE group_id = '$post_group_id' LIMIT 1";
+        $sql2 = "UPDATE land_groups SET status = '$post_status' WHERE group_id = '$post_group_id' LIMIT 1";
 
-    if (headers_sent()) { print "<!-- admin_group_check(status update) SQL:\n$sql2\n-->\n"; }
+        if (headers_sent()) { print "<!-- admin_group_check(status update) SQL:\n$sql2\n-->\n"; }
 
-    $query2 = mysql_query($sql2)
-      or die('Query failed: ' . mysql_error() . "<br/>SQL=$sql2<br/>at file " . __FILE__ . " line " . __LINE__);
+        $query2 = mysql_query($sql2)
+          or die('Query failed: ' . mysql_error() . "<br/>SQL=$sql2<br/>at file " . __FILE__ . " line " . __LINE__);
 
-    if ($num = mysql_affected_rows()) {
-      ?>
+        if ($num = mysql_affected_rows()) {
+          ?>
   <h2 style='color:green'>Changing status for group #<?=$post_group_id?> to status #<?=$post_status?>.</h2>
-      <?
-    } else {
-      ?>
+          <?
+        } else {
+          ?>
   <h2 style='color:red'>Unable to change status: update failed.</h2>
-      <?
-    } // endif num
-
+          <?
+        } // endif num
       } // endif post_status 3
-
-  } // endif post_group_id
-
+    } // endif post_group_id
+  } // endif w_admin
 
   $my_group_id  = @$_REQUEST['group_id'];
   $my_status_id  = @$_REQUEST['status_id'];
   $my_search  = @$_REQUEST['search'];
-
 
   $sql = "SELECT status, count(*) AS num FROM land_groups GROUP BY status";
 
@@ -437,7 +436,7 @@ if (! $admin) {
 
   print "<h3>Done.</h3>\n";
 
-} // endif admin
+} // endif r_admin
 
 nav_right_end();
 

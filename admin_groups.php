@@ -24,7 +24,7 @@ nav_right_begin();
 $id      = @$_REQUEST['id'];
 $action  = @$_REQUEST['action'];
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } elseif ($id) {
   template_load("admin_edit_group.htm");
@@ -41,11 +41,21 @@ if (! $admin) {
   } elseif ($action == "Reset") {
     $error_string = "Changes reverted.";
   } elseif ($action == "register") {
+    if (! $w_admin) {
+      print("<h2>Your access level does not allow this action.</h2>");
+      exit(0);
+    } // endif w_admin
+
     # catch 'register this group' action
     $error_string = "<span style='font-weight:bold; font-size:1.25em'>Group Registration Complete.</span>";
     new_generate_registration_complete(0, $id);  // "id" is the group id, we don't know the user id here
     # ... then show the normal edit screen again
   } elseif ($action == "Continue") {
+    if (! $w_admin) {
+      print("<h2>Your access level does not allow this action.</h2>");
+      exit(0);
+    } // endif w_admin
+
     # admin_evaluate_group_information
 
     $error_string = "Submit was pressed.";
@@ -138,10 +148,6 @@ if (! $admin) {
         $errors++;
         template_param( "final_block_location_error_string", error_string("failed to set final block location") );
       }
-
-
-    } else {
-      # print("DEBUG: final block location unchanged<br/>\n");
     } // endif final location changed
 
     if ( ($on_site_representative  != $group_rec['on_site_representative' ] )
@@ -441,7 +447,7 @@ if (! $admin) {
     <?
   }
   mysql_free_result($query);              # delete query object
-} // endif id, admin
+} // endif id, r_admin
 
 nav_right_end();
 

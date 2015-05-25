@@ -9,7 +9,7 @@ $action         = isset($_POST['action'])    ? $_POST['action']    : "";
 
 global $user_name, $logon_error;
 global $legal_name, $alias, $group_id, $group_name;
-global $admin, $masquerade, $user_id_true;
+global $r_admin, $w_admin, $masquerade, $user_id_true;
 global $redirect_to;
 
 if ($action == "Submit") {
@@ -36,7 +36,15 @@ if ($action == "Submit") {
     $redirect_to = @$_POST['redirect_to'];
 
     if (! $redirect_to) {
-      $message = "Logon as " . ($admin ? "ADMIN" : "") . " $user_name successful!";
+      $message = "Logon as "
+          . ($r_admin
+              ? "Read-Only ADMIN"
+              : ($w_admin
+                  ? "READ/WRITE ADMIN"
+                  : ""
+                  )
+              )
+          . " $user_name successful!";
       $redirect_to = "index.php?message=$message";
     }
 

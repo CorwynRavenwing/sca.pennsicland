@@ -16,7 +16,7 @@ nav_admin_leftnav();  // special Admin left nav
 
 nav_right_begin();
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
   # no template
@@ -88,7 +88,7 @@ if (! $admin) {
     <?
   }
   mysql_free_result($query);              # delete query object
-} // endif admin
+} // endif r_admin
 
 nav_right_end();
 

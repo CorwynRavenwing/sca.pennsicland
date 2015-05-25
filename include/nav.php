@@ -81,18 +81,25 @@ function nav_head($title, $crumb_array = 0) {
 
   global $user_id, $user_name, $logon_error;
   global $legal_name, $alias, $group_id, $group_name;
-  global $admin, $masquerade, $user_id_true;
+  global $r_admin, $w_admin, $masquerade, $user_id_true;
 
   // top section:
 
-  template_load("template_pennhdr1.htm");    // DELETE 1 WHEN PUBLISHING, POSSIBLY
+  template_load("template_pennhdr.htm");
 
   template_param("pennsic_number",  $pennsic_number  );
   template_param("title",      $title    );
 
   $display_alias = ($alias  ? $alias              : "*NOBODY*");
   $display_legal = ($legal_name   ? $legal_name              : "*NOBODY*");
-  $display_admin = ($admin  ? "<span style='color:red; font-weight:bold'>(ADMIN)</span>"  : ""  );
+  $display_admin =
+      ($w_admin
+          ? "<span style='color:red; font-weight:bold'>(ADMIN-RW)</span>"
+          : ($r_admin
+              ? "<span style='color:green; font-weight:bold'>(ADMIN-RO)</span>"
+              : ""
+          )
+      );
   $display_user  = ($user_name  ? $user_name              : "*NOBODY*");
   $display_group = ($group_name  ? $group_name              : "<b>*NONE*</b>"  );
 
@@ -160,7 +167,7 @@ function nav_head($title, $crumb_array = 0) {
 function nav_admin_menu($label_id = "adminmenu") {
   global $user_id, $user_name, $logon_error;
   global $legal_name, $alias, $group_id, $group_name;
-  global $admin, $masquerade, $user_id_true;
+  global $r_admin, $w_admin, $masquerade, $user_id_true;
 
   global $count_group_check;
 
@@ -181,7 +188,7 @@ function nav_admin_menu($label_id = "adminmenu") {
       nav_menu_group_begin("(Land Agent Menu)",  "index.php");
       nav_menu_group_end();
 
-      if ($admin) {
+      if ($r_admin) {
     nav_menu_group_begin("LAND ADMIN MENU", "admin.php");
 
     nav_menu_active("Calendar View",  "admin_calendar.php",   "");  // , count
@@ -189,12 +196,12 @@ function nav_admin_menu($label_id = "adminmenu") {
     nav_menu_active("On-Site View",   "admin_onsite.php",     "");
       } else {
     nav_menu_group_begin("ADMINS ONLY",  "");
-      } // endif admin
+      } // endif r_admin
 
       // always
     nav_menu_group_end();
 
-      if ($admin) {
+      if ($r_admin) {
     $count_users         = count_where("user_information");
     $count_logged_on     = current_user_sessions();
 
@@ -283,7 +290,7 @@ function nav_admin_menu($label_id = "adminmenu") {
     # nav_menu_group_inactive("(Does not work)");
     # nav_menu_group_end();
 
-      } // endif admin
+      } // endif r_admin
 
   nav_menu_end();
 } // end function nav_admin_menu
@@ -293,7 +300,7 @@ function nav_admin_leftnav() {
 
   global $user_id, $user_name, $logon_error;
   global $legal_name, $alias, $group_id, $group_name;
-  global $admin, $masquerade, $user_id_true;
+  global $r_admin, $w_admin, $masquerade, $user_id_true;
 
   # nav_admin_leftnav_begin();
 
@@ -399,7 +406,7 @@ function nav_menu($label_id = "landmenu") {
 
   global $user_id, $user_name, $logon_error;
   global $legal_name, $alias, $group_id, $group_name;
-  global $admin, $masquerade, $user_id_true;
+  global $r_admin, $w_admin, $masquerade, $user_id_true;
   global $registration_open;        // set by include/mode.php
 
   // require_once("include/landnav3.html");
@@ -460,10 +467,10 @@ function nav_menu($label_id = "landmenu") {
 
   nav_menu_group_end();
 
-  if ($admin) {
+  if ($r_admin) {
       nav_menu_group_begin("(ADMIN SECTION)", "admin.php");
       nav_menu_group_end();
-  } // endif admin
+  } // endif r_admin
 
   nav_menu_group_begin("DOCUMENTS",        "docs_documents.php");
     nav_menu_active("Land Rules",          "docs_rules.php");
@@ -493,7 +500,7 @@ function nav_leftnav() {
 
   global $user_id, $user_name, $logon_error;
   global $legal_name, $alias, $group_id, $group_name;
-  global $admin, $masquerade, $user_id_true;
+  global $r_admin, $w_admin, $masquerade, $user_id_true;
   global $registration_open;        // set by include/mode.php
 
   nav_leftnav_begin();
@@ -536,9 +543,9 @@ function nav_leftnav() {
   } // endif group_id
   // always
   nav_leftnav_active("View Pennsic Maps",      "map.php");    # [generate_view_pennsic_maps]
-  if ($admin) {
+  if ($r_admin) {
     nav_leftnav_admin( "ADMIN SECTION",    "admin.php");    # [admin_linkcode]
-  } // endif admin
+  } // endif r_admin
   if ($masquerade) {
     nav_leftnav_admin( "STOP MASQUERADING",    "admin_masquerade.php?id=STOP");  # [stop masquerading]
   } elseif ($user_id) {
@@ -713,17 +720,16 @@ function nav_right_begin() {
 } // end function nav_right_begin
 
 function nav_right_end() {
-  global $admin;
+  global $r_admin, $w_admin;
   global $user_id;
 
   $temp_special_user = -1;    // should be a user id [Corwyn P42]
 
-  if (($admin) or ($user_id == $temp_special_user)) {
+  if (($r_admin) or ($user_id == $temp_special_user)) {
 
     require_once("include/javascript.php");    // required for javascript_hidable_div code below
 
     javascript_hidable_div_begin("DEBUG");
-
       print("<div style='clear:both'>DEBUG: (shown to admins only)</div><pre>\n");
 
       print("_GET:     "); print_r($_GET);     print("\n");

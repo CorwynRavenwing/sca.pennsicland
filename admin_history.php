@@ -27,7 +27,7 @@ $ymax = @$_GET['year_max'];
 
 if ($year) { $ymin = $year; $ymax = $year; }
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } elseif ($id) {
   # this section copied from history.php, with small changes
@@ -314,7 +314,7 @@ if (! $admin) {
   } else {
     print "<h1>NO GROUP HISTORIES FOUND!</h1>\n";
   } // endif num_rows
-} // endif admin
+} // endif r_admin
 
 nav_right_end();
 
