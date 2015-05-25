@@ -36,11 +36,10 @@ if (! $block) {
 } else {
   $crumb = array(
     "Zoning and Planning (Land)"    => "http://land.pennsicwar.org/",
-    "Pennsic War Official Land Maps"  => "map.php",        // REMOVE 1 WHEN PUBLISHING
+    "Pennsic War Official Land Maps"  => "map.php",
   );
   $title = "Block $block";
 }
-//         <li><a href="../LAND_SYSTEM/land.cgi?linkcode=$jump_to&pg=return_from_map">Land Agent Menu</a></li>
 
 nav_head($title, $crumb);
 ?>
@@ -118,6 +117,8 @@ nav_right_begin();
 
 global $pennsic_number;
 
+require_once("include/map_dir.php");
+
 if (! $block) {
   // overall map page
 ?>
@@ -126,13 +127,13 @@ if (! $block) {
   Clicking on map to zoom has been temporarily disabled.
   <br />
   <span style="color:green; font-weight:bold;">
-    NEW: click <a href=<?=image("maps/pennsic${pennsic_number}_L.png");?> target="_blank">here</a>
+    NEW: click <a href=<?=image("${map_dir}/pennsic_L.png");?> target="_blank">here</a>
     for a larger version of this map.
   </span>
   <br />
   <!-- form starts here -->
   <img
-    src=<?=image("maps/pennsic${pennsic_number}.gif");?>
+    src=<?=image("${map_dir}/pennsic.gif");?>
     alt="Pennsic <?=$pennsic_number?> Map"
     border="1"
   />
@@ -144,10 +145,10 @@ if (! $block) {
   <b>Click on block map to view PDF file,</b><br />
   or choose another block from the menu above.<br />
 
-  <!-- <a href="maps/<?=$pennsic_number?>_<?=$block?>_L.pdf" > -->
-  <a href=<?=image("maps/${pennsic_number}_${block}_L.pdf");?> >
+  <!-- <a href="maps/<?=$pennsic_number?>/<?=$block?>_L.pdf" > -->
+  <a href=<?=image("${map_dir}/${block}_L.pdf");?> >
      <img
-      src=<?=image("maps/${pennsic_number}_${block}_S.png");?>
+      src=<?=image("${map_dir}/${block}_S.png");?>
       alt="Pennsic <?=$pennsic_number?> Block <?=$block?> Map"
         border="1"
       />

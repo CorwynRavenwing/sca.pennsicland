@@ -62,8 +62,22 @@ if ($action == "Submit") {
   // submit not pressed: show the menu instead:
 
     $redirect_to = @$_SERVER['HTTP_REFERER'];
+
     if (strpos($redirect_to, 'logout.php') !== FALSE) {
       // if 'logout.php' is the referrer, ignore it
+      $redirect_to = "";
+    }
+
+    if (strpos($redirect_to, 'index.php') !== FALSE) {
+      // if 'index.php' is the referrer, ignore it
+      $redirect_to = "";
+    }
+
+    if (
+         (strpos($redirect_to, 'land.pennsicwar.org') === FALSE)
+      && (strpos($redirect_to, 'http://') !== FALSE)
+    ) {
+      // if referrer is a different website, ignore it
       $redirect_to = "";
     }
 

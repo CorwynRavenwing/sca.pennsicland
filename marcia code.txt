@@ -1,0 +1,6 @@
+I've attached menu.css (definitions for the horizontal menu), pwnew.css (my class/id definitions as used below),
+and nav.html (so you can see how my navigation menu is set up).  The menu supports additional sub-levels, if you want,
+just keep nesting <ul>s under a <li>.  Also, you can display down arrows and right arrows to indicate which menu items
+expand (I just disabled them by putting "x-" in front of them.)
+
+If you have any questions about the code, please let me know.

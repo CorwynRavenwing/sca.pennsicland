@@ -8,3 +8,6 @@
 
 # except the index redirector
 !index.html
+
+# ignore file with personal information
+CONTACT_INFO.txt

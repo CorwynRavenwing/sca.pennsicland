@@ -26,6 +26,8 @@ if (! $r_admin) {
   print "the <a href='admin_calendar.php'>Admin Calendar</a> page.\n";
   print "</h3>\n";
 
+  require_once("include/map_dir.php");
+
   template_load("admin_main_page.htm");
 
   template_param("current_mode",                 $current_mode            );

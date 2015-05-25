@@ -1,0 +1,151 @@
+2007-01-09  * Rename file registered_groups_template to
+		registered_groups_template.htm, change use in view_groups.cgi and .pl,
+		update to pennsic 36 and use templates.
+2008-02-14  * registered_groups_template.htm is called from view_groups.cgi,
+		which is called from .htaccess when someone asks for
+		view_groups_by_alpha.html .  If we want to write this file
+		ourselves we need to (A) create the file whenever a group is
+		registered, (B) safely so that if it dies in progress we don't
+		have half a file, and (C) remove the line from .htaccess so it
+		isn't redirected anymore.
+2009-06-24  * Write php version of view_groups.cgi (to fix "500 server error"
+		under firefox only)
+            * update .htaccess to point to the correct view_groups file, delete
+		extraneous crap
+            * Copy templates/, css/, includes/, image/ to here from land_php
+		subfolder, update paths.
+2009-06-30  * Told that we are showing old version of system at this directory,
+		move irrelevant crap to OLD_CRAP and write a redirector to the
+		right place here.
+===========================================
+== small hiatus from recording data here ==
+===========================================
+2012-07-25  * published new PHP version of site to match Mistress Jessa's new site.
+2012-08-12  * Moved maps info to /maps/ rather than /land_php/ subdirectory
+            * Updated password-change tool to *not* truncate at 10 characters
+		without warning the user.  Updated password-check function to ignore
+		any trailing whitespace characters.
+2012-08-17  * rearranged menu layout: put "LOGOUT" and "ADMIN/LAND AGENT MENU" on the top line,
+		moved informational items from Land Agent Menu to Documents
+2012-08-18  * fixed nav.php:files_differ() "define" statement called each time through
+            * changed default groups page to use a search rather than showing everyone
+            * admin_groups: changed "time registered" to display zero as
+		"(not registered)" rather than as "Dec 31, 1969, 19:00 EST"
+2012-08-19  * Fix error messages and warnings on several pages (E_WARNING)
+            * neighbors.php: Note that email subject will contain "[Pennsic Block XYZ]"
+            * admin_block_detail.php, admin_groups.php: allow choosing "hidden"
+		blocks (i.e. OOB,Other), without allowing this on editgroup.php
+2012-08-23  * Update land_groups with new fields: status, group_name_base, group_soundex,
+		group_metaphone.
+2012-08-28  * Write admin_group_check.php, which displays and updates those four fields.
+2012-09-13  * Write admin_email_history.php, which shows the contents of historical emails
+		organized by email number, group, and/or block.  Create cross-links between
+		this page and the email, group, and block pages.
+            * Add filters to admin_group_check.
+2012-09-14  * Create cross-links between admin_group_check and the group page.  Show status,
+		group_name_base, soundex, metaphone on group page, with similar-groups count.
+            * Show block-history and email-merge history on groups page, with cross-links.
+            * When group name is changed, clear the soundex (etc) fields.
+2012-09-24  * In admin_history.php, allow filtering by Pennsic number, block number
+2012-11-22  * In include/cooper.php, a flag that says whether to overwrite camper data with Cooper data.
+            * TODO: turning that flag on and off automatically
+            * TODO: cooper data should not allow duplicate PENN numbers (possibly change last
+		year's data?)
+2012-11-27  * In admin_onsite.php, legal name in report was always that of logged-on user rather than
+		that record's data; remove "title='CaseInsensitiveString'" from <td> headers;
+		add "valign='top'" to <td> in body for all columns except Neighbors.
+            * New page admin_penndups,php, showing people with duplicated penn numbers.
+2012-12-20  * (approximately) changes to page admin_registered.php, adding When Registered column, with red
+		"registration incomplete" for any group that is partway done (user_id set, time_registered zero)
+		as well as a grand total of such incomplete registrations.
+2013-01-20  * register.php: refactor registration code out into function, move it to include/land_email.php
+            * admin_group.php: add link "Complete Registration" loopback to same page, catch calls registration
+		code pulled from register.php above.  Fix registration code to realize whether it's using
+		user ids or group ids and derive the other when necessary.  Update emails to have understandable
+		subject lines.
+2013-04-30  * express.php: update friday and saturday dates (SHOULD COMPUTE THESE DATES)
+	    * index.php and template/main_page.html: add Land Grab schedule, parameterize friday and saturday.
+		(SHOULD COMPUTE)
+	    * docs_rules.php: parameterize (and fix) cooper_prereg_end_date.  (SHOULD COMPUTE)
+2013-05-06  * docs_timetable.php: change several dates.
+2013-05-21  * admin_block.php: show grand total people/square feet and room left people/square feet
+2013-06-07  * history.php: initialize $count to zero
+	    * admin_bonus.php: rename variable group_name to avoid collision with system variables
+	    * index.php, template_main_page.html: move group-didnt-register text to the top of the page and
+		make it much larger type.  It was already red and bold.  I avoided using the BLINK tag by a
+		supreme effort of will.
+2013-06-15  * admin_prereg.php: trim spaces off of passed-in search string
+	    * admin_prereg_cleanup.php: no longer run fix_cooper_data() on this page.
+	    * upload new master Pennsic 42 map
+2013-06-17  * admin_prereg_cleaup.php: rename link as "FAKE REGISTER", since it doesn't really register the group
+2013-06-18  * includes/connect.php: change "or trigger_error()" to "or die()"; also change stripos() to
+		strpos() so that pages with _test in their names don't go against the test database!
+2013-06-20  * neighbors.php: fix typo
+2013-06-21  * admin_registered.php: allow filtering by incomplete registration
+2013-06-23  * admin_kingdom.php: add 'Populace of ' to filter.
+	    * admin_history.php: add year, year_min, year_max filters
+2013-06-24  * admin_email.php: split out actually sending into admin_email_send.php
+2013-07-02  * admin_land_one.php: only try running chmod() if file is not already writeable.  Also deleted file
+		(owned by hamilton) and allowed it to be re-created (owned by "nobody") to prevent this error.
+2013-07-04  * docs_timetable, docs_handbook, template/express.htm: replace "Barn" with "Great Hall"
+		first use:  <strike>Barn</strike> <span style="color:blue">new Great Hall on N01</span>
+		subsequent: <strike>Barn</strike> <span style="color:blue">Great Hall</span>
+2013-07-05  * template/template_disclaimer.htm: remove Jessa's name, replace with Eric the Swede; rephrase the
+		disclaimer text; remove reference to Menassa Codex.
+	    * maps/make.php: replacement for non-working Makefile for block maps.
+2013-07-11  * include/nav.php: fix nav_menu_group_begin_count() when a numeric zero is passed as $count.
+2013-12-14  * move admin.php to admin_calendar.php, create new admin.php for overview page, update menu
+2013-12-23  * show FORBID status in unregistered group list, hide FORBID groups from group-picker program
+2013-12-27  * DB: add column other_admin_information
+	    * admin_notes.php: add check for other_admin_information; display in new table column
+	    * admin_groups.php, template/admin_edit_group.html: allow editing other_admin_information field
+2013-12-28  * admin_notes.php, admin_notes_2.php: ove other_admin_information to its own page,
+		add to include/nav.php menu
+2014-01-03  * index.php, express.php: update Land Grab Friday/saturday dates
+	    * template/express.htm: remove "Barn / new" before "Great Hall"
+	    * docs_timetable.php: several date, time, and "Great Hall" changes, typo "battlefLeld"
+2014-01-10  * docs_handbook.php: "Great Hall" in several places
+2014-02-18  * includes/nav.php: no longer synch the /synch/ directory
+	    * synch/menu.css: back to prior version that wasn't broken
+	    * includes/navbar.html: pennsic 43 not 42.  SHOULD use a template instead
+2014-05-11  * docs_rules.php: link goes to /penn43/ not /penn41/.  SHOULD use $penn_number
+2014-05-28  * admin.php: remove link to old (Perl) version of the website
+2014-05-31  * include/nav.php: add landing page docs_camping.php for camping sub-menu
+2014-06-01  * admin_group_check.php: add a column containing groups' number of years of history
+2014-06-02  * include/nav.php: add landing page land_menu.php for land agent sub-menu
+2014-06-03  * admin_groups.php: move error message when failing to update group flags,
+		from reserved_group_variable_string (inside the text box)
+		to reserved_group_error_string (after it)
+2014-07-07  * include/nav.php: correct the count for menu 'Check Group Names'
+	    * admin_group_check.php: force group-base to lowercase
+	    * admin_penndups.php: cleared database of bad PENN numbers;
+		on error produce informative error messages;
+		don't throw error for PENN numbers containing an apostrophe
+	    * include/cooper.php: fail if CURL message response begins with a less-than character;
+		fail if group-campers query returns PENN numbers conaining a less-than character
+		or an apostrophe
+2014-07-09  * admin_bonus.php: change query from greater-than zero to non-zero bonus
+	    * admin_compress.php: change query from greater-than zero to non-zero compression
+2014-07-21  * include/nav.php: image() function: if file not found, show no_image.png instead
+2014-07-22  * new program admin_group_nohist.php, showing registered groups with no history
+2014-08-28  * docs_documents.php: update link from penn41 to penn43.  Should instead use
+		year-independent link
+2014-12-31  * admin_eoy_close.php: at end of year, clear field other_group_information rather
+		than field group_data (which I don't know what it's for)
+	    * index.php: update Friday and Saturday dates
+	    * template/template_main_page.htm: add Early-Checkin section
+	    * include/nav.php: add Early-Checkin link to Document menu
+2015-01-10  * docs_singlecampers.php: change 'Map Tent' to 'Public Safety'
+	    * admin_notes.php: change 'Agent or Admin Notes' to 'Land Agent Notes'
+	    * admin_notes_2.php: change 'Agent or Admin Notes' to 'Admin Notes'
+2015-01-11  * template/template_main_page.htm: change text "All Land Agents must be present
+	      at Land Grab on Saturday morning to claim and rope off their land." to "All
+	      Land Agents must be present sometime between Friday afternoon and Saturday
+	      morning by 9am to claim and rope off their land."; remove Express Check-In text
+	    * includes/nav.php: remove Express Check-In menu item
+2015-01-13  * docs_handbook.php: change text regarding only camping on the battlefield, to add
+	      reference to the Early-In program.
+	    * template/disclaimer.htm: change Eric the Swede back to Jessa d'Avondale; reverse
+	      the listing order so that land.* comes up before www.* does
+2015-01-16  * template/disclaimer.htm: change "contact the webminister" to not be an email link
+2014-01-23  * docs_handbook.php: remove reference to Saturday's meeting.
