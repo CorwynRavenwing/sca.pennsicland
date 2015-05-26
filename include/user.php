@@ -64,6 +64,7 @@ function set_user_session_variables() {
     $group_name   = "";
     $old_admin    = 0;
     $r_admin      = 0;
+    $w_admin      = 0;
     $q_admin      = 0;
     $masquerade   = 0;
     $user_id_true = 0;
