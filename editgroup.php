@@ -138,7 +138,7 @@ Please log on to edit your group information.
         ) {
 
       /*
-      if ($admin) {
+      if ($r_admin) {
           ?>
 <div>
   <br/>

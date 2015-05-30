@@ -18,7 +18,7 @@ nav_right_begin();
 
 $new_user_id = @$_REQUEST['id'];
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } elseif ($new_user_id) {
 

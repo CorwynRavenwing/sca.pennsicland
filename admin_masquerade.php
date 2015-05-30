@@ -20,7 +20,7 @@ if ($id == "STOP") {
 		
 		# $message .= "<br/>AFTER: user_id $user_id user_id_true $user_id_true masquerade $masquerade";
 	}
-} elseif (! $admin) {
+} elseif (! $r_admin) {
 	$message = "Please log on as Pennsic Land staff first.";
 } elseif ($id) {
 	if ($masquerade) {
@@ -44,7 +44,7 @@ if ($id == "STOP") {
 } // endif id
 
 if ($success) {
-	$was_admin = $admin;
+	$was_admin = $r_admin;
 } else {
 	$id = "";
 }

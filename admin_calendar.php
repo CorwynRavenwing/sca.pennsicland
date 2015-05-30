@@ -18,7 +18,7 @@ nav_right_begin();
 
 # global $mode_direction;
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
   template_load("admin_calendar_page.htm");
@@ -26,7 +26,7 @@ if (! $admin) {
   template_param("current_mode",      $current_mode    );
   template_param("current_submode",    $current_submode  );
 
-  template_param("admin_message",      $admin_message    );
+  template_param("admin_message",      $ADM_MSG    );
   template_param("user_message",      $user_message    );
 
   template_param("registration_open_date",  $registration_open_date  );

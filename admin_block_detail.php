@@ -20,7 +20,7 @@ nav_admin_leftnav();	// special Admin left nav
 
 nav_right_begin();
 
-if (! $admin) {
+if (! $r_admin) {
 	print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
 	template_load("template_redgreen.html");
@@ -105,7 +105,7 @@ if (! $admin) {
 	} // endif action
 	
 	template_load("admin_decide_block.htm");
-	template_param("admin_message",	 $admin_message );
+	template_param("admin_message",	 $ADM_MSG );
 	
 	# might not need these:
 	$table_id = "grouptable";

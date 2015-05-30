@@ -24,7 +24,7 @@ nav_right_begin();
 $id      = @$_REQUEST['id'];
 $action  = @$_REQUEST['action'];
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } elseif ($id) {
   template_load("admin_edit_group.htm");

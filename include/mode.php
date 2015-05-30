@@ -3,7 +3,7 @@ require_once("include/connect.php");
 
 function mode_setup()
 {
-	global $admin_message;
+	global $ADM_MSG;
 	global $allow_block_changes;
 	global $allow_bigredbutton;
 	global $allow_email;
@@ -91,7 +91,7 @@ function mode_setup()
 	$current_submode = "";
 	$closed_message = "";
 	$user_message = "";
-	$admin_message = "";
+	$ADM_MSG = "";
 	
 	// Registration for land allocation opened on January 1, 2011.
 
@@ -102,28 +102,28 @@ function mode_setup()
 			$current_submode = "not open yet";
 			$closed_message = "Registration for land allocation will open on $registration_open_date";
 			$user_message = "Registration for land allocation will open on $registration_open_date";
-			$admin_message = "Registration waiting to open";
+			$ADM_MSG = "Registration waiting to open";
 		} elseif ($current_date <= $registration_close_date) {
 			$current_submode = "reg open";
 			$registration_open = 1;						# allows new users and registering groups
 			$allow_block_changes = 1;				# allow groups to change their desired blocks and compressions
 			$allow_email = 1;					# can email before reg closes [NEW Corwyn P40]
 			$user_message = "Registration for land allocation opened on $registration_open_date and will close on $registration_close_date";
-			$admin_message = "Registration open; waiting to close";
+			$ADM_MSG = "Registration open; waiting to close";
 		} else {
 			$current_submode = "reg closed";
 			$allow_block_changes = 1;				# allow groups to change their desired blocks and compressions
 			$allow_bigredbutton = 1;
 			$allow_email = 1;					# can email before pushing big red button
 			$user_message = "Registration for land allocation closed on " . $registration_close_date . "; changes to block locations are still allowed.  Land assignments will be sent out in early July";
-			$admin_message = "Registration closed; block changes allowed until Big Red Button is pressed";
+			$ADM_MSG = "Registration closed; block changes allowed until Big Red Button is pressed";
 		}
 	} elseif ($current_mode == "locked") {
 		$allow_bigredbutton = 1;						# can push big red button twice
 		$allow_email = 1;							# can also email after pushing big red button
 		$allow_groupmoves = 1;						# can only move groups after pushing big red button
 		$user_message = "No changes can be made to your block choices.  Land assignment emails will be sent out in early July.  Paper Land packets are no longer provided";
-		$admin_message = "Move groups around until there are no overflowing blocks, then send block emails.";
+		$ADM_MSG = "Move groups around until there are no overflowing blocks, then send block emails.";
 	} elseif ($current_mode == "pennsic prep") {
 		if ($current_date < $pennsic_open_date ) {
 			$current_submode = "negotiate";
@@ -131,14 +131,14 @@ function mode_setup()
 			$allow_groupmoves = 1;					# can also move groups during negotiation
 			$show_location = 1;							# turns on email-neighbors section
 			$user_message = "You should have received a Land assignment email.  Paper Land packets are no longer provided.  Please contact your neighbors to discuss the map for your block";
-			$admin_message = "Negotiation period.  You are allowed to move groups; agents are allowed to contact their neighbors.  Ends when pennsic opens on " . $pennsic_open_date;
+			$ADM_MSG = "Negotiation period.  You are allowed to move groups; agents are allowed to contact their neighbors.  Ends when pennsic opens on " . $pennsic_open_date;
 		} elseif ($current_date <= $pennsic_close_date) {
 			$current_submode = "pennsic";
 			$allow_email = 1;						# can also email during pennsic
 			$allow_groupmoves = 1;					# can also move groups during pennsic.  USE WITH CAUTION
 			$closed_message = "Please don't send emails, everyone is already on their way to Pennsic.";
 			$user_message = "Land packets can be picked up at the barn.  Land office hours are:<br />&nbsp;&nbsp;&nbsp;&nbsp;Friday: noon to midnight<br />&nbsp;&nbsp;&nbsp;&nbsp;Saturday: 6AM to 9AM";
-			$admin_message = "Pennsic has started: closes on $pennsic_close_date";
+			$ADM_MSG = "Pennsic has started: closes on $pennsic_close_date";
 		} else {
 			$current_submode = "done";
 			$allow_email = 1;						# can also email after pennsic
@@ -146,19 +146,19 @@ function mode_setup()
 			$allow_movedata = 1;
 			$closed_message = "Registration is closed.  See you next year!";
 			$user_message = "Pennsic is over.  See you next year!";
-			$admin_message = "Pennsic has closed.  After doing any block location corrections, press the Close Year button";
+			$ADM_MSG = "Pennsic has closed.  After doing any block location corrections, press the Close Year button";
 		}
 	} elseif ($current_mode == "data moved") {
 		$allow_nextyear = 1;
 		$closed_message = "Registration is closed.  See you next year!";
 		$user_message = "Pennsic is over.  See you next year!";
-		$admin_message = "Set up dates for next year's Pennsic";
+		$ADM_MSG = "Set up dates for next year's Pennsic";
 	} elseif ($current_mode == "end of year") {
 		$allow_nextyear = 1;
 		$allow_reopen = 1;
 		$closed_message = "Registration is closed.  See you next year!";
 		$user_message = "Pennsic is over.  See you next year!";
-		$admin_message = "Verify dates and pennsic numbers for next year, then press Re-open button";
+		$ADM_MSG = "Verify dates and pennsic numbers for next year, then press Re-open button";
 	} else {
 		print "<h2>ERROR: invalid current mode '$current_mode' line " . __LINE__ . "</h2>\n";
 	} # endif
@@ -316,7 +316,7 @@ function allow_nextyear()		{ global $allow_nextyear;		return $allow_nextyear;		}
 function allow_reopen()			{ global $allow_reopen;			return $allow_reopen;		}
 function closed_message()		{ global $closed_message;		return $closed_message;		}
 function user_message()			{ global $user_message;			return $user_message;		}
-function admin_message()		{ global $admin_message;		return $admin_message;		}
+function admin_message()		{ global $ADM_MSG;		return $ADM_MSG;		}
 function pennsic_roman()		{ global $pennsic_roman;		return $pennsic_roman;		}
 
 function change_mode($new_mode) {

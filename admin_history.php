@@ -27,7 +27,7 @@ $ymax = @$_GET['year_max'];
 
 if ($year) { $ymin = $year; $ymax = $year; }
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } elseif ($id) {
   # this section copied from history.php, with small changes

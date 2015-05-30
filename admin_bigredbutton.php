@@ -17,7 +17,7 @@ nav_admin_leftnav();  // special Admin left nav
 
 nav_right_begin();
 
-if (! $admin) {
+if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } elseif (! allow_bigredbutton() ) {
   print "<h2>Big Red Button may not be pushed at this time.</h2>\n";

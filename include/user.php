@@ -20,7 +20,7 @@ set_user_session_variables();  // call it now
 function set_user_session_variables() {
   global $user_id, $user_name, $user_record;
   global $legal_name, $alias, $group_id, $group_name;
-  global $admin, $masquerade, $user_id_true;
+  global $r_admin, $w_admin, $masquerade, $user_id_true;
 
   if ($user_id) {
     $user_record = user_record($user_id);
@@ -30,12 +30,19 @@ function set_user_session_variables() {
     $alias    = $user_record['alias'];
     $group_id  = user_group($user_id);
     $group_name  = group_name($group_id);
-    if ( is_admin_account($user_name) ) {
-      $admin        = 1;
+    if ( is_admin_ro_account($user_name) ) {
+      $r_admin        = 1;
+      $w_admin        = 0;
+      # $masquerade   = 0;
+      $user_id_true = $user_id;
+    } elseif ( is_admin_rw_account($user_name) ) {
+      $r_admin        = 1;
+      $w_admin        = 1;
       # $masquerade   = 0;
       $user_id_true = $user_id;
     } else {
-      $admin        = 0;
+      $r_admin        = 0;
+      $w_admin        = 0;
       # $masquerade   = 0;
       # $user_id_true = 0;
     } // endif is_admin_account
@@ -45,18 +52,21 @@ function set_user_session_variables() {
     $alias        = "";
     $group_id     = 0;
     $group_name   = "";
-    $admin        = 0;
+    $r_admin      = 0;
+    $w_admin      = 0;
     $masquerade   = 0;
     $user_id_true = 0;
   }
 
   $_SESSION['user_id']      = $user_id;
-  $_SESSION['user_name']    = $user_name;
-  $_SESSION['legal_name']   = $legal_name;
-  $_SESSION['alias']        = $alias;
-  $_SESSION['group_id']     = $group_id;
-  $_SESSION['group_name']   = $group_name;
-  $_SESSION['admin']        = $admin;
+  $_SESSION['user_name']    = $user_name;    # unused?
+  $_SESSION['legal_name']   = $legal_name;   # unused?
+  $_SESSION['alias']        = $alias;        # unused?
+  $_SESSION['group_id']     = $group_id;     # unused?
+  $_SESSION['group_name']   = $group_name;   # unused?
+  $_SESSION['admin']        = 0;             # unused?
+  $_SESSION['r_admin']      = $r_admin;      # unused?
+  $_SESSION['w_admin']      = $w_admin;      # unused?
   $_SESSION['masquerade']   = $masquerade;
   $_SESSION['user_id_true'] = $user_id_true;
 } // end function set_user_session_variables
@@ -454,7 +464,7 @@ function verify_password($input_password, $stored_password, $stored_salt) {
 } // end function verify_password
 
 # SHOULD REALLY PUT THIS IN THE DATABASE [Corwyn 2007]
-function is_admin_account($user_name) {
+function is_admin_rw_account($user_name) {
   switch($user_name) {
     case 'aakin':         # aakin the mapmaker
     case 'angusland':     # angus taylor
@@ -482,6 +492,26 @@ function is_admin_account($user_name) {
       # print "IS NOT AN ADMIN ACCOUNT ($user_name)<br />\n";
       return 0;
   } // end switch
+} // end function is_admin_rw_account
+
+function is_admin_ro_account($user_name) {
+  switch($user_name) {
+    case 'kegslayer':     # Nameneeded, L2 PW44
+    case 'corwyn':        # corwyn ravenwing
+    case 'wharmon':       # corwyn ravenwing
+      # print "IS ADMIN ACCOUNT ($user_name)<br />\n";
+      return 1;
+      break;
+
+    default:
+      # print "IS NOT AN ADMIN ACCOUNT ($user_name)<br />\n";
+      return 0;
+  } // end switch
+} // end function is_admin_ro_account
+
+function is_admin_account($user_name) {
+  die("call to obsolete function is_admin_account()" .
+        " at file " . __FILE__ . ", line " . __LINE__);
 } // end function is_admin_account
 
 function error_string($string) {
