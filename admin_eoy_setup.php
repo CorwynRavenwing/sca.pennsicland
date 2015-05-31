@@ -27,7 +27,11 @@ if (! $r_admin) {
 	template_load("admin_next_year.htm");
 	
     if ($submit) {
-		
+	
+      if (! $w_admin) {
+	    print "<h2>Your access level does not allow this action.</h2>\n";
+      } else {
+
 	$errors_found = 0;
 	
 	$new_year		= @$_POST['current_year'];
@@ -168,7 +172,9 @@ if (! $r_admin) {
 		$pennsic_close_date	= $new_pennsic_close;
 		
 	} // endif errors
-		
+	
+      } // endif w_admin
+
     } // endif submit
 	
 	template_param("current_year",			$current_year			);

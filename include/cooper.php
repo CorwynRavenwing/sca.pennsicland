@@ -1128,8 +1128,12 @@ function show_elapsed_time($display = 1) {
       }
     } else {
       if ($display) {
-        if ($r_admin) { print("<span style='font-size:0.75em; color:red;'>{" . $elapsed_time . "}</span>");  @ob_flush(); }
-      }
+        if ($w_admin) {
+          print("<span style='font-size:0.75em; color:green;'>{" . $elapsed_time . "}</span>");  @ob_flush();
+        } elseif ($r_admin) {
+          print("<span style='font-size:0.75em; color:red;'>{" . $elapsed_time . "}</span>");  @ob_flush();
+        }
+    }
     }
   }
 
