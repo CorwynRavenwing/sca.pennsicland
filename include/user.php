@@ -466,20 +466,15 @@ function verify_password($input_password, $stored_password, $stored_salt) {
 # SHOULD REALLY PUT THIS IN THE DATABASE [Corwyn 2007]
 function is_admin_rw_account($user_name) {
   switch($user_name) {
-    case 'aakin':         # aakin the mapmaker
     case 'angusland':     # angus taylor
     case 'baronangus':    # angus kerr
     case 'BaronDevon':
     case 'caradawc':
-    case 'Caryl':         # Countess Caryl
     case 'corwyn':        # corwyn ravenwing
     case 'dagmar':
     case 'de_labarre':
-    case 'elerinefyn':    # eLeri
     case 'emerson':       # g emerson true
     case 'evan':          # Evan
-    case 'finn':
-    case 'Lyle':
     case 'winterstar':    # Magdalena, L1 PW44
     case 'masterjohn':    # master john littleton
     case 'Ursus':         # Gaerwen
@@ -496,8 +491,10 @@ function is_admin_rw_account($user_name) {
 
 function is_admin_ro_account($user_name) {
   switch($user_name) {
-    case 'kegslayer':     # Nameneeded, L2 PW44
+    case 'aakin':         # aakin the mapmaker
+    case 'Caryl':         # Countess Caryl
     case 'corwyn':        # corwyn ravenwing
+    case 'kegslayer':     # Nameneeded, L2 PW44
     case 'wharmon':       # corwyn ravenwing
       # print "IS ADMIN ACCOUNT ($user_name)<br />\n";
       return 1;

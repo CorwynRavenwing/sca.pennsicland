@@ -92,7 +92,13 @@ function nav_head($title, $crumb_array = 0) {
 
   $display_alias = ($alias  ? $alias              : "*NOBODY*");
   $display_legal = ($legal_name   ? $legal_name              : "*NOBODY*");
-  $display_admin = ($r_admin  ? "<span style='color:green; font-weight:bold'>(admin)</span>"  : ($w_admin  ? "<span style='color:red; font-weight:bold'>(ADMIN)</span>"  : ""  ) );
+  $display_admin = ($r_admin
+                       ? "<span style='color:limegreen; font-weight:bold'>(admin)</span>"
+                       : ($w_admin
+                             ? "<span style='color:red; font-weight:bold'>(ADMIN)</span>"
+                             : ""
+                         )
+                   );
   $display_user  = ($user_name  ? $user_name              : "*NOBODY*");
   $display_group = ($group_name  ? $group_name              : "<b>*NONE*</b>"  );
 
