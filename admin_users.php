@@ -42,6 +42,14 @@ if (! $r_admin) {
 
   $errors_found = 0;
 
+  if (! $w_admin) {
+    if ($action or $override)
+	print "<h2>Your access level does not allow this action.</h2>\n";
+	$action = "";
+	$override = "";
+    }
+  } // endif w_admin
+
     if ($action or $override) {
 
   print("<h3>UPDATING RECORD ...</h3>\n");

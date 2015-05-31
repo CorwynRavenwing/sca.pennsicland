@@ -32,6 +32,13 @@ if (! $r_admin) {
   $details  = @$_REQUEST['details'];  # not used anymore?
   $my_merge_id  = @$_REQUEST['merge_id'];
 
+  if ($action) {
+    if (! $w_admin) {
+	print "<h2>Your access level does not allow this action.</h2>\n";
+	$action = "";
+    } // endif w_admin
+  } // endif action
+
   # this code is repeated above and below the switch($action) section
   if ($my_merge_id) {
   $array = query_mailmerges_status($my_merge_id);

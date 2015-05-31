@@ -27,6 +27,10 @@ if (! $r_admin) {
 
   if ($post_group_id) {
 
+    if (! $w_admin) {
+	    print "<h2>Your access level does not allow this action.</h2>\n";
+    } else {
+
       $post_status = ( $change_status_0 ? 0 : ( $change_status_1 ? 1 : ( $change_status_2 ? 2 : 3 ) ) );
 
       if ($post_status == 3) {
@@ -53,6 +57,8 @@ if (! $r_admin) {
     } // endif num
 
       } // endif post_status 3
+
+    } // endif w_admin
 
   } // endif post_group_id
 

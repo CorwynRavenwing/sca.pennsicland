@@ -24,6 +24,14 @@ if (! $r_admin) {
   print template_output();
 
   $action = @$_POST['action'];
+
+  if ($action) {
+    if (! $w_admin) {
+	print "<h2>Your access level does not allow this action.</h2>\n";
+	$action = "";
+    } // endif w_admin
+  } // endif action
+  
   if ($action == "clear") {
     print "<h2>Clearing all 'changed' flags ...<br />";
     mark_everybody_sent();

@@ -36,6 +36,13 @@ if (! $r_admin) {
 	$block_name	= @$_REQUEST['block_name'];
 	$mark_sent	= @$_REQUEST['mark_sent'];
 	
+	  if ($action) {
+	    if (! $w_admin) {
+		print "<h2>Your access level does not allow this action.</h2>\n";
+		$action = "";
+	    } // endif w_admin
+	  } // endif action
+
 	if ($action) {
 		# print "<h2>DEBUG: mark_sent = $mark_sent</h2>\n";
 		# print "<h3>DEBUG: Checking for changes from block '$block_id' ...</h3>\n";
@@ -516,8 +523,13 @@ if (! $r_admin) {
 				TYPE=CHECKBOX
 				id='move_all'
 				name='move_all'
-				VALUE=master 
+				VALUE=master
+		" . ($w_admin ? "
 				onChange='check_move_all(this);'
+	    	" : "
+				onChange='return false;'
+				disabled='disabled'
+	    	" ) . "
 			/>
 		</td>
 		<td>:MOVE</td>
