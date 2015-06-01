@@ -42,13 +42,13 @@ if (! $r_admin) {
 
   $errors_found = 0;
 
-  if (! $w_admin) {
-    if ($action or $override)
+  if ($action or $override) {
+    if (! $w_admin) {
 	print "<h2>Your access level does not allow this action.</h2>\n";
 	$action = "";
 	$override = "";
-    }
-  } // endif w_admin
+    } // endif w_admin
+  } // endif action or override
 
     if ($action or $override) {
 

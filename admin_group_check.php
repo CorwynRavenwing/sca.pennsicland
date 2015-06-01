@@ -26,10 +26,13 @@ if (! $r_admin) {
   $change_status_2 = @$_POST['change_status_2'];
 
   if ($post_group_id) {
-
     if (! $w_admin) {
-	    print "<h2>Your access level does not allow this action.</h2>\n";
-    } else {
+	print "<h2>Your access level does not allow this action.</h2>\n";
+	$post_group_id = "";
+    } // endif w_admin
+  } // endif post_group_id
+
+  if ($post_group_id) {
 
       $post_status = ( $change_status_0 ? 0 : ( $change_status_1 ? 1 : ( $change_status_2 ? 2 : 3 ) ) );
 
@@ -57,8 +60,6 @@ if (! $r_admin) {
     } // endif num
 
       } // endif post_status 3
-
-    } // endif w_admin
 
   } // endif post_group_id
 

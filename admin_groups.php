@@ -34,12 +34,12 @@ if (! $r_admin) {
 
   $group_rec = group_record($id);
 
-  if (! $w_admin) {
-    if ($action) {
+  if ($action) {
+    if (! $w_admin) {
 	print "<h2>Your access level does not allow this action.</h2>\n";
 	$action = "";
-    }
-  } // endif w_admin
+    } // endif w_admin
+  } // endif action
 
   if (! $group_rec) {
     print("<h2>No such group found.</h2>\n");

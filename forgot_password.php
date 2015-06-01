@@ -44,6 +44,13 @@ function generate_lost_password() {
 
   $override = ($action == "reset_admin_override");
 
+  if ($override) {
+    if (! $w_admin) {
+	print "<h2>Your access level does not allow this action.</h2>\n";
+	$override = "";
+    } // endif w_admin
+  } // endif override
+
   print("<!-- DEBUG: action = '$action' -->\n");
 
   template_load("forgot_password_template.htm");
