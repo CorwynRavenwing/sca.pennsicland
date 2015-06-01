@@ -18,6 +18,8 @@ nav_right_begin();
 
 if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
+} elseif (! $w_admin) {
+  print "<h2>Your access level does not allow this action.</h2>\n";
 } else {
 
     if ( allow_movedata() ) {
