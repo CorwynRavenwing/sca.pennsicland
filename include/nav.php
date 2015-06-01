@@ -254,12 +254,19 @@ function nav_admin_menu($label_id = "adminmenu") {
     nav_menu_active_count("Fix Orphans",      "admin_prereg_cleanup.php", $count_orphan_groups);
 
     nav_menu_active("COOPER Count",           "LAND_SYSTEM/admin_cooper_count_registrations.html",  1);
+  if ($w_admin) {
     nav_menu_active("COOPER Move",            "LAND_SYSTEM/admin_cooper_move_tool.html",    1);
     # nav_menu_active("Show Registrations",   "LAND_SYSTEM/admin_cooper_show_registrations.html",  1);
     # nav_menu_active("Move Registrations",   "LAND_SYSTEM/admin_cooper_move_registrations.html",  1);
     nav_menu_active("COOPER Create",          "LAND_SYSTEM/admin_cooper_create_group.html",    1);
     nav_menu_active("COOPER Delete",          "LAND_SYSTEM/admin_cooper_delete_group.html",    1);
-
+  } else {
+    nav_menu_inactive("COOPER Move",            "");
+    # nav_menu_inactive("Show Registrations",   "");
+    # nav_menu_inactive("Move Registrations",   "");
+    nav_menu_inactive("COOPER Create",          "");
+    nav_menu_inactive("COOPER Delete",          "");
+  }
     nav_menu_group_end();
 
     nav_menu_group_begin("BLOCK ASSIGNMENT",  "admin_block_help.php", 0, "Click for Help");
