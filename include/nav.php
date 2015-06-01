@@ -81,7 +81,7 @@ function nav_head($title, $crumb_array = 0) {
 
   global $user_id, $user_name, $logon_error;
   global $legal_name, $alias, $group_id, $group_name;
-  global $r_admin, $masquerade, $user_id_true;
+  global $r_admin, $w_admin, $masquerade, $user_id_true;
 
   // top section:
 
