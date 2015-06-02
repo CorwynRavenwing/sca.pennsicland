@@ -1110,7 +1110,7 @@ function load_groups_by_final_location_in_match_order($block_id) {
 $global_time = 0;
 function show_elapsed_time($display = 1) {
   global $global_time;
-  global $r_admin;
+  global $r_admin, $w_admin;
 
   $prev_time = $global_time;
   $global_time = time();
