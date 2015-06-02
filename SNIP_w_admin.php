@@ -6,12 +6,21 @@
       } // endif w_admin
 
 
-  if ($action) {
+  if ($xyzzy) {
     if (! $w_admin) {
 	print "<h2>Your access level does not allow this action.</h2>\n";
-	$action = "";
+	$xyzzy = "";
     } // endif w_admin
-  } // endif action
+  } // endif xyzzy
+
+
+  if ($xyzzy or $xyzzzy) {
+    if (! $w_admin) {
+	print "<h2>Your access level does not allow this action.</h2>\n";
+	$xyzzy = "";
+	$xyzzzy = "";
+    } // endif w_admin
+  } // endif xyzzy or xyzzzy
 
 
 } elseif (! $w_admin) {

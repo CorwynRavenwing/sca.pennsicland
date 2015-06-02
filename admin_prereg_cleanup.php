@@ -19,14 +19,19 @@ nav_right_begin();
 
 if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
-} elseif (! $w_admin) {
-  print "<h2>Your access level does not allow this action.</h2>\n";
 } else {
   # no template
 
   $create_group = @$_GET['create_group'];
-  if ( $create_group ) {
+  
+  if ($create_group) {
+    if (! $w_admin) {
+	print "<h2>Your access level does not allow this action.</h2>\n";
+	$create_group = "";
+    } // endif w_admin
+  } // endif create_group
 
+  if ( $create_group ) {
     $new_groupid = create_group($create_group);
 
     $on_site_representative  = "Admin Account: $create_group";
@@ -39,8 +44,16 @@ if (! $r_admin) {
 
   $create_agent = @$_GET['create_agent'];
   $link_group   = @$_GET['link_group'];
-  if ( $create_agent or $link_group ) {
 
+  if ($create_agent or $link_group) {
+    if (! $w_admin) {
+	print "<h2>Your access level does not allow this action.</h2>\n";
+	$create_agent = "";
+	$link_group = "";
+    } // endif w_admin
+  } // endif create_agent or link_group
+
+  if ( $create_agent or $link_group ) {
     $requested_user_name = "admin_" . create_random(10);
     $requested_password = create_random(8);      // and store it NOWHERE
 
