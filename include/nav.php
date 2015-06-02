@@ -381,6 +381,8 @@ function nav_menu_active_count($text, $link, $count = "", $new_page = 0, $title 
 
   if ($count) {
     $count = "   ($count)";
+  } elseif ($count === 0) {
+    $count = "   (0)";
   } elseif ($count === "0") {
     $count = "   (0)";
   }
