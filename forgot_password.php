@@ -29,7 +29,8 @@ nav_footer_disclaimer();
 nav_end();
 
 function generate_lost_password() {
-
+  global $w_admin;
+  
   $webmaster_name_short = "Corwyn Ravenwing";
 
   # this code had been called but not defined, in code above that was defined but not called.
