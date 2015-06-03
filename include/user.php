@@ -493,9 +493,8 @@ function is_admin_ro_account($user_name) {
   switch($user_name) {
     case 'aakin':         # aakin the mapmaker
     case 'Caryl':         # Countess Caryl
-    case 'corwyn':        # corwyn ravenwing
+    case 'corwyn':        # corwyn ravenwing readonly account
     case 'kegslayer':     # Nameneeded, L2 PW44
-    case 'wharmon':       # corwyn ravenwing
       # print "IS ADMIN ACCOUNT ($user_name)<br />\n";
       return 1;
       break;
