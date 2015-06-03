@@ -11,3 +11,7 @@
 
 # ignore file with personal information
 CONTACT_INFO.txt
+
+# ignore contents of datafiles/ directory
+datafiles/*.csv
+
