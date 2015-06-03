@@ -30,7 +30,7 @@ nav_end();
 
 function generate_lost_password() {
   global $w_admin;
-  
+
   $webmaster_name_short = "Corwyn Ravenwing";
 
   # this code had been called but not defined, in code above that was defined but not called.
@@ -49,6 +49,7 @@ function generate_lost_password() {
     if (! $w_admin) {
 	print "<h2>Your access level does not allow this action.</h2>\n";
 	$override = "";
+	$action = "";
     } // endif w_admin
   } // endif override
 
