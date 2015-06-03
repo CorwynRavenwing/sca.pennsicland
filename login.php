@@ -36,7 +36,7 @@ if ($action == "Submit") {
     $redirect_to = @$_POST['redirect_to'];
 
     if (! $redirect_to) {
-      $message = "Logon as " . ($r_admin ? "admin" : ($w_admin ? "ADMIN" : "") ) . " $user_name successful!";
+      $message = "Logon as " . ($w_admin ? "ADMIN" : ($r_admin ? "admin" :  "")) . " $user_name successful!";
       $redirect_to = "index.php?message=$message";
     }
 
