@@ -6,8 +6,11 @@
 # ignore any html files
 *.html
 
-# except the index redirector
+# ... except the index redirector
 !index.html
+
+# ... and the cooper files
+!admin_cooper_*.html
 
 # ignore file with personal information
 CONTACT_INFO.txt
