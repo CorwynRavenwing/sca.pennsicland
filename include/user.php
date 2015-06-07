@@ -465,19 +465,15 @@ function verify_password($input_password, $stored_password, $stored_salt) {
 
 # SHOULD REALLY PUT THIS IN THE DATABASE [Corwyn 2007]
 function is_admin_rw_account($user_name) {
-  switch($user_name) {
-    case 'angusland':     # angus taylor
+  switch (strtolower($user_name) {
     case 'baronangus':    # angus kerr
-    case 'BaronDevon':
-    case 'caradawc':
     case 'corwyn':        # corwyn ravenwing
     case 'dagmar':
-    case 'de_labarre':
-    case 'emerson':       # g emerson true
+    case 'emerson':       # g emerson true, L1 P33
     case 'evan':          # Evan
-    case 'winterstar':    # Magdalena, L1 PW44
+    case 'winterstar':    # Magdalena, L1 P44
     case 'masterjohn':    # master john littleton
-    case 'Ursus':         # Gaerwen
+    case 'ursus':         # Gaerwen
     case 'wharmon':       # corwyn ravenwing
       # print "IS ADMIN ACCOUNT ($user_name)<br />\n";
       return 1;
@@ -490,11 +486,15 @@ function is_admin_rw_account($user_name) {
 } // end function is_admin_rw_account
 
 function is_admin_ro_account($user_name) {
-  switch($user_name) {
+  switch (strtolower($user_name) {
     case 'aakin':         # aakin the mapmaker
-    case 'Caryl':         # Countess Caryl
-    case 'corwyn':        # corwyn ravenwing readonly account
-    case 'kegslayer':     # Nameneeded, L2 PW44
+    case 'angusland':     # angus taylor
+    case 'barondevon':
+    case 'caradawc':
+    case 'caryl':         # Countess Caryl
+    case 'corwyn':        # Corwyn Ravenwing readonly account
+    case 'de_labarre':
+    case 'kegslayer':     # Gunther KegSlayer, L2 P44
       # print "IS ADMIN ACCOUNT ($user_name)<br />\n";
       return 1;
       break;
