@@ -90,17 +90,17 @@ function nav_head($title, $crumb_array = 0) {
   template_param("pennsic_number",  $pennsic_number  );
   template_param("title",      $title    );
 
-  $display_alias = ($alias  ? $alias              : "*NOBODY*");
-  $display_legal = ($legal_name   ? $legal_name              : "*NOBODY*");
+  $display_alias = ($alias       ? $alias              : "*NOBODY*");
+  $display_legal = ($legal_name  ? $legal_name         : "*NOBODY*");
   $display_admin = ($w_admin
-                       ? "<span style='color:red; font-weight:bold'>(ADMIN)</span>"
+                       ? "<span style='color:red; font-weight:bold'> (ADMIN)</span>"
                        : ($r_admin
-                             ? "<span style='color:limegreen; font-weight:bold'>(admin)</span>"
+                             ? "<span style='color:limegreen; font-weight:bold'> (admin)</span>"
                              : ""
                          )
                    );
-  $display_user  = ($user_name  ? $user_name              : "*NOBODY*");
-  $display_group = ($group_name  ? $group_name              : "<b>*NONE*</b>"  );
+  $display_user  = ($user_name   ? $user_name          : "*NOBODY*");
+  $display_group = ($group_name  ? $group_name         : "<b>*NONE*</b>";
 
   $display_group = "<b>$display_group</b>";
 
