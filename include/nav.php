@@ -88,10 +88,10 @@ function nav_head($title, $crumb_array = 0) {
   template_load("template_pennhdr1.htm");    // DELETE 1 WHEN PUBLISHING, POSSIBLY
 
   template_param("pennsic_number",  $pennsic_number  );
-  template_param("title",      $title    );
+  template_param("title",           $title           );
 
-  $display_alias = ($alias  ? $alias              : "*NOBODY*");
-  $display_legal = ($legal_name   ? $legal_name              : "*NOBODY*");
+  $display_alias = ($alias       ? $alias                   : "*NOBODY*" );
+  $display_legal = ($legal_name  ? $legal_name              : "*NOBODY*" );
   $display_admin = ($w_admin
                        ? "<span style='color:red; font-weight:bold'> (ADMIN)</span>"
                        : ($r_admin
@@ -99,8 +99,8 @@ function nav_head($title, $crumb_array = 0) {
                              : ""
                          )
                    );
-  $display_user  = ($user_name  ? $user_name              : "*NOBODY*");
-  $display_group = ($group_name  ? $group_name              : "<b>*NONE*</b>"  );
+  $display_user  = ($user_name   ? $user_name               : "*NOBODY*" );
+  $display_group = ($group_name  ? $group_name              : "<b>*NONE*</b>" );
 
   $display_group = "<b>$display_group</b>";
 
