@@ -44,11 +44,11 @@ if ($action == "Submit") {
   } else {
     $error_string = "logon failed: $logon_error";
 
-    template_load("failed_login_template.htm");
+    template_load("failed_login.htm");
     template_param("login_error_string",  $error_string);
     print template_output();
 
-    nav_template("template_login.htm");
+    nav_template("ogin.htm");
   } // endif user found
 } else {
   // submit not pressed: show the menu instead:
@@ -73,8 +73,8 @@ if ($action == "Submit") {
       $redirect_to = "";
     }
 
-    nav_template("welcome_template.htm");
-    nav_template("template_login.htm");
+    nav_template("welcome.htm");
+    nav_template("login.htm");
 } // endif submit
 
 nav_right_end();

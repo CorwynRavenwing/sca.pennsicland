@@ -958,7 +958,7 @@ function roll_up_used_space() {
     or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
 
   # NOTE: new formula.  Never compress exact values, never compress bonuses [Corwyn 2007]
-  # NOTE: This must agree with formula in admin_decide_block_template.htm JavaScript.
+  # NOTE: This must agree with formula in admin_decide_block.htm JavaScript.
 
   $sql = "
     update land_blocks

@@ -20,7 +20,7 @@ nav_right_begin();
 if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
-  template_load("template_redgreen.html");
+  template_load("redgreen.htm");
   print template_output();
 
   $action = @$_POST['action'];

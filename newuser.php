@@ -13,7 +13,7 @@ nav_menu();
 
 nav_right_begin();
 
-	template_load("newuser_template.htm");
+	template_load("newuser.htm");
 	
 	$errors_found = 0;
 	
@@ -145,7 +145,7 @@ nav_right_begin();
 				
 				print "<br/><br/>\n";
 				
-				template_load("template_login.htm");
+				template_load("login.htm");
 				template_param("user_name",		$requested_user_name	);
 				template_param("password",		$requested_password		);
 				print template_output();

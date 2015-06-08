@@ -57,7 +57,7 @@ Please log on to edit your group information.
   <?
     } else {
 
-  template_load("update_group_info_template.htm");
+  template_load("update_group_info.htm");
 
   $block_locked_reason = "";
   $compress_locked_reason = "";
