@@ -90,7 +90,7 @@
 2013-07-04  * docs_timetable, docs_handbook, template/express.htm: replace "Barn" with "Great Hall"
 		first use:  <strike>Barn</strike> <span style="color:blue">new Great Hall on N01</span>
 		subsequent: <strike>Barn</strike> <span style="color:blue">Great Hall</span>
-2013-07-05  * template/template_disclaimer.htm: remove Jessa's name, replace with Eric the Swede; rephrase the
+2013-07-05  * template/disclaimer.htm: remove Jessa's name, replace with Eric the Swede; rephrase the
 		disclaimer text; remove reference to Menassa Codex.
 	    * maps/make.php: replacement for non-working Makefile for block maps.
 2013-07-11  * include/nav.php: fix nav_menu_group_begin_count() when a numeric zero is passed as $count.

@@ -55,7 +55,7 @@ function nav_start($html_head_block = "", $body_onload = "") {
   ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
   <?
-  template_load("template_head1.htm");  // DELETE 1 WHEN PUBLISHING
+  template_load("head1.htm");  // DELETE 1 WHEN PUBLISHING
 
   template_param("pennsic_number",  $pennsic_number);
   template_param("pennsic_roman",    $pennsic_roman);
@@ -85,7 +85,7 @@ function nav_head($title, $crumb_array = 0) {
 
   // top section:
 
-  template_load("template_pennhdr1.htm");    // DELETE 1 WHEN PUBLISHING, POSSIBLY
+  template_load("pennhdr1.htm");    // DELETE 1 WHEN PUBLISHING, POSSIBLY
 
   template_param("pennsic_number",  $pennsic_number  );
   template_param("title",           $title           );
@@ -566,13 +566,13 @@ function nav_leftnav() {
 } // end function nav_leftnav
 
 function nav_leftnav_begin() {
-  template_load("template_leftnav_begin.htm");
+  template_load("leftnav_begin.htm");
 
   print template_output();
 } // end function nav_leftnav_begin
 
 function nav_admin_leftnav_begin() {
-  template_load("template_admin_leftnav_begin.htm");
+  template_load("admin_leftnav_begin.htm");
 
   print template_output();
 } // end function nav_leftnav_begin
@@ -702,19 +702,19 @@ function nav_leftnav_class_link($class, $text, $link, $count=0) {
 // ======================================================================
 
 function nav_leftnav_end() {
-  template_load("template_leftnav_end.htm");
+  template_load("leftnav_end.htm");
 
   print template_output();
 } // end function nav_leftnav_end
 
 function nav_admin_leftnav_end() {
-  template_load("template_admin_leftnav_end.htm");
+  template_load("admin_leftnav_end.htm");
 
   print template_output();
 } // end function nav_leftnav_end
 
 function nav_right_begin() {
-  template_load("template_right_begin.htm");
+  template_load("right_begin.htm");
 
   print template_output();
 
@@ -750,7 +750,7 @@ function nav_right_end() {
     javascript_hidable_div_end();
   }
 
-  template_load("template_right_end.htm");
+  template_load("right_end.htm");
   print template_output();
 } // end function nav_right_end
 
@@ -768,7 +768,7 @@ function nav_footer_disclaimer() {
 
   # print template_output();
 
-  template_load("template_disclaimer.htm");
+  template_load("disclaimer.htm");
 
   template_param("current_year",    $current_year  );
 
@@ -786,7 +786,7 @@ function nav_end() {
 # print synch_file("menu.css");
   print "</span>\n";
 
-  template_load("template_end.htm");
+  template_load("end.htm");
 
   print template_output();
 } // end function nav_end
