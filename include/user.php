@@ -465,7 +465,7 @@ function verify_password($input_password, $stored_password, $stored_salt) {
 
 # SHOULD REALLY PUT THIS IN THE DATABASE [Corwyn 2007]
 function is_admin_rw_account($user_name) {
-  switch (strtolower($user_name) {
+  switch (strtolower($user_name)) {
     case 'baronangus':    # angus kerr
     case 'corwyn':        # corwyn ravenwing
     case 'dagmar':
@@ -486,7 +486,7 @@ function is_admin_rw_account($user_name) {
 } // end function is_admin_rw_account
 
 function is_admin_ro_account($user_name) {
-  switch (strtolower($user_name) {
+  switch (strtolower($user_name)) {
     case 'aakin':         # aakin the mapmaker
     case 'angusland':     # angus taylor
     case 'barondevon':
