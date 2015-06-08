@@ -15,7 +15,7 @@ nav_menu();
 
 nav_right_begin();
 
-	template_load("update_password.html");
+	template_load("update_password.htm");
 	
 	template_param("webmaster_email",	$webmaster_email );
 	
