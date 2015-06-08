@@ -1,5 +1,3 @@
 RewriteEngine on
 
 RewriteRule ^view_groups_by_alpha.html$  http://land.pennsicwar.org/view_groups.php [L]
-RewriteRule ^view_groups.cgi$  http://land.pennsicwar.org/view_groups.php [L]
-
