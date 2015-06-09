@@ -1,7 +1,6 @@
 2007-01-09  * Rename file registered_groups_template to
-		registered_groups_template.htm, change use in view_groups.cgi and .pl,
-		update to pennsic 36 and use templates.
-2008-02-14  * registered_groups_template.htm is called from view_groups.cgi,
+		registered_groups.htm, change use in view_groups.cgi and .pl, update to pennsic 36 and use templates.
+2008-02-14  * template/registered_groups.htm is called from view_groups.cgi,
 		which is called from .htaccess when someone asks for
 		view_groups_by_alpha.html .  If we want to write this file
 		ourselves we need to (A) create the file whenever a group is
