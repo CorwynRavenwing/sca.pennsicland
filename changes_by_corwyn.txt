@@ -71,7 +71,7 @@
 2013-05-21  * admin_block.php: show grand total people/square feet and room left people/square feet
 2013-06-07  * history.php: initialize $count to zero
 	    * admin_bonus.php: rename variable group_name to avoid collision with system variables
-	    * index.php, template_main_page.html: move group-didnt-register text to the top of the page and
+	    * index.php, main_page.htm: move group-didnt-register text to the top of the page and
 		make it much larger type.  It was already red and bold.  I avoided using the BLINK tag by a
 		supreme effort of will.
 2013-06-15  * admin_prereg.php: trim spaces off of passed-in search string
@@ -133,12 +133,12 @@
 2014-12-31  * admin_eoy_close.php: at end of year, clear field other_group_information rather
 		than field group_data (which I don't know what it's for)
 	    * index.php: update Friday and Saturday dates
-	    * template/template_main_page.htm: add Early-Checkin section
+	    * template/main_page.htm: add Early-Checkin section
 	    * include/nav.php: add Early-Checkin link to Document menu
 2015-01-10  * docs_singlecampers.php: change 'Map Tent' to 'Public Safety'
 	    * admin_notes.php: change 'Agent or Admin Notes' to 'Land Agent Notes'
 	    * admin_notes_2.php: change 'Agent or Admin Notes' to 'Admin Notes'
-2015-01-11  * template/template_main_page.htm: change text "All Land Agents must be present
+2015-01-11  * template/main_page.htm: change text "All Land Agents must be present
 	      at Land Grab on Saturday morning to claim and rope off their land." to "All
 	      Land Agents must be present sometime between Friday afternoon and Saturday
 	      morning by 9am to claim and rope off their land."; remove Express Check-In text

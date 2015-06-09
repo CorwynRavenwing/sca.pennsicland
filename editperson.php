@@ -15,7 +15,7 @@ nav_menu();
 
 nav_right_begin();
 
-	template_load("update_person_info_template.htm");
+	template_load("update_person_info.htm");
 	
 $error_string = "";
 $errors = 0;
