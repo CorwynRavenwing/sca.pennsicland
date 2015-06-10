@@ -25,21 +25,27 @@ function set_user_session_variables() {
   if ($user_id) {
     $user_record = user_record($user_id);
 
-    $user_name  = $user_record['user_name'];
+    $user_name   = $user_record['user_name'];
     $legal_name  = $user_record['legal_name'];
-    $alias    = $user_record['alias'];
-    $group_id  = user_group($user_id);
+    $alias       = $user_record['alias'];
+    $group_id    = user_group($user_id);
     $group_name  = group_name($group_id);
     if ( is_admin_ro_account($user_name) ) {
       $r_admin        = 1;
       $w_admin        = 0;
       # $masquerade   = 0;
-      $user_id_true = $user_id;
+      if (!$masquerade) {
+      	# save admins' userids, if not already masquerading
+      	$user_id_true = $user_id;
+      }
     } elseif ( is_admin_rw_account($user_name) ) {
       $r_admin        = 1;
       $w_admin        = 1;
       # $masquerade   = 0;
-      $user_id_true = $user_id;
+      if (!$masquerade) {
+      	# save admins' userids, if not already masquerading
+      	$user_id_true = $user_id;
+      }
     } else {
       $r_admin        = 0;
       $w_admin        = 0;
@@ -47,6 +53,7 @@ function set_user_session_variables() {
       # $user_id_true = 0;
     } // endif is_admin_account
   } else {
+    # no user_id -> clear everything
     $user_name    = "";
     $legal_name   = "";
     $alias        = "";
