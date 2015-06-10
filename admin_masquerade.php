@@ -73,6 +73,8 @@ nav_right_begin();
 print "<h2>$message</h2>\n";
 print "<h3>current user: $user_name</h3>\n"; 
 
+print("_SESSION: <pre>"); print_r($_SESSION); print("</pre>\n");
+
 nav_right_end();
 
 nav_footer_panix();
