@@ -25,7 +25,7 @@ nav_menu();
 
 nav_right_begin();
 
-  template_load("template_main_page.htm");
+  template_load("main_page.htm");
 
   template_param("user_message",    $user_message);    // NEED THIS VARIABLE
 

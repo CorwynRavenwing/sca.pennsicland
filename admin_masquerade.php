@@ -10,7 +10,7 @@ if ($id == "STOP") {
 		$message = "Invalid call of Masquerade Stop when masquerade is not active, ignoring";
 	} else {
 		$success++;
-		$message = "STOP MASQUERADING";
+		$message = "STOP MASQUERADING AS $user_id (true $user_id_true)";
 		
 		# $message .= "<br/>BEFORE: user_id $user_id user_id_true $user_id_true masquerade $masquerade";
 		
@@ -29,7 +29,7 @@ if ($id == "STOP") {
 		$message = "Invalid call of Masquerade when user_id ($user_id) != user_id_true ($user_id_true), ignoring";
 	} else {
 		$success++;
-		$message = "MASQUERADE AS USER $id";
+		$message = "MASQUERADE AS USER $id (true $user_id_true)";
 		
 		# $message .= "<br/>BEFORE: user_id $user_id user_id_true $user_id_true masquerade $masquerade";
 		
@@ -72,6 +72,8 @@ nav_right_begin();
 
 print "<h2>$message</h2>\n";
 print "<h3>current user: $user_name</h3>\n"; 
+
+print("_SESSION: <pre>"); print_r($_SESSION); print("</pre>\n");
 
 nav_right_end();
 

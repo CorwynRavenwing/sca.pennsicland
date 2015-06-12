@@ -55,7 +55,7 @@ function generate_lost_password() {
 
   print("<!-- DEBUG: action = '$action' -->\n");
 
-  template_load("forgot_password_template.htm");
+  template_load("forgot_password.htm");
   template_param("search_param",  $search_param);
 
   $body = "";

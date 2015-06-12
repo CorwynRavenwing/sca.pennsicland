@@ -90,7 +90,7 @@ if (! $registration_open  /* and not admin override */ ) {
     }
   } // endif action
 
-  template_load("new_group_name_template.htm");
+  template_load("new_group_name.htm");
 
   // if error found,
   template_param("group_name_error_string", error_string($error_string) );

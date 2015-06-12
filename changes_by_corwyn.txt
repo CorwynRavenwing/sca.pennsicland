@@ -1,6 +1,20 @@
-2009-06-24  * update .htaccess to point to the correct view_groups file, delete extraneous crap
+2007-01-09  * Rename file registered_groups_template to
+		registered_groups.htm, change use in view_groups.cgi and .pl,
+		update to pennsic 36 and use templates.
+2008-02-14  * template/registered_groups.htm is called from view_groups.cgi,
+		which is called from .htaccess when someone asks for
+		view_groups_by_alpha.html .  If we want to write this file
+		ourselves we need to (A) create the file whenever a group is
+		registered, (B) safely so that if it dies in progress we don't
+		have half a file, and (C) remove the line from .htaccess so it
+		isn't redirected anymore.
+2009-06-24  * Write php version of view_groups.cgi (to fix "500 server error"
+		under firefox only)
+            * update .htaccess to point to the correct view_groups file, delete extraneous crap
             * Copy templates/, css/, includes/, image/ to here from land_php subfolder, update paths.
-2009-06-30  * Told that we are showing old version of system at this directory, move irrelevant crap to OLD_CRAP and write a redirector to the right place here.
+2009-06-30  * Told that we are showing old version of system at this directory,
+		move irrelevant crap to OLD_CRAP and write a redirector to
+		the right place here.
 ===========================================
 == small hiatus from recording data here ==
 ===========================================
@@ -55,7 +69,7 @@
 2013-05-21  * admin_block.php: show grand total people/square feet and room left people/square feet
 2013-06-07  * history.php: initialize $count to zero
 	    * admin_bonus.php: rename variable group_name to avoid collision with system variables
-	    * index.php, template_main_page.html: move group-didnt-register text to the top of the page and
+	    * index.php, main_page.htm: move group-didnt-register text to the top of the page and
 		make it much larger type.  It was already red and bold.  I avoided using the BLINK tag by a
 		supreme effort of will.
 2013-06-15  * admin_prereg.php: trim spaces off of passed-in search string
@@ -117,12 +131,12 @@
 2014-12-31  * admin_eoy_close.php: at end of year, clear field other_group_information rather
 		than field group_data (which I don't know what it's for)
 	    * index.php: update Friday and Saturday dates
-	    * template/template_main_page.htm: add Early-Checkin section
+	    * template/main_page.htm: add Early-Checkin section
 	    * include/nav.php: add Early-Checkin link to Document menu
 2015-01-10  * docs_singlecampers.php: change 'Map Tent' to 'Public Safety'
 	    * admin_notes.php: change 'Agent or Admin Notes' to 'Land Agent Notes'
 	    * admin_notes_2.php: change 'Agent or Admin Notes' to 'Admin Notes'
-2015-01-11  * template/template_main_page.htm: change text "All Land Agents must be present
+2015-01-11  * template/main_page.htm: change text "All Land Agents must be present
 	      at Land Grab on Saturday morning to claim and rope off their land." to "All
 	      Land Agents must be present sometime between Friday afternoon and Saturday
 	      morning by 9am to claim and rope off their land."; remove Express Check-In text

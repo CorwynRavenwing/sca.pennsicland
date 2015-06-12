@@ -13,27 +13,27 @@ nav_menu();
 
 nav_right_begin();
 
-	template_load("newuser_template.htm");
+	template_load("newuser.htm");
 	
 	$errors_found = 0;
 	
-	$action					= (isset($_POST['action'])				? $_POST['action']				: "");
-	$legal_name				= (isset($_POST['legal_name'])			? $_POST['legal_name']			: "");
-	$alias					= (isset($_POST['alias'])				? $_POST['alias']				: "");
-	$street_1				= (isset($_POST['street_1'])			? $_POST['street_1']			: "");
-	$street_2				= (isset($_POST['street_2'])			? $_POST['street_2']			: "");
-	$state					= (isset($_POST['state'])				? $_POST['state']				: "");
-	$country				= (isset($_POST['country'])				? $_POST['country']				: "");
-	$city					= (isset($_POST['city'])				? $_POST['city']				: "");
-	$postal_code			= (isset($_POST['postal_code'])			? $_POST['postal_code']			: "");
-	$phone					= (isset($_POST['phone_number'])		? $_POST['phone_number']		: "");
-	$extension				= (isset($_POST['extension'])			? $_POST['extension']			: "");
-	$email_address			= (isset($_POST['email_address'])		? $_POST['email_address']		: "");
+	$action			= (isset($_POST['action'])		? $_POST['action']		: "");
+	$legal_name		= (isset($_POST['legal_name'])		? $_POST['legal_name']		: "");
+	$alias			= (isset($_POST['alias'])		? $_POST['alias']		: "");
+	$street_1		= (isset($_POST['street_1'])		? $_POST['street_1']		: "");
+	$street_2		= (isset($_POST['street_2'])		? $_POST['street_2']		: "");
+	$state			= (isset($_POST['state'])		? $_POST['state']		: "");
+	$country		= (isset($_POST['country'])		? $_POST['country']		: "");
+	$city			= (isset($_POST['city'])		? $_POST['city']		: "");
+	$postal_code		= (isset($_POST['postal_code'])		? $_POST['postal_code']		: "");
+	$phone			= (isset($_POST['phone_number'])	? $_POST['phone_number']	: "");
+	$extension		= (isset($_POST['extension'])		? $_POST['extension']		: "");
+	$email_address		= (isset($_POST['email_address'])	? $_POST['email_address']	: "");
 	$requested_user_name	= (isset($_POST['requested_user_name'])	? $_POST['requested_user_name']	: "");
 	$requested_password_1	= (isset($_POST['requested_password_1'])? $_POST['requested_password_1']: "");
 	$requested_password_2	= (isset($_POST['requested_password_2'])? $_POST['requested_password_2']: "");
-	$password_hint			= (isset($_POST['password_hint'])		? $_POST['password_hint']		: "");
-	$password_answer		= (isset($_POST['password_answer'])		? $_POST['password_answer']		: "");
+	$password_hint		= (isset($_POST['password_hint'])	? $_POST['password_hint']	: "");
+	$password_answer	= (isset($_POST['password_answer'])	? $_POST['password_answer']	: "");
 	
 	if ($action) {
 		if ($reason = invalid_username($requested_user_name)) {
@@ -145,7 +145,7 @@ nav_right_begin();
 				
 				print "<br/><br/>\n";
 				
-				template_load("template_login.htm");
+				template_load("login.htm");
 				template_param("user_name",		$requested_user_name	);
 				template_param("password",		$requested_password		);
 				print template_output();

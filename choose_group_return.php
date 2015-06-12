@@ -48,7 +48,7 @@ if (! $registration_open  /* and not admin override */ ) {
 } elseif ($group_id) {
   print "<h3>You have already chosen a group [$group_id/$group_name].</h3>\n";
 } else {
-  template_load("returning_group_template.htm");
+  template_load("returning_group.htm");
 
   $group_name = stripslashes( @$_POST['group_name'] );    // undo magic_quotes_gpc [Corwyn P42]
 

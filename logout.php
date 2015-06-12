@@ -17,8 +17,8 @@ nav_menu();
 
 nav_right_begin();
 
-nav_template("logout_template.htm");
-nav_template("template_login.htm");
+nav_template("logout.htm");
+nav_template("login.htm");
 ?>
 <br>
 <br>
