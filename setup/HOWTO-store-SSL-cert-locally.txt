@@ -1,0 +1,17 @@
+# 2015-06-13
+# yesterday I received this error message:
+#	git pull
+#	"fatal: unable to access" "SSL certificate problem: unable to
+#	get local issuer certificate"
+# 
+# Googling the error, it was suggested that we host the SSL cert locally:
+
+mkdir ~/certs
+curl http://curl.haxx.se/ca/cacert.pem -o ~/certs/cacert.pem
+git config --global http.sslCAinfo "$HOME/certs/cacert.pem"
+
+# http://stackoverflow.com/questions/3777075/
+#	ssl-certificate-rejected-trying-to-access-github-over-
+#	https-behind-firewall
+
+# this fixed the problem.
