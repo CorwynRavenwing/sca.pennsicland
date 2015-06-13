@@ -253,13 +253,13 @@ function nav_admin_menu($label_id = "adminmenu") {
     nav_menu_active_count("Fix Count",        "admin_prereg_count.php",   $count_unfixed_groups);
     nav_menu_active_count("Fix Orphans",      "admin_prereg_cleanup.php", $count_orphan_groups);
 
-    nav_menu_active("COOPER Count",           "admin_cooper_count_registrations.html",  1);
+    nav_menu_active("COOPER Count",           "admin_cooper_count_registrations.php",  1);
   if ($w_admin) {
-    nav_menu_active("COOPER Move",            "admin_cooper_move_tool.html",    1);
-    # nav_menu_active("Show Registrations",   "admin_cooper_show_registrations.html",  1);
-    # nav_menu_active("Move Registrations",   "admin_cooper_move_registrations.html",  1);
-    nav_menu_active("COOPER Create",          "admin_cooper_create_group.html",    1);
-    nav_menu_active("COOPER Delete",          "admin_cooper_delete_group.html",    1);
+    nav_menu_active("COOPER Move",            "admin_cooper_move_tool.php",    1);
+    # nav_menu_active("Show Registrations",   "admin_cooper_show_registrations.php",  1);
+    # nav_menu_active("Move Registrations",   "admin_cooper_move_registrations.php",  1);
+    nav_menu_active("COOPER Create",          "admin_cooper_create_group.php",    1);
+    nav_menu_active("COOPER Delete",          "admin_cooper_delete_group.php",    1);
   } else {
     nav_menu_inactive("COOPER Move",            "");
     # nav_menu_inactive("Show Registrations",   "");
