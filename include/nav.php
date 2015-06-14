@@ -207,9 +207,7 @@ function nav_admin_menu($label_id = "adminmenu") {
     $count_group       = count_where("land_groups");
     $count_group_reg     = count_where("land_groups", "user_id                != 0");
     $count_group_unreg   = count_where("land_groups", "user_id                 = 0");
-    $count_group_check   = 0;
-    /*
-    $count_group_check   = count_where("land_groups", "status IN ( 2, 3 )
+    $count_group_check   = 999; /* count_where("land_groups", "status IN ( 2, 3 )
                 OR group_name_base = ''
                 OR group_soundex = ''
                 OR group_metaphone = ''" );
@@ -217,8 +215,10 @@ function nav_admin_menu($label_id = "adminmenu") {
     $count_group_nohist  = "";          # figure out how to count this
     $count_group_bonus   = count_where("land_groups", "bonus_footage          != 0");
     $count_group_compress= count_where("land_groups", "calculated_compression != 0");
-    $count_group_notes   = count_where("land_groups", "other_group_information!= '' ");
-    $count_admin_notes   = count_where("land_groups", "other_admin_information!= '' ");
+    $count_group_notes   = 999; /* count_where("land_groups", "other_group_information!= '' ");
+    */
+    $count_admin_notes   = 999; /* count_where("land_groups", "other_admin_information!= '' ");
+    */
     $count_group_kingdom = count_where("land_groups", "exact_land_amount      != 0");
     $count_known_people  = sum_where("land_groups",   "pre_registration_count", "user_id != 0");
     $count_unfixed_groups= fix_cooper_data_count();
