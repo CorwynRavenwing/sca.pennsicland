@@ -207,10 +207,13 @@ function nav_admin_menu($label_id = "adminmenu") {
     $count_group       = count_where("land_groups");
     $count_group_reg     = count_where("land_groups", "user_id                != 0");
     $count_group_unreg   = count_where("land_groups", "user_id                 = 0");
+    $count_group_check   = 0;
+    /*
     $count_group_check   = count_where("land_groups", "status IN ( 2, 3 )
                 OR group_name_base = ''
                 OR group_soundex = ''
                 OR group_metaphone = ''" );
+    */
     $count_group_nohist  = "";          # figure out how to count this
     $count_group_bonus   = count_where("land_groups", "bonus_footage          != 0");
     $count_group_compress= count_where("land_groups", "calculated_compression != 0");
