@@ -6,10 +6,10 @@ require_once("include/connect.php");
 /*
 $conn = mysql_connect('host','user','pass')
     or die('Connection error');
-$database = 'databasename';
-mysql_select_db($database);
+$db_dbname = 'databasename';
+mysql_select_db($db_dbname);
 */
-$sql1 = 'SHOW TABLES FROM ' .$database;
+$sql1 = 'SHOW TABLES FROM ' .$db_dbname;
 $res1 = mysql_query($sql1)
     or die('Query 1 error:<br />' .mysql_error());
 
