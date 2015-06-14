@@ -1,0 +1,25 @@
+
+select
+    sum(pre_registration_count) as campers,
+    group_name,
+    on_site_representative,
+    # count(*) as groups,
+    pre_registration_count > 0 as has_campers,
+    user_id != 0 as has_agent
+from land_groups
+# group by has_agent , has_campers
+group by group_name
+having ! has_agent and has_campers ;
+
+
++---------+---------------------+-------------------------------------+
+| campers | group_name          | on_site_representative              |
++---------+---------------------+-------------------------------------+
+| 1       |        ClubMedieval | Erik Schwer                         |
+| 20      | Kingdom of the East | Scott Venable or Inae Hwang Venable |
+| 65      |            MERCHANT | Patrick McConville                  |
+| 8       |       Mirage Forest | Benjamin T Zonker                   |
+| 8       |          RV CAMPING | Patrick McConville                  |
+| 1       |         Thran Sloth | Mary Ann Redhage                    |
+| 2       |            Vagabond | Geordie FitzWilliam                 |
++---------+---------------------+-------------------------------------+

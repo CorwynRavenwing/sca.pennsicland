@@ -1,0 +1,53 @@
+# UPDATED BY CORWYN 2007-06-29: CAUSED ZERO-SIZED-REPLY ERROR
+
+	my $table_id = "table-1";
+	my $table2_id = "table-2";
+
+	$table .= "<table id='"$table_id' cellspacing='0'>";
+
+... beginning of table ...
+
+	$table .= "<!-- BODY OF TABLE GETS INSERTED HERE LATER, USING JAVASCRIPT -->\n";
+	$table .= "</table>\n";
+	$table .= "<table id='$table2_id' border='1' width='100%'>\n";
+	$table .= "  <tr>\n";
+	$table .= "    <td><b>WARNING: previous table has not loaded completely!</b></td>\n";
+	$table .= "  </tr>\n";
+	$table .= "</table>\n";
+
+	$template->param( table => $table );
+
+...
+
+	print $template->output;	# PRINT IT EARLY, SUBSTITUTE DATA IN LATER
+
+	my($tbody) = "tbody";
+
+	javascript_magic_tables();
+
+	javascript_setup_table($tbody,$table_id);
+	
+...
+
+	my $count = 0;
+	
+	# Still hate DB.pm: Rewriting it as less of a memory hog.
+	while( $rec = $prereg->next_hash() )
+	{
+		$count++;
+		my $id    = $rec->{id};
+		my $first = $rec->{first_name};
+		my $last  = $rec->{last_name};
+		my $sca   = $rec->{sca_name};
+
+		javascript_add_tr($tbody, $count, $id, $first, $last, $sca);
+	}
+
+	if( $count == 0 )
+	{
+		javascript_add_tr_span($tbody, 'No Registrations Yet For This Group', 5);
+	} else {
+		javascript_add_tr_span($tbody, "Total of $count Registrations", 5);
+	}
+
+	javascript_hide_object($table2_id);

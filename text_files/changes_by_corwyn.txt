@@ -1,0 +1,289 @@
+2007-01-02	Replaced references to Patrick with (A) example text or (B) landpenn36@aol.com
+2007-01-03	Replaced the userid "patrick" in the list of admin users, with the userids
+			"angusland", "corwyn", and "finn".  Commented out userid "Finn" because it
+			contained all garbage user data.
+2007-01-03	Created a config variable "current_year" containing "2007".  Replaced "2006"
+			with a reference to this config variable wherever it is used.  Filled in the (formerly blank) function set_template_globals() with this and the following variables.
+2007-01-03	Replaced "35" with references to pennsic_number wherever relevant.  Also
+			replaced "XXXII" with pennsic_roman (yes, we missed changing this for 3 years)
+2007-01-03	Replaced "THL Eric Grenier de Labarre" with references to webmaster_name.
+			also replaced his email address with references to webmaster_email.
+2007-01-03	Added registration_open flag to replace "just comment out the relevant piece"
+			method of closing registration.  Opened registration.
+2007-01-03	Fixed typo "intformation" in EULA.
+2007-01-03	There were a couple of "Pennsic 33" references as well, that we seem to have
+			missed for several years, as well as a "Copyright 2002" reference.  Fixed.
+2007-01-04	Updated EULA page to say "come back later" because of the problems creating
+			groups.
+2007-01-09	Working on SQL code that performs yearly updates
+2007-01-09	Bug: Undefined subroutine main::new_cancel_registration called at land.cgi
+			line 368.  Should be "cancel_registration".
+2007-01-09	Bug: Undefined subroutine user->create_temprary_record() called at land.cgi
+			line 128.  Should be "create_temporary_record".
+2007-01-09	Bug: Reference to nonexistent file "new_registration_cancelled_template.htm".
+			Created it.
+2007-01-10	Moved code that creates ../view_groups_by_alpha.html from ../view_groups.pl
+			to land.cgi
+2007-01-10	Dealing with the situation where a user exists but has no group associated
+			with himself.
+2007-01-10	Added page name to title bar
+2007-01-10	Moved all shared code into template_*.htm included template files
+2007-01-11	Allow updating of group name after logging on, using last year's logon
+2007-01-12	Turn off my new code, that updates users to active as they log on, because
+			it breaks the system.
+2007-01-12	Add a new "welcome_logon" page that lets the user log on.  Fixed error in
+			logout template that misspelled 'user_name'.
+2007-01-12	Add cross-links between logon page and other pages that make sense, including
+			the create-new-user page.
+2007-01-12	Show what group I've selected, on the main welcome page, if I've selected
+			one; show 'no group, pick one' if I haven't.
+2007-01-12	Reverse the EULA changes and replace with a 'sorry this has been broken'
+			comment.
+2007-01-15	Trying to fix the bug where sometimes people can log on and sometimes it
+			throws a "zero size response" error.
+2007-01-16	Put in a bunch of debug code, took it out again, and everything works fine
+			now, don't know why.
+2007-01-16	Cleaned up a lot of the template html code.
+2007-01-16	Bug: several pages still linked to (nonexistent) page plsregistration.cgi --
+			changed to land.cgi
+2007-01-29	Updated password in CooperPreRegistration.pm; password was in several places,
+			made it a variable instead.
+2007-01-29	Change the way User.pm deals with timeouts (was comparing to unix-style
+			date stamp, which always fails); also spell "successful login" correctly
+2007-01-29	New link in template_leftnav.htm, jumping to Admin section, only if you're
+			on the Admins list.  Created an is_admin_user() function instead of having a list inline the code.  New link back from admin menu to land agent menu.
+2007-01-29	Rename John's View to Land One View.
+2007-01-29	Created new "template_admin_head.html" which should be used as the head to
+			all the admin pages.
+2007-01-30	List of radio buttons for returning groups rather than making them type
+			the name again.  "backup 2006-01-30" is just prior to this change!
+2007-02-12	Sort list of available group names case-insensitively.  Also insert labels for
+			each initial letter.
+2007-02-13	Fix "All Users" list.  It was too long to run successfully: added LIMIT and
+			next/prev code.
+2007-02-13	Allow setting user_information.password to a raw value, not an md5 hex, if
+			desired.
+2007-02-16	Allow group names with apostrophes to be loaded properly.
+2007-02-16	Every "cancel" button was rigged to delete the logged-on user (!!!): replaced
+			"cancel" function with "cancel_delete_user" and "cancel_keep_user", making this choice explicit.  They do both still delete the group if "new_group" is true (new_group has possible values 0, 1, and 2).
+2007-03-16	Change webmaster_email to landweb@pennsicwar.org, from my personal email
+2007-03-27	Fix problem with ZERO-SIZED REPLY happening when people update their
+			information.  It turns out that for some reason, several functions do a 'return undef' upon success, which causes that error if the only thing being printed to the screen is a whatever this function returns, which is often the case.  Created a new template called update_success_template.htm and a function called update_success() which calls it: will replace all these 'return undef' with 'return update_success()' wherever it causes a problem.
+2007-03-28	Okay, that didn't work: it threw a ZERO error when trying to fill in the
+			template parameters.  I replaced the contents of update_success() with simply returning some hand-rolled html including a meta-refresh to the menu page.  In other news, *one* function that sometimes returns undef, update_evaluate_change_group_password, is checked for return value during dispatching, and if it's false, the function update_generate_update_confirmation is called instead (line 308).  Whereas the *other* function that's causing the problem, update_evaluate_group_information, um ... is treated the exact same way and the same function is called instead (line 291).  So why the heck doesn't it work?!?  Anyways, it works now, and this is officially silly.
+2007-05-25	To help diagnose those zero-sized-reply issues, added "become this user" code to
+			the "view all users" page.
+2007-05-25	Changed the show-prereg page to print the page early in the process, and use
+			javascript to add rows to the table later to add all the data.  Also added output auto-flushing.  Also changed the CooperPreRegistration :: load_preregistrations_by_group_name() function to undef() any data we have translated and now have two copies of, and no longer need the other copy.  THIS FIXED THE PROBLEM.  We should roll out these two changes to anyplace we find the zero-size error.
+2007-05-31	Added more ways to search the "all users" data view: alphabetically and by email
+			address.  Allow printing of fields with an apostrophe, in the view-prereg tool, and added a yellow background for them.  Added a note saying that yellow fields were not printing until recently.
+2007-06-01	Updated code that locks adding users and choosing groups if registration_open is
+			false.  SET REGISTRATION_OPEN TO FALSE, closing registration period.
+2007-06-11	Set up my home computer to be able to edit these websites.
+2007-06-11	show the page name to the user so when they copy/paste the URL i can see where
+			they were.
+2007-06-11	Made a lot of changes to the admin page layout.
+2007-06-15	Too many changes to document.  The week of being over at Jayme's all evening
+			every day.  These include:
+			* per angus: standard address labels, avery mail merge: group name, block number, land agent name, big to fill the label, one per camp.  keep receipts for labels.  once per year after closing of registration.
+			* block view: yellow background if number of attendees is zero.
+			* block view: orange foreground if above zero but not above size of present group (on next block).
+			* block view: pop-up of land agent, on block name.
+			* block view: do not default to checking the checkboxes
+			* block view: "square feet" not "feet"
+			* email-neighbors thing: works!!!
+			* mail-merge thing
+			* landone view: block links to make-decisions page for block	
+			* register "kingdom of " and/or exact amount exists: don't allow land agent to move the requested blocks.
+			* create a flag to prevent anyone from changing their block choices or compression percent.
+			* per angus: When on a make desions page where all the camps asking to be on the block are list, can a link be added that would launch an empty email form with all the landagent emails listed so I can contact them all?  update: this already exists, its called the mail merge page, it's just broken.
+			* per angus: the numbers on the make decisions page dont line up with the numbers on the details pages anymore.  verified this on my version.  to doublecheck, add another grand total with all the groups on the page, because that's what lines up with the number on the block view.  show that value normally.  also show the present number labeled as "used/free after all selected moves are made".  update: i think this is fixed now.
+			* flag groups with campers but which don't have a land agent.
+			* Change title so it isn't always "data view".
+			* can, if you choose, add a bonus to an exact size, but that's odd; never compress exact sizes; never compress bonuses.  so, new formula = bonus + (exact or (people * 250 * (1 - compress/100) ) )
+			* magic compression tool: don't go higher than 'req max compr' automatically.
+			* magic move-checkbox tool: NO = as is today, YES = flag on if red, DEFAULT to no!
+			* reset test to live again, then push button on test
+			* Kingdom camps: allow land one to move them.  Note: he can already, on admin-edit-groups page
+2007-06-19	View Group History no longer throws an error.  Not sure what fixed that.
+			Updated admin_make_decisions, to have feet and people in each column, rather than a single people column.  Still don't trust the numbers shown.  Also, admin_generate_decide_block fails to show anything.
+			* Function script_invocation_error called a nonexistent template script_invocation_error_template.htm: this tmplt existed in .. but not in . so i copied it here and changed to the modern (tmpl_include) format.  Also updated function so it explains what the error was (it used to say 'there was an error')
+			* LandGroup.pm -- updated feet per person to 250, not 500 (oops)
+			* Fixed bug when the user tries to update their information
+2007-06-20	Discovered that Finn's new changes don't compile.  Removed a ^M from every line.
+			* Added third mode, $test_mode == 2, in the case that we're testing on the LAMP server.  Also added third db_name to map.conf and third test flag printed on the screen.
+2007-06-26	changes to admin_make_decsions page: do rollup of groups to blocks before
+			computing block sizes; fixed rollup function to actually work (needed a Sum() clause); replace "999999999" with "no limit"; fixed function that was failing to print the "Total of N Blocks" row.  Replaced several calls to landgroup->get_groupname with landgroup->get_group_name, the actual variable name
+			* Fixed Make Decisions block pages, which were completely broken.
+2007-06-27	More cleanup of Make Decisions block pages: magic to tie "move" checkbox to
+			dropdown, fix the rollup formula, fix the group link, add show-prereg link, show kingdoms in bold purple, don't automatically move kingdoms out, use "Other" instead of "blank" as default block.
+			* Deleted duplicate copies of several functions (they were there twice, sometimes differently).
+			* Updated admin menu to reflect what's working now.
+2007-06-29	Updated the square footage formulas in two places for consistency: we now never
+			compress bonuses and never compress exact footages.
+			* Added mass-change boxes to Make Decisions block pages, so you can change everyone's bonus, compression, or move checkbox status at once.  compression won't go higher than the requested percent automatically; the move checkbox will only mark people for moving if they don't fit, rather than moving *everybody*.  
+			* Changed formula so if a high-seniority group won't fit, but, if they leave, a smaller lower-priority group WILL fit, we don't move the smaller group too.
+			* Added a left-nav link to view the maps.
+			* Greyed out the left-nav link that takes you to the page you're already on.
+			* Fixed a bug caused by "class" being a reserved word in IE javascript but not FireFox javascript
+			* LandOne View: don't run update_prereg_count every single time, separate it out as a function
+			* LandOne View: since this only *sometimes* works, update the template to use javascript instead.
+			* LandOne View: fixed bug where "last year history" was hard-coded to the number "34" ... can i please kill him?
+			* Changed so that all admin pages don't say "TITLE: data_view"
+			* Added some magic to allow diagnosing an out-of-memory condition.  Testing it.
+2007-07-02	Added G Emerson True to admins list at Angus' request.
+			* Updated admin menu to reflect what's working now.
+			* Changed block choices page: add description, add popups and colorcoding for blocks based on free space, split "free space now" and "free space once these checked groups move"; fixed error where we were *inflating* groups by their compression percentage rather than *compressing* them.
+2007-07-03	Create a couple of blocks for Angus.
+			* Sort block names in drop-downs on Update Group Information page.
+			* Notice when Coopers has a group name that we don't.
+			* Working on Email Neighbors section.
+2007-07-04	Email Neighbors: works!  Added [Pennsic Block NO3] to subject line.
+			* block list: added yellow color for used=0.
+			* block view: added yellow color for used=0; added blue color for ">0 in that block but not enough room for this group"; added (people) next to square feet free in popup; added link to edit person data; default to NOT checking move boxes; nothing can move automatically unless master checkbox is checked.
+			* onsite view: better, but still craps out after a few rows.
+2007-07-05	New admin menu item Clean Up Prereg Count: looks for groups found only on the
+			coopers site, and groups with campers but no land agent, and allows you to fix them automatically.
+			* Group History: was showing the year "1971" twelve times with no history.  Fixed.
+			* Email Neighbors: was showing a blank screen while turned off.  Fixed.
+2007-07-09	Mail merge works now.
+2007-07-10	Mail merge had cut off 'neighbors' text at 1024 characters: fixed.
+			* Turned on Email Neighbors.  Loaded pending group moves from Test to Live.
+2007-07-11	Found a large number of differences between Geoffrey's block size data and
+			that in the land_blocks table.  Loaded the changes into Test, awaiting comment from Angus.
+			* Added "-B-" headings between sections on Block View (Make Decisions).
+			* Made "final location" boldface on Land One View
+2007-07-23	Added CSV extract to Land One View page
+2007-07-28	Added pink rows to block overview and block details page, if any allocations
+			have changed since the land letter was sent out.
+			* Allow you to clear this data by block.  We should probably allow you to clear it *globally* when you have just sent a letter.
+			* Also a change to the main user page saying when the barn is open.
+2007-07-31	The following were done some time this year, not sure when, but they come from
+			the master "WORK ON THIS 2006-12-29.txt" document that gave Finn half the job.
+			* Lots of text changes to the administration "main menu" page: if you want to take this one, we can talk specifics.  Mostly it's changing the phrasing to say what it's actually doing, rather than e.g. "john's view"
+			* Angus wanted the admin username changed from "barondevin" to "angusland", and the password changed as well (I'll tell you it over the phone if you want to do this one)
+			* He wants to understand the Email Merge page interface, he wants instructions put onto the page, and if the interface is confusing, he wants it changed.
+			* The fuzzy match page says "page 1 of", at least when it's blank, plus it's not clear what a fuzzy match is?
+			* Got a software error on the no match prereg page: "unknown column 'groupname' in 'order clause' at DB.pm line 598."  We need to fix this soon, obviously.  I'm betting there is a column with a similar name, I'll check this one.
+			* Lots of changes on the Make Decisions page, mostly to formatting: use a more legible green and possibly a different red; make this a difference that can be seen on printout rather than bgcolor which can't; right justify and comma-ify all the number columns; show people rather than square feet (or both?); what is the numeric debugging crap at the top of the page; why does this page take so bloody long to load?  I think I'd like to handle this one, with the exception that I would welcome your input on why the load time is so long.
+			* Changes on the block-details page you get to from Make Decisions when you click a block name: explain or delete the number in the upper left corner after the block number; same color issues as Make Decisions; right format the cells; there are two "save" buttons but there doesn't seem to be a "cancel" button; format the block name differently if that's the block we're displaying; put some javascript magic that if you click on a group name it changes the matching Move To field to that group; what is the Move checkbox for?  either delete it or replace it with more javascript magic so you don't have to make two changes at once for them to work; the page is too wide even for landscape (but might not be if the Move checkbox column can go away); I think we can save loading time by only producing the dropdown list once (but we will need to check whether the default selected value is always this block, and if so, we will need to change how the select is set up); kingdoms have a fixed square footage which they have been faking by fiddling with their bonus footage: he would like to automate this so that if a group is a kingdom, their bonus footage is magically changed to whatever we need to use to make their total come out right; we should also make that clear in the interface so the user doesn't think he can change their size; we got a list of square feet for each kingdom that we will need to load somewhere, either into the Groups table or into a new "kingdoms" table; the previous page takes so long to load that *this* page should pop up in a new window in my opinion; the abreviations are confusing (though i understand they're trying to save space) so we should put an A TITLE tag around them to show what they stand for.  I think I'd like to handle this one too.
+			* General Group View is probably okay as it is, though it should probably be labeled "View All Groups" instead.
+			* Changes on History View: use a NBSP character instead of a space in the header line so it doesn't wrap; we need this year's data loaded (and more generally, we need to make a tool to load "present data" into "year N data" after Pennsic is over); I also have heard that the history table contains *columns* for each pennsic number, which is silly, because it means there needs to be a database column edit every year: if this is true, instead we should have a simple table of "groupid, pennsicnumber, blocknumber" that we add 500 records to every year; find out why certain groups, e.g. Abazan Danschi, ACG, Avalon, and Barony of Rising Waters, have no history at all (perhaps they were new this year?)
+			* Verify that the "change password" thing works.
+			* Some kind of note that the "email neighbors" link only works after people get their final locations.  Can we determine programatically that this hasn't happened, and grey out the link until that point?
+			* Changes to John's View: rename this Land One View; I'd say we should emphasize "final location" somewhat, since it's the one we'll care about at check-in (which makes this the group-to-block index I was talking about earlier); why are all these numbers zero?
+			* On the land agent view, the "donated by panix.com" image is only working on the test server, it's a broken link on the live server.  Also, the "page maintained by" stuff is saying Grenier on the live page and Patrick on the test page, both are wrong, they should say one or both of us instead.
+			* On the "view prereg" page, firstly there's the typo "ect."; the live version seems to be more up-to-date than the test version; it mentions pre-reg closing on June 15th, we need to verify that's still the date; at least the test version says to send an email to Patrick if there's a problem, we need to put one of us in instead; we also need to find out what we do about it if we have this problem; if this happens often, do you think we might want to put together a form for dealing with this, or do we want to keep doing it over email?
+			* The email merge "compose letter" page should tell you who you're sending the letter to (one person?  one land block?  everyone in the world?)
+			* What is a "sender UID" and why is the email merge page #3 asking for it?
+
+
+
+2007-11-24	Creating "admin_mode" idea.
+2007-12-30	Auto-open and close of registration using 'admin_mode'.
+2008-02-18	Edit Group Information page never shows you your compression percentage, it
+			always says "0".  Caused by a completely screwed-up get() function in DB.pm.  Patrick demonstrates his level of talent again.  Fixed.
+2008-04-30	Removed "we think we've squashed all the bugs" message on EULA page.
+			* Removed the "dispatcher returned true" text from the bad-password page, etc.
+2008-06-12	User page: allow search by real and sca names as well as username.
+2008-06-12	Corrected text on Email Neighbors page to say "available once Land One
+			finishes assigning groups, which will be after registration closes on $reg_close_date" rather than "on June 8th".
+2008-06-15	For Angus: a "why did we give them this bonus" field, shown on the bonuses
+			page and editable on the admin-edit-groups page.
+			* Link to admin-edit-person, from admin-edit-groups page.
+			* Open dates should be Less Than but close dates must be Less Or Equal, because 'opening on 6/1' and 'closing on 6/15' means it will be open on 6/1 and on 6/15.
+2008-06-16	Made a copy on the server of all relevant files as they exist today.  Published
+			changes made over the last few days.  Nothing broke.  Yay!
+			* panix logo missing: not on this server.  Downloaded a copy of the "provided by panix" gif file from www.panix.com and pushed it to the directory where our files are, then changed template_panix.htm to refer to it instead.  This is so the image is viewable if our website is up but panix is down, as well as in localhost mode.
+2008-06-17	Make Decisions page is all pink - this is from the "changed since email was sent"
+			flag all being set from last year.  Added "clear changes" link on the Decisions page, and cleared them.
+2008-06-19	admin_generate_history_view: can we do a single SQL call for all the history for
+			the group, not one call per year?
+			* admin_generate_history_view: awfully slow, most likely caused by the multitude of sql calls.
+			* admin_generate_history_view: sort non-case-sensitive
+			* admin_generate_history_view: link camp name to camp edit page
+2008-06-21	* Changes to Land One View and Decide Block Details: you really shouldn't be
+			able to click on zero people because a list of who they aren't is unhelpful
+			* On page admin_generate_group_prereg: label that page "People Registered in Group Foobar" with the sub-heading "Total of NN people".
+			* On admin_generate_history_view, in the "this year" column, if there is no history for this year yet, show a flag that says whether the group is registered for this year.
+2008-07-02	* edit_group_information (admin and regular): X blocks, Other (first), and DSA,
+			as well as kingdom camps, it fills in the rest as the same value automatically.
+			* edit_group_information (admin and regular): unless the preceeding is true, don't allow the same block to be entered twice.
+			* edit_group_information (regular): the instructions say that people who want X blocks should enter "Other" as their first choice, whereas we really want them to enter the X block if they can see it, and "Other" only if this is a new relationship and the X blocks don't show up in their list.  Fixed instructions.
+			* move disabilities camp to DSA for their entire history
+2008-07-03	* add eLeri to the list of site administrators.
+2008-07-08	* Block View and Block Detail View - pink should only colorize the "changes"
+			column, not the entire row.  Entire row should be red/yellow/green.
+			* admin_edit_user_information - move "Reset Password" to the bottom, next to
+			"Update"; add "Test Email" next to it which produces a test email.
+2008-07-08	* email merge: any group name with an apostrophe was not able to be sent.
+			Found the problem (generally, patrick is a moron; specifically, you don't need
+			to escape apostrophes when you're using the sql->prepare("?") construct).
+			* angus would like all email merge emails to CC himself.  added this to the
+			Land_Email->send_letter_NEW() function.
+			* Land One view: grand total people registered in all camps, at bottom of page.
+2008-07-11	* Create a table cooper_data to store camper registrations that we know about.
+			* LandGroup.pm: when pulling down the list of Cooper records, store them in this table, with the proviso that a PENN number can't be in two groups and that we want to notice when someone has fallen out of the group we're looking at.
+			* admin_generate_landone_view: show the count of records for the group in this table in addition to the count in the cooper-prereg-overview table it normally shows; allow clicking on a group with zero campers when it disagrees with the count in this table
+			* admin_generate_landone_view: randomly clean up 10 groups whose numbers conflict between the two tables.
+			* Kingdom camps: verify their allocated size agree with the agreement; ensure their location is in all four block choices.
+			* X blocks and DSA: make them all reserved blocks.  Every group presently camping in an X block or DSA: make them reserved groups; ensure their location is in all four block choices.
+2008-07-15	* Block Detail page: when there are no groups, throws the javascript error:
+			"move_master_ob is null at line 373".  This is because if there were no groups, it doesn't add the change-everybody row at the bottom which contains the checkbox referred to in this object.  Corrected this by adding code to say that if the checkbox doesn't exist, don't look in it, just pretend it's not checked.
+			* Forbid saving group data with invalid block choices, on the page where agents register a group, and on the update-group-information page.  Do not forbid this to Admin users on the admin-update-group page.
+			* Add "randomly clean up 10 groups whose prereg numbers conflict between the two tables" to admin_cleanup_prereg_count and admin_update_prereg_count; delete it from admin_generate_landone_view.
+			* Add "OOB" to the list of must-be-all-same blocks.
+2008-07-16	* Make block X99 not "hidden" to match all other X blocks.
+			* prereg->fix_cooper_data: label this section as to what it is doing.
+			* admin_generate_landone_view: label for prereg column explaining that the number in brackets is the count of detail records in that system.  Label for number in brackets at bottom of page saying that it's the number of groups that are out of date.
+			* block page: add block descriptions; add totals of roomy, zero, crowded to bottom of page.
+2008-07-17	* do not require user to fix his block choices when he is not allowed to.
+2008-07-22	* block details page: add details to changed=yes (+2, -3) to signify how many
+			people have left or joined the camp.
+			* Admin Edit Group Info: put a visual separation between the four block choices and the final block location so I stop accidentally moving people out of their final location when i am editing their block choices.
+2008-07-23	* mail merge: a link to show the rest of the letter body, not just the first 50
+			characters; a link to show the list of groups being emailed, not just the number.
+2008-07-26	* mail merge: a link to copy an email that had been sent, including its recipient
+			list.
+			* mail merge tool: if SENT, say VIEW not EDIT because they can't edit anymore.
+			* mail merge tool, Edit/View page: New link that says Send Letter Again which creates a new, non-sent, letter with the same content and the same recipient list.
+			* allow block moves and emails even during pennsic
+2008-07-27	* CooperPrereg.pm: change text of error from "Failed to create group 'X', perhaps
+			it already exists?" to something less disconcerting.
+			* new_evaluate_group_information: fixed instrucions regarding saying Other when you mean an X block.  admin_update_group_information: does not have such instructions.
+			* new_evaluate_group_information and update_group_information: replace text suggesting that the person use 4 different non-blank locations with text saying that it is required.
+			* allow land staff to save a user record even if it is incomplete or in error.
+2008-08-14	* allow land staff to send emails and move groups when in mode "pennsic:done"
+			* create downsimple.png and upsimple.png, move to new images/ directory, change reference in sortabletable.css to that directory rather than ../images/
+2009-01-30	* set registration_open param in global_params(?) function, so it is always set,
+			for example on the login page where it was impossible to create a username until today :-(
+			* create field block_choices_valid on land_groups.
+2009-02-02	* when registration is complete, call orphan function registration_complete()
+			and add code to set landgroup.registration_complete to true
+2009-02-06	* Fixed a Patrick-ism: code for landgroup->set_registration_complete expected to be
+			called with the values 'T' or 'F', and yet it is consistently called with the text values '1' and '0', which doesn't work; and on the third hand it's translating these into the numerical values 1 and 0.  Why not just call it with 1 and 0 in the first place?  :sigh:  Fixed this, and it now works.
+			* no longer print From and To userids while sending emails.  Instead, print a notice that the confirmation email is being sent.
+			* Wordsmithing on the registration-complete page.
+			* LandGroup.get_registration_complete: rewrite 'logical' code
+			* update_generate_edit_group_information it's landgroup->get_reserved_group, not landgroup->get_reserved; also, confused usage of compress_locked_reason vs. compression_locked_reason
+			* changed several "x eq undef" to "! defined(x)", NEED TO CHECK ENTIRE SITE FOR THIS
+			* make correcting the block answers set the block_choices_valid flag, NEED TO DO THIS FOR ADMIN EDIT AS WELL
+
+===== LAST UPLOAD =====
+
+2009-02-09	* roll out password reset system
+			* several places in .pm files act as if DB.pm:retrieve_record() will return 1/0 depending on whether the record is found; on the other hand it actually always returns 1.  Fixed DB.pm to act as expected.
+2009-06-16	* Change text in admin_generate_group_prereg_template.htm to better describe the camper-is-missing process.
+2009-06-19	* Change text of Big Red Button for clarity.
+			* Change text on admin menu to read "can only be done after X has happened" instead of "while in modes Y and Z".
+			* Change mode system to separate can-move-groups from can-send-emails; allow emails once prereg closes rather than only after pressing the Big Red Button.
+2009-06-23	* Add REGISTER GROUP (admin override) link to edit-person page.
+			* Show group name and ID and add EDIT GROUP link to edit-person page.
+			* Create-admin-fake-user now adds "Admin Account: Groupname" as the SCA name as well
+2009-06-24	* Add group name to top of View Prereg page.
+2009-07-21	* Add allocated-square-feet to the CSV download on landone view page.  SHOULD split this out.  ALSO NEED csv download ordered by block; ALSO NEED count of groups ordered by block.
+2009-07-25	* Landone View: open all three links in a new window.
+2010-01-01	* Mode.pm: added note regarding error message
+2010-01-03	* admin_*.html and CooperPreregistration.pm: new cooperslake prereg interface page
+
+NOTE: WHY DOES USER-EDIT-GROUP SHOW FIRST CHOICE AND SECOND CHOICE, BUT THIRD AND FOURTH CHOICES ARE BLANK?  SOMETIMES.  EXAMPLE BORK.

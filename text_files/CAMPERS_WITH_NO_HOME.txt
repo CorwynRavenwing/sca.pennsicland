@@ -1,0 +1,197 @@
+Campers with no home, as of 2007-07-03
+
+MISSING 4 groups:
+
+    [Individual Camping:14]
+
+3623735|Brenda A|O'Dell||
+3623865|Christopher M|Spak|Crystalis|
+3626306|Sean|Argyle|Eoin of Argyll|
+3626605|Spencer|White|Spencer of Cardoness|
+3632925|David|Bittner||
+3634241|Edward Franklin|Williford||
+3627042|Connor|McVey|Connor MacBragg|
+3627041|Alicia|McVey|Alicia Nic Bragg|
+3627040|Moira|McVey|Moira Nic Bragg|
+3627038|Douglas R|McVey|Baron Bragg MacMorrichai|
+3627039|Crystal|McVey|Cara Gianetta Foscari|
+3634382|Lacey|D'Avella|Alycia Vinter|
+3634392|Ashton|D'Avella|Dalton Vinter|
+3634371|Michael|D'Avella|Aylwin Vinter|
+
+    [Landgroup not Listed:25]
+
+3622699|fred|brezel|none|
+3626516|Sharon|Hollenbac|Lady Lydia de La Mer|
+3626749|carol|hellstrom|Deru of Windy Hill|
+3628406|Jesse|Kulla|Jesse|
+3628474|ron|miller|mawsho pesschunk|
+3628477|connie|miller|lady constance|
+3630482|Jessica|Howard||
+3631190|Donald|Hooper|Gwynhir ap Gryffyd|
+3631191|Ed|Perry|Tristan Alexander|
+3632053|John|Crozier|Friar Jacques (Henchmark)|
+3631366|Steven|Smith||
+3632678|Steve|Haug|Maugorn|
+3632677|Sonya|Gross|Sonya Flicker|
+3632785|Danielle|Reichardt||
+3632782|Rachel|Brice||
+3632780|Joshua|Brice|Robert the Spoon|
+3632806|Dawn|Corley|Dawn|
+3632809|Danielle|Prosser|Danielle|
+3632805|Diane|Winslow|Just Diane|
+3634064|Ted|Collins|Lord Runolfr Orthlokarr Ulfsson|
+3634984|AMANDA|KIMBRELL|LADY ELSPETH OF TALMERE|
+3623616|Leslie|Maurer|Lady Katherine Siller|
+3635316|James|Kennedy|Knute Hvitabjorn|
+3635268|Niccolina|Mann|Lady Niccolina the Wanderer|
+3635636|Brian D|Haynes--(Antir)|L. Rodrigo Alfonzo Othello DeGranada|
+
+
+    [None Selected:17]
+
+3626357|William|Tifft|Pearce Redsmythe|
+3626678|Kayla|Brearley||
+3626680|Michael|Brearley|Donal an Stracair|
+3626677|Carol|Brearley|Sorcha inghean Airt|
+3626679|Maklakyte|Brearley||
+3622854|Jonathan|Prather|Shaunnissey O'Bannion|
+3629393|Maureen|Chalmers|na|
+3629394|Christian|Tobler|na|
+3630380|mark|shier|mark der gaukler|
+3631970|Tammie|Campbell||
+3630375|Clara|Berg||
+3630374|Cheryll|Berg|Mariecher|
+3630376|Robert|Berg|Bjerg|
+3632292|Chris|Loggie||
+3634218|Steven|Walls|Olorin|
+3635031|Tara|Backman||
+3635030|Larry|Backman|Gareth the Bear|
+
+    [Not filled in:124]
+
+3622922|Candace|Dryden|Seona Una La Maes|
+3622923|Mary|Roy|Marye Wisigard|
+3623296|Danielle|Zayas||
+3623297|Richard|Wojciechowski||
+3623445|michael j|tartaglio||
+3623447|michael l|tartaglio||
+3623446|belinda|tartaglio||
+3623448|james j|tartaglio||
+3623528|Andrew|Granville|Rew De Vega|
+3623529|Liza|Cole-Brandt||
+3623527|James|Granville|Giacomo Bozzi|
+3623835|Rindy|Tietjen||
+3623822|Eileen|Brown||
+3623821|Robert|Brown|Robert ap Rhys of Scathan Loch|
+3624149|renee|sirois|gwenlefay|
+3624148|susan|sirois|cassus sirona|
+3624563|Sean|Anderson|Ander The Oblivious|
+3623732|Ron|Hall||
+3624807|Gilles|Samson||
+3625244|Jonathan| Cox||
+3625365|Hoyle|Jang||
+3625432|Devra|Langsam|Lady Devra the Baker|
+3625431|Elan|Litt||
+3625818|Keith|Jettie||
+3625918|Jonathan|Feinstein||
+3625927|Dawn|McCullough-White|Camy Makcullocht of Cardoness|
+3625929|Melinda|McCullough|Bonafacia|
+3625947|william|shields|william strongbow fitzgilbert|
+3625948|karen|canella|fethnaid rowenna fitzgilbert|
+3626084|JOSHUA A|DAY|LORD CORMAC TOBIN|
+3625763|Leslie|Bowers|rhiannon ap ifan|
+3625611|Jamie|Zangara||
+3625612|Jason|Fritts||
+3623900|Lawrence|Reeves|Sidi Hacmin ben Yosef|
+3623899|Alice|Reeves|Premaleela of the Wild Blue Iris|
+3627161|Dede|LeBleu-Robinette|Catriona Henderson|
+3627447|pat|hall|none|
+3627451|Sherry|rogney|none|
+3627678|Alexander|Clark|Henry of Maldon|
+3626792|Brian|Hennigar|Chir Osis|
+3626793|Valerie|Hennigar|Dharkhan Sar|
+3624195|Gretchen|Bailey||
+3624194|Alex|Bailey||
+3628315|Brian|Beaman||
+3628380|Laurie Beth|Oswald|Bethany|
+3628379|David|Oswald|Oswald|
+3628381|Luz|Rosa|Rose|
+3629059|Carol|Clarke|not yet selected|
+3629388|jerry|leaders||
+3628536|J. Tim|Foultz|Ian El Edom|
+3629776|Janet|Kofoed||
+3629262|Anne|Wolf|Annastasia Volkova|
+3630166|Emma|Priest|Emmalene|
+3630158|Corinne|Priest|Coretta|
+3630167|Camp|Priest|Emmalene|
+3630160|Valerie|Priest|Damiana|
+3630208|Scott|Madison|Jaergen Wanderfoot of St. Golias|
+3630209|Tracy|Madison||
+3630294|Dana|Peterson|Dana|
+3630291|James|Peterson|Erkon|
+3630295|Barb|Crozier|Varya|
+3630292|Hannah|Peterson|Hannah|
+3630293|Eric|Peterson|Eric|
+3630350|Deborah|Dupree|Ola Leona|
+3630351|Joseph|Dupree|The Bowmen|
+3630381|Barbara|Gordon|Linnet Kestrel|
+3630926|James|Pinkerton|Ottheinrich Von Krinkelbach|
+3630922|Jennifer|Linares|Lorelai Von Krinkelbach|
+3631024|Barbara|Book|Ana Teresa Uzina de Medina|
+3631115|r. neal|griffin|Lord Malcolm MacLeod|
+3631227|Michael|Bennett|Bennett Redstone|
+3631226|Patricia|Bennett||
+3631530|Scott|Goodspeed||
+3631529|Stacy|Goodspeed||
+3631755|Timothy|Palmore|Timothy Macailpein|
+3631899|Atsuko|Pickens|Atsuko|
+3631936|Katherine|Stinde||
+3632226|Mary|Mackrell|Yseult the Gentle|
+3632374|Daniel|Levin||
+3632463|Charles|Bianchi||
+3632464|Sean|Holliday||
+3632804|Liron|Peled||
+3632802|Rachel|Danziger||
+3632923|Sheila|Halley||
+3632984|Nathaniel|Moise||
+3633047|Thomas|Yasin|Baron Bjorn hinn Heppni|
+3633049|Annette|Yasin|Baroness Ailikn Olfsdottir|
+3632720|Aidan|Badger||
+3632721|Tammy|Badger||
+3633139|Catherine|Stanley|Safiya|
+3633168|Jane|Kernan||
+3633241|Becky|Pinnell|Ocyia|
+3629339|Sean|Chappell|ThorThor|
+3629338|Kelley|Holmes|Meidhbhin Ni Thorain|
+3633831|Mark|Nelson|Gembei|
+3634188|Tonia|Stouder||
+3634274|Vance|Bapp||
+3634273|Joshua|Skelton||
+3634275|Lisa|Mendoza||
+3634334|Carolyn|Pakutz||
+3634336|Paul|Davis||
+3634328|Catherine|Pakutz||
+3634341|Teuta|Vrzivoli|Teuta Ilyriana|
+3634340|Robert|Sparandera Jr.|Rob Ahriman Blackadder|
+3634290|Debbie|Romigh|Teleri|
+3632924|Jacob|Gansneder|Friar Brian|
+3634554|Rebecca|Farr||
+3628171|Robert|Brown|none|
+3634582|Sarah|Carroll|Margaret Blackwell|
+3632733|David|Osburn||
+3632735|Jessica|Osburn||
+3632732|Heather|Osburn||
+3632734|Meagan|Osburn||
+3634947|christopher|turk|christopher bathory of cleftlands|
+3635040|karen|paterna|kareena|
+3635209|april|rogney|april rogney|
+3635225|Deborah Rose|Putnam|Mary Rose of Kent|
+3635243|Wendy|Luby|Johara|
+3635413|Joel|Smith|Mizu Mizushi|
+3635475|Lacey|Trepanier||
+3635630|Darlene|Carra||
+3634207|Cynthia|Henry|Jorunn Halldorsdottir|
+3633717|paul|erickson|mica glen corbindale|
+
+================================================================================

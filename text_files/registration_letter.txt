@@ -1,0 +1,19 @@
+Thank you for registering your land group for Pennsic <!-- TMPL_VAR NAME=pennsic_number -->. 
+The land office will be sending you letters like this 
+from this address occasionally to inform you
+of major changes in the Pennsic Land System.
+
+In addition this was sent to the email address that you entered
+when you registered your group. If this is not the email
+address that you would like to have the other
+land agents that will be negotiating with you for the 
+space in your block contact you at, you can log into your account
+and change it.
+
+Since you recieved this letter you now know that 
+your email address has been entered correctly.
+
+Any questions about this letter or the Pennsic Land
+Web Pages should be directed to <!-- TMPL_VAR NAME=webmaster_email -->.
+All other inquiries should be directed to the Land Officer
+for Pennsic <!-- TMPL_VAR NAME=pennsic_number --> at <!-- TMPL_VAR NAME=landone_email -->.

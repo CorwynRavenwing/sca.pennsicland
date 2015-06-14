@@ -1,0 +1,237 @@
+sub admin_evaluate_fuzzy_match_prereg
+{
+  $template = HTML::Template->new( filename=>"admin_generate_match_prereg_template.htm" );
+  &set_template_globals();
+
+  my $page = $linkcode_processor->get_data1;
+  my $max_set = $linkcode_processor->get_data_2;
+
+  my $action = $cgi->param("Continue");
+
+  #die $action . "," . $max_set;
+
+  my $prereg = CooperPreRegistration->new();
+  $prereg->connect();
+  $prereg->set_result_set_size( 100 );
+  $prereg->set_result_set_number( $page );
+  $prereg->set_order_by( 'landgroup' );
+
+  $prereg->load_preregistrations_with_fuzzy_match;
+
+  my $group_id;
+
+  while( $prereg->next() )
+  {
+    $group_id = $cgi->param( $prereg->get_id );
+
+    #print $prereg->get_id . "," . $cgi->param( $prereg->get_id ) . "<br>";
+
+    if( $group_id eq undef )
+    {
+      die "error";
+    }
+    elsif( $group_id != $prereg->get_group_id )
+    {
+      $prereg->set_group_id( $group_id );
+    }
+  }
+
+  $landgroup->set_pre_registration_count();
+
+  #sort out what to do next
+
+  if( $action eq "forward" && $page == $max_set )
+  {
+    print &admin_generate_fuzzy_match_prereg( 0 );
+  }
+  elsif( $action eq "back" && $page == 0  )
+  {
+    print &admin_generate_fuzzy_match_prereg( $max_set );
+  }
+  elsif( $action eq "forward" )
+  {
+    print &admin_generate_fuzzy_match_prereg( $page+1 );
+  }
+  elsif( $action eq "back" )
+  {
+    print &admin_generate_fuzzy_match_prereg( $page-1 );
+  }
+  elsif( $action eq "finish" )
+  {
+    print &admin_generate_main_admin_page;
+  }
+  else
+  {
+    die;
+  }
+}
+
+sub admin_generate_no_match_prereg
+{
+  #set what part of the record set to return
+   my $page = $_[0] || 0;
+
+  # print "page $page";
+
+   #set template page
+   $template = HTML::Template->new( filename=>"admin_generate_match_prereg_template.htm" );
+  &set_template_globals();
+
+  #populate the merge list
+  $landgroup->set_order_by( "groupname" );
+  $landgroup->load_all_group_list;
+
+  my %group_id_to_groupname;
+  my %groupname_to_group_id;
+  my @groupnames;
+
+  while( $landgroup->next() )
+  {
+    push( @groupnames, $landgroup->get_groupname );
+    $groupname_to_group_id{ $landgroup->get_groupname } =  $landgroup->get_group_id;
+    $group_id_to_groupname{ $landgroup->get_group_id  } =  $landgroup->get_groupname;
+  }
+
+  push( @groupnames, "NO GROUP" );
+  $groupname_to_group_id{ "NO GROUP" } =  0;
+  $group_id_to_groupname{ 0  } =  "NO GROUP";
+
+  my $prereg = CooperPreRegistration->new();
+  $prereg->connect();
+  $prereg->set_result_set_size( 100 );
+  $prereg->set_result_set_number( $page );
+  $prereg->set_order_by( 'landgroup' );
+
+  $table .= "<table>\n";
+  $table .= "  <tr>\n";
+  $table .= "    <td>Penn Number<\/td>\n";
+  $table .= "    <td>First Name<\/td>\n";
+  $table .= "    <td>Last Name<\/td>\n";
+  $table .= "    <td>Sca Name<\/td>\n";
+  $table .= "    <td>Selected Group Name<\/td>\n";
+  $table .= "    <td>Matched Group Name<\/td>\n";
+  $table .= "  <\/tr>\n";
+  #make the lists of fuzzy and no matches
+
+  my @fuzzy_matches;
+
+  $prereg->load_preregistrations_with_no_match;
+
+  while( $prereg->next() )
+  {
+    $table .= "<tr>\n";
+    $table .= "<td>" . $prereg->get_id . "<\/td>\n";
+    $table .= "<td>" . $prereg->get_first_name . "<\/td>\n";
+    $table .= "<td>" . $prereg->get_last_name . "<\/td>\n";
+    $table .= "<td>" . $prereg->get_alias . "<\/td>\n";
+    $table .= "<td>" . $prereg->get_landgroup . "<\/td>\n";
+
+    $table .= "<td>\n";
+    #get what was really matched
+
+    my $group_id = $prereg->get_group_id;
+
+    my $current_match = $group_id_to_groupname{ $group_id };
+
+    #make the options list
+    $table .= "<select name=" . $prereg->get_id . " size=1>\n";
+
+    #fill the list in
+    my $option;
+    foreach $option (  @groupnames )
+    {
+      if( $group_id eq $groupname_to_group_id{$option} )
+      {
+
+        $table .= "<option value=\"" . $groupname_to_group_id{$option} .
+              "\" selected >$option<\/option>\n"
+      }
+      else
+      {
+        $table .= "<option value=\"" . $groupname_to_group_id{$option} .
+              "\" >$option<\/option>\n"
+      }
+    }
+
+    $table .= "<\/select>\n";
+    $table .= "<\/td>\n";
+    $table.= "<\/tr>\n";
+  }
+  $table .= "<\/table>";
+
+  $template->param( match => $table );
+  $template->param( current_page => $page+1 );
+  $template->param( last_page => $prereg->get_max_set_number );
+
+  $template->param( current_linkcode =>
+            $linkcode_processor->create_linkcode( $user_id, "",
+                              "admin_evaluate_no_match_prereg",
+                              "", $page,$prereg->get_max_set_number ) );
+   return( $template->output() );
+}
+
+sub admin_evaluate_no_match_prereg
+{
+  $template = HTML::Template->new( filename=>"admin_generate_match_prereg_template.htm" );
+  &set_template_globals();
+
+  my $page = $linkcode_processor->get_data1;
+  my $max_set = $linkcode_processor->get_data_2;
+
+  my $action = $cgi->param("Continue");
+
+  my $prereg = CooperPreRegistration->new();
+  $prereg->connect();
+  $prereg->set_result_set_size( 100 );
+  $prereg->set_result_set_number( $page );
+  $prereg->set_order_by( 'landgroup' );
+
+  $prereg->load_preregistrations_with_no_match;
+
+  my $group_id;
+
+  while( $prereg->next() )
+  {
+    $group_id = $cgi->param( $prereg->get_id );
+
+    #print $prereg->get_id . "," . $cgi->param( $prereg->get_id ) . "<br>";
+
+    if( $group_id eq undef )
+    {
+      die "error";
+    }
+    elsif( $group_id != $prereg->get_group_id )
+    {
+      $prereg->set_group_id( $group_id );
+    }
+  }
+
+  $landgroup->set_pre_registration_count();
+
+  #sort out what to do next
+
+  if( $action eq "forward" && $page == $max_set )
+  {
+    print &admin_generate_no_match_prereg( 0 );
+  }
+  elsif( $action eq "back" && $page == 0  )
+  {
+    print &admin_generate_no_match_prereg( $max_set );
+  }
+  elsif( $action eq "forward" )
+  {
+    print &admin_generate_no_match_prereg( $page+1 );
+  }
+  elsif( $action eq "back" )
+  {
+    print &admin_generate_no_match_prereg( $page-1 );
+  }
+  elsif( $action eq "finish" )
+  {
+    print &admin_generate_main_admin_page;
+  }
+  else
+  {
+    die;
+  }
+}
