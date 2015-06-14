@@ -9,12 +9,11 @@
 # ... except the index redirector
 !index.html
 
-# ... and the cooper files
-!admin_cooper_*.html
-
 # ignore file with personal information
 CONTACT_INFO.txt
 
 # ignore contents of datafiles/ directory
 datafiles/*.csv
 
+# ignore contents of TEST/ directory
+TEST
