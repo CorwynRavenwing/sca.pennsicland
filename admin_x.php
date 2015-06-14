@@ -19,7 +19,7 @@ nav_right_begin();
 	print "Adding columns to land_groups<br/>\n";
 	
 	
-	/*
+#	/*
 	$sql = "ALTER TABLE land_groups ADD COLUMN column_name TYPE SIZE NOT NULL";
 	
 	if (headers_sent()) { print "<!-- X(1) SQL:\n$sql\n-->\n"; }
@@ -32,9 +32,9 @@ nav_right_begin();
 <h2>A: Updated <?=$num?> rows</h2>
 		<?
 	} // endif num
-	*/
+#	*/
 	
-	
+	/*
 	$sql = "ALTER TABLE land_groups ADD COLUMN status int(1) NOT NULL DEFAULT 2";
 	
 	if (headers_sent()) { print "<!-- X(1) SQL:\n$sql\n-->\n"; }
@@ -92,7 +92,7 @@ nav_right_begin();
 <h2>A: Updated <?=$num?> rows</h2>
 		<?
 	} // endif num
-	
+	*/
 	
 	
 nav_right_end();
