@@ -24,8 +24,6 @@ while ( $row = mysql_fetch_row($res1) )
     $design_file  = $data_dir . $tablename . "_design.sql";
 
     $ignore_exists  = file_exists($ignore_file);
-    $ignore_size    = @filesize($ignore_file);
-    $ignore_mtime   = @filemtime($ignore_file);
 
     $asbuilt_exists = file_exists($asbuilt_file);
     $asbuilt_size   = @filesize($asbuilt_file);
@@ -49,8 +47,7 @@ while ( $row = mysql_fetch_row($res1) )
 
     }
 
-
-    get_create_sql($tablename);
+    print '<pre>' . get_create_sql($tablename) . '</pre>';
     
     print "</td>\n";
     print "</tr>\n";
@@ -60,6 +57,7 @@ while ( $row = mysql_fetch_row($res1) )
 print "</table>\n";
 
 function get_create_sql($tablename) {
+    $all_table_defs = array();
     $sql2 = 'SHOW CREATE TABLE ' . $tablename;
     $res2 = mysql_query($sql2)
         or die('Query 2 error:<br />' .mysql_error());
@@ -67,9 +65,11 @@ function get_create_sql($tablename) {
     {
         for ($i=1; $i<count($table_def); $i++)
         {
-            print '<pre>' .$table_def[$i]. '</pre>';
+            array_push($all_table_defs, $table_def[$i]);
+            # could do this more efficiently, don't care
         }
     }
+    return implode("\n", $all_table_defs);
 } // end function get_create_sql
 ?>
 </body>
