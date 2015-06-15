@@ -1,0 +1,5 @@
+# gitignore for sql/
+
+# ignore as-built files: they are server- and instance-specific
+*_asbuilt.sql
+

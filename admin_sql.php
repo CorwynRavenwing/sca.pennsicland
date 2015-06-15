@@ -3,12 +3,6 @@
 
 require_once("include/connect.php");
 
-/*
-$conn = mysql_connect('host','user','pass')
-    or die('Connection error');
-$db_dbname = 'databasename';
-mysql_select_db($db_dbname);
-*/
 $sql1 = 'SHOW TABLES FROM ' .$db_dbname;
 $res1 = mysql_query($sql1)
     or die('Query 1 error:<br />' .mysql_error());
@@ -19,6 +13,7 @@ while ( $row = mysql_fetch_row($res1) )
     echo '<tr>';
     echo '<td valign="top" align="center">' .$row[0]. '</td>';
     echo '<td>';
+    /*
     $sql2 = 'SHOW CREATE TABLE ' .$row[0];
     $res2 = mysql_query($sql2)
         or die('Query 2 error:<br />' .mysql_error());
@@ -29,6 +24,8 @@ while ( $row = mysql_fetch_row($res1) )
             echo '<pre>' .$table_def[$i]. '</pre>';
         }
     }
+    */
+    echo '</td>';
     echo '</tr>';
 }
 echo '</table>';
