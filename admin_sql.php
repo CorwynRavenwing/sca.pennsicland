@@ -23,22 +23,21 @@ while ( $row = mysql_fetch_row($res1) )
     $asbuilt_file = $data_dir . $tablename . "_asbuilt.sql";
     $design_file  = $data_dir . $tablename . "_design.sql";
 
-    $ignore_exists  = file_exists($ignore_file);    
-    $ignore_size    = filesize($ignore_file);    
-    $ignore_mtime   = filemtime($ignore_file);    
+    $ignore_exists  = file_exists($ignore_file);
+    $ignore_size    = @filesize($ignore_file);
+    $ignore_mtime   = @filemtime($ignore_file);
 
-    $asbuilt_exists = file_exists($asbuilt_file);    
-    $asbuilt_size   = filesize($asbuilt_file);    
-    $asbuilt_mtime  = filemtime($asbuilt_file);    
+    $asbuilt_exists = file_exists($asbuilt_file);
+    $asbuilt_size   = @filesize($asbuilt_file);
+    $asbuilt_mtime  = @filemtime($asbuilt_file);
 
-    $design_exists  = file_exists($design_file);    
-    $design_size    = filesize($design_file);    
-    $design_mtime   = filemtime($design_file);    
-
+    $design_exists  = file_exists($design_file);
+    $design_size    = @filesize($design_file);
+    $design_mtime   = @filemtime($design_file);
 
     if ($ignore_exists) {
         print "<!-- ignore table $tablename -->\n";
-        continue;
+        continue;   # go to next loop
     }
 
     print "<tr>\n";
