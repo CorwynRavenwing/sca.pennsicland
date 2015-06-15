@@ -39,15 +39,18 @@ while ( $row = mysql_fetch_row($res1) )
     }
 
     print "<tr>\n";
-    print "<td valign='top' align='center'>" . $tablename . "</td>\n";
+    print "<td valign='top' align='center'>$tablename</td>\n";
     print "<td>\n";
 
     if ( (! $asbuilt_exists) and (! $design_exists) ) {
         # no files exist, ask what to do with this table
 
+        print "No files yet.\m";
+        print "<a href='?ignore=$tablename'>IGNORE</a>\n";
+        print "<a href='?scan=$tablename'>SCAN</a>\n";
     }
 
-    print '<pre>' . get_create_sql($tablename) . '</pre>';
+    print "<pre>" . get_create_sql($tablename) . "</pre>\n";
     
     print "</td>\n";
     print "</tr>\n";
