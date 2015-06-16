@@ -13,6 +13,7 @@ require_once("include/connect.php");
 $data_dir = "sql/";
 
 $cmd_ignore = $_GET['ignore'];
+$cmd_view   = $_GET['view'];
 $cmd_scan   = $_GET['scan'];
 $cmd_design = $_GET['design'];
 $cmd_check  = $_GET['check'];
@@ -22,6 +23,18 @@ if ($cmd_ignore) {
     print "<h2>IGNORE $tablename</h2>\n";
     $ignore_file  = $data_dir . $tablename . ".ign";
     safe_put_contents($ignore_file, "IGNORE TABLE");
+}
+
+if ($cmd_view) {
+    $tablename = $cmd_view;
+    print "<h2>VIEW $tablename</h2>\n";
+    
+    print "<pre>" . get_create_sql($tablename) . "</pre>\n";
+
+    print "<h3>\n";
+    print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
+    print "<a href='?scan=$tablename'>SCAN</a>&nbsp;&nbsp;\n";
+    print "</h3>\n";
 }
 
 if ($cmd_scan) {
@@ -87,8 +100,9 @@ while ( $row = mysql_fetch_row($res1) )
         # no files exist, ask what to do with this table
 
         print "No data file:\n";
-        print "<a href='?ignore=$tablename'>IGNORE</a>\n";
-        print "<a href='?scan=$tablename'>SCAN</a>\n";
+        print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
+        print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
+        print "<a href='?scan=$tablename'>SCAN</a>&nbsp;&nbsp;\n";
 
         continue;
     }
