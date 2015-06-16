@@ -100,9 +100,27 @@ while ( $row = mysql_fetch_row($res1) )
         # no files exist, ask what to do with this table
 
         print "No data file:\n";
+        
         print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
         print "<a href='?scan=$tablename'>SCAN</a>&nbsp;&nbsp;\n";
+        print "<span style='color:grey;'>DESIGN</span>\n";
+
+        continue;
+    }
+
+    if ( $asbuilt_exists and (! $design_exists) ) {
+        # only an as-built, no design file
+
+        print "As-built scanned, no design file:\n";
+
+        print round($asbuilt_size  / 1024) . "&nbsp;kB\n";
+        print round($asbuilt_mtime /   60) . "&nbsp;min&nbsp;ago\n";
+
+        print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
+        print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
+        print "<span style='color:grey;'>SCAN</span>\n";
+        print "<a href='?design=$tablename'>DESIGN</a>&nbsp;&nbsp;\n";
 
         continue;
     }
