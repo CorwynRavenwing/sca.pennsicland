@@ -35,13 +35,13 @@ if ($cmd_view) {
 
     print "<h3>\n";
     print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
-    print "<a href='?scan=$tablename'>SCAN</a>&nbsp;&nbsp;\n";
+    print "<a href='?scan=$tablename'>AS-BUILT</a>&nbsp;&nbsp;\n";
     print "</h3>\n";
 }
 
 if ($cmd_scan) {
     $tablename = $cmd_scan;
-    print "<h2>SCAN $tablename</h2>\n";
+    print "<h2>SCAN AS-BUILT $tablename</h2>\n";
     $asbuilt_file = $data_dir . $tablename . "_asbuilt.sql";
     $asbuilt_data = get_create_sql($tablename);
     safe_put_contents($asbuilt_file, $asbuilt_data);
@@ -72,7 +72,7 @@ $res1 = mysql_query($sql1)
 $count = 0;
 
 print "<table border=1 cellpadding=1 cellspacing=0 width='90%'>\n";
-print "<tr style='background-color:silver'>\n";
+print "<tr style='background-color:silver; text-align:center; font-weight:bold;'>\n";
 print "<td>TABLE NAME</td>\n";
 print "<td>AS-BUILT FILE</td>\n";
 print "<td>COMMANDS</td>\n";
@@ -118,7 +118,7 @@ while ( $row = mysql_fetch_row($res1) )
         print "<td>\n";
         print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
-        print "<a href='?scan=$tablename'>SCAN</a>&nbsp;&nbsp;\n";
+        print "<a href='?scan=$tablename'>AS-BUILT</a>&nbsp;&nbsp;\n";
         print "</td>\n";
 
         print "<td>\n";
@@ -138,9 +138,10 @@ while ( $row = mysql_fetch_row($res1) )
         print "Scanned:\n";
 
         print $asbuilt_size . "&nbsp;b\n";
+        print "<br/>\n";
 
         $asbuilt_age = ($NOW - $asbuilt_mtime);
-        print "<br/>NOW: $NOW<br/>TIME: $asbuilt_mtime<br/>\n";
+        # print "NOW: $NOW<br/>TIME: $asbuilt_mtime<br/>\n";
 
         print elapsed_time_format($asbuilt_age) . "\n";
         print "</td>\n";
@@ -148,7 +149,7 @@ while ( $row = mysql_fetch_row($res1) )
         print "<td>\n";
         print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
-        print "<span style='color:grey;'>SCAN</span>&nbsp;&nbsp;\n";
+        print "<span style='color:grey;'>AS-BUILT</span>&nbsp;&nbsp;\n";
         print "</td>\n";
 
         print "<td>\n";
