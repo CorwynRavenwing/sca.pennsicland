@@ -216,12 +216,12 @@ function elapsed_time_format($sec)
 
     $ret = "";
 
-    if ($yr ) { $ret .= "$yr  yr  "}
-    if ($mon) { $ret .= "$mon mon "}
-    if ($day) { $ret .= "$day dy  "}
-    if ($hr ) { $ret .= "$hr  hr  "}
-    if ($min) { $ret .= "$min min "}
-    if ($sec) { $ret .= "$sec sec "}
+    if ($yr ) { $ret .= "$yr  yr  "; }
+    if ($mon) { $ret .= "$mon mon "; }
+    if ($day) { $ret .= "$day dy  "; }
+    if ($hr ) { $ret .= "$hr  hr  "; }
+    if ($min) { $ret .= "$min min "; }
+    if ($sec) { $ret .= "$sec sec "; }
 
     return $ret;
 }
