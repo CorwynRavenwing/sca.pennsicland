@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# link git hooks to the same files in bin/
+# ... RUN FROM GIT ROOT DIRECTORY!
+#
+ln -svf $PWD/bin/post-checkout .git/hooks/
+ln -svf $PWD/bin/post-merge    .git/hooks/
+
