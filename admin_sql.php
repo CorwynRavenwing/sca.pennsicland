@@ -133,7 +133,7 @@ function safe_put_contents($file, $data) {
     if (! rename($temp_file, $file)) {
         die("can't rename $temp_file to $file: $php_errormsg");
     }
-    print "Successfully wrote $data to $file";
+    print "Successfully wrote data to $file";
 } // end function safe_put_contents
 ?>
 </body>
