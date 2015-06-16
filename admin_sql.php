@@ -142,7 +142,7 @@ while ( $row = mysql_fetch_row($res1) )
         $asbuilt_age = ($NOW - $asbuilt_mtime);
         print "<br/>NOW: $NOW<br/>TIME: $asbuilt_mtime<br/>\n";
 
-        print $asbuilt_age  . "&nbsp;days&nbsp;ago\n";
+        print elapsed_time_format($asbuilt_age) . "\n";
         print "</td>\n";
 
         print "<td>\n";
@@ -205,6 +205,26 @@ function safe_put_contents($file, $data) {
     }
     print "Successfully wrote data to $file";
 } // end function safe_put_contents
+
+function elapsed_time_format($sec)
+{
+    $min = floor($sec/ 60); $sec -= $min*60;
+    $hr  = floor($min/ 60); $min -= $hr *60;
+    $day = floor($hr / 24); $hr  -= $day*24;
+    $yr  = floor($day/365); $day -= $yr *30;
+    $mon = floor($day/ 30); $day -= $mon*30; # yes, also pulling from day
+
+    $ret = "";
+
+    if ($yr ) { $ret .= "$yr  yr  "}
+    if ($mon) { $ret .= "$mon mon "}
+    if ($day) { $ret .= "$day dy  "}
+    if ($hr ) { $ret .= "$hr  hr  "}
+    if ($min) { $ret .= "$min min "}
+    if ($sec) { $ret .= "$sec sec "}
+
+    return $ret;
+}
 ?>
 </body>
 </html>
