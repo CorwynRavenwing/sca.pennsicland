@@ -71,6 +71,11 @@ $res1 = mysql_query($sql1)
     or die('Query 1 error:<br />' .mysql_error());
 
 print "<table border=1 cellpadding=1 cellspacing=0 width='90%'>\n";
+print "<tr style='background-color:gray'>\n";
+print "<td>TABLE NAME</td>\n";
+print "<td>AS-BUILT FILE</td>\n";
+print "<td>DESIGN FILE</td>\n";
+print "</tr>\n";
 while ( $row = mysql_fetch_row($res1) )
 {
     $tablename = $row[0];
@@ -102,12 +107,17 @@ while ( $row = mysql_fetch_row($res1) )
     if ( (! $asbuilt_exists) and (! $design_exists) ) {
         # no files exist, ask what to do with this table
 
-        print "No data file:\n";
+        print "None:\n";
         
         print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
         print "<a href='?scan=$tablename'>SCAN</a>&nbsp;&nbsp;\n";
+        print "</td>\n";
+
+        print "<td>\n";
+        print "None:\n";
         print "<span style='color:grey;'>DESIGN</span>\n";
+        print "<span style='color:grey;'>CHECK</span>\n";
 
         continue;
     }
@@ -115,7 +125,7 @@ while ( $row = mysql_fetch_row($res1) )
     if ( $asbuilt_exists and (! $design_exists) ) {
         # only an as-built, no design file
 
-        print "As-built scanned, no design file:\n";
+        print "Scanned:\n";
 
         $asbuilt_age = ($NOW - $asbuilt_mtime);
         print "$asbuilt_size&nbsp;b\n";
@@ -124,7 +134,12 @@ while ( $row = mysql_fetch_row($res1) )
         print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
         print "<span style='color:grey;'>SCAN</span>\n";
+        print "</td>\n";
+
+        print "<td>\n";
+        print "None:\n";
         print "<a href='?design=$tablename'>DESIGN</a>&nbsp;&nbsp;\n";
+        print "<span style='color:grey;'>CHECK</span>\n";
 
         continue;
     }
