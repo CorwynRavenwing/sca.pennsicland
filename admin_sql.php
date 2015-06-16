@@ -28,12 +28,16 @@ if ($cmd_scan) {
     $tablename = $cmd_scan;
     print "<h2>SCAN $tablename</h2>\n";
     $asbuilt_file = $data_dir . $tablename . "_asbuilt.sql";
+    $asbuilt_data = get_create_sql($tablename);
+    safe_put_contents($asbuilt_file, $asbuilt_data);
 }
 
 if ($cmd_design) {
     $tablename = $cmd_design;
     print "<h2>DESIGN $tablename</h2>\n";
     $design_file  = $data_dir . $tablename . "_design.sql";
+    $design_data = get_create_sql($tablename);
+    safe_put_contents($design_file, $design_data);
 }
 
 if ($cmd_check) {
@@ -129,6 +133,7 @@ function safe_put_contents($file, $data) {
     if (! rename($temp_file, $file)) {
         die("can't rename $temp_file to $file: $php_errormsg");
     }
+    print "Successfully wrote $data to $file";
 } // end function safe_put_contents
 ?>
 </body>
