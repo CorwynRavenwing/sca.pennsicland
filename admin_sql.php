@@ -62,9 +62,7 @@ if ($cmd_check) {
     $design_file  = $data_dir . $tablename . "_design.sql";
 }
 
-
-
-
+// ========== BEGIN LIST OF TABLES ========== //
 
 $sql1 = 'SHOW TABLES FROM ' .$db_dbname;
 $res1 = mysql_query($sql1)
@@ -79,8 +77,8 @@ print "<td>COMMANDS</td>\n";
 print "<td>DESIGN FILE</td>\n";
 print "<td>COMMANDS</td>\n";
 print "</tr>\n";
-while ( $row = mysql_fetch_row($res1) )
-{
+
+while ( $row = mysql_fetch_row($res1) ) {
     $count++;
 
     $tablename = $row[0];
@@ -109,32 +107,9 @@ while ( $row = mysql_fetch_row($res1) )
     print "<td valign='top' align='center'>$tablename</td>\n";
     print "<td>\n";
 
-    if ( (! $asbuilt_exists) and (! $design_exists) ) {
-        # no files exist, ask what to do with this table
-
+    if (! $asbuilt_exists) {
         print "None\n";
-        print "</td>\n";
-
-        print "<td>\n";
-        print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
-        print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
-        print "<a href='?scan=$tablename'>AS-BUILT</a>&nbsp;&nbsp;\n";
-        print "</td>\n";
-
-        print "<td>\n";
-        print "None\n";
-        print "</td>\n";
-
-        print "<td>\n";
-        print "<span style='color:grey;'>DESIGN</span>&nbsp;&nbsp;\n";
-        print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
-
-        continue;
-    }
-
-    if ( $asbuilt_exists and (! $design_exists) ) {
-        # only an as-built, no design file
-
+    } else {
         print "Scanned:\n";
 
         print $asbuilt_size . "&nbsp;b\n";
@@ -144,28 +119,62 @@ while ( $row = mysql_fetch_row($res1) )
         # print "NOW: $NOW<br/>TIME: $asbuilt_mtime<br/>\n";
 
         print elapsed_time_format($asbuilt_age) . "\n";
-        print "</td>\n";
+    }
 
-        print "<td>\n";
+    print "</td>\n";
+    print "<td>\n";
+
+    if (! $asbuilt_exists) {
+        print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
+        print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
+        print "<a href='?scan=$tablename'>AS-BUILT</a>&nbsp;&nbsp;\n";
+    } else {
         print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
         print "<span style='color:grey;'>AS-BUILT</span>&nbsp;&nbsp;\n";
-        print "</td>\n";
-
-        print "<td>\n";
-        print "None\n";
-        print "</td>\n";
-
-        print "<td>\n";
-        print "<a href='?design=$tablename'>DESIGN</a>&nbsp;&nbsp;\n";
-        print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
-
-        continue;
     }
+
+    print "</td>\n";
+    print "<td>\n";
+
+    if (! $design_exists) {
+        print "None\n";
+    } else {
+        if (! $asbuilt_exists) {
+            echo "WRITE ME: LINE " . __LINE__;
+        } else {
+            echo "WRITE ME: LINE " . __LINE__;
+        }
+        print "Scanned:\n";
+
+        print $design_size . "&nbsp;b\n";
+        print "<br/>\n";
+
+        $design_age = ($NOW - $design_mtime);
+        # print "NOW: $NOW<br/>TIME: $asbuilt_mtime<br/>\n";
+
+        print elapsed_time_format($design_age) . "\n";
+    }
+
+    print "</td>\n";
+    print "<td>\n";
+
+    if (! $asbuilt_exists) {
+        print "<span style='color:grey;'>DESIGN</span>&nbsp;&nbsp;\n";
+        print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
+    } else {
+        if (! $design_exists) {
+            print "<a href='?design=$tablename'>DESIGN</a>&nbsp;&nbsp;\n";
+            print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
+        } else {
+            echo "WRITE ME: LINE " . __LINE__;
+        }
+    }
+
+    print "</td>\n";
 
     print "<pre>" . get_create_sql($tablename) . "</pre>\n";
     
-    print "</td>\n";
     print "</tr>\n";
 
     break;
@@ -204,7 +213,7 @@ function safe_put_contents($file, $data) {
     if (! rename($temp_file, $file)) {
         die("can't rename $temp_file to $file: $php_errormsg");
     }
-    print "Successfully wrote data to $file";
+    print "Successfully wrote data to $file<br/>\n";
 } // end function safe_put_contents
 
 function elapsed_time_format($sec)
@@ -217,12 +226,13 @@ function elapsed_time_format($sec)
 
     $ret = "";
 
-    if ($yr ) { $ret .= "$yr  yr  "; }
-    if ($mon) { $ret .= "$mon mon "; }
-    if ($day) { $ret .= "$day dy  "; }
-    if ($hr ) { $ret .= "$hr  hr  "; }
-    if ($min) { $ret .= "$min min "; }
-    if ($sec) { $ret .= "$sec sec "; }
+    if ( $yr ) { $ret .= "$yr  yr  "; }
+    if ( $mon) { $ret .= "$mon mon "; }
+    if ( $day) { $ret .= "$day dy  "; }
+    if ( $hr ) { $ret .= "$hr  hr  "; }
+    if ( $min) { $ret .= "$min min "; }
+    if ( $sec) { $ret .= "$sec sec "; }
+    if (!$ret) { $ret .= "$sec sec "; }
 
     return $ret;
 }
