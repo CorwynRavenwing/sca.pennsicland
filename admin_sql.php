@@ -82,7 +82,7 @@ print "</tr>\n";
 while ( $row = mysql_fetch_row($res1) )
 {
     $count++;
-    
+
     $tablename = $row[0];
 
     $ignore_file  = $data_dir . $tablename . ".ign";
@@ -126,8 +126,8 @@ while ( $row = mysql_fetch_row($res1) )
         print "</td>\n";
 
         print "<td>\n";
-        print "<span style='color:grey;'>DESIGN</span>\n";
-        print "<span style='color:grey;'>CHECK</span>\n";
+        print "<span style='color:grey;'>DESIGN</span>&nbsp;&nbsp;\n";
+        print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
 
         continue;
     }
@@ -138,14 +138,17 @@ while ( $row = mysql_fetch_row($res1) )
         print "Scanned:\n";
 
         $asbuilt_age = ($NOW - $asbuilt_mtime);
-        print "$asbuilt_size&nbsp;b\n";
-        print round($asbuilt_age) . "&nbsp;days&nbsp;ago\n";
+        print $asbuilt_size . "&nbsp;b\n";
+
+        print "<br/>NOW: $now<br/>TIME: $asbuilt_mtime<br/>\n";
+
+        print $asbuilt_age  . "&nbsp;days&nbsp;ago\n";
         print "</td>\n";
 
         print "<td>\n";
         print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
-        print "<span style='color:grey;'>SCAN</span>\n";
+        print "<span style='color:grey;'>SCAN</span>&nbsp;&nbsp;\n";
         print "</td>\n";
 
         print "<td>\n";
@@ -154,7 +157,7 @@ while ( $row = mysql_fetch_row($res1) )
 
         print "<td>\n";
         print "<a href='?design=$tablename'>DESIGN</a>&nbsp;&nbsp;\n";
-        print "<span style='color:grey;'>CHECK</span>\n";
+        print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
 
         continue;
     }
