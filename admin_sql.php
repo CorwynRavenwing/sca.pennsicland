@@ -118,8 +118,8 @@ while ( $row = mysql_fetch_row($res1) )
         print "As-built scanned, no design file:\n";
 
         $asbuilt_age = ($NOW - $asbuilt_mtime);
-        print round($asbuilt_size / 1024) . "&nbsp;kB\n";
-        print round($asbuilt_age  /   60) . "&nbsp;min&nbsp;ago\n";
+        print "$asbuilt_size&nbsp;b\n";
+        print round($asbuilt_age) . "&nbsp;days&nbsp;ago\n";
 
         print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
