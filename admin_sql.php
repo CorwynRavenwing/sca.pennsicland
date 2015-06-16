@@ -69,15 +69,20 @@ if ($cmd_check) {
 $sql1 = 'SHOW TABLES FROM ' .$db_dbname;
 $res1 = mysql_query($sql1)
     or die('Query 1 error:<br />' .mysql_error());
+$count = 0;
 
 print "<table border=1 cellpadding=1 cellspacing=0 width='90%'>\n";
-print "<tr style='background-color:gray'>\n";
+print "<tr style='background-color:silver'>\n";
 print "<td>TABLE NAME</td>\n";
 print "<td>AS-BUILT FILE</td>\n";
+print "<td>COMMANDS</td>\n";
 print "<td>DESIGN FILE</td>\n";
+print "<td>COMMANDS</td>\n";
 print "</tr>\n";
 while ( $row = mysql_fetch_row($res1) )
 {
+    $count++;
+    
     $tablename = $row[0];
 
     $ignore_file  = $data_dir . $tablename . ".ign";
@@ -107,15 +112,20 @@ while ( $row = mysql_fetch_row($res1) )
     if ( (! $asbuilt_exists) and (! $design_exists) ) {
         # no files exist, ask what to do with this table
 
-        print "None:\n";
-        
+        print "None\n";
+        print "</td>\n";
+
+        print "<td>\n";
         print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
         print "<a href='?scan=$tablename'>SCAN</a>&nbsp;&nbsp;\n";
         print "</td>\n";
 
         print "<td>\n";
-        print "None:\n";
+        print "None\n";
+        print "</td>\n";
+
+        print "<td>\n";
         print "<span style='color:grey;'>DESIGN</span>\n";
         print "<span style='color:grey;'>CHECK</span>\n";
 
@@ -130,14 +140,19 @@ while ( $row = mysql_fetch_row($res1) )
         $asbuilt_age = ($NOW - $asbuilt_mtime);
         print "$asbuilt_size&nbsp;b\n";
         print round($asbuilt_age) . "&nbsp;days&nbsp;ago\n";
+        print "</td>\n";
 
+        print "<td>\n";
         print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
         print "<span style='color:grey;'>SCAN</span>\n";
         print "</td>\n";
 
         print "<td>\n";
-        print "None:\n";
+        print "None\n";
+        print "</td>\n";
+
+        print "<td>\n";
         print "<a href='?design=$tablename'>DESIGN</a>&nbsp;&nbsp;\n";
         print "<span style='color:grey;'>CHECK</span>\n";
 
@@ -151,6 +166,7 @@ while ( $row = mysql_fetch_row($res1) )
 
     break;
 }
+print "<tr><td colspan=5 style='text-align:center'>Total of $count tables found</td></tr>\n";
 print "</table>\n";
 
 function get_create_sql($tablename) {
