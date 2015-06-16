@@ -12,6 +12,8 @@ require_once("include/connect.php");
 
 $data_dir = "sql/";
 
+$NOW = time();
+
 $cmd_ignore = $_GET['ignore'];
 $cmd_view   = $_GET['view'];
 $cmd_scan   = $_GET['scan'];
@@ -91,6 +93,7 @@ while ( $row = mysql_fetch_row($res1) )
         print "<!-- ignore table $tablename -->\n";
         continue;   # go to next loop
     }
+    # else, $ignore_file does not exist
 
     print "<tr>\n";
     print "<td valign='top' align='center'>$tablename</td>\n";
@@ -114,8 +117,9 @@ while ( $row = mysql_fetch_row($res1) )
 
         print "As-built scanned, no design file:\n";
 
-        print round($asbuilt_size  / 1024) . "&nbsp;kB\n";
-        print round($asbuilt_mtime /   60) . "&nbsp;min&nbsp;ago\n";
+        $asbuilt_age = ($NOW - $asbuilt_mtime);
+        print round($asbuilt_size / 1024) . "&nbsp;kB\n";
+        print round($asbuilt_age  /   60) . "&nbsp;min&nbsp;ago\n";
 
         print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
