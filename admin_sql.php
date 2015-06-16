@@ -137,10 +137,10 @@ while ( $row = mysql_fetch_row($res1) )
 
         print "Scanned:\n";
 
-        $asbuilt_age = ($NOW - $asbuilt_mtime);
         print $asbuilt_size . "&nbsp;b\n";
 
-        print "<br/>NOW: $now<br/>TIME: $asbuilt_mtime<br/>\n";
+        $asbuilt_age = ($NOW - $asbuilt_mtime);
+        print "<br/>NOW: $NOW<br/>TIME: $asbuilt_mtime<br/>\n";
 
         print $asbuilt_age  . "&nbsp;days&nbsp;ago\n";
         print "</td>\n";
