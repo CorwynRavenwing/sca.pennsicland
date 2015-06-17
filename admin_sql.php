@@ -112,7 +112,7 @@ while ( $row = mysql_fetch_row($res1) ) {
     } else {
         print "Scanned:\n";
 
-        print $asbuilt_size . "&nbsp;b\n";
+        print $asbuilt_size . "&nbsp;bytes\n";
         print "<br/>\n";
 
         $asbuilt_age = ($NOW - $asbuilt_mtime);
@@ -135,49 +135,63 @@ while ( $row = mysql_fetch_row($res1) ) {
     }
 
     print "</td>\n";
-    print "<td>\n";
 
     if (! $design_exists) {
+        print "<td>\n";
         print "None\n";
+        print "</td>\n";
     } else {
+        /*
         if (! $asbuilt_exists) {
-            echo "WRITE ME: LINE " . __LINE__;
+            $bgcolor = "";
         } else {
-            echo "WRITE ME: LINE " . __LINE__;
+            $bgcolor = "pink";
         }
+        */
+        print "<td>\n";
         print "Scanned:\n";
 
-        print $design_size . "&nbsp;b\n";
+        print $design_size . "&nbsp;bytes\n";
         print "<br/>\n";
 
         $design_age = ($NOW - $design_mtime);
         # print "NOW: $NOW<br/>TIME: $asbuilt_mtime<br/>\n";
 
         print elapsed_time_format($design_age) . "\n";
+        print "</td>\n";
     }
 
-    print "</td>\n";
     print "<td>\n";
 
     if (! $asbuilt_exists) {
         print "<span style='color:grey;'>DESIGN</span>&nbsp;&nbsp;\n";
         print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
     } else {
+        # asbuilt does exist
         if (! $design_exists) {
-            print "<a href='?design=$tablename'>DESIGN</a>&nbsp;&nbsp;\n";
+            print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;\n";
             print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
         } else {
-            echo "WRITE ME: LINE " . __LINE__;
+            if ($asbuilt_size != $design_size) {
+                print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;\n";
+                print "<a href='?check=$tablename'>CHECK</a>&nbsp;&nbsp;\n";
+        #   } elseif (files are different) {
+        #       print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;\n";
+        #       print "<a href='?check=$tablename'>CHECK</a>&nbsp;&nbsp;\n";
+            } else {
+                print "<span style='color:grey;'>DESIGN</span>&nbsp;&nbsp;\n";
+                print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
+            }
         }
     }
 
     print "</td>\n";
 
-    print "<pre>" . get_create_sql($tablename) . "</pre>\n";
+    // print "<pre>" . get_create_sql($tablename) . "</pre>\n";
     
     print "</tr>\n";
 
-    break;
+    // break;
 }
 print "<tr><td colspan=5 style='text-align:center'>Total of $count tables found</td></tr>\n";
 print "</table>\n";
