@@ -34,8 +34,9 @@ if ($cmd_view) {
     print "<pre>" . get_create_sql($tablename) . "</pre>\n";
 
     print "<h3>\n";
-    print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
-    print "<a href='?scan=$tablename'>AS-BUILT</a>&nbsp;&nbsp;\n";
+    print "<a href='?ignore=$tablename'>IGNORE</a>";
+    print "&nbsp;&nbsp;";
+    print "<a href='?scan=$tablename'>AS-BUILT</a>\n";
     print "</h3>\n";
 }
 
@@ -69,7 +70,7 @@ $res1 = mysql_query($sql1)
     or die('Query 1 error:<br />' .mysql_error());
 $count = 0;
 
-print "<table border=1 cellpadding=1 cellspacing=0 width='90%'>\n";
+print "<table border=1 cellpadding=1 cellspacing=0 width='100%'>\n";
 print "<tr style='background-color:silver; text-align:center; font-weight:bold;'>\n";
 print "<td>TABLE NAME</td>\n";
 print "<td>AS-BUILT FILE</td>\n";
@@ -110,7 +111,7 @@ while ( $row = mysql_fetch_row($res1) ) {
     if (! $asbuilt_exists) {
         print "None\n";
     } else {
-        print "Scanned:\n";
+        print "Scanned:&nbsp;";
 
         print $asbuilt_size . "&nbsp;bytes\n";
         print "<br/>\n";
@@ -125,13 +126,13 @@ while ( $row = mysql_fetch_row($res1) ) {
     print "<td>\n";
 
     if (! $asbuilt_exists) {
-        print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
-        print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
-        print "<a href='?scan=$tablename'>AS-BUILT</a>&nbsp;&nbsp;\n";
+        print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;";
+        print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;";
+        print "<a href='?scan=$tablename'>AS-BUILT</a>\n";
     } else {
-        print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;\n";
-        print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;\n";
-        print "<span style='color:grey;'>AS-BUILT</span>&nbsp;&nbsp;\n";
+        print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;";
+        print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;";
+        print "<span style='color:grey;'>AS-BUILT</span>\n";
     }
 
     print "</td>\n";
@@ -162,26 +163,26 @@ while ( $row = mysql_fetch_row($res1) ) {
     print "<td>\n";
 
     if (! $asbuilt_exists) {
-        print "<span style='color:grey;'>DESIGN</span>&nbsp;&nbsp;\n";
-        print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
+        print "<span style='color:grey;'>DESIGN</span>&nbsp;&nbsp;";
+        print "<span style='color:grey;'>CHECK</span>\n";
     } else {
         # asbuilt does exist
         if (! $design_exists) {
-            print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;\n";
-            print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
+            print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;";
+            print "<span style='color:grey;'>CHECK</span>\n";
         } else {
             if ($asbuilt_size != $design_size) {
                 print "DIFF:&nbsp;";
-                print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;\n";
-                print "<a href='?check=$tablename'>CHECK</a>&nbsp;&nbsp;\n";
+                print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;";
+                print "<a href='?check=$tablename'>CHECK</a>\n";
         #   } elseif (files are different) {
         #       print "DIFF:&nbsp;";
-        #       print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;\n";
-        #       print "<a href='?check=$tablename'>CHECK</a>&nbsp;&nbsp;\n";
+        #       print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;";
+        #       print "<a href='?check=$tablename'>CHECK</a>\n";
             } else {
                 print "SAME:&nbsp;";
-                print "<span style='color:grey;'>DESIGN</span>&nbsp;&nbsp;\n";
-                print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
+                print "<span style='color:grey;'>DESIGN</span>&nbsp;&nbsp;";
+                print "<span style='color:grey;'>CHECK</span>\n";
             }
         }
     }
