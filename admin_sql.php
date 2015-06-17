@@ -169,6 +169,7 @@ while ( $row = mysql_fetch_row($res1) ) {
     } else {
         # asbuilt does exist
         if (! $design_exists) {
+            print "NONE:&nbsp;";
             print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;";
             print "<span style='color:grey;'>CHECK</span>\n";
         } else {
