@@ -171,15 +171,15 @@ while ( $row = mysql_fetch_row($res1) ) {
             print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
         } else {
             if ($asbuilt_size != $design_size) {
-                print "DIFF:&nbsp;"
+                print "DIFF:&nbsp;";
                 print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;\n";
                 print "<a href='?check=$tablename'>CHECK</a>&nbsp;&nbsp;\n";
         #   } elseif (files are different) {
-        #       print "DIFF:&nbsp;"
+        #       print "DIFF:&nbsp;";
         #       print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;\n";
         #       print "<a href='?check=$tablename'>CHECK</a>&nbsp;&nbsp;\n";
             } else {
-                print "SAME:&nbsp;"
+                print "SAME:&nbsp;";
                 print "<span style='color:grey;'>DESIGN</span>&nbsp;&nbsp;\n";
                 print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
             }
