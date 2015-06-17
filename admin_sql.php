@@ -130,7 +130,7 @@ while ( $row = mysql_fetch_row($res1) ) {
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;";
         print "<a href='?scan=$tablename'>AS-BUILT</a>\n";
     } else {
-        print "<a href='?ignore=$tablename'>IGNORE</a>&nbsp;&nbsp;";
+        print "<span style='color:grey;'>IGNORE</span>\n";
         print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;";
         print "<span style='color:grey;'>AS-BUILT</span>\n";
     }
