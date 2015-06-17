@@ -163,6 +163,7 @@ while ( $row = mysql_fetch_row($res1) ) {
     print "<td>\n";
 
     if (! $asbuilt_exists) {
+        print "NONE:&nbsp;";
         print "<span style='color:grey;'>DESIGN</span>&nbsp;&nbsp;";
         print "<span style='color:grey;'>CHECK</span>\n";
     } else {
