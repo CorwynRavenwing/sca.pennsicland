@@ -135,11 +135,10 @@ while ( $row = mysql_fetch_row($res1) ) {
     }
 
     print "</td>\n";
+    print "<td>\n";
 
     if (! $design_exists) {
-        print "<td>\n";
         print "None\n";
-        print "</td>\n";
     } else {
         /*
         if (! $asbuilt_exists) {
@@ -148,7 +147,6 @@ while ( $row = mysql_fetch_row($res1) ) {
             $bgcolor = "pink";
         }
         */
-        print "<td>\n";
         print "Scanned:\n";
 
         print $design_size . "&nbsp;bytes\n";
@@ -158,9 +156,9 @@ while ( $row = mysql_fetch_row($res1) ) {
         # print "NOW: $NOW<br/>TIME: $asbuilt_mtime<br/>\n";
 
         print elapsed_time_format($design_age) . "\n";
-        print "</td>\n";
     }
 
+    print "</td>\n";
     print "<td>\n";
 
     if (! $asbuilt_exists) {
@@ -173,12 +171,15 @@ while ( $row = mysql_fetch_row($res1) ) {
             print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
         } else {
             if ($asbuilt_size != $design_size) {
+                print "DIFF:&nbsp;"
                 print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;\n";
                 print "<a href='?check=$tablename'>CHECK</a>&nbsp;&nbsp;\n";
         #   } elseif (files are different) {
+        #       print "DIFF:&nbsp;"
         #       print "<a href='?design=$tablename' title='COPY AS-BUILT TO DESIGN'>DESIGN</a>&nbsp;&nbsp;\n";
         #       print "<a href='?check=$tablename'>CHECK</a>&nbsp;&nbsp;\n";
             } else {
+                print "SAME:&nbsp;"
                 print "<span style='color:grey;'>DESIGN</span>&nbsp;&nbsp;\n";
                 print "<span style='color:grey;'>CHECK</span>&nbsp;&nbsp;\n";
             }
