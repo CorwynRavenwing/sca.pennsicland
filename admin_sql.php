@@ -354,7 +354,7 @@ function get_create_array($rows) {
     $create_array = array();
 
     foreach ($rows as $r) {
-        print "R: $r<br/>";
+        // print "R: $r<br/>";
         $pos = strpos($r, $create_table_pattern);
         if ($pos === false) {
             # jump to next loop
@@ -362,8 +362,8 @@ function get_create_array($rows) {
         }
         $left = substr($r, 0, $pos+1);
         $right = substr($r, $pos+1);
-        print "LEFT: [$left]<br/>";
-        print "RIGHT: [$right]<br/>";
+        // print "LEFT: [$left]<br/>";
+        // print "RIGHT: [$right]<br/>";
         $create_array[$left] = $right;
     }
 
