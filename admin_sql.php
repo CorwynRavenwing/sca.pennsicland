@@ -99,7 +99,7 @@ if ($cmd_check) {
                 $left = "will not match";
             }
 
-            if (is_set($design_create_array[$left])) {
+            if (isset($design_create_array[$left])) {
                 $c = "background-color:$color2;";
             } else {
                 $c = "background-color:$color;";
@@ -126,7 +126,7 @@ if ($cmd_check) {
                 $left = "will not match";
             }
 
-            if (is_set($asbuilt_create_array[$left])) {
+            if (isset($asbuilt_create_array[$left])) {
                 $c = "background-color:$color2;";
             } else {
                 $c = "background-color:$color;";
