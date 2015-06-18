@@ -58,6 +58,8 @@ if ($cmd_alter) {
 
     $alter_table_rows = split("\n", $alter_table_data);
 
+    $count_change = 0;
+    $count_drop   = 0;
     foreach ($alter_table_rows as $sql) {
         print "<tr>\n";
         print "<td>$sql</td>\n";
@@ -67,8 +69,10 @@ if ($cmd_alter) {
             // next loop
             continue;
         } elseif (strpos($sql, "DROP COLUMN") !== false) {
+            $count_drop++;
             $res = "not executing DROP COLUMN commands";
         } else {
+            $count_change++;
             $res = "";
 
             $query = mysql_query($sql)
@@ -91,15 +95,21 @@ if ($cmd_alter) {
 
     print "</table>\n";
 
-    print "<h2>Must recreate as-built file</h2>\n";
-
-/*
-    print "<h3>\n";
-    print "<a href='?scan=$tablename'>RE-LOAD AS-BUILT</a>\n";
-    print "</h3>\n";
-*/
-   $cmd_scan  = $tablename;    // fall through and do this also
-   $cmd_check = $tablename;    // fall through and do this also
+    if ($count_change) {
+        // columns were changed.
+        print "<h3>Automatically recreating as-built file.</h2>\n";
+        $cmd_scan  = $tablename;    // fall through and do this also
+        $cmd_check = $tablename;    // fall through and do this also
+    } elseif ($count_drop) {
+        // NO columns were changed
+        // BUT there were skipped drop statements
+        print "<h3>\n";
+        print "<a href='?alter=$tablename&override=yes'>EXECUTE DROP COLUMN COMMANDS</a>\n";
+        print "</h3>\n";
+    } else {
+        // no differences
+        print "<h3>Table as-built and design are the same.</h2>\n";
+    }
 }
 
 if ($cmd_scan) {
