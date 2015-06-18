@@ -22,6 +22,7 @@ $cmd_view   = $_GET['view'];
 $cmd_scan   = $_GET['scan'];
 $cmd_design = $_GET['design'];
 $cmd_check  = $_GET['check'];
+$cmd_alter  = $_GET['alter'];
 
 if ($cmd_ignore) {
     $tablename = $cmd_ignore;
@@ -64,6 +65,7 @@ if ($cmd_check) {
     print "<h2>CHECK $tablename</h2>\n";
     $asbuilt_file = $data_dir . $tablename . "_asbuilt.sql";
     $design_file  = $data_dir . $tablename . "_design.sql";
+    $alter_file   = $data_dir . $tablename . "_alter.sql";
 
     print "<table border=1 cellpadding=1>\n";
 
@@ -96,7 +98,7 @@ if ($cmd_check) {
 
         $pos = strpos($r, $create_table_pattern);
         if ($pos !== false) {
-            $left = substr($r, 0, $pos+1);
+            $left = trim( substr($r, 0, $pos+1) );
         #   $right = substr($r, $pos+1);
         } else {
             $left = "";
@@ -133,10 +135,10 @@ if ($cmd_check) {
             # next loop
             continue;
         }
-        
+
         $pos = strpos($r, $create_table_pattern);
         if ($pos !== false) {
-            $left = substr($r, 0, $pos+1);
+            $left = trim( substr($r, 0, $pos+1) );
         #   $right = substr($r, $pos+1);
         } else {
             $left = "";
@@ -181,13 +183,53 @@ if ($cmd_check) {
 
     print "</table>\n";
 
-    /*
+    safe_put_contents($alter_file, $alter_table_data);
+
     print "<h3>\n";
     print "<a href='?ignore=$tablename'>IGNORE</a>";
     print "&nbsp;&nbsp;";
-    print "<a href='?scan=$tablename'>AS-BUILT</a>\n";
+    print "<a href='?scan=$tablename'>RE-LOAD AS-BUILT</a>\n";
+    print "&nbsp;&nbsp;";
+    print "<a href='?alter=$tablename'>EXECUTE ALTER-TABLE</a>\n";
     print "</h3>\n";
     */
+}
+
+if ($cmd_alter) {
+    $tablename = $cmd_alter;
+    print "<h2>ALTER $tablename</h2>\n";
+    $alter_file   = $data_dir . $tablename . "_alter.sql";
+
+    $alter_table_data = file_get_contents($alter_file);
+    print "<table border=1>\n";
+    print "<tr>\n";
+    print "<td>Command</td>\n";
+    print "<td>Response</td>\n";
+    print "</tr>\n";
+
+    $alter_table_rows = split("\n", $alter_table_data);
+
+    foreach ($alter_table_rows as $cmd) {
+        print "<tr>\n";
+        print "<td>$cmd</td>\n";
+        print "<td>";
+
+        if (! $cmd) {
+            $res = "";
+        } elseif (strpos($cmd, "DROP COLUMN") !== false) {
+            $res = "not executing DROP COLUMN commands";
+        } else {
+            $res = "WOULD BE TRYING THIS";
+        }
+
+        print $res;
+        print "</td>\n";
+        print "</tr>\n";
+    }
+
+    
+
+
 }
 
     print "<br/>\n";
@@ -394,8 +436,8 @@ function get_create_array($rows) {
         // print "R: $r<br/>";
         $pos = strpos($r, $create_table_pattern);
         if ($pos !== false) {
-            $left = substr($r, 0, $pos+1);
-            $right = substr($r, $pos+1);
+            $left  = trim( substr($r, 0, $pos+1) );
+            $right = trim( substr($r, $pos+1) );
             // print "LEFT: [$left]<br/>";
             // print "RIGHT: [$right]<br/>";
             $create_array[$left] = $right;
