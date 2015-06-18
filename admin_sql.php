@@ -17,12 +17,13 @@ $create_table_pattern = "` ";  // backtick, space
 
 $NOW = time();
 
-$cmd_ignore = $_GET['ignore'];
-$cmd_view   = $_GET['view'];
-$cmd_scan   = $_GET['scan'];
-$cmd_design = $_GET['design'];
-$cmd_check  = $_GET['check'];
-$cmd_alter  = $_GET['alter'];
+$cmd_ignore   = $_GET['ignore'  ];
+$cmd_view     = $_GET['view'    ];
+$cmd_scan     = $_GET['scan'    ];
+$cmd_design   = $_GET['design'  ];
+$cmd_check    = $_GET['check'   ];
+$cmd_alter    = $_GET['alter'   ];
+$cmd_override = $_GET['override'];
 
 if ($cmd_ignore) {
     $tablename = $cmd_ignore;
@@ -47,6 +48,9 @@ if ($cmd_view) {
 if ($cmd_alter) {
     $tablename = $cmd_alter;
     print "<h2>ALTER $tablename</h2>\n";
+    if ($override == "yes") {
+        print "<h3>OVERRIDE: EXECUTING DROP COLUMN COMMANDS</h3>\n";
+    }
     $alter_file   = $data_dir . $tablename . "_alter.sql";
 
     $alter_table_data = file_get_contents($alter_file);
@@ -68,9 +72,9 @@ if ($cmd_alter) {
         if (! $sql) {
             // next loop
             continue;
-        } elseif (strpos($sql, "DROP COLUMN") !== false) {
+        } elseif ( ($override != "yes") and (strpos($sql, "DROP COLUMN") !== false) ) {
             $count_drop++;
-            $res = "not executing DROP COLUMN commands";
+            $res = "skipping DROP COLUMN command";
         } else {
             $count_change++;
             $res = "";
