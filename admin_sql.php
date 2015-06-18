@@ -61,7 +61,37 @@ if ($cmd_check) {
     print "<h2>CHECK $tablename</h2>\n";
     $asbuilt_file = $data_dir . $tablename . "_asbuilt.sql";
     $design_file  = $data_dir . $tablename . "_design.sql";
+
+    print "<table border=1 cellpadding=1>\n";
+
+    print "<tr style='bacground-color:silver; text-align:center; font-weight:bold;''>";
+    print "<td>AS-BUILT</td>\n";
+    print "<td>DESIGN</td>\n";
+    print "<td>ALTER TABLE</td>\n";
+    print "</tr>\n";
+
+    $asbuilt_data = file_get_contents($asbuilt_file);
+    $design_data  = file_get_contents($design_file );
+
+    print "<tr>\n";
+    print "<td>$asbuilt_data</td>\n";
+    print "<td>$design_data</td>\n";
+    print "<td>(WRITE ME)</td>\n";
+    print "</tr>\n";
+
+    print "</table>\n";
+
+    /*
+    print "<h3>\n";
+    print "<a href='?ignore=$tablename'>IGNORE</a>";
+    print "&nbsp;&nbsp;";
+    print "<a href='?scan=$tablename'>AS-BUILT</a>\n";
+    print "</h3>\n";
+    */
 }
+
+    print "<br/>\n";
+    print "<br/>\n";
 
 // ========== BEGIN LIST OF TABLES ========== //
 
