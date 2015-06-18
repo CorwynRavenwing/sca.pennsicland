@@ -78,7 +78,7 @@ if ($cmd_check) {
     $asbuilt_rows = explode("\n", $asbuilt_data);
     $design_rows  = explode("\n", $design_data );
 
-    $alter_table_root = "ALTER TABLE `$tabelname`";
+    $alter_table_root = "ALTER TABLE `$tablename`";
     $alter_table_data = "";
 
     $asbuilt_create_array = get_create_array($asbuilt_rows);
@@ -89,6 +89,11 @@ if ($cmd_check) {
     $color2 = "lightblue";
     $prev = "";
     foreach($asbuilt_rows as $r) {
+        if (! $r) {
+            # next loop
+            continue;
+        }
+
         $pos = strpos($r, $create_table_pattern);
         if ($pos !== false) {
             $left = substr($r, 0, $pos+1);
@@ -124,6 +129,11 @@ if ($cmd_check) {
     $color2 = "lightblue";
     $prev = "";
     foreach($design_rows as $r) {
+        if (! $r) {
+            # next loop
+            continue;
+        }
+        
         $pos = strpos($r, $create_table_pattern);
         if ($pos !== false) {
             $left = substr($r, 0, $pos+1);
