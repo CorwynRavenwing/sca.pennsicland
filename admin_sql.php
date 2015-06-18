@@ -79,37 +79,37 @@ if ($cmd_check) {
     $asbuilt_data_color = "";
     $color = "pink";
     foreach($asbuilt_rows as $r) {
-        print "asbuilt row '$r' ";
-        if ( in_array($r, $desgin_rows) ) {
+        // print "asbuilt row '$r' ";
+        if ( in_array($r, $design_rows) ) {
             # this row is also in the other table
             $c = "";
-            print "found: ";
+            // print "found: ";
         } else {
             $c = "background-color:$color;";
-            print "NOT found: ";
+            // print "NOT found: ";
         }
-        print "$c<br/>\n";
-        $asbuilt_data_color .= "<span style='$c'>$r</span>\n";
+        // print "$c<br/>\n";
+        $asbuilt_data_color .= "<span style='$c'>$r</span><br/>\n";
     }
 
     $design_data_color  = "";
     $color = "limegreen";
     foreach($design_rows as $r) {
-        print "design row '$r' ";
+        // print "design row '$r' ";
         if ( in_array($r, $asbuilt_rows) ) {
             # this row is also in the other table
             $c = "";
         } else {
             $c = "background-color:$color;";
         }
-        print "$c<br/>\n";
-        $design_data_color .= "<span style='$c'>$r</span>\n";
+        // print "$c<br/>\n";
+        $design_data_color .= "<span style='$c'>$r</span><br/>\n";
     }
 
     print "<tr>\n";
-    print "<td><pre>$asbuilt_data_color</pre></td>\n";
-    print "<td><pre>$design_data_color</pre></td>\n";
-    print "<td><pre>(WRITE ME)</pre></td>\n";
+    print "<td>$asbuilt_data_color</td>\n";
+    print "<td>$design_data_color</td>\n";
+    print "<td>(WRITE ME)</td>\n";
     print "</tr>\n";
 
     print "</table>\n";
