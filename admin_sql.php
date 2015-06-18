@@ -60,7 +60,7 @@ if ($cmd_alter) {
     print "<td>Response</td>\n";
     print "</tr>\n";
 
-    $alter_table_rows = split("\n", $alter_table_data);
+    $alter_table_rows = explode("\n", $alter_table_data);
 
     $count_change = 0;
     $count_drop   = 0;
@@ -426,6 +426,11 @@ function safe_put_contents($file, $data) {
     global $php_errormsg;
 
     $temp_file = $file . ".tmp";
+    if (file_exists($temp_file)) {
+        if (! unlink($temp_file)) {
+            die("can't unlink $temp_file: $php_errormsg");
+        }
+    }
     if (! file_put_contents($temp_file, $data)) {
         die("can't write to $temp_file: $php_errormsg");
     }
