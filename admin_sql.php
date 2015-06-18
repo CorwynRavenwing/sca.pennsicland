@@ -73,10 +73,37 @@ if ($cmd_check) {
     $asbuilt_data = file_get_contents($asbuilt_file);
     $design_data  = file_get_contents($design_file );
 
+    $asbuilt_rows = explode("\n", $asbuilt_data);
+    $design_rows  = explode("\n", $design_data );
+
+    $asbuilt_data_color = "";
+    $color = "pink";
+    foreach($asbuilt_rows as $r) {
+        if ( in_array($r, $desgin_rows) ) {
+            # this row is also in the other table
+            $c = "";
+        } else {
+            $c = "background-color:$color;";
+        }
+        $asbuilt_data_color .= "<span style='$c'>$r</span>\n";
+    }
+
+    $design_data_color  = "";
+    $color = "limegreen";
+    foreach($design_rows as $r) {
+        if ( in_array($r, $asbuilt_rows) ) {
+            # this row is also in the other table
+            $c = "";
+        } else {
+            $c = "background-color:$color;";
+        }
+        $design_data_color .= "<span style='$c'>$r</span>\n";
+    }
+
     print "<tr>\n";
-    print "<td>$asbuilt_data</td>\n";
-    print "<td>$design_data</td>\n";
-    print "<td>(WRITE ME)</td>\n";
+    print "<td><pre>$asbuilt_data_color</pre></td>\n";
+    print "<td><pre>$design_data_color</pre></td>\n";
+    print "<td><pre>(WRITE ME)</pre></td>\n";
     print "</tr>\n";
 
     print "</table>\n";
