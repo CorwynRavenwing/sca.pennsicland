@@ -128,8 +128,11 @@ if ($cmd_design) {
     $tablename = $cmd_design;
     print "<h2>DESIGN $tablename</h2>\n";
     $design_file  = $data_dir . $tablename . "_design.sql";
+    $alter_file   = $data_dir . $tablename . "_alter.sql";
+
     $design_data = get_create_sql($tablename);
     safe_put_contents($design_file, $design_data);
+    safe_unlink($alter_file);
 }
 
 if ($cmd_check) {
@@ -427,24 +430,17 @@ function safe_put_contents($file, $data) {
 
     clearstatcache();
 
+    $data = trim($data);
+
     # print "DEBUG: saving data '$data' to file '$file'<br/>\n";
 
     $temp_file = $file . ".tmp";
-    if (file_exists($temp_file)) {
-        # print "DEBUG: file $temp_file exists: deleting<br/>\n";
-        if (! unlink($temp_file)) {
-            die("can't unlink $temp_file: $php_errormsg");
-        }
-    }
+    
+    safe_unlink($temp_file);
     if ( file_put_contents($temp_file, $data) === false ) {
         die("can't write to $temp_file: $php_errormsg");
     }
-    if (file_exists($file)) {
-        # print "DEBUG: file $file exists: deleting<br/>\n";
-        if (! unlink($file)) {
-            die("can't unlink $file: $php_errormsg");
-        }
-    }
+    safe_unlink($file);
     if (! rename($temp_file, $file)) {
         die("can't rename $temp_file to $file: $php_errormsg");
     }
@@ -454,6 +450,17 @@ function safe_put_contents($file, $data) {
 
     print "Successfully wrote data to $file<br/>\n";
 } // end function safe_put_contents
+
+function safe_unlink($file) {
+    global $php_errormsg;
+
+    if (file_exists($file)) {
+        # print "DEBUG: file $file exists: deleting<br/>\n";
+        if (! unlink($file)) {
+            die("can't unlink $file: $php_errormsg");
+        }
+    }
+} // end function safe_unlink
 
 function elapsed_time_format($sec)
 {
