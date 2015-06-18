@@ -425,6 +425,8 @@ function get_create_sql($tablename) {
 function safe_put_contents($file, $data) {
     global $php_errormsg;
 
+    clearstatcache();
+
     $temp_file = $file . ".tmp";
     if (file_exists($temp_file)) {
         if (! unlink($temp_file)) {
@@ -442,6 +444,10 @@ function safe_put_contents($file, $data) {
     if (! rename($temp_file, $file)) {
         die("can't rename $temp_file to $file: $php_errormsg");
     }
+    if (! chmod($file, 0666)) {
+        print("Warning: can't chmod($file, 0666)<br/>");
+    }
+
     print "Successfully wrote data to $file<br/>\n";
 } // end function safe_put_contents
 
