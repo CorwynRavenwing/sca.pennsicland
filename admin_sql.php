@@ -94,8 +94,10 @@ if ($cmd_check) {
             $left = substr($r, 0, $pos+1);
         #   $right = substr($r, $pos+1);
         } else {
-            $left = "will not match";
+            $left = "";
         }
+
+        $clean_r = trim($r, ",");
 
         if ( in_array($r, $design_rows) ) {
             # this row is also in the other table
@@ -127,8 +129,10 @@ if ($cmd_check) {
             $left = substr($r, 0, $pos+1);
         #   $right = substr($r, $pos+1);
         } else {
-            $left = "will not match";
+            $left = "";
         }
+
+        $clean_r = trim($r, ",");
 
         if ( in_array($r, $asbuilt_rows) ) {
             # this row is also in the other table
@@ -139,12 +143,12 @@ if ($cmd_check) {
                 # this row has a matching $left
                 $c = "background-color:$color2;";
                 $alter_table_data .=
-                    "$alter_table_root MODIFY COLUMN $r;\n";
+                    "$alter_table_root MODIFY COLUMN $clean_r;\n";
             } else {
                 # no match
                 $c = "background-color:$color;";
                 $alter_table_data .=
-                    "$alter_table_root ADD COLUMN $r " .
+                    "$alter_table_root ADD COLUMN $clean_r " .
                         ($prev ? "AFTER $prev" : "FIRST") . 
                         ";\n";
             }
@@ -160,7 +164,7 @@ if ($cmd_check) {
     print "</tr>\n";
 
     print "<tr>\n";
-    print "<td colspan=2 style='text-align:center;'>\n";
+    print "<td colspan=2>\n";
     print "<pre>$alter_table_data</pre>\n";
     print "</td>\n";
     print "</tr>\n";
