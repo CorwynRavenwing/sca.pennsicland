@@ -427,20 +427,20 @@ function safe_put_contents($file, $data) {
 
     clearstatcache();
 
-    print "DEBUG: saving data '$data' to file '$file'<br/>\n";
+    # print "DEBUG: saving data '$data' to file '$file'<br/>\n";
 
     $temp_file = $file . ".tmp";
     if (file_exists($temp_file)) {
-        print "DEBUG: file $temp_file exists: deleting<br/>\n";
+        # print "DEBUG: file $temp_file exists: deleting<br/>\n";
         if (! unlink($temp_file)) {
             die("can't unlink $temp_file: $php_errormsg");
         }
     }
-    if (! file_put_contents($temp_file, $data)) {
+    if ( file_put_contents($temp_file, $data) === false ) {
         die("can't write to $temp_file: $php_errormsg");
     }
     if (file_exists($file)) {
-        print "DEBUG: file $file exists: deleting<br/>\n";
+        # print "DEBUG: file $file exists: deleting<br/>\n";
         if (! unlink($file)) {
             die("can't unlink $file: $php_errormsg");
         }
