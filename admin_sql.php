@@ -64,7 +64,8 @@ if ($cmd_alter) {
         print "<td>";
 
         if (! $sql) {
-            $res = "";
+            // next loop
+            continue;
         } elseif (strpos($sql, "DROP COLUMN") !== false) {
             $res = "not executing DROP COLUMN commands";
         } else {
@@ -73,9 +74,12 @@ if ($cmd_alter) {
             $query = mysql_query($sql)
                 or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
             
+            /*
+            // no values returned from these sql commands
             while ($result = mysql_fetch_assoc($query)) {
                 $res .= implode(" ", $result) . "\n";
             }
+            */
         
             $res .= "Total of " . mysql_affected_rows() . " rows affected.";
         }
@@ -89,11 +93,13 @@ if ($cmd_alter) {
 
     print "<h2>Must recreate as-built file</h2>\n";
 
+/*
     print "<h3>\n";
     print "<a href='?scan=$tablename'>RE-LOAD AS-BUILT</a>\n";
     print "</h3>\n";
-#   $cmd_scan  = $tablename;    // fall through and do this also
-#   $cmd_check = $tablename;    // fall through and do this also
+*/
+   $cmd_scan  = $tablename;    // fall through and do this also
+   $cmd_check = $tablename;    // fall through and do this also
 }
 
 if ($cmd_scan) {
