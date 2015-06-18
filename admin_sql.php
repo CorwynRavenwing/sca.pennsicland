@@ -44,6 +44,58 @@ if ($cmd_view) {
     print "</h3>\n";
 }
 
+if ($cmd_alter) {
+    $tablename = $cmd_alter;
+    print "<h2>ALTER $tablename</h2>\n";
+    $alter_file   = $data_dir . $tablename . "_alter.sql";
+
+    $alter_table_data = file_get_contents($alter_file);
+    print "<table border=1>\n";
+    print "<tr>\n";
+    print "<td>Command</td>\n";
+    print "<td>Response</td>\n";
+    print "</tr>\n";
+
+    $alter_table_rows = split("\n", $alter_table_data);
+
+    foreach ($alter_table_rows as $sql) {
+        print "<tr>\n";
+        print "<td>$sql</td>\n";
+        print "<td>";
+
+        if (! $sql) {
+            $res = "";
+        } elseif (strpos($sql, "DROP COLUMN") !== false) {
+            $res = "not executing DROP COLUMN commands";
+        } else {
+            $res = "";
+
+            $query = mysql_query($sql)
+                or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
+            
+            while ($result = mysql_fetch_assoc($query)) {
+                $res .= implode(" ", $result) . "\n";
+            }
+        
+            $res .= "Total of " . mysql_affected_rows() . " rows affected."
+        }
+
+        print $res;
+        print "</td>\n";
+        print "</tr>\n";
+    }
+
+    print "</table>\n";
+
+    print "<h2>Must recreate as-built file</h2>\n";
+
+    print "<h3>\n";
+    print "<a href='?scan=$tablename'>RE-LOAD AS-BUILT</a>\n";
+    print "</h3>\n";
+#   $cmd_scan  = $tablename;    // fall through and do this also
+#   $cmd_check = $tablename;    // fall through and do this also
+}
+
 if ($cmd_scan) {
     $tablename = $cmd_scan;
     print "<h2>SCAN AS-BUILT $tablename</h2>\n";
@@ -192,43 +244,6 @@ if ($cmd_check) {
     print "&nbsp;&nbsp;";
     print "<a href='?alter=$tablename'>EXECUTE ALTER-TABLE</a>\n";
     print "</h3>\n";
-}
-
-if ($cmd_alter) {
-    $tablename = $cmd_alter;
-    print "<h2>ALTER $tablename</h2>\n";
-    $alter_file   = $data_dir . $tablename . "_alter.sql";
-
-    $alter_table_data = file_get_contents($alter_file);
-    print "<table border=1>\n";
-    print "<tr>\n";
-    print "<td>Command</td>\n";
-    print "<td>Response</td>\n";
-    print "</tr>\n";
-
-    $alter_table_rows = split("\n", $alter_table_data);
-
-    foreach ($alter_table_rows as $cmd) {
-        print "<tr>\n";
-        print "<td>$cmd</td>\n";
-        print "<td>";
-
-        if (! $cmd) {
-            $res = "";
-        } elseif (strpos($cmd, "DROP COLUMN") !== false) {
-            $res = "not executing DROP COLUMN commands";
-        } else {
-            $res = "WOULD BE TRYING THIS";
-        }
-
-        print $res;
-        print "</td>\n";
-        print "</tr>\n";
-    }
-
-    print "</table>\n";
-
-    print "<h2>Should probably erase or recreate some files here</h2>\n";
 }
 
     print "<br/>\n";
