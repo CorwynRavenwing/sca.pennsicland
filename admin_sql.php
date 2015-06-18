@@ -192,7 +192,6 @@ if ($cmd_check) {
     print "&nbsp;&nbsp;";
     print "<a href='?alter=$tablename'>EXECUTE ALTER-TABLE</a>\n";
     print "</h3>\n";
-    */
 }
 
 if ($cmd_alter) {
@@ -227,9 +226,9 @@ if ($cmd_alter) {
         print "</tr>\n";
     }
 
-    
+    print "</table>\n";
 
-
+    print "<h2>Should probably erase or recreate some files here</h2>\n";
 }
 
     print "<br/>\n";
