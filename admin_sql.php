@@ -77,7 +77,7 @@ if ($cmd_alter) {
                 $res .= implode(" ", $result) . "\n";
             }
         
-            $res .= "Total of " . mysql_affected_rows() . " rows affected."
+            $res .= "Total of " . mysql_affected_rows() . " rows affected.";
         }
 
         print $res;
