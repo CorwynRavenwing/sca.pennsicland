@@ -145,9 +145,12 @@ nav_right_begin();
 				
 				print "<br/><br/>\n";
 				
+				global $redirect_to;
+				
 				template_load("login.htm");
 				template_param("user_name",		$requested_user_name	);
-				template_param("password",		$requested_password		);
+				template_param("password",		$requested_password_1	);
+				template_param("redirect_to",		$redirect_to		);
 				print template_output();
 			} else {
 				print "Failed to create user: " . mysql_error();
