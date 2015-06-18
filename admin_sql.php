@@ -70,7 +70,6 @@ if ($cmd_check) {
     print "<tr style='bacground-color:silver; text-align:center; font-weight:bold;''>";
     print "<td>AS-BUILT</td>\n";
     print "<td>DESIGN</td>\n";
-    print "<td>ALTER TABLE</td>\n";
     print "</tr>\n";
 
     $asbuilt_data = file_get_contents($asbuilt_file);
@@ -79,67 +78,91 @@ if ($cmd_check) {
     $asbuilt_rows = explode("\n", $asbuilt_data);
     $design_rows  = explode("\n", $design_data );
 
+    $alter_table_root = "ALTER TABLE `$tabelname`";
+    $alter_table_data = "";
+
     $asbuilt_create_array = get_create_array($asbuilt_rows);
     $design_create_array  = get_create_array($design_rows);
 
     $asbuilt_data_color = "";
     $color = "pink";
     $color2 = "lightblue";
+    $prev = "";
     foreach($asbuilt_rows as $r) {
-        // print "asbuilt row '$r' ";
+        $pos = strpos($r, $create_table_pattern);
+        if ($pos !== false) {
+            $left = substr($r, 0, $pos+1);
+        #   $right = substr($r, $pos+1);
+        } else {
+            $left = "will not match";
+        }
+
         if ( in_array($r, $design_rows) ) {
             # this row is also in the other table
             $c = "";
         } else {
-            $pos = strpos($r, $create_table_pattern);
-            if ($pos !== false) {
-                $left = substr($r, 0, $pos+1);
-            #   $right = substr($r, $pos+1);
-            } else {
-                $left = "will not match";
-            }
-
             if (isset($design_create_array[$left])) {
+                # this row has a matching $left
                 $c = "background-color:$color2;";
+                # no addition to alter_table_data here
             } else {
+                # no match
                 $c = "background-color:$color;";
+                $alter_table_data .=
+                    "$alter_table_root DROP COLUMN $left;\n";
             }
         }
 
         $asbuilt_data_color .= "<span style='$c'>$r</span><br/>\n";
+        $prev = $left;
     }
 
     $design_data_color  = "";
     $color = "limegreen";
     $color2 = "lightblue";
+    $prev = "";
     foreach($design_rows as $r) {
-        // print "design row '$r' ";
+        $pos = strpos($r, $create_table_pattern);
+        if ($pos !== false) {
+            $left = substr($r, 0, $pos+1);
+        #   $right = substr($r, $pos+1);
+        } else {
+            $left = "will not match";
+        }
+
         if ( in_array($r, $asbuilt_rows) ) {
             # this row is also in the other table
             $c = "";
         } else {
-            $pos = strpos($r, $create_table_pattern);
-            if ($pos !== false) {
-                $left = substr($r, 0, $pos+1);
-            #   $right = substr($r, $pos+1);
-            } else {
-                $left = "will not match";
-            }
 
             if (isset($asbuilt_create_array[$left])) {
+                # this row has a matching $left
                 $c = "background-color:$color2;";
+                $alter_table_data .=
+                    "$alter_table_root MODIFY COLUMN $r;\n";
             } else {
+                # no match
                 $c = "background-color:$color;";
+                $alter_table_data .=
+                    "$alter_table_root ADD COLUMN $r " .
+                        ($prev ? "AFTER $prev" . "FIRST") . 
+                        ";\n";
             }
         }
 
         $design_data_color .= "<span style='$c'>$r</span><br/>\n";
+        $prev = $left;
     }
 
     print "<tr>\n";
     print "<td>$asbuilt_data_color</td>\n";
     print "<td>$design_data_color</td>\n";
-    print "<td>(WRITE ME)</td>\n";
+    print "</tr>\n";
+
+    print "<tr>\n";
+    print "<td colspan=2 style='text-align:center;'>\n";
+    print "<pre>$alter_table_data</pre>\n";
+    print "</td>\n";
     print "</tr>\n";
 
     print "</table>\n";
