@@ -145,7 +145,7 @@ if ($cmd_check) {
                 $c = "background-color:$color;";
                 $alter_table_data .=
                     "$alter_table_root ADD COLUMN $r " .
-                        ($prev ? "AFTER $prev" . "FIRST") . 
+                        ($prev ? "AFTER $prev" : "FIRST") . 
                         ";\n";
             }
         }
