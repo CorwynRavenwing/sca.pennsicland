@@ -12,6 +12,9 @@ require_once("include/connect.php");
 
 $data_dir = "sql/";
 
+global $create_table_pattern;
+$create_table_pattern = "` ";  // backtick, space
+
 $NOW = time();
 
 $cmd_ignore = $_GET['ignore'];
@@ -76,33 +79,60 @@ if ($cmd_check) {
     $asbuilt_rows = explode("\n", $asbuilt_data);
     $design_rows  = explode("\n", $design_data );
 
+    $asbuilt_create_array = get_create_array($asbuilt_rows);
+    $design_create_array  = get_create_array($design_rows);
+
     $asbuilt_data_color = "";
     $color = "pink";
+    $color2 = "lightblue";
     foreach($asbuilt_rows as $r) {
         // print "asbuilt row '$r' ";
         if ( in_array($r, $design_rows) ) {
             # this row is also in the other table
             $c = "";
-            // print "found: ";
         } else {
-            $c = "background-color:$color;";
-            // print "NOT found: ";
+            $pos = strpos($r, $create_table_pattern);
+            if ($pos !== false) {
+                $left = substr($r, 0, $pos+1);
+            #   $right = substr($r, $pos+1);
+            } else {
+                $left = "will not match";
+            }
+
+            if (is_set($design_create_array[$left])) {
+                $c = "background-color:$color2;";
+            } else {
+                $c = "background-color:$color;";
+            }
         }
-        // print "$c<br/>\n";
+
         $asbuilt_data_color .= "<span style='$c'>$r</span><br/>\n";
     }
 
     $design_data_color  = "";
     $color = "limegreen";
+    $color2 = "lightblue";
     foreach($design_rows as $r) {
         // print "design row '$r' ";
         if ( in_array($r, $asbuilt_rows) ) {
             # this row is also in the other table
             $c = "";
         } else {
-            $c = "background-color:$color;";
+            $pos = strpos($r, $create_table_pattern);
+            if ($pos !== false) {
+                $left = substr($r, 0, $pos+1);
+            #   $right = substr($r, $pos+1);
+            } else {
+                $left = "will not match";
+            }
+
+            if (is_set($asbuilt_create_array[$left])) {
+                $c = "background-color:$color2;";
+            } else {
+                $c = "background-color:$color;";
+            }
         }
-        // print "$c<br/>\n";
+
         $design_data_color .= "<span style='$c'>$r</span><br/>\n";
     }
 
@@ -317,6 +347,29 @@ function elapsed_time_format($sec)
 
     return $ret;
 }
+
+function get_create_array($rows) {
+    global $create_table_pattern;
+
+    $create_array = array();
+
+    foreach ($rows as $r) {
+        print "R: $r<br/>";
+        $pos = strpos($r, $create_table_pattern);
+        if ($pos === false) {
+            # jump to next loop
+            continue;
+        }
+        $left = substr($r, 0, $pos+1);
+        $right = substr($r, $pos+1);
+        print "LEFT: [$left]<br/>";
+        print "RIGHT: [$right]<br/>";
+        $create_array[$left] = $right;
+    }
+
+    return $create_array;
+} // end function get_create_array
+
 ?>
 </body>
 </html>
