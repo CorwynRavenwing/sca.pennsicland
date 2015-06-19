@@ -427,15 +427,23 @@ function get_create_sql($tablename) {
             $line = $table_def[$i];
             $line = trim($line);
 
-            if ( left_match($line, ") ENGINE=") ) {
-                $line = ")";
-            }
-
             array_push($all_table_defs, $line);
             # could do this more efficiently, don't care
         }
     }
-    return implode("\n", $all_table_defs);
+    $table_data = implode("\n", $all_table_defs);
+    # merge on carriage returns, then re-split:
+    $table_rows = explode("\n", $table_data);
+
+    $table_rows = trim_array($table_rows);
+
+    foreach ($table_rows as $line) {
+        if ( left_match($line, ") ENGINE=") ) {
+            $line = ")";
+        }
+    }
+    
+    return implode("\n", $all_table_rows);
 } // end function get_create_sql
 
 function left_match($haystack, $needle) {
