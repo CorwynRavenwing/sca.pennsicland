@@ -6,7 +6,7 @@ $SERVER_NAME = isset($_SERVER['SERVER_NAME'])     ? $_SERVER['SERVER_NAME']     
 
 if (strpos ($SERVER_NAME, "localhost") !== false) {
   $test_mode = 2;
-} elseif (strpos ($SCRIPT_NAME, "_TEST") !== false) {
+} elseif (strpos ($SCRIPT_NAME, "/TEST/") !== false) {
   $test_mode = 1;
 } else {
   $test_mode = 0;
