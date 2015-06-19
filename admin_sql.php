@@ -297,11 +297,14 @@ while ( $row = mysql_fetch_row($res1) ) {
     $asbuilt_file = $data_dir . $tablename . "_asbuilt.sql";
     $design_file  = $data_dir . $tablename . "_design.sql";
 
-@chmod($ignore_file, 0666);
-@chmod($asbuilt_file, 0666);
-@chmod($design_file, 0666);
+    /*
+    // clean up files that weren't chmod'ed:
+    @chmod($ignore_file, 0666);
+    @chmod($asbuilt_file, 0666);
+    @chmod($design_file, 0666);
     $alter_file   = $data_dir . $tablename . "_alter.sql";
-@chmod($alter_file, 0666);
+    @chmod($alter_file, 0666);
+    */
 
     $ignore_exists  = file_exists($ignore_file);
 
