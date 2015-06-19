@@ -152,8 +152,8 @@ if ($cmd_check) {
     $asbuilt_data = file_get_contents($asbuilt_file);
     $design_data  = file_get_contents($design_file );
 
-    $asbuilt_rows = explode("\n", $asbuilt_data);
-    $design_rows  = explode("\n", $design_data );
+    $asbuilt_rows = trim_array( explode("\n", $asbuilt_data) );
+    $design_rows  = trim_array( explode("\n", $design_data ) );
 
     $alter_table_root = "ALTER TABLE `$tablename`";
     $alter_table_data = "";
@@ -521,6 +521,12 @@ function get_create_array($rows) {
     return $create_array;
 } // end function get_create_array
 
+function trim_array( $array ) {
+    foreach ($a as $i) {
+        $i = trim($i);
+    }
+    return $a;
+} // end function trim_array
 ?>
 </body>
 </html>
