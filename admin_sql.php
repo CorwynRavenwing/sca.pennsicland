@@ -297,6 +297,12 @@ while ( $row = mysql_fetch_row($res1) ) {
     $asbuilt_file = $data_dir . $tablename . "_asbuilt.sql";
     $design_file  = $data_dir . $tablename . "_design.sql";
 
+@chmod($ignore_file, 0666);
+@chmod($asbuilt_file, 0666);
+@chmod($design_file, 0666);
+    $alter_file   = $data_dir . $tablename . "_alter.sql";
+@chmod($alter_file, 0666);
+
     $ignore_exists  = file_exists($ignore_file);
 
     $asbuilt_exists = file_exists($asbuilt_file);
@@ -435,7 +441,7 @@ function safe_put_contents($file, $data) {
     # print "DEBUG: saving data '$data' to file '$file'<br/>\n";
 
     $temp_file = $file . ".tmp";
-    
+
     safe_unlink($temp_file);
     if ( file_put_contents($temp_file, $data) === false ) {
         die("can't write to $temp_file: $php_errormsg");
@@ -462,8 +468,7 @@ function safe_unlink($file) {
     }
 } // end function safe_unlink
 
-function elapsed_time_format($sec)
-{
+function elapsed_time_format($sec) {
     $min = floor($sec/ 60); $sec -= $min*60;
     $hr  = floor($min/ 60); $min -= $hr *60;
     $day = floor($hr / 24); $hr  -= $day*24;
