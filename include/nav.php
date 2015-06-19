@@ -730,6 +730,8 @@ function nav_right_begin() {
 function nav_right_end() {
   global $r_admin;
   global $user_id;
+  global $test_mode;
+  global $user_record;
 
   $temp_special_user = -1;    // should be a user id [Corwyn P42]
 
@@ -741,10 +743,13 @@ function nav_right_end() {
 
       print("<div style='clear:both'>DEBUG: (shown to admins only)</div><pre>\n");
 
-      print("_GET:     "); print_r($_GET);     print("\n");
-      print("_POST:    "); print_r($_POST);    print("\n");
-      print("_SERVER:  "); print_r($_SERVER);  print("\n");
-      print("_SESSION: "); print_r($_SESSION); print("\n");
+      print("TEST MODE: "); print($test_mode);     print("\n");
+      pritn("USER:      "); print_r($user_record); print("\n");
+
+      print("_GET:      "); print_r($_GET);        print("\n");
+      print("_POST:     "); print_r($_POST);       print("\n");
+      print("_SERVER:   "); print_r($_SERVER);     print("\n");
+      print("_SESSION:  "); print_r($_SESSION);    print("\n");
 
       print("</pre>\n");
     javascript_hidable_div_end();
