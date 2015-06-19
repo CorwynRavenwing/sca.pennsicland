@@ -408,9 +408,6 @@ while ( $row = mysql_fetch_row($res1) ) {
     }
 
     print "</td>\n";
-
-    // print "<pre>" . get_create_sql($tablename) . "</pre>\n";
-    
     print "</tr>\n";
 
     // break;
@@ -427,12 +424,25 @@ function get_create_sql($tablename) {
     {
         for ($i=1; $i<count($table_def); $i++)
         {
-            array_push($all_table_defs, $table_def[$i]);
+            $line = $table_def[$i];
+            $line = trim($line);
+
+            if ( left_match($line, ") ENGINE=") ) {
+                $line = ")";
+            }
+
+            array_push($all_table_defs, $line);
             # could do this more efficiently, don't care
         }
     }
     return implode("\n", $all_table_defs);
 } // end function get_create_sql
+
+function left_match($haystack, $needle) {
+    $len = strlen($needle);
+    
+    return ( substr($haystack, 0, $len ) == $needle );
+} // end function left_match
 
 function safe_put_contents($file, $data) {
     global $php_errormsg;
