@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# a hook to allow read-access to all files by group and other
+# (necessary for this server, as apache and I are not in the same group)
+# and git for some reason defaults to mode 0600
+#
+# Run this as post-checkout and post-merge (which pull calls)
+
+echo "FIXING CHMOD OF ALL FILES"
+chmod -R go+r . 2>&1 | grep -v phpsession | grep -v datafiles | grep -v sql
+chmod    go+w datafiles 2>&1
+chmod    go+w sql 2>&1
