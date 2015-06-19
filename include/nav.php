@@ -744,7 +744,7 @@ function nav_right_end() {
       print("<div style='clear:both'>DEBUG: (shown to admins only)</div><pre>\n");
 
       print("TEST MODE: "); print($test_mode);     print("\n");
-      pritn("USER:      "); print_r($user_record); print("\n");
+      print("USER:      "); print_r($user_record); print("\n");
 
       print("_GET:      "); print_r($_GET);        print("\n");
       print("_POST:     "); print_r($_POST);       print("\n");
