@@ -7,9 +7,9 @@ $SUCCESS = "successful_login";
 
 $current_time = time();
 
-$user_id  = @$_SESSION['user_id'];  $_SESSION['user_id']    = $user_id;
-$masquerade  = @$_SESSION['masquerade'];  $_SESSION['masquerade']    = $masquerade;
-$user_id_true  = @$_SESSION['user_id_true'];  $_SESSION['user_id_true']  = $user_id_true;
+$user_id      = @$_SESSION['user_id'];      $_SESSION['user_id']      = $user_id;
+$masquerade   = @$_SESSION['masquerade'];   $_SESSION['masquerade']   = $masquerade;
+$user_id_true = @$_SESSION['user_id_true']; $_SESSION['user_id_true'] = $user_id_true;
 
 require_once("connect.php");
 
