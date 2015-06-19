@@ -442,8 +442,8 @@ function get_create_sql($tablename) {
             $line = ")";
         }
     }
-    
-    return implode("\n", $all_table_rows);
+
+    return implode("\n", $table_rows);
 } // end function get_create_sql
 
 function left_match($haystack, $needle) {
