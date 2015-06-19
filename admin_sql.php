@@ -522,10 +522,10 @@ function get_create_array($rows) {
 } // end function get_create_array
 
 function trim_array( $array ) {
-    foreach ($a as $i) {
+    foreach ($array as $i) {
         $i = trim($i);
     }
-    return $a;
+    return $array;
 } // end function trim_array
 ?>
 </body>
