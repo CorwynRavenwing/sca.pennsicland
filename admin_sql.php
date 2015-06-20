@@ -437,13 +437,15 @@ function get_create_sql($tablename) {
 
     $table_rows = trim_array($table_rows);
 
+    $new_table_rows = array();
     foreach ($table_rows as $line) {
         if ( left_match($line, ") ENGINE=") ) {
             $line = ")";
         }
+        array_push($new_table_rows, $line);
     }
 
-    return implode("\n", $table_rows);
+    return implode("\n", $new_table_rows);
 } // end function get_create_sql
 
 function left_match($haystack, $needle) {
@@ -530,10 +532,12 @@ function get_create_array($rows) {
 } // end function get_create_array
 
 function trim_array( $array ) {
+    $new_array = array();
     foreach ($array as $i) {
         $i = trim($i);
+        array_push($new_array, $i);
     }
-    return $array;
+    return $new_array;
 } // end function trim_array
 ?>
 </body>
