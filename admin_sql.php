@@ -49,7 +49,7 @@ if ($cmd_alter) {
     $tablename = $cmd_alter;
     print "<h2>ALTER $tablename</h2>\n";
     if ($override == "yes") {
-        print "<h3>OVERRIDE: EXECUTING DROP COLUMN COMMANDS</h3>\n";
+        print "<h3>OVERRIDE: EXECUTING SKIPPED COMMANDS</h3>\n";
     }
     $alter_file   = $data_dir . $tablename . "_alter.sql";
 
@@ -63,7 +63,7 @@ if ($cmd_alter) {
     $alter_table_rows = explode("\n", $alter_table_data);
 
     $count_change = 0;
-    $count_drop   = 0;
+    $count_skip   = 0;
     foreach ($alter_table_rows as $sql) {
         print "<tr>\n";
         print "<td>$sql</td>\n";
@@ -73,8 +73,11 @@ if ($cmd_alter) {
             // next loop
             continue;
         } elseif ( ($override != "yes") and (strpos($sql, "DROP COLUMN") !== false) ) {
-            $count_drop++;
+            $count_skip++;
             $res = "skipping DROP COLUMN command";
+        } elseif ( ($override != "yes") and (strpos($sql, "ADD KEY") !== false) ) {
+            $count_skip++;
+            $res = "skipping ADD KEY command";
         } else {
             $count_change++;
             $res = "";
@@ -104,11 +107,11 @@ if ($cmd_alter) {
         print "<h3>Automatically recreating as-built file.</h2>\n";
         $cmd_scan  = $tablename;    // fall through and do this also
         $cmd_check = $tablename;    // fall through and do this also
-    } elseif ($count_drop) {
+    } elseif ($count_skip) {
         // NO columns were changed
         // BUT there were skipped drop statements
         print "<h3>\n";
-        print "<a href='?alter=$tablename&override=yes'>EXECUTE DROP COLUMN COMMANDS</a>\n";
+        print "<a href='?alter=$tablename&override=yes'>EXECUTE SKIPPED COMMANDS</a>\n";
         print "</h3>\n";
     } else {
         // no differences
