@@ -53,10 +53,6 @@ if ($cmd_alter) {
     }
     $alter_file   = $data_dir . $tablename . "_alter.sql";
 
-    if (! file_exists($alter_file)) {
-        xattr_get(}
-            , name)
-    }
     $alter_table_data = safe_get_contents($alter_file);
     print "<table border=1>\n";
     print "<tr>\n";
