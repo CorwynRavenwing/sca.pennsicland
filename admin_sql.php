@@ -228,16 +228,38 @@ if ($cmd_check) {
 
             if (isset($asbuilt_create_array[$left])) {
                 # this row has a matching $left
-                $c = "background-color:$color2;";
-                $alter_table_data .=
-                    "$alter_table_root MODIFY COLUMN $clean_r;\n";
+                if (left_match($clean_r, "`")) {
+                    $c = "background-color:$color2;";
+                    $alter_table_data .=
+                        "$alter_table_root MODIFY COLUMN $clean_r;\n";
+                } elseif (left_match($clean_r, "KEY ")) {
+                    # don't know how to change a key
+                    $c = "color:red;";
+                } else
+                 {
+                    # don't know what this is
+                    $c = "color:blue;";
+                }
             } else {
                 # no match
-                $c = "background-color:$color;";
-                $alter_table_data .=
-                    "$alter_table_root ADD COLUMN $clean_r " .
-                        ($prev ? "AFTER $prev" : "FIRST") . 
-                        ";\n";
+                if (left_match($clean_r, "`")) {
+                    $c = "background-color:$color;";
+                    $alter_table_data .=
+                        "$alter_table_root ADD COLUMN $clean_r " .
+                            ($prev ? "AFTER $prev" : "FIRST") . 
+                            ";\n";
+
+
+                } elseif (left_match($clean_r, "KEY ")) {
+                    # create a new key
+                    $c = "background-color:$color;";
+                    $alter_table_data .=
+                        "$alter_table_root ADD $clean_r;\n";
+                } else
+                 {
+                    # don't know what this is
+                    $c = "color:blue;";
+                }
             }
         }
 
