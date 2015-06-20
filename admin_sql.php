@@ -41,7 +41,7 @@ if ($cmd_view) {
     print "<h3>\n";
     print "<a href='?ignore=$tablename'>IGNORE</a>";
     print "&nbsp;&nbsp;";
-    print "<a href='?scan=$tablename'>AS-BUILT</a>\n";
+    print "<a href='?scan=$tablename'>RE-LOAD AS-BUILT</a>\n";
     print "</h3>\n";
 }
 
@@ -289,6 +289,8 @@ if ($cmd_check) {
     print "<a href='?ignore=$tablename'>IGNORE</a>";
     print "&nbsp;&nbsp;";
     print "<a href='?scan=$tablename'>RE-LOAD AS-BUILT</a>\n";
+    print "&nbsp;&nbsp;";
+    print "<a href='?design=$tablename'>SET AS DESIGN</a>\n";
     print "&nbsp;&nbsp;";
     print "<a href='?alter=$tablename'>EXECUTE ALTER-TABLE</a>\n";
     print "</h3>\n";
