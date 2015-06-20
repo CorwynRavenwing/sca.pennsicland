@@ -559,7 +559,8 @@ function get_create_array($rows) {
 function trim_array( $array ) {
     $new_array = array();
     foreach ($array as $i) {
-        $i = trim($i);
+        $i = trim($i);          # remove leading/trailing whitespace
+        $i = trim($i, ",");     # remove leading/trailing commas
         array_push($new_array, $i);
     }
     return $new_array;
