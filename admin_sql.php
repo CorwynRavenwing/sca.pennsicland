@@ -292,7 +292,11 @@ if ($cmd_check) {
     print "&nbsp;&nbsp;";
     print "<a href='?design=$tablename'>SET AS DESIGN</a>\n";
     print "&nbsp;&nbsp;";
-    print "<a href='?alter=$tablename'>EXECUTE ALTER-TABLE</a>\n";
+    if ($alter_table_data) {
+        print "<a href='?alter=$tablename'>EXECUTE ALTER-TABLE</a>\n";
+    } else {
+        print "<span style='color:grey'>EXECUTE ALTER-TABLE</span>\n";
+    }
     print "</h3>\n";
 }
 
