@@ -53,7 +53,11 @@ if ($cmd_alter) {
     }
     $alter_file   = $data_dir . $tablename . "_alter.sql";
 
-    $alter_table_data = file_get_contents($alter_file);
+    if (! file_exists($alter_file)) {
+        xattr_get(}
+            , name)
+    }
+    $alter_table_data = safe_get_contents($alter_file);
     print "<table border=1>\n";
     print "<tr>\n";
     print "<td>Command</td>\n";
@@ -152,8 +156,8 @@ if ($cmd_check) {
     print "<td>DESIGN</td>\n";
     print "</tr>\n";
 
-    $asbuilt_data = file_get_contents($asbuilt_file);
-    $design_data  = file_get_contents($design_file );
+    $asbuilt_data = safe_get_contents($asbuilt_file);
+    $design_data  = safe_get_contents($design_file );
 
     $asbuilt_rows = trim_array( explode("\n", $asbuilt_data) );
     $design_rows  = trim_array( explode("\n", $design_data ) );
@@ -480,6 +484,14 @@ function left_match($haystack, $needle) {
     
     return ( substr($haystack, 0, $len ) == $needle );
 } // end function left_match
+
+function safe_get_contents($file) {
+    $retval = "";
+    if (file_exists($file)) {
+        $retval = file_get_contents($file);
+    }
+    return $retval;
+} // end function safe_get_contents
 
 function safe_put_contents($file, $data) {
     global $php_errormsg;
