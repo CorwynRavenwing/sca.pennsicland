@@ -486,13 +486,17 @@ function safe_put_contents($file, $data) {
 
     clearstatcache();
 
+    $temp_file = $file . ".tmp";
+    safe_unlink($temp_file);
+
     $data = trim($data);
 
-    # print "DEBUG: saving data '$data' to file '$file'<br/>\n";
+    if (! $data) {
+        safe_unlink($file);
+        print "Successfully erased $file<br/>\n";
+        return;
+    }
 
-    $temp_file = $file . ".tmp";
-
-    safe_unlink($temp_file);
     if ( file_put_contents($temp_file, $data) === false ) {
         die("can't write to $temp_file: $php_errormsg");
     }
