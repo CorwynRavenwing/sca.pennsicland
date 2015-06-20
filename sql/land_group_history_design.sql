@@ -8,4 +8,4 @@ CREATE TABLE `land_group_history` (
   KEY `ind_group_id` (`group_id`),
   KEY `ind_block_id` (`block_id`),
   KEY `ind_year` (`year`)
-) ENGINE=MyISAM AUTO_INCREMENT=20352 DEFAULT CHARSET=latin1
+)

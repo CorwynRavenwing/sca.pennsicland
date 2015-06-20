@@ -9,4 +9,4 @@ CREATE TABLE `user_logins` (
   `login_time` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `user_id` bigint(20) unsigned NOT NULL default '0',
   PRIMARY KEY  (`login_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=130518 DEFAULT CHARSET=latin1
+)

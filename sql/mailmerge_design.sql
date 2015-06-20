@@ -6,4 +6,4 @@ CREATE TABLE `mailmerge` (
   `letter_body` text NOT NULL,
   `modified_date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  (`mailmerge_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=291 DEFAULT CHARSET=latin1
+)

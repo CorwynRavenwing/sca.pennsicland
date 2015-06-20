@@ -3,4 +3,4 @@ CREATE TABLE `mailmerge_variables` (
   `variable_name` varchar(45) default NULL,
   `mailmerge_id` bigint(20) unsigned NOT NULL default '0',
   PRIMARY KEY  (`mailmerge_variable_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10211 DEFAULT CHARSET=latin1
+)

@@ -5,4 +5,4 @@ CREATE TABLE `numbers` (
   `prime` tinyint(1) NOT NULL default '0',
   `triangle` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`n`)
-) ENGINE=MyISAM AUTO_INCREMENT=266725 DEFAULT CHARSET=latin1
+)

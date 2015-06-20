@@ -13,4 +13,4 @@ CREATE TABLE `mailmerge_recipients` (
   `selected` enum('0','1') NOT NULL default '0',
   `email_address` varchar(45) NOT NULL default '',
   PRIMARY KEY  (`mailmerge_recipient_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=172453 DEFAULT CHARSET=latin1
+)

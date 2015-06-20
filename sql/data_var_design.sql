@@ -8,4 +8,4 @@ CREATE TABLE `data_var` (
   `current_year` varchar(10) NOT NULL,
   `pennsic_number` varchar(10) NOT NULL,
   PRIMARY KEY  (`data_var_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
+)

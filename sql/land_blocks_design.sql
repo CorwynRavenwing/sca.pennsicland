@@ -15,4 +15,4 @@ CREATE TABLE `land_blocks` (
   `has_changed` int(3) NOT NULL,
   PRIMARY KEY  (`block_id`),
   KEY `BlockName` (`block_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=1125 DEFAULT CHARSET=latin1
+)

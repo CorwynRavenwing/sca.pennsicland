@@ -34,4 +34,4 @@ CREATE TABLE `land_groups` (
   PRIMARY KEY  (`group_id`),
   KEY `GroupNameLookup` (`group_name`),
   KEY `UserNameLookup` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10550 DEFAULT CHARSET=latin1
+)

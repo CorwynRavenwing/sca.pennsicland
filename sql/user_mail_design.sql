@@ -9,4 +9,4 @@ CREATE TABLE `user_mail` (
   `subject` varchar(200) NOT NULL default '',
   `mail_error` varchar(25) default NULL,
   PRIMARY KEY  (`user_mail_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9615 DEFAULT CHARSET=latin1
+)

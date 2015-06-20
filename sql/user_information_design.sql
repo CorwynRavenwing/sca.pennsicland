@@ -23,4 +23,4 @@ CREATE TABLE `user_information` (
   `extension` varchar(5) NOT NULL default '',
   PRIMARY KEY  (`user_id`),
   UNIQUE KEY `idx_user_name` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=8213 DEFAULT CHARSET=latin1
+)
