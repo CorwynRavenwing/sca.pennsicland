@@ -36,13 +36,13 @@ if (! $r_admin) {
 
     $NOW = time();
 
-    $cmd_ignore   = $_GET['ignore'  ];
-    $cmd_view     = $_GET['view'    ];
-    $cmd_scan     = $_GET['scan'    ];
-    $cmd_design   = $_GET['design'  ];
-    $cmd_check    = $_GET['check'   ];
-    $cmd_alter    = $_GET['alter'   ];
-    $cmd_override = $_GET['override'];
+    $cmd_ignore   = @$_GET['ignore'  ];
+    $cmd_view     = @$_GET['view'    ];
+    $cmd_scan     = @$_GET['scan'    ];
+    $cmd_design   = @$_GET['design'  ];
+    $cmd_check    = @$_GET['check'   ];
+    $cmd_alter    = @$_GET['alter'   ];
+    $cmd_override = @$_GET['override'];
 
     if ($cmd_ignore) {
         $tablename = $cmd_ignore;
