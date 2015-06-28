@@ -20,7 +20,7 @@ nav_right_begin();
 $id         = @$_GET['id'];
 $group_name = @$_GET['group'];
 $search     = @$_GET['search'];  $search     = trim( $search );
-$del        = @$_GET['del'];
+// $del        = @$_GET['del'];
 
 if (! $group_name) {
   if ($id) {
@@ -83,6 +83,7 @@ if (! $r_admin) {
   <?
 } else {
 
+  /*
   if ($del) {
     $sql = "UPDATE cooper_data
             SET previous_group = group_name,
@@ -123,7 +124,7 @@ if (! $r_admin) {
     $query = mysql_query($sql)
         or die('Query failed: ' . mysql_error() . "<br/>\n$sql<br/>\nat file " . __FILE__ . " line " . __LINE__);
   } // endif del
-
+  */
   if ($search) {
     $prereg_list = load_preregistrations_by_search($search);
     ?>
@@ -145,7 +146,9 @@ if (! $r_admin) {
     <td>Sca Name</td>
     <td>Group Name</td>
 
+    <? /*
     <td>Delete</td>
+    */ ?>
 
   </tr>
   <?
@@ -161,12 +164,12 @@ if (! $r_admin) {
     <td><?=$reg['sca_name']?>&nbsp;</td>
     <td><?=$reg['group_name']?>&nbsp;</td>
 
+    <? /*
     <td><a href="?id=<?=$id?>&del=<?=$reg['cooper_data_id']?>">DELETE</a>
-    <?
 // note: previous line will always fail, because cooper_data_id always returns 0,
 // because we're coming from the Cooper data rather than from the local database's
 // copy of the Cooper data.  Not really sure how to fix this.  [Corwyn PW42]
-    ?>
+    */ ?>
   </tr>
     <?
   }
