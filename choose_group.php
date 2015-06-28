@@ -3,6 +3,7 @@ require_once("include/nav.php");
 require_once("include/user.php");
 
 $action         = @$_POST['action'];
+$admin_user_id  = @$_REQUEST['admin_user_id'];  // not yet written
 
 nav_start();
 
@@ -28,7 +29,7 @@ if (! $registration_open  /* and not admin override */ ) {
 
   template_param(
     "top_message",
-    "Creation of new users, and registration of groups, has closed for the year."
+    "Registration of groups has closed for the year."
   );
 
   print template_output();
