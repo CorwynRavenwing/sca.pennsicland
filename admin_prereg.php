@@ -146,6 +146,8 @@ if (! $r_admin) {
     <td>Sca Name</td>
     <td>Group Name</td>
 
+    <td>Previous Group</td>
+
     <? /*
     <td>Delete</td>
     */ ?>
@@ -163,6 +165,8 @@ if (! $r_admin) {
     <td><?=$reg['last_name']?>&nbsp;</td>
     <td><?=$reg['sca_name']?>&nbsp;</td>
     <td><?=$reg['group_name']?>&nbsp;</td>
+
+    <td><?=$reg['previous_group']?>&nbsp;</td>
 
     <? /*
     <td><a href="?id=<?=$id?>&del=<?=$reg['cooper_data_id']?>">DELETE</a>

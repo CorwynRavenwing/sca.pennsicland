@@ -184,7 +184,7 @@ function nav_admin_menu($label_id = "adminmenu") {
       nav_menu_group_end();
   } // endif masquerade / user_id
 
-      nav_menu_group_begin("(Land Agent Menu)",  "index.php");
+      nav_menu_group_begin("(Agent)",  "index.php");
       nav_menu_group_end();
 
       if ($r_admin) {
@@ -243,8 +243,6 @@ function nav_admin_menu($label_id = "adminmenu") {
     nav_menu_active_count("w/BONUSES",      "admin_bonus.php",        $count_group_bonus);
     nav_menu_active_count("w/COMPRESS",     "admin_compress.php",     $count_group_compress);
     nav_menu_active_count("w/KINGDOMS",     "admin_kingdom.php",      $count_group_kingdom);
-    nav_menu_active_count("PREREG",         "admin_prereg.php",       $count_people_prereg);
-    nav_menu_active_count("(dup PENN#)",    "admin_penndups.php",     "");
     nav_menu_active_count("HISTORY",        "admin_history.php",      "");
 
     nav_menu_group_end();
@@ -253,6 +251,9 @@ function nav_admin_menu($label_id = "adminmenu") {
     nav_menu_active_count("Fix Count",        "admin_prereg_count.php",   $count_unfixed_groups);
     nav_menu_active_count("Fix Orphans",      "admin_prereg_cleanup.php", $count_orphan_groups);
 
+    nav_menu_active_count("PREREG",         "admin_prereg.php",       $count_people_prereg);
+    nav_menu_active_count("(dup PENN#)",    "admin_penndups.php",     "");
+    
     nav_menu_active("COOPER Count",           "admin_cooper_count_registrations.php",  1);
   if ($w_admin) {
     nav_menu_active("COOPER Move",            "admin_cooper_move_tool.php",    1);
@@ -476,7 +477,7 @@ function nav_menu($label_id = "landmenu") {
   nav_menu_group_end();
 
   if ($r_admin) {
-      nav_menu_group_begin("(ADMIN SECTION)", "admin.php");
+      nav_menu_group_begin("(ADMIN)", "admin.php");
       nav_menu_group_end();
   } // endif admin
 

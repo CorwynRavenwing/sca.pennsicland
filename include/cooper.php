@@ -639,6 +639,7 @@ function load_preregistrations_by_search($search) {
       OR sca_name    LIKE '%$search%'
         ) AND group_name NOT LIKE ':%'
     ";
+// previous_group
 
   print "<!-- load_preregistrations_by_search SQL:\n$sql\n-->\n";
   $query = mysql_query($sql)
@@ -647,11 +648,13 @@ function load_preregistrations_by_search($search) {
   while ($result = mysql_fetch_assoc($query)) {
 
     $rec = array(
-      "id"    => $result['penn_number'],
-      "first_name"  => $result['first_name'],
-      "last_name"  => $result['last_name'],
-      "sca_name"  => $result['sca_name'],
-      "group_name"  => $result['group_name'],
+      "id"             => $result['penn_number'],
+      "first_name"     => $result['first_name'],
+      "last_name"      => $result['last_name'],
+      "sca_name"       => $result['sca_name'],
+      "group_name"     => $result['group_name'],
+// previous_group
+// previous_group
       "cooper_data_id" => $result['cooper_data_id'],
     );
 
@@ -711,11 +714,12 @@ function load_preregistrations_by_group_name($group_name) {
     # show_elapsed_time();
     # print("-:1");  ob_flush();  # debug
     $rec = array(
-      "id"    => $id,
-      "first_name"  => $first,
-      "last_name"  => $last,
-      "sca_name"  => $sca,
-      "group_name"  => $group_name,
+      "id"             => $id,
+      "first_name"     => $first,
+      "last_name"      => $last,
+      "sca_name"       => $sca,
+      "group_name"     => $group_name,
+      "previous_group" => "N/A",
       "cooper_data_id" => "0",
     );
 
