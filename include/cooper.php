@@ -630,16 +630,17 @@ function load_preregistrations_by_search($search) {
 
   $search = mysql_real_escape_string($search);
 
-  $sql = "SELECT cooper_data_id, penn_number, group_name, first_name, last_name, sca_name
+  $sql = "SELECT cooper_data_id, penn_number, group_name, previous_group, first_name, last_name, sca_name
     FROM cooper_data
-    WHERE (    penn_number LIKE  '$search%'
-      OR group_name  LIKE '%$search%'
-      OR first_name  LIKE '%$search%'
-      OR last_name   LIKE '%$search%'
-      OR sca_name    LIKE '%$search%'
-        ) AND group_name NOT LIKE ':%'
+    WHERE (    penn_number    LIKE  '$search%'
+            OR group_name     LIKE '%$search%'
+            OR previous_group LIKE '%$search%'
+            OR first_name     LIKE '%$search%'
+            OR last_name      LIKE '%$search%'
+            OR sca_name       LIKE '%$search%'
+         ) AND group_name NOT LIKE ':%'
+    ORDER BY group_name, previous_group
     ";
-// previous_group
 
   print "<!-- load_preregistrations_by_search SQL:\n$sql\n-->\n";
   $query = mysql_query($sql)
@@ -653,8 +654,7 @@ function load_preregistrations_by_search($search) {
       "last_name"      => $result['last_name'],
       "sca_name"       => $result['sca_name'],
       "group_name"     => $result['group_name'],
-// previous_group
-// previous_group
+      "previous_group" => $result['previous_group'];
       "cooper_data_id" => $result['cooper_data_id'],
     );
 
