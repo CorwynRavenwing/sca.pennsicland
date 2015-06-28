@@ -654,7 +654,7 @@ function load_preregistrations_by_search($search) {
       "last_name"      => $result['last_name'],
       "sca_name"       => $result['sca_name'],
       "group_name"     => $result['group_name'],
-      "previous_group" => $result['previous_group'];
+      "previous_group" => $result['previous_group'],
       "cooper_data_id" => $result['cooper_data_id'],
     );
 
