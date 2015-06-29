@@ -20,7 +20,6 @@ nav_right_begin();
 $id         = @$_GET['id'];
 $group_name = @$_GET['group'];
 $search     = @$_GET['search'];  $search     = trim( $search );
-// $del        = @$_GET['del'];
 
 if (! $group_name) {
   if ($id) {
@@ -83,48 +82,6 @@ if (! $r_admin) {
   <?
 } else {
 
-  /*
-  if ($del) {
-    $sql = "UPDATE cooper_data
-            SET previous_group = group_name,
-                group_name = ':',
-                modified_date = modified_date
-            WHERE cooper_data_id = '$del'
-                  AND group_name <> ':'
-            LIMIT 1
-    ";
-
-    print("<h2 style='color:green'>Moving person #$del out of this group ... ");
-
-    $query = mysql_query($sql)
-        or die('Query failed: ' . mysql_error() . "<br/>\n$sql<br/>\nat file " . __FILE__ . " line " . __LINE__);
-
-    $group_name_safe = mysql_real_escape_string($group_name);
-
-    $num = mysql_affected_rows();
-    print(" $num people moved.</h2>\n");
-
-    $sql = "select count(*) as num from cooper_data where group_name = '$group_name_safe'";
-
-    $query = mysql_query($sql)
-        or die('Query failed: ' . mysql_error() . "<br/>\n$sql<br/>\nat file " . __FILE__ . " line " . __LINE__);
-
-    if ($result = mysql_fetch_assoc($query)) {
-      $num = $result['num'];
-    } else {
-      $num = 0;
-    }
-
-    $sql = "UPDATE land_groups
-            SET pre_registration_count = $num
-            WHERE group_name = '$group_name_safe'
-            LIMIT 1
-    ";
-
-    $query = mysql_query($sql)
-        or die('Query failed: ' . mysql_error() . "<br/>\n$sql<br/>\nat file " . __FILE__ . " line " . __LINE__);
-  } // endif del
-  */
   if ($search) {
     $prereg_list = load_preregistrations_by_search($search);
     ?>
@@ -147,11 +104,6 @@ if (! $r_admin) {
     <td>Group Name</td>
 
     <td>Previous Group</td>
-
-    <? /*
-    <td>Delete</td>
-    */ ?>
-
   </tr>
   <?
   $count = 0;
