@@ -81,7 +81,6 @@ if (! $r_admin) {
 </table>
   <?
 } else {
-
   if ($search) {
     $prereg_list = load_preregistrations_by_search($search);
     ?>
