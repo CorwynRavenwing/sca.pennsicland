@@ -474,7 +474,6 @@ function verify_password($input_password, $stored_password, $stored_salt) {
 function is_admin_rw_account($user_name) {
   switch (strtolower($user_name)) {
     case 'baronangus':    # angus kerr
-    case 'corwyn':        # corwyn ravenwing
     case 'dagmar':
     case 'emerson':       # g emerson true, L1 P33
     case 'evan':          # Evan
@@ -501,7 +500,8 @@ function is_admin_ro_account($user_name) {
     case 'caryl':         # Countess Caryl
     case 'corwyn':        # Corwyn Ravenwing readonly account
     case 'de_labarre':
-    case 'genoveva':
+    case 'genoveva':      # (name?) mapmaker
+    case 'jdc017':        # Dante, mapmaker
     case 'kegslayer':     # Gunther KegSlayer, L2 P44
   # case 'xyzzy':
       # print "IS ADMIN ACCOUNT ($user_name)<br />\n";

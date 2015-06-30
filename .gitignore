@@ -17,3 +17,8 @@ datafiles/*.csv
 
 # ignore contents of TEST/ directory
 TEST
+
+# ignore Word documents
+*.doc
+*.docx
+
