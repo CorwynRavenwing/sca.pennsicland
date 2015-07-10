@@ -55,6 +55,11 @@ if ($action == "Submit") {
 
     $redirect_to = @$_SERVER['HTTP_REFERER'];
 
+    if (strpos($redirect_to, 'login.php') !== FALSE) {
+      // if 'login.php' is the referrer, ignore it
+      $redirect_to = "";
+    }
+
     if (strpos($redirect_to, 'logout.php') !== FALSE) {
       // if 'logout.php' is the referrer, ignore it
       $redirect_to = "";
