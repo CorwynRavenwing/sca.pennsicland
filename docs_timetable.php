@@ -71,8 +71,14 @@ dt {font-weight:bold}
 
 </dl>
 
+<style>
+ol.doublespaced li {
+	margin-bottom: 0.5em;
+}
+</style>
+
 <h2>Land Agent Procedure Summary</h2>
-<ol>
+<ol class="doublespaced">
 
 <li>
 	Read all information on the Land pages, and look closely at the maps since the blocks
