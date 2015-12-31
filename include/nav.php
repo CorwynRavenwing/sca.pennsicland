@@ -486,8 +486,6 @@ function nav_menu($label_id = "landmenu") {
     nav_menu_active("Agents' Handbook",    "docs_handbook.php");
     nav_menu_active("Agent Procedures",    "docs_timetable.php");
     nav_menu_active("View Pennsic Maps",   "map.php", 1);
-  # nav_menu_active("Express Check-in",    "express.php");
-    nav_menu_active("EARLY CHECK-IN",      "http://pennsicwar.org/penn44/GENERAL/earlyin.html", 1);
 
   nav_menu_group_end();
 
@@ -496,7 +494,6 @@ function nav_menu($label_id = "landmenu") {
     nav_menu_active("Construction Projects",  "docs_const.php");
     nav_menu_active("Block Maps",             "map.php", 1);
     nav_menu_active("Single Campers",         "docs_singlecampers.php");
-    // Hide these two menu items, which point to last year [Corwyn P42]
     // nav_menu_active("Tent Rental Procedure",  "http://www.pennsicwar.org/penn41/GENERAL/deliveries.html", 1);
     // nav_menu_active("Tent Rental Companies",  "http://www.pennsicwar.org/penn41/GENERAL/tents.html", 1);
   nav_menu_group_end();
