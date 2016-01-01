@@ -51,44 +51,41 @@ Individuals, Groups, Royal Encampments</h1>
 <li>If you will not be camping with a group, please see the
 <a href="docs_singlecampers.php">Information for Single Campers</a>.
 <P>
-
 <li>All those who wish to camp in the designated Handicapped Camping area must
 <a href="http://www.cooperslake.com/prereg/account/" target="_blank">register with Cooper's Lake Campground</a>
 <b>by <?=$cooper_prereg_end_date?></b>, and also with the
 <a href="http://www.pennsicwar.org/<?=$link_for_main_website?>/DEPTS/disabled.html">Disabilities Camping Coordinator</a>.
 <p>
 <li>Those who are considering use of an RV must contact the Cooper's Lake Campground directly as the Land Office does not coordinate RV camping.
-
-
 <P>
 </ul>
 <br />
-<h3>Land Agents / Groups</h3>
+<h3>Groups / Land Agents</h3>
 <ul>
-<li>   Land Agents must have an e-mail account and Internet access; e-mail assures that all Land Agents on an assigned block can contact each other easily.
-
-<P>
 <li>   Groups must decide on ONE group name. (Please note that "Brotherhood of the Blade" and "Blade Brotherhood" would be regarded as two different group names.)
-<p>
+
+<li>Each group must have a Land Agent. Please see <a href="docs_handbook.php">A Handbook for Pennsic Land Agents</a> for information on being a Land Agent.
+
+<li>Land Agents must have an e-mail account and Internet access.  E-mail assures that all Land Agents on an assigned block can contact each other easily.
+
+<li>Land Agent contact information will not be posted to any public forum, but will be given to the other Land Agents in their assigned block and to members of the Pennsic staff if needed. 
 
 <li>All Land Agents will be <strong>expected and required</strong> to negotiate in good faith with the other Land Agents on their assigned block, via e-mail/the lnternet prior to arrival at Pennsic.
-<P>
-<li>Your contact information will not be posted to any public forum, but will be given to the other Land Agents in your assigned block and to members of the Pennsic staff if needed.
-Groups will have the option to "voluntarily reduce the size" of their land allotment in an effort to not be moved from their traditional land blocks. There is no guarantee that this reduction will put you in the block you want, but every effort will be taken to do this. See the instructions on the registration form.
-<p>
+
+<li>Should a block reach maximum capacity, groups will have the option to "voluntarily reduce the size" of their land allotment in an effort to not be moved from their traditional land blocks. There is no guarantee that this reduction will put you in the block you want, but every effort will be taken to do this.
+
 <li>All groups must have a Land Agent in residence for the entire Pennsic event to:
 
 <ol>
 <li>Negotiate for Land
 <li>Rope off the entire encampment perimeter
-<li>Be available to discuss problems, situations, and other land-related issues
+<li>Be available to discuss issues, situations, and other land-related issues
 with the Land Staff.
 </ol>
-<P>
+
 <li>
 Land that is not roped off or is unattended  will be considered abandoned. No &quot;ghost
 camps&quot; will be allowed.   In the case of an emergency that would leave the camp unattended, contact the Land Office.
-<P>
 
 
 <li>As always, the final placement of any and all land groups is at the sole discretion
@@ -98,8 +95,8 @@ of the Land Office.
 <h3>Royal Encampments</h3>
 
 In an effort to standardize, it is heavily suggested that all Royal Encampment Land Agents
-register their group as &quot;KINGDOM OF ______&quot;  (e.g.: Kingdom of the East,
-Kingdom of the Middle, etc.)  This makes it easier to find them   on an alphabetized list.
+register their group as &quot;Kingdom of ______&quot;  (e.g.: Kingdom of the East,
+Kingdom of Atlantia, etc.)  This makes it easier to find them on an alphabetized list.
 <P>
 People who will be camping in a Royal Encampment must use the official registered group name on their Individual pre-registration forms, under "Group Camping With."
 <P>
