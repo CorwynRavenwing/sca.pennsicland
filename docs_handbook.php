@@ -92,7 +92,7 @@ assignment. No seniority is given to specific locations within a block.
 on that block have signed off on an accurate map of their block and the map has been approved by the Land Staff.
  Land Agents will then receive passes which will allow vehicles on site so they may begin setting up.
 <P>
-<strong>Camp Authorization "Card:"</strong> In your Land Agent Block Assignment email there will be a Camp Authorization card
+<strong>Camp Authorization "Card":</strong> In your Land Agent Block Assignment email there will be a Camp Authorization card
  which must be posted at the main entrance of your encampment once it has received its approval sticker during the Land Grab process. This is required. You will be provided with a plastic
 baggie to keep the card dry. The card must be placed in an area that is easy for the Land Staff to see and gain
 access to if needed.
@@ -150,8 +150,7 @@ out to measure and to check that you have appropriately displayed your Camp Auth
 
 <P><li>
   Once your camp is set up, you can sit back and relax. You must be on premises for the duration of Pennsic.
-If there are problems or disputes, it is the Land Agent that the Land Staff will be talking with so you cannot set
-up, then go home, and then come back for the last week.
+If there are problems or disputes, it is the Land Agent that the Land Staff will be talking with; so you cannot set up, then go home, and then come back for the last week.
 </ol>
 </ol>
 
