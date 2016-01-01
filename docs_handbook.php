@@ -34,10 +34,10 @@ nav_right_begin();
 
 <h2>I. So, you are the Land Agent</h2>
 
-If you are reading this, it is because you volunteered to be the Land Agent (Harbinger), or someone talked you into the job
+If you are reading this, it is because you volunteered to be the Land Agent (Harbinger) for your group, or someone talked you into the job
  and you have not gone through the process of Land Allocation at the Pennsic War before.
 Hopefully, this handbook will be able to answer many of your questions and help you to successfully navigate
-through the sometimes smooth, sometimes rocky trip that Land Grab Day can be.
+through the Land Grab process.
 <P><strong>Even if you have been a
 Land Agent before, please review this handbook because some things may have changed or have been
 clarified.</strong>
@@ -47,11 +47,11 @@ clarified.</strong>
 <ol>
 <h3>1. Glossary of Terms</h3>
 <P>
-<strong>Land Agent:</strong>  Harbinger is a period term for this job. This is the person from each and every
-registered camping group who has agreed to be the person responsible for obtaining and saving land for their
+<strong>Land Agent:</strong> Harbinger is a period term for this job. This is the person from each and every
+registered camping group who has agreed to be the person responsible for obtaining and holding land for their
 friends and fellow campers. There should only be one person responsible for each encampment. This person is
 responsible for being at Pennsic from Land Grab Day until the end of Pennsic. The Land Agents are the people
-whom Land Staff will contact if there are any problems. Because you are the Land Agent you cannot leave the
+whom Land Staff will contact if there are any questions, issues or concerns. Because you are the Land Agent you cannot leave the
 site after you have negotiated the land, signed off on the map and set up your stuff. You may make town runs
 when you are set up, but remember, you must be in residence for the entire two week Pennsic event.
 <P>
@@ -68,7 +68,7 @@ number is then used for the pre-registration process.
 <P>
 <strong>Land Allotment:</strong> This process is done after the Pennsic pre-registration cut off date.  The final
 numbers are tabulated by the Land Staff and the exact square footage for each encampment is determined (# of
-Pre-Reg Campers x 250 sq ft).
+Pre-Reg Campers x 250 sq ft each).
   Your group will be allotted 250 sq. ft. per pre-registered adult, child, and infant. You cannot pre-register any
 "ghost" children and infants. Any abuse of this rule will be dealt with harshly. Once the final determination of square
 footage is made, the Land Staff sits down and goes through the process of finding a place for each group trying to match
@@ -79,9 +79,9 @@ footage is made, the Land Staff sits down and goes through the process of findin
 information for the other Land Agents on their assigned block. This notification will also contain,
 where applicable, single camper space that will be included in your block. Prior to arrival at Land Grab,
 it is up to the Land Agents to negotiate the exact placement of their encampments and any single camper
-pace within the borders of the assigned blocks. If this is done before all of the Land Agents arrive at
- Pennsic, Land Grab Day will go much faster.
-
+space within the borders of the assigned blocks. If this is done before all of the Land Agents arrive at
+Pennsic, Land Grab Day will go much faster.
+<P>
 <strong>Seniority:</strong>  Each year that a group camps on the same block, it will earn a year of seniority on
 that block. Groups are assigned to a block based on their years of seniority. Seniority applies only to the block
 assignment. No seniority is given to specific locations within a block.
@@ -92,8 +92,8 @@ assignment. No seniority is given to specific locations within a block.
 on that block have signed off on an accurate map of their block and the map has been approved by the Land Staff.
  Land Agents will then receive passes which will allow vehicles on site so they may begin setting up.
 <P>
-<strong>Camp Authorization "Card:"</strong> In your Land Agent check-in packet there will be a Camp Authorization card
- which must be posted at the main entrance of your encampment. This is required. You will be provided with a plastic
+<strong>Camp Authorization "Card:"</strong> In your Land Agent Block Assignment email there will be a Camp Authorization card
+ which must be posted at the main entrance of your encampment once it has received its approval sticker during the Land Grab process. This is required. You will be provided with a plastic
 baggie to keep the card dry. The card must be placed in an area that is easy for the Land Staff to see and gain
 access to if needed.
 
@@ -104,11 +104,11 @@ access to if needed.
 <ol style="list-style-type:upper-alpha">
 <li>
 You must register your group on the <a href="index.php">Pennsic Land Office webpage</a>.
-All Land Agents are required to have web access and a working e-mail account.
+<strong>All Land Agents are required to have web access and a working e-mail account.</strong>
 <P>
-<li>You should be in touch with all of the people who are camping with your group, and have contact information
+<li>You should be in contact with all of the people who are camping with your group, and have contact information
 for all of them.  Inform them of the exact group name you have registered, so they can put it down when
-they pre-register. Tell them to send you their Pennsic pre-registration numbers (PENN number).
+they pre-register.
 <P>
 <li>On a regular basis, you should monitor your Land Agent account to see who has pre-registered for your camp so
 you can: a) remind those who should be registered to do so; and b) identify people who may have chosen the wrong camp.
@@ -125,18 +125,14 @@ according to your group's requests, availability of land, group seniority, etc. 
 of the other Land Agents for the block and their email addresses. Pre-Pennsic negotiations can start for final
 placement of each camp on the block. If Land Staff has determined that your block also contains single camper space,
 it will be noted, and you will be responsible for marking this area on your block map. If you are camping on the same
-block and with the same neighbors as last year, this can be a very painless and easy process.
+block and with the same neighbors as last year, this can be a very easy process.
 <P>
 <li>
-The next step is to arrive at the site on time, Friday evening or at the latest, Saturday morning of Land Grab.
-Remember to check in at Troll before coming to the <span style="color:blue">Great Hall on N01</span>
-to check in with Land Staff. There will be tables in the
-<span style="color:blue">Great Hall</span> for Land Agents to check in upon arrival starting at noon on Friday.
+The next step is to arrive at the site on time, the Friday of Land Grab at a time mutually convenient to all the Land Agents on your assigned block. Land Grab starts Friday morning at 9:00 am.
 
-<!-- deleted per Magdalena P44
-There will be a meeting on Saturday morning at 9:00 am at the <span style="color:blue">Great Hall</span>.
-At that time, any final instructions will be passed from the Land Staff to the Land Agents.
--->
+Remember to check in at Troll before coming to the Great Hall on N01
+to check in with Land Staff. There will be tables in the
+Great Hall for Land Agents to check in upon arrival starting at 9:00 am on Friday.
 
 <p>
 <li>
@@ -227,45 +223,53 @@ sign a copy of the map and get that signed by a Land Staff representative on the
 <h2>V. Arrival at the Pennsic site</h2>
 
 <ol>
-<li><h3 style="margin-bottom:0">  You should plan to arrive on the site sometime after noon on Friday. </h3>
+<li><h3 style="margin-bottom:0">  You should plan to arrive on the site sometime after 9:00 am on Friday. </h3>
 <ol style="list-style-type:lower-alpha">
-<li>  You will not be allowed onto the grounds before noon on Friday.
-<li>  You will not be allowed to camp anywhere until Friday night and then only on the battlefield,
-      <span style="color:blue; font-weight:bold">unless you are participating in the
-      <a href="http://pennsicwar.org/penn44/GENERAL/earlyin.html" target="_blank">Early In program</a>.</span>
-<li>  No facilities are available until Friday.
+<li>  You will not be allowed onto the grounds before 9:00 am on Friday
+<li>  You will not be allowed to park on the Battlefield before 9:00 am on Friday
+<li>  No facilities are available until 9:00 am on Friday.
 <li>  There is a lot of work to be done by a lot of people, on the Pennsic and Cooper's Staff.
 The more time they have to prepare without other people underfoot, the better.
 <li>  The campground is not open before Land Grab.
 </ol>
 
 <P>
-<li><h3 style="margin-bottom:0">  What can I do on Friday afternoon?</h3>
+<li><h3 style="margin-bottom:0">  What can I do on Friday after 9:00 am of Land Grab?</h3>
 <ol style="list-style-type:lower-alpha">
-<li>  After you have checked in at the gate (Troll) you may set up a very temporary camp on the battlefield/parking lot.
-<li>  Land office is open noon to midnight. Come to the Land Office at the <span style="color:blue">Great Hall</span> to check-in, pick up your final land packet.
+<li>  Check in at the gate (Troll)
+<li>  Land office is open 9:00 am to 11:00 pm. Come to the Land Office at the Great Hall to check-in.
+Bring your completed Camping Authorization Form and Block Map, and pick up any additional information pertinent to your block.
 <li>  You can leave messages at the Land Office for other Land Agents on your block and find out who has already checked in.
 </ol>
 
 <P>
 <li><h3 style="margin-bottom:0">   What do I do on Saturday morning of Land Grab?</h3>
 <ol style="list-style-type:lower-alpha">
-<li>  All Land Agents who didn't arrive on Friday before midnight must check in with the Land Office which will open promptly at 6:00 am
 <li>  Find all of the Land Agents from your block.
 <li>  Final negotiations within a block should not start until all Land Agents from that block are present.
 <li>  If you have negotiated ahead of time and have all agreed to a specific block map then your final negotiations will be easy!
+<li>  Once negotiations are complete, it is time to finalize your map, have it approved by the Land Office, receive your Camping Authorization Form sticker, and vehicle passes.
 </ol>
 <P>
 <li><h3 style="margin-bottom:0">  Reasons to be on time:</h3>
 <ol style="list-style-type:lower-alpha">
 <li>  Do your best to check in on Friday. Late Land Agents make their Land Agent block mates nervous, since final negotiations cannot start until everyone is there.
-<li>  Arrive at the <span style="color:blue">Great Hall</span> on Saturday well before 9:00 am. Late Land Agents make their Land Agent block mates nervous since final negotiations cannot start until everyone is there.
+</ol>
+<P>
+<li><h3 style="margin-bottom:0">   What do I do on Saturday morning of Land Grab?</h3>
+<ol style="list-style-type:lower-alpha">
+<li>  All Land Agents who didn't arrive on Friday before 11:00 pm must check in with the Land Office which will open promptly at 8:00. Bring your completed Camping Authorization Form and Block Map, and pick up any additional information pertinent to your block.
+<li>  Find all of the Land Agents from your block.
+<li>  You can leave messages at the Land Office for other Land Agents on your block and find out who has already checked in. 
+<li>  Final negotiations within a block should not start until all Land Agents from that block are present.
+<li>  If you have negotiated ahead of time and have all agreed to a specific block map then your final negotiations will be easy!
+<li>  Once negotiations are complete, it is time to finalize your map, have it approved by the Land Office, receive your Camping Authorization sticker, and vehicle passes.
 </ol>
 
 <li><h3 style="margin-bottom:0"> In case of emergency:</h3>
 <ol style="list-style-type:lower-alpha">
 <li>  Land Staff cannot, except in the case of extreme situations, negotiate land on your behalf.
-<li>  If you cannot be on site on Saturday morning, and did not designate a replacement Land Agent, the Land Office will negotiate on behalf of an absent Land Agent, once a set amount of time has elapsed. Please attempt to advise the Land Office so that they may better negotiate on your behalf. You may not get the block location you had planned for. Once finalized, the Land Office will not have Land Agents renegotiate for late Land Agents.
+<li>  If you cannot be on site by Saturday morning, and did not designate a replacement Land Agent or Proxy, the Land Office will negotiate on behalf of an absent Land Agent, once a set amount of time has elapsed. Please attempt to advise the Land Office so that they may better negotiate on your behalf. You may not get the block location you had planned for. Once finalized, the Land Office will not renegotiate for late Land Agents.
 </ol>
 
 </ol>
@@ -344,7 +348,7 @@ Note that single camper space is not required to be the 'best' land on a block, 
 <li><h3 style="margin-bottom:0">  On the day of Land Grab you must:</h3>
 
 <ol style="list-style-type:lower-alpha">
-<li>  Conspicuously post your Camping Authorization Form near the main entrance of your camp in a water proof container.
+<li>  Conspicuously post your Camping Authorization Form near the main entrance of your camp in a waterproof container.
 <li>  Clearly mark the boundaries of your camp.
 </ol>
 <p>
