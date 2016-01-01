@@ -60,8 +60,17 @@ Individuals, Groups, Royal Encampments</h1>
 <P>
 </ul>
 <br />
+
+<style>
+
+ol.doublespaced li {
+	margin-bottom: 0.5em;
+}
+
+</style>
+
 <h3>Groups / Land Agents</h3>
-<ul>
+<ul class="doublespaced">
 <li>   Groups must decide on ONE group name. (Please note that "Brotherhood of the Blade" and "Blade Brotherhood" would be regarded as two different group names.)
 
 <li>Each group must have a Land Agent. Please see <a href="docs_handbook.php">A Handbook for Pennsic Land Agents</a> for information on being a Land Agent.
