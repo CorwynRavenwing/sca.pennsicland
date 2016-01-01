@@ -30,18 +30,20 @@ nav_right_begin();
   template_param("user_message",    $user_message);    // NEED THIS VARIABLE
 
   $legal_name_str = ((!$user_id) ? "(not logged on)"  : ($legal_name ? $legal_name : "*NO*NAME*")  );
-  $group_name_str = ((!$user_id) ? "(NONE)"    : ($group_name ? $group_name : "*NONE*")  );
+  $group_name_str = ((!$user_id) ? "(NONE)"           : ($group_name ? $group_name : "*NONE*")     );
 
   template_param("legal_name_variable_string",  $legal_name_str );
-  template_param("groupname_variable_string",  $group_name_str );
-  template_param("motd",        $user_motd );
+  template_param("groupname_variable_string",   $group_name_str );
+  template_param("motd",                        $user_motd );
 
-  # Dates of LAND GRAB PREP FRIDAY and LAND GRAB SATURDAY should be calculated variables
-  $land_grab_friday   = "July 24th";
-  $land_grab_saturday = "July 25th";
+  # Dates of LAND GRAB PREP FRIDAY, LAND GRAB SATURDAY, and LAND_GRAB_SUNDAY should be calculated variables
+  $land_grab_friday   = "July 29, 2016";
+  $land_grab_saturday = "July 30, 2016";
+  $land_grab_sunday   = "July 31, 2016";
 
   template_param("land_grab_friday",   $land_grab_friday   );    # = pennsic_open
   template_param("land_grab_saturday", $land_grab_saturday );    # = +1
+  template_param("land_grab_sunday",   $land_grab_sunday   );    # = +2
 
   // COMPOSE MAIN PAGE MESSAGE:
   $main_page_message = "";
