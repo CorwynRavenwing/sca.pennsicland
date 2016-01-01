@@ -39,7 +39,7 @@ nav_right_begin();
 <li>Single campers are those individuals or families who are not camping with a registered group. People who arrive together may camp together.
 <p>
 <li>Single campers may camp in areas designated as single camper space.
-These are the un-used areas left after the pre-registered groups have established their borders.
+These are the unoccupied areas remaining after the pre-registered groups have established their borders.
 <P>
 <li>Single campers should not arrive before Sunday of Land Grab weekend.
 <P>
@@ -48,8 +48,8 @@ must have <a href="http://www.cooperslake.com/prereg/home/index.php">pre-registe
 <a href="index.php">Group Registration form</a>, using their SCA name as the &quot;Group&quot;
 name.  They will participate in the Land Grab process with the other Land Agents.<P>
 <P>
-<li>There will be maps at Troll and <strike>in the Map Tent</strike> <b>at Public Safety</b> indicating
-where the single camping areas are located.
+<li>There will be maps at <strong>Troll</strong>, <strong>Information Point</strong>,
+and <strong>at Public Safety</strong> indicating where the single camping areas are located.
 </ul>
 <P>
 If you have any other questions, contact the
