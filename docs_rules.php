@@ -63,7 +63,7 @@ Individuals, Groups, Royal Encampments</h1>
 
 <style>
 
-ol.doublespaced li {
+ul.doublespaced li {
 	margin-bottom: 0.5em;
 }
 
