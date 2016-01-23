@@ -49,7 +49,7 @@ While structures may add to the general ambiance of the Pennsic site, please be 
 <li>	Cooper’s Lake Campground Management and the appropriate Pennsic War Staff reserves the absolute right to order dismantled any construction projects which, in their judgment, are deemed unsafe, unsightly and/or pose an unacceptable risk of injury and/or property damage.
 </ol>
 
-If you have any questions, contact the
+If you have any other questions, contact the
 <a href="mailto:land&#064;pennsicwar.org">Land Staff</a>.
 
 </div>
