@@ -473,12 +473,9 @@ function verify_password($input_password, $stored_password, $stored_salt) {
 # SHOULD REALLY PUT THIS IN THE DATABASE [Corwyn 2007]
 function is_admin_rw_account($user_name) {
   switch (strtolower($user_name)) {
-    case 'baronangus':    # angus kerr
     case 'dagmar':
-    case 'emerson':       # g emerson true, L1 P33
-    case 'evan':          # Evan
-    case 'winterstar':    # Magdalena, L1 P44
-    case 'masterjohn':    # master john littleton
+    case 'emerson':       # g emerson true, L2 P45
+    case 'kegslayer':     # Gunther KegSlayer, L2 P44
     case 'ursus':         # Gaerwen
     case 'wharmon':       # corwyn ravenwing
       # print "IS ADMIN ACCOUNT ($user_name)<br />\n";
@@ -494,15 +491,15 @@ function is_admin_rw_account($user_name) {
 function is_admin_ro_account($user_name) {
   switch (strtolower($user_name)) {
     case 'aakin':         # aakin the mapmaker
-    case 'angusland':     # angus taylor
-    case 'barondevon':
-    case 'caradawc':
     case 'caryl':         # Countess Caryl
     case 'corwyn':        # Corwyn Ravenwing readonly account
-    case 'de_labarre':
+    case 'epickens':	  # Elizabeth epickens@gmail.com (training Land 2)
     case 'genoveva':      # (name?) mapmaker
     case 'jdc017':        # Dante, mapmaker
-    case 'kegslayer':     # Gunther KegSlayer, L2 P44
+    case 'kittie':	  # Annie. Annie Cothran Land Training
+    case 'masterjohn':    # master john littleton
+    case 'verymelm':	  # Verymelm Teri(training Land Secretary)
+
   # case 'xyzzy':
       # print "IS ADMIN ACCOUNT ($user_name)<br />\n";
       return 1;
@@ -513,6 +510,19 @@ function is_admin_ro_account($user_name) {
       return 0;
   } // end switch
 } // end function is_admin_ro_account
+
+/*
+former admin accounts that have been removed:
+
+    case 'baronangus':    # angus kerr
+    case 'evan':          # Evan
+    case 'winterstar':    # Magdalena, L1 P44
+
+    case 'angusland':     # angus taylor
+    case 'barondevon':
+    case 'caradawc':
+    case 'de_labarre':
+*/
 
 function is_admin_account($user_name) {
   die("call to obsolete function is_admin_account()" .
