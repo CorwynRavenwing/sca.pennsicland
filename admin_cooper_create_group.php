@@ -23,6 +23,7 @@ if (! $r_admin) {
   print "<h2>Your access level does not allow this action.</h2>\n";
 } else {
   # no template
+  setup_GS_url();
 ?>
 <h1>CREATE GROUP IN COOPER DATABASE</h1>
 
