@@ -1,5 +1,6 @@
 <?
 require_once("include/user.php");
+require_once("include/cooper.php");
 
 if (! $r_admin) {
   print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
