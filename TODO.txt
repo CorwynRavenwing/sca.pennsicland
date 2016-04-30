@@ -361,3 +361,16 @@ From PW40 notes:
 * Upon renaming a group, a new group should be created with the old name, Disapproved status, and the comment text "Group renamed to New-name on Rename-Date (PWnn) by Admin-name".
 * We should fill in any recent renames we can remember, with this kind of record.
 ================================================================================
+
+================================================================================
+P45 notes:
+* add a column in GROUPS called previous_userid or in HISTORY called userid.
+* during the yearly clear phase, update this data with the userid who registered the group.
+* during registration, have "register my normal group GROUPNAME" as the default, this succeeds automatically.
+* if instead they choose to create a group, this succeds automatically (modulo running through the group name approval process).
+* otherwise, if they select a different existing group to register, send an email to that group's prior userid and land1 telling them about it and asking permission.
+================================================================================
+* On the "prereg" page, on the table that is built for the campers in the group,
+  could you add a column showing if the registrations is for 1 week or 2 weeks?
+* possibly also a column for adult / child / infant ?
+================================================================================

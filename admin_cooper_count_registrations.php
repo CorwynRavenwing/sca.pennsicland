@@ -27,8 +27,8 @@ if (! $r_admin) {
 <h1>SHOW COUNT OF REGISTERED USERS</h1>
 
 <form action="http://www.cooperslake.com/prereg/land/land.php" method="post" name="coopersland" target="_self">
-	<input type="hidden" name="userid" value="angusland" />
-	<input type="hidden" name="password" value="kyle" />
+	<input type="hidden" name="userid"   value="<? echo $GS_userid; ?>" />
+	<input type="hidden" name="password" value="<? echo $GS_password; ?>" />
 	<b>Group Name:</b> <input type="text" name="arg1" value="" />
 	<input type="hidden" name="function" value="registered_count_by_group_name" />
 	<br />
