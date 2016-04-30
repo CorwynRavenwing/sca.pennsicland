@@ -1,3 +1,4 @@
+<!-- begin cooper.php -->
 <?php
 require_once("include/connect.php");
 require_once("include/block.php");
