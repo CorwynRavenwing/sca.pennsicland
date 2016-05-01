@@ -53,7 +53,7 @@ dt {font-weight:bold}
 <dt>July 22
 <dd>Deadline for Proxy requests
 
-<dt>Fri., July 29 (9:00 am – 11:00 pm)
+<dt>Fri., July 29 (9:00 am &mdash; 11:00 pm)
 <dd>Troll opens
 <dd>Land Agents start checking in with the Land Office (in the Great Hall on N01). Bring your completed Camping Authorization Form and Block Map, and pick up any additional information pertinent to your block. 
 <dd>Land Agents may finalize block negotiations with other Land Agents from their assigned block
@@ -62,10 +62,10 @@ dt {font-weight:bold}
 <dt>Sat., July 30 (8:00 am - 10:00 am)
 <dd>Land Office open for LATE ARRIVAL Land Agents to check in. Bring your completed Camping Authorization Form and Block Map, and pick up any additional information pertinent to your block.
 
-<dt>Sat., July 30 (10:00 am – 12:00 noon)
+<dt>Sat., July 30 (10:00 am &mdash; 12:00 noon)
 <dd>Blocks with unsettled negotiations are seen by Land Office staff for dispute resolution.
 
-<dt>Sun., July 31 (10:00 am – 6:00 pm)
+<dt>Sun., July 31 (10:00 am &mdash; 6:00 pm)
 <dd>Land distribution for single campers and those groups not pre-registered.
 <dd>Land Office open for assistance and questions.
 

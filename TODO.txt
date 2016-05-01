@@ -374,3 +374,60 @@ P45 notes:
   could you add a column showing if the registrations is for 1 week or 2 weeks?
 * possibly also a column for adult / child / infant ?
 ================================================================================
+Greetings,
+
+
+Sure, we can discuss that.
+
+A) Block Map for assigned block:
+        not too difficult.
+B) Camp auth form:
+        where would that want to link to?
+        Also not too difficult.
+C) Gas Line waiver, only on such blocks:
+        you're right, the correct thing to do would be to put a "gas line?" yes/no flag on the block table.
+        I will need from you a list of those blocks, seeing as how there's no block-editing tool, so I'll have to do it.
+        I'll also need to know what to link this to as well.
+
+For all of these:
+        I will need the text you want each of the links to display, e.g. "Download Block Map".
+
+Regarding moving the website to somewhere else, I would need to hear where "somewhere else" is, and investigate whether it will work there.  The easiest way to do that would be to try setting it up there and verify if it works.  Sir Edward has been handling the DNS records, so I would need to know whether that is moving to somewhere else as well, and if so, where?  The database shouldn't have to move, seeing as how it is hosted on db.sca.org -- and the last time I spoke to them they said that there shouldn't be a problem with hosting the website on an sca.org owned device, but I didn't pursue that.  What is the impetus behind the move?
+
+And regarding read access to the database, since it's hosted elsewhere I don't have the power to do that.  The db admins would need to create such an account for us.  I thought I had asked them for one and passed it on to you, but maybe that got interrupted somehow.  I'll look through my notes and if not, I'll contact them again.
+
+- Corwyn
+---------- Original Message ----------
+From: Land One Pennsic War <pennsic.land1@gmail.com>
+To: Corwyn Ravenwing <oakenraven@juno.com>, Corwyn Ravenwing <landweb@pennsicwar.org>
+Subject: Land Allotment Email
+Date: Wed, 16 Mar 2016 14:53:45 -0500
+
+I was wondering if we could discuss adding links to download 
+forms in the email that goes out for Land allotment.
+
+The links would be
+A.)Download the Current Map they are assigned to
+B.)Camp authorization form (same for everyone)
+C.)if the block has the gas line through it send the link for the Gas waiver
+
+is there a flag we can set on the maps that have gas lines through them.
+Do we have to upload the maps or create a table for maps that we can assign a flag to?
+
+I'm looking for your input on this to make it easy for everyone. 
+Including the future.
+
+Speaking of the future I was wondering if you had any input and idea's regarding moving and updating the Land hosting and DB.
+the Mayor has approached me about alternate solutions and I thought you would be the person to talk to.
+
+Also I'm still interested in looking at the table layout and DB structure of the Land DB. 
+you said it's a MYSQL based system I was wondering if you could get me view rights to the DB.
+
+
+Thank You
+ 
+-- 
+Sir Gunther KegSlayer
+Deputy Mayor Zoning & Planning (Land)
+Pennsic 45
+================================================================================
