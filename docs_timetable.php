@@ -48,7 +48,7 @@ dt {font-weight:bold}
 <dd>Final date to access/update information on the Group Land Registration Page
 <dt>July 7
 <dd>Land assignments are sent to Land Agents
-<dt>July 7 - 29
+<dt>July 7 &mdash; 29
 <dd>Land Agents negotiate group placement on their assigned block
 <dt>July 22
 <dd>Deadline for Proxy requests
@@ -59,7 +59,7 @@ dt {font-weight:bold}
 <dd>Land Agents may finalize block negotiations with other Land Agents from their assigned block
 <dd>Land Agents from the same block with finalized block maps may assemble as a group and complete the Land Grab process
 
-<dt>Sat., July 30 (8:00 am - 10:00 am)
+<dt>Sat., July 30 (8:00 am &mdash; 10:00 am)
 <dd>Land Office open for LATE ARRIVAL Land Agents to check in. Bring your completed Camping Authorization Form and Block Map, and pick up any additional information pertinent to your block.
 
 <dt>Sat., July 30 (10:00 am &mdash; 12:00 noon)
@@ -113,7 +113,7 @@ ol.doublespaced li {
 	Bring your completed Camping Authorization Form and Block Map.
 	Once you have checked in with the Land Office, you may walk your land and talk to the
 	Land Agents from your block. The Land Office will be open
-	Friday, July 29, 2016 from 9:00 am until 11:00 pm and on Saturday, July 30 from 8:00 am - 6:00 pm.
+	Friday, July 29, 2016 from 9:00 am until 11:00 pm and on Saturday, July 30 from 8:00 am &mdash; 6:00 pm.
 	<b>You must check in with Troll and the Land Office by 10:00 am on Saturday.</b>
 </li>
 
