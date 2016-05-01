@@ -22,7 +22,7 @@ nav_right_begin();
 $cooper_prereg_end_date = "June 9th";
 $handicap_camp_end_date = "June 3rd";
 
-$link_for_main_website = "penn43";
+$link_for_main_website = "penn" . $pennsic_number;
 ?>
 
 <!-- FreeFind Keywords Words="land rules square feet footage allocation allotment allottment" Count="5" -->
@@ -55,7 +55,7 @@ Individuals, Groups, Royal Encampments</h1>
 <li>All those who wish to camp in the designated Handicapped Camping area must
 <a href="http://www.cooperslake.com/prereg/account/" target="_blank">register with Cooper's Lake Campground</a>
 <b>by <?=$cooper_prereg_end_date?></b>, and also with the
-<a href="http://www.pennsicwar.org/<?=$link_for_main_website?>/DEPTS/disabled.html">Disabilities Camping Coordinator</a> by <b><?=$handicap_camp_end_date?></b>.
+<a href="http://www.pennsicwar.org/<?=$link_for_main_website?>/DEPTS/disabled.html">Disabilities Camping Coordinator</a> at email address <a href="mailto:pennsic.disability@gmail.com">pennsic.disability@gmail.com</a> by <b><?=$handicap_camp_end_date?></b>.
 <p>
 <li>Those who are considering use of an RV must contact the Cooper's Lake Campground directly as the Land Office does not coordinate RV camping.
 <P>
