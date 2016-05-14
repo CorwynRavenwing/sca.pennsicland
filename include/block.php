@@ -9,15 +9,15 @@ function block_list($allow_reserved = 0, $allow_hidden = 0) {
 		";
 	$where_clause_array = array();
 	if (! $allow_hidden) {
-	    array_push($where_clause_array, "hide != '1'");
+		array_push($where_clause_array, "hide != '1'");
 	}
 	if (! $allow_reserved) {
-	    array_push($where_clause_array, "reserved != '1'");
+		array_push($where_clause_array, "reserved != '1'");
 	}
 	$where_clause = join(" AND ", $where_clause_array);
 	
 	if ($where_clause) {
-	    $sql .= "
+		$sql .= "
 		WHERE $where_clause
 		";
 	}
@@ -169,7 +169,7 @@ function block_record( $block_id ) {
 } // end function block_record
 
 function block_data( $block_id ) {
-	$sql = "SELECT campable_square_footage, used_space, has_changed, description
+	$sql = "SELECT campable_square_footage, used_space, has_changed, description, on_gas_line
 		FROM land_blocks
 		where block_id = '$block_id' ";
 	
@@ -182,16 +182,18 @@ function block_data( $block_id ) {
 		$total_footage	= $result['campable_square_footage'];
 		$used_footage	= $result['used_space'];
 		$has_changed	= $result['has_changed'];
-		$description		= $result['description'];
+		$description	= $result['description'];
+		$on_gas_line    = $result['on_gas_line'];
 	} else {
 		$total_footage	= "";
 		$used_footage	= "";
 		$has_changed	= "";
-		$description		= "";
+		$description	= "";
+		$on_gas_line    = "";
 	}
 	
 	mysql_free_result($query);							# delete query object
 	
-	return array($total_footage,$used_footage,$has_changed,$description);
+	return array($total_footage,$used_footage,$has_changed,$description,$on_gas_line);
 } // end function block_data
 ?>

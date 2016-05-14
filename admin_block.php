@@ -69,13 +69,13 @@ if (! $r_admin) {
   ?>
 <table border='1' id='$table_id'>
   <tr style='font-weight:bold' >
-    <td align='center'>Block<br />Name</td>        <? $columns++; ?>
-    <td align='center'>Campable<br /><?=$showing?></td>    <? $columns++; ?>
-    <td align='center'>Used<br /><?=$showing?></td>      <? $columns++; ?>
-    <td align='center'>Free<br /><?=$showing?></td>      <? $columns++; ?>
-          <td align='center' title='Number of groups with changed sizes'>Ch?</td>
-                    <? $columns++; ?>
-    <td align='center'>Block Description</td>      <? $columns++; ?>
+    <td align='center'>Block<br />Name</td>                                 <? $columns++; ?>
+    <td align='center'>Campable<br /><?=$showing?></td>                     <? $columns++; ?>
+    <td align='center'>Used<br /><?=$showing?></td>                         <? $columns++; ?>
+    <td align='center'>Free<br /><?=$showing?></td>                         <? $columns++; ?>
+    <td align='center' title='Number of groups with changed sizes'>Ch#</td> <? $columns++; ?>
+    <td align='center' title='Is this block on the gas line?'>Gas?</td>     <? $columns++; ?>
+    <td align='center'>Block Description</td>                               <? $columns++; ?>
   </tr>
   <?
   # roll up used space from landgroups to blocks, BEFORE creating new block object!
@@ -100,6 +100,8 @@ if (! $r_admin) {
   $sum_free_footage = 0;
   $sum_free_people  = 0;
 
+  $changed_span = "<span class='changed'>&nbsp;&nbsp;<b>$has_changed</b>&nbsp;&nbsp;</span>";
+
   foreach ($all_blocks as $block_id => $block_name) {
     $count++;
 
@@ -118,13 +120,13 @@ if (! $r_admin) {
       <?
     } // endif initial
 
-    list($total_footage,$used_footage,$has_changed,$description)
+    list($total_footage,$used_footage,$has_changed,$description,$on_gas_line)
       = block_data( $block_id );
 
     # calculate capacity for each block
     $total_people  = round($total_footage / $feet, 0);
 
-    $used_people  = round($used_footage / $feet, 0);
+    $used_people   = round($used_footage / $feet, 0);
 
     $free_footage  = $total_footage - $used_footage;
     $free_people   = round($free_footage / $feet, 0);
@@ -158,13 +160,11 @@ if (! $r_admin) {
         <?=$block_name?>
       </a>
     </td>
-    <td align='center'><?=($show_people  ? $total_people : $total_footage)?></td>
-    <td align='center'><?=($show_people  ? $used_people  : $used_footage )?></td>
-    <td align='center'><?=($show_people  ? $free_people  : $free_footage )?></td>
-    <td align='center'><?=( $has_changed ?
-  "<span class='changed'>&nbsp;&nbsp;<b>$has_changed</b>&nbsp;&nbsp;</span>"
-  : "no")?>
-    </td>
+    <td align='center'><?=($show_people ? $total_people : $total_footage)?></td>
+    <td align='center'><?=($show_people ? $used_people  : $used_footage )?></td>
+    <td align='center'><?=($show_people ? $free_people  : $free_footage )?></td>
+    <td align='center'><?=($has_changed ? $changed_span : "no"          )?></td>
+    <td align='center'><?=($on_gas_line ? "YES"         : "no"          )?></td>
     <td align='center' nowrap="nowrap"><?=$description?></td>
   </tr>
     <?

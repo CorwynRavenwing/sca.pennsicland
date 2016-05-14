@@ -35,6 +35,7 @@ if (! $r_admin) {
 <table border='1'>
 	<?
 	# print "Reading list of blocks: ";
+	$count = 0;
 	$prev_initial = "";
 	
 	foreach ($all_blocks as $block_id => $block_name) {
@@ -46,8 +47,8 @@ if (! $r_admin) {
 		$initial = strtoupper( array_shift( $chars ) );
 		
 		// blocks with these initials are completely skipped:
-		if ($inital == "D") { break; }
-		if ($inital == "O") { break; }
+		if ($initial == "D") { break; }
+		if ($initial == "O") { break; }
 		
 		if ($prev_initial != $initial) {
 			if ($prev_initial != "") {
