@@ -67,7 +67,7 @@ if (! $r_admin) {
     if ($cmd_alter) {
         $tablename = $cmd_alter;
         print "<h2>ALTER $tablename</h2>\n";
-        if ($override == "yes") {
+        if ($cmd_override == "yes") {
             print "<h3>OVERRIDE: EXECUTING SKIPPED COMMANDS</h3>\n";
         }
         $alter_file   = $data_dir . $tablename . "_alter.sql";
@@ -91,10 +91,10 @@ if (! $r_admin) {
             if (! $sql) {
                 // next loop
                 continue;
-            } elseif ( ($override != "yes") and (strpos($sql, "DROP COLUMN") !== false) ) {
+            } elseif ( ($cmd_override != "yes") and (strpos($sql, "DROP COLUMN") !== false) ) {
                 $count_skip++;
                 $res = "skipping DROP COLUMN command";
-            } elseif ( ($override != "yes") and (strpos($sql, "ADD KEY") !== false) ) {
+            } elseif ( ($cmd_override != "yes") and (strpos($sql, "ADD KEY") !== false) ) {
                 $count_skip++;
                 $res = "skipping ADD KEY command";
             } else {
