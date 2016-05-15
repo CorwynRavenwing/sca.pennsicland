@@ -36,12 +36,12 @@ if (! $r_admin) {
 	$block_name	= @$_REQUEST['block_name'];
 	$mark_sent	= @$_REQUEST['mark_sent'];
 	
-	  if ($action) {
+	if ($action) {
 	    if (! $w_admin) {
 		print "<h2>Your access level does not allow this action.</h2>\n";
 		$action = "";
 	    } // endif w_admin
-	  } // endif action
+	} // endif action
 
 	if ($action) {
 		# print "<h2>DEBUG: mark_sent = $mark_sent</h2>\n";
@@ -197,15 +197,15 @@ if (! $r_admin) {
 	$campable_feet = $block_record['campable_square_footage'];
 
 	#generate top of page template ( block information )
-	template_param("block_id",			$block_id );
-	template_param("block_name",			$block_record['block_name'] );
-	template_param("block_description",		$block_record['description'] );
+	template_param("block_id",					$block_id );
+	template_param("block_name",				$block_record['block_name'] );
+	template_param("block_description",			$block_record['description'] );
 	template_param("generate_neighbors",		$block_record['generate_neighbors'] );
 	template_param("campable_square_footage",	$campable_feet );
 
-	template_param("group_ids",			"'not set yet'" );
-	template_param("group_prereg",			"'not set yet'" );
-	template_param("exact_amount",			"'not set yet'" );
+	template_param("group_ids",					"'not set yet'" );
+	template_param("group_prereg",				"'not set yet'" );
+	template_param("exact_amount",				"'not set yet'" );
 
 	#generate the list for the match
 	$group_data = load_groups_by_final_location_in_match_order( $block_id );
@@ -232,8 +232,8 @@ if (! $r_admin) {
 		}
 		print("-->\n");
 		
-		$group_id		= $rec['group_id'];
-		$group_name		= $rec['group_name'];
+		$group_id			= $rec['group_id'];
+		$group_name			= $rec['group_name'];
 		$prereg_count		= $rec['pre_registration_count'];
 		$bonus_footage		= $rec['bonus_footage'];
 		$exact_land_amount	= $rec['exact_land_amount'];
@@ -253,8 +253,8 @@ if (! $r_admin) {
 		$staff_group		= $rec['staff_group']		? "yes" : "no";
 		$reserved_group		= $rec['reserved_group']	? "yes" : "no";
 		
-		$rep_name		= $rec['on_site_representative'];
-		$agent_id		= $rec['user_id'];
+		$rep_name			= $rec['on_site_representative'];
+		$agent_id			= $rec['user_id'];
 		
 		if ($agent_id) {
 			array_push($agent_ids, $agent_id);
@@ -461,8 +461,8 @@ if (! $r_admin) {
 	</tr>
 		";
 		
-		array_push($group_id_list,	"'" . $group_id			. "'");
-		array_push($pre_reg_list,	"'" . $prereg_count		. "'");
+		array_push($group_id_list,		"'" . $group_id				. "'");
+		array_push($pre_reg_list,		"'" . $prereg_count			. "'");
 		array_push($exact_amount_list,	"'" . $exact_land_amount	. "'");
 	} // next group_data
 	
@@ -562,14 +562,24 @@ if (! $r_admin) {
 </h4>
 		<?
 	}
+
+	?>
+
+<h4>Gas Line Variable, and Map, Auth, and Gasline Links:</h4>
+
+	<h5>on_gas_line: <?=$block_record['on_gas_line']?></h5>
+	<h5>map_link: <?=$block_record['map_link']?></h5>
+	<h5>auth_link: <?=$block_record['auth_link']?></h5>
+	<h5>gasline_link: <?=$block_record['gasline_link']?></h5>
 	
-	$group_ids	= join(",", $group_id_list	);
-	$pre_reg	= join(",", $pre_reg_list	);
-	$exact_amount	= join(",", $exact_amount_list	);
+	<?
+	$group_ids		= join(",", $group_id_list			);
+	$pre_reg		= join(",", $pre_reg_list			);
+	$exact_amount	= join(",", $exact_amount_list		);
 	?>
 	<script script type="text/javascript" language="javascript">
-		groupIdArray = new Array( <?=$group_ids?>	);
-		groupPreReg  = new Array( <?=$pre_reg?>		);
+		groupIdArray = new Array( <?=$group_ids?>		);
+		groupPreReg  = new Array( <?=$pre_reg?>			);
 		exactAmount  = new Array( <?=$exact_amount?>	);
 		
 		// now that body is loaded, call old body onload= code:

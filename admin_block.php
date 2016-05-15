@@ -100,8 +100,6 @@ if (! $r_admin) {
   $sum_free_footage = 0;
   $sum_free_people  = 0;
 
-  $changed_span = "<span class='changed'>&nbsp;&nbsp;<b>$has_changed</b>&nbsp;&nbsp;</span>";
-
   foreach ($all_blocks as $block_id => $block_name) {
     $count++;
 
@@ -153,6 +151,8 @@ if (! $r_admin) {
     # add used people and footage whether we are in an unlimited block or not:
     $sum_footage      += $used_footage;
     $sum_people       += $used_people;
+
+    $changed_span = "<span class='changed'>&nbsp;&nbsp;<b>$has_changed</b>&nbsp;&nbsp;</span>";
     ?>
   <tr class="<?=$class?>">
     <td align='center'>
