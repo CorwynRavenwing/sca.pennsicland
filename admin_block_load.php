@@ -21,14 +21,14 @@ if (! $r_admin) {
 	print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
 	print("<h2>Creating fake land_blocks.on_gas_line data</h2>\n");
-	execute_query("UPDATE land_blocks SET on_gas_line = 1 WHERE block_name = 'B02'");
-	execute_query("UPDATE land_blocks SET on_gas_line = 1 WHERE block_name = 'B03'");
-	execute_query("UPDATE land_blocks SET on_gas_line = 1 WHERE block_name = 'E05'");
-	execute_query("UPDATE land_blocks SET on_gas_line = 1 WHERE block_name = 'E07'");
-	execute_query("UPDATE land_blocks SET on_gas_line = 1 WHERE block_name = 'W11'");
-	execute_query("UPDATE land_blocks SET on_gas_line = 1 WHERE block_name = 'W13'");
-	execute_query("UPDATE land_blocks SET on_gas_line = 1 WHERE block_name = 'N17'");
-	execute_query("UPDATE land_blocks SET on_gas_line = 1 WHERE block_name = 'N19'");
+	execute_query("UPDATE land_blocks SET on_gas_line = '1' WHERE block_name = 'B02'");
+	execute_query("UPDATE land_blocks SET on_gas_line = '1' WHERE block_name = 'B03'");
+	execute_query("UPDATE land_blocks SET on_gas_line = '1' WHERE block_name = 'E05'");
+	execute_query("UPDATE land_blocks SET on_gas_line = '1' WHERE block_name = 'E07'");
+	execute_query("UPDATE land_blocks SET on_gas_line = '1' WHERE block_name = 'W11'");
+	execute_query("UPDATE land_blocks SET on_gas_line = '1' WHERE block_name = 'W13'");
+	execute_query("UPDATE land_blocks SET on_gas_line = '1' WHERE block_name = 'N17'");
+	execute_query("UPDATE land_blocks SET on_gas_line = '1' WHERE block_name = 'N19'");
 	print("<h2>Done.</h2>\n");
 } // endif admin
 
