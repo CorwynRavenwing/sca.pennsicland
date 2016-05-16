@@ -20,7 +20,7 @@ nav_right_begin();
 if (! $r_admin) {
 	print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
-	print("<h2>Creating fake land_blocks.on_gas_line</h2>\n");
+	print("<h2>Creating fake land_blocks.on_gas_line data</h2>\n");
 	execute_query("UPDATE land_blocks SET on_gas_line = 1 WHERE block_name = 'B02'");
 	execute_query("UPDATE land_blocks SET on_gas_line = 1 WHERE block_name = 'B03'");
 	execute_query("UPDATE land_blocks SET on_gas_line = 1 WHERE block_name = 'E05'");
@@ -40,7 +40,8 @@ nav_right_end();
 nav_end();
 
 function execute_query($sql) {
-	if (headers_sent()) { print "<!-- X(1) SQL:\n$sql\n-->\n"; }
+	# if (headers_sent()) { print "<!-- X(1) SQL:\n$sql\n-->\n"; }
+	if (headers_sent()) { print "<pre>SQL:\n$sql\n</pre>\n"; }
 	
 	$query = mysql_query($sql)
 		or die('Query failed: ' . mysql_error() . "<br/>SQL=$sql<br/>at file " . __FILE__ . " line " . __LINE__);
@@ -48,6 +49,10 @@ function execute_query($sql) {
 	if ($num = mysql_affected_rows()) {
 		?>
 <h2>A: Updated <?=$num?> rows</h2>
+		<?
+	} else {
+		?>
+<h2>A: No rows updated (<?=$num?>)</h2>
 		<?
 	} // endif num
 }
