@@ -945,6 +945,8 @@ function move_all_groups_to_first_choice() {
 
 # NEW FUNCTION CORWYN 2007
 function roll_up_used_space() {
+  global $pennsic_number;
+
   print "<!-- called roll_up_used_space() -->\n";
 
   $sql = "
@@ -990,7 +992,7 @@ function roll_up_used_space() {
       auth_link     = '$_SERVER[SERVER_NAME]/form_auth.txt',
       gasline_link  = IF(
                         on_gas_line='1',
-                        $_SERVER[SERVER_NAME]/form_gas_line.txt',
+                        '$_SERVER[SERVER_NAME]/form_gas_line.txt',
                         'N/A'
                       )
   ";
