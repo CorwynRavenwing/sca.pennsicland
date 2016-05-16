@@ -973,9 +973,34 @@ function roll_up_used_space() {
       group by final_block_location
     )
   ";
-  print "<!-- roll_up_used_space SQL 2:\n$sql\n-->\n";
+  print "<!-- roll_up_used_space SQL 2A:\n$sql\n-->\n";
   $query = mysql_query($sql)
     or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
+
+
+
+  $sql = "
+    update land_blocks
+    set
+      map_link      = CONCAT(
+                        '$_SERVER[SERVER_NAME]/maps/$pennsic_number/',
+                        block_name,
+                        '_L.pdf'
+                      ),
+      auth_link     = '$_SERVER[SERVER_NAME]/form_auth.txt',
+      gasline_link  = IF(
+                        on_gas_line='1',
+                        $_SERVER[SERVER_NAME]/form_gas_line.txt',
+                        'N/A'
+                      )
+  ";
+  print "<!-- roll_up_used_space SQL 2B:\n$sql\n-->\n";
+  $query = mysql_query($sql)
+    or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
+
+
+
+
 
   $sql = "
     update land_blocks
