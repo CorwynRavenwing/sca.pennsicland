@@ -993,7 +993,7 @@ function roll_up_used_space() {
       gasline_link  = IF(
                         on_gas_line='1',
                         '$_SERVER[SERVER_NAME]/form_gas_line.txt',
-                        'N/A'
+                        ''
                       )
   ";
   print "<!-- roll_up_used_space SQL 2B:\n$sql\n-->\n";

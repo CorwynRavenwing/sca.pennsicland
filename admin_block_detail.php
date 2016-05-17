@@ -565,12 +565,27 @@ if (! $r_admin) {
 
 	?>
 
-<h4>Gas Line Variable, and Map, Auth, and Gasline Links:</h4>
+<h4>Auth Form, Block Map, and Gas Line Links:</h4>
 
-	<h5>on_gas_line: <?=$block_record['on_gas_line']?></h5>
-	<h5>map_link: <?=$block_record['map_link']?></h5>
-	<h5>auth_link: <?=$block_record['auth_link']?></h5>
-	<h5>gasline_link: <?=$block_record['gasline_link']?></h5>
+	<b>Auth Form:
+		<a href="<?=$block_record['auth_link']?>" target="_blank">
+			<?=$block_record['auth_link']?>
+		</a>
+	</b>
+	<br />
+	<b>Block Map:
+		<a href="<?=$block_record['map_link']?>" target="_blank">
+			<?=$block_record['map_link']?>
+		</a>
+	</b>
+	<br />
+	<b>Gas Line:
+		(<?=$block_record['on_gas_line']?>)
+		<a href="<?=$block_record['gasline_link']?>" target="_blank">
+			<?=$block_record['gasline_link']?>
+		</a>
+	</b>
+	<br />
 	
 	<?
 	$group_ids		= join(",", $group_id_list			);
