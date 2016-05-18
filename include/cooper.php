@@ -985,14 +985,14 @@ function roll_up_used_space() {
     update land_blocks
     set
       map_link      = CONCAT(
-                        '$_SERVER[SERVER_NAME]/maps/$pennsic_number/',
+                        'http://$_SERVER[SERVER_NAME]/maps/$pennsic_number/',
                         block_name,
                         '_L.pdf'
                       ),
-      auth_link     = '$_SERVER[SERVER_NAME]/form_auth.txt',
+      auth_link     = 'http://$_SERVER[SERVER_NAME]/form_auth.txt',
       gasline_link  = IF(
                         on_gas_line='1',
-                        '$_SERVER[SERVER_NAME]/form_gas_line.txt',
+                        'http://$_SERVER[SERVER_NAME]/form_gas_line.txt',
                         ''
                       )
   ";
