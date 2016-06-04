@@ -147,6 +147,9 @@ $block_mail_merge_methods = array(
 	'block_name',
 	'free_space',
 	'generate_neighbors',
+	'map_link',
+	'auth_link',
+	'gasline_link',
 );
 
 # new version which doesn't use the database
