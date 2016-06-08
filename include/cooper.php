@@ -989,10 +989,10 @@ function roll_up_used_space() {
                         block_name,
                         '_L.pdf'
                       ),
-      auth_link     = 'http://$_SERVER[SERVER_NAME]/form_auth.txt',
+      auth_link     = 'http://$_SERVER[SERVER_NAME]/docs/form_auth.pdf',
       gasline_link  = IF(
                         on_gas_line='1',
-                        'http://$_SERVER[SERVER_NAME]/form_gas_line.txt',
+                        'http://$_SERVER[SERVER_NAME]/docs/form_gas_line.pdf',
                         ''
                       )
   ";
