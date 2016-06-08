@@ -7,7 +7,7 @@
 <h2>Maps Makefile</h2>
 
 <?
-$dir = "./";
+$dir = "45/";
 $pennsic_pdfs = array();
 $details_pdfs = array();
 
@@ -99,7 +99,7 @@ if (! is_dir($dir)) {
 */
 ?>
 
-<h3>Done.</h3>
+<h3>Done checking directory <?=$dir?>.</h3>
 
 </body>
 </html>
