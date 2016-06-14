@@ -29,7 +29,7 @@ if (! $r_admin) {
 
 # http://forums.devshed.com/mysql-help-4/create-table-php-strings-165919.html
 
-    $data_dir = "sql/";
+    $data_dir = "sql";
 
     global $create_table_pattern;
     $create_table_pattern = "` ";  // backtick, space
@@ -47,7 +47,7 @@ if (! $r_admin) {
     if ($cmd_ignore) {
         $tablename = $cmd_ignore;
         print "<h2>IGNORE $tablename</h2>\n";
-        $ignore_file  = $data_dir . $tablename . ".ign";
+        $ignore_file  = $data_dir . "/" . $tablename . ".ign";
         safe_put_contents($ignore_file, "IGNORE TABLE");
     }
 
@@ -70,7 +70,7 @@ if (! $r_admin) {
         if ($cmd_override == "yes") {
             print "<h3>OVERRIDE: EXECUTING SKIPPED COMMANDS</h3>\n";
         }
-        $alter_file   = $data_dir . $tablename . "_alter.sql";
+        $alter_file   = $data_dir . "/" . $tablename . "_alter.sql";
 
         $alter_table_data = safe_get_contents($alter_file);
         print "<table border=1>\n";
@@ -141,7 +141,7 @@ if (! $r_admin) {
     if ($cmd_scan) {
         $tablename = $cmd_scan;
         print "<h2>SCAN AS-BUILT $tablename</h2>\n";
-        $asbuilt_file = $data_dir . $tablename . "_asbuilt.sql";
+        $asbuilt_file = $data_dir . "/" . $tablename . "_asbuilt.sql";
         $asbuilt_data = get_create_sql($tablename);
         safe_put_contents($asbuilt_file, $asbuilt_data);
     }
@@ -149,8 +149,8 @@ if (! $r_admin) {
     if ($cmd_design) {
         $tablename = $cmd_design;
         print "<h2>DESIGN $tablename</h2>\n";
-        $design_file  = $data_dir . $tablename . "_design.sql";
-        $alter_file   = $data_dir . $tablename . "_alter.sql";
+        $design_file  = $data_dir . "/" . $tablename . "_design.sql";
+        $alter_file   = $data_dir . "/" . $tablename . "_alter.sql";
 
         $design_data = get_create_sql($tablename);
         safe_put_contents($design_file, $design_data);
@@ -160,9 +160,9 @@ if (! $r_admin) {
     if ($cmd_check) {
         $tablename = $cmd_check;
         print "<h2>CHECK $tablename</h2>\n";
-        $asbuilt_file = $data_dir . $tablename . "_asbuilt.sql";
-        $design_file  = $data_dir . $tablename . "_design.sql";
-        $alter_file   = $data_dir . $tablename . "_alter.sql";
+        $asbuilt_file = $data_dir . "/" . $tablename . "_asbuilt.sql";
+        $design_file  = $data_dir . "/" . $tablename . "_design.sql";
+        $alter_file   = $data_dir . "/" . $tablename . "_alter.sql";
 
         print "<table border=1 cellpadding=1>\n";
 
@@ -345,16 +345,16 @@ if (! $r_admin) {
 
         $tablename = $row[0];
 
-        $ignore_file  = $data_dir . $tablename . ".ign";
-        $asbuilt_file = $data_dir . $tablename . "_asbuilt.sql";
-        $design_file  = $data_dir . $tablename . "_design.sql";
+        $ignore_file  = $data_dir . "/" . $tablename . ".ign";
+        $asbuilt_file = $data_dir . "/" . $tablename . "_asbuilt.sql";
+        $design_file  = $data_dir . "/" . $tablename . "_design.sql";
 
         /*
         // clean up files that weren't chmod'ed:
         @chmod($ignore_file, 0666);
         @chmod($asbuilt_file, 0666);
         @chmod($design_file, 0666);
-        $alter_file   = $data_dir . $tablename . "_alter.sql";
+        $alter_file   = $data_dir . "/" . $tablename . "_alter.sql";
         @chmod($alter_file, 0666);
         */
 
