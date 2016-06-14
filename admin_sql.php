@@ -329,6 +329,8 @@ if (! $r_admin) {
         or die('Query 1 error:<br />' .mysql_error());
     $count = 0;
 
+    $design_files_used = array();
+
     print "<table border=1 cellpadding=1 cellspacing=0 width='100%'>\n";
     print "<tr style='background-color:silver; text-align:center; font-weight:bold;'>\n";
     print "<td>TABLE NAME</td>\n";
@@ -365,6 +367,10 @@ if (! $r_admin) {
         $design_exists  = file_exists($design_file);
         $design_size    = @filesize($design_file);
         $design_mtime   = @filemtime($design_file);
+
+        if ($design_exists) {
+            $design_files_used[ $design_file ]++;
+        }
 
         if ($ignore_exists) {
             print "<!-- ignore table $tablename -->\n";
@@ -463,6 +469,28 @@ if (! $r_admin) {
         // break;
     }
     print "<tr><td colspan=5 style='text-align:center'>Total of $count tables found</td></tr>\n";
+
+    // find any design files for non-existant tables
+    if ($dh = opendir($data_dir)) {
+      while (($file = readdir($dh)) !== false) {
+        $filename = $data_dir . "/" . $file;
+        print "DEBUG: filename $filename";
+        if ( filetype($filename) == "file" ) {
+          print " (filetype 'file')";
+          if (strpos($filename, '_design.sql') !== false) {
+            print " (design file)";
+            if (isset($design_files_used[ $filename ])) {
+              print " YES, IS IN ARRAY";
+            } else {
+              print " NO, IS NOT IN ARRAY";
+            }
+          }
+        }
+        print "<br/>\n";
+      }
+      closedir($dh);
+    } // endif dh
+
     print "</table>\n";
 } // endif admin
 
