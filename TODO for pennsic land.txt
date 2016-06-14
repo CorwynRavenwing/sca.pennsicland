@@ -17,16 +17,4 @@
 
 * help screens for every page that needs one
 
-
 ================
-
-* N03 subtract 900 usable feet
-* E11 subtract UNKNOWN size
-* N21 new map, possible new numbers, per Edward, pending devon's approval
-* N03 new map, per Angus, pending devon's approval
-
-*** SKIP ALL FOUR, PER DAGMAR
-
-Password for website
-hamilton
-edseznocue

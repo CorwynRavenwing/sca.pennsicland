@@ -403,22 +403,7 @@ To: Corwyn Ravenwing <oakenraven@juno.com>, Corwyn Ravenwing <landweb@pennsicwar
 Subject: Land Allotment Email
 Date: Wed, 16 Mar 2016 14:53:45 -0500
 
-I was wondering if we could discuss adding links to download 
-forms in the email that goes out for Land allotment.
-
-The links would be
-A.)Download the Current Map they are assigned to
-B.)Camp authorization form (same for everyone)
-C.)if the block has the gas line through it send the link for the Gas waiver
-
-is there a flag we can set on the maps that have gas lines through them.
-Do we have to upload the maps or create a table for maps that we can assign a flag to?
-
-I'm looking for your input on this to make it easy for everyone. 
-Including the future.
-
-Speaking of the future I was wondering if you had any input and idea's regarding moving and updating the Land hosting and DB.
-the Mayor has approached me about alternate solutions and I thought you would be the person to talk to.
+I was wondering if you had any input and idea's regarding moving and updating the Land hosting and DB. the Mayor has approached me about alternate solutions and I thought you would be the person to talk to.
 
 Also I'm still interested in looking at the table layout and DB structure of the Land DB. 
 you said it's a MYSQL based system I was wondering if you could get me view rights to the DB.
