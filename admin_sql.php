@@ -479,14 +479,12 @@ if (! $r_admin) {
           if (strpos($filename, '_design.sql') !== false) {
             print "DEBUG: filename $filename";
             print " (design file)";
-            if (isset($design_files_used[ $filename ])) {
-              print " YES, IS IN ARRAY";
-            } else {
-              print " NO, IS NOT IN ARRAY";
+            if (!isset($design_files_used[ $filename ])) {
+              print " TABLE DOES NOT EXIST";
             }
+            print "<br/>\n";
           }
         }
-        print "<br/>\n";
       }
       closedir($dh);
     } // endif dh
