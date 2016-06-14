@@ -369,7 +369,7 @@ if (! $r_admin) {
         $design_mtime   = @filemtime($design_file);
 
         if ($design_exists) {
-            $design_files_used[ $design_file ]++;
+            $design_files_used[ $design_file ] = 1;
         }
 
         if ($ignore_exists) {
@@ -470,14 +470,14 @@ if (! $r_admin) {
     }
     print "<tr><td colspan=5 style='text-align:center'>Total of $count tables found</td></tr>\n";
 
+    print "<tr><td colspan=5>";
     // find any design files for non-existant tables
     if ($dh = opendir($data_dir)) {
       while (($file = readdir($dh)) !== false) {
         $filename = $data_dir . "/" . $file;
-        print "DEBUG: filename $filename";
         if ( filetype($filename) == "file" ) {
-          print " (filetype 'file')";
           if (strpos($filename, '_design.sql') !== false) {
+            print "DEBUG: filename $filename";
             print " (design file)";
             if (isset($design_files_used[ $filename ])) {
               print " YES, IS IN ARRAY";
@@ -490,6 +490,7 @@ if (! $r_admin) {
       }
       closedir($dh);
     } // endif dh
+    print "</td></tr>";
 
     print "</table>\n";
 } // endif admin
