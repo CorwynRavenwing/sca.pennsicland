@@ -486,10 +486,14 @@ if (! $r_admin) {
       while (($file = readdir($dh)) !== false) {
         $filename = $data_dir . "/" . $file;
         if ( filetype($filename) == "file" ) {
+          // is a plain file
           if (strpos($filename, '_design.sql') !== false) {
+            // filename matches design file
             if (! isset($design_files_used[ $filename ])) {
+              // we didn't deal with this file above
 
-              $tablename = str_replace($file, '_design.sql', '');
+              $tablename = str_replace('_design.sql', '', $file);
+              $design_file = $filename;
 
               print "<tr>\n";
               
@@ -530,6 +534,10 @@ if (! $r_admin) {
       }
       closedir($dh);
     } // endif dh
+
+    if ($count) {
+      print "<tr><td colspan=5 style='text-align:center'>Total of $count tables missing</td></tr>\n";
+    }
 
     print "</table>\n";
 } // endif admin
