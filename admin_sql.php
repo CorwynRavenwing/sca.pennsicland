@@ -437,7 +437,7 @@ if (! $r_admin) {
             print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;";
             print "<a href='?scan=$tablename'>AS-BUILT</a>\n";
         } else {
-            print "<span style='color:grey;'>IGNORE</span>\n";
+            print "<span style='color:grey;'>IGNORE</span>&nbsp;";
             print "<a href='?view=$tablename'>VIEW</a>&nbsp;&nbsp;";
             print "<span style='color:grey;'>AS-BUILT</span>\n";
         }
@@ -525,7 +525,7 @@ if (! $r_admin) {
               print "<td>DOES NOT EXIST</td>\n";
 
               print "<td>\n";
-              print "<span style='color:grey;'>IGNORE</span>\n";
+              print "<span style='color:grey;'>IGNORE</span>&nbsp;";
               print "<span style='color:grey;'>VIEW</span>&nbsp;&nbsp;";
               print "<span style='color:grey;'>AS-BUILT</span>\n";
               print "</td>\n";
@@ -671,7 +671,7 @@ function elapsed_time_format($sec) {
 
     if ( $yr ) { $ret .= "$yr  yr  "; }
     if ( $mon) { $ret .= "$mon mon "; }
-    if ( $day) { $ret .= "$day dy  "; }
+    if ( $day) { $ret .= "$day dy\n"; }
     if ( $hr ) { $ret .= "$hr  hr  "; }
     if ( $min) { $ret .= "$min min "; }
     if ( $sec) { $ret .= "$sec sec "; }
