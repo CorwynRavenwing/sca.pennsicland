@@ -42,119 +42,129 @@ if (! $r_admin) {
     $cmd_design   = @$_GET['design'  ];
     $cmd_check    = @$_GET['check'   ];
     $cmd_alter    = @$_GET['alter'   ];
+    $cmd_create   = @$_GET['create'  ];
     $cmd_override = @$_GET['override'];
 
     if ($cmd_ignore) {
-        $tablename = $cmd_ignore;
-        print "<h2>IGNORE $tablename</h2>\n";
-        $ignore_file  = $data_dir . "/" . $tablename . ".ign";
-        safe_put_contents($ignore_file, "IGNORE TABLE");
+      $tablename = $cmd_ignore;
+      print "<h2>IGNORE $tablename</h2>\n";
+      $ignore_file  = $data_dir . "/" . $tablename . ".ign";
+      safe_put_contents($ignore_file, "IGNORE TABLE");
     }
 
     if ($cmd_view) {
-        $tablename = $cmd_view;
-        print "<h2>VIEW $tablename</h2>\n";
-        
-        print "<pre>" . get_create_sql($tablename) . "</pre>\n";
+      $tablename = $cmd_view;
+      print "<h2>VIEW $tablename</h2>\n";
+      
+      print "<pre>" . get_create_sql($tablename) . "</pre>\n";
 
-        print "<h3>\n";
-        print "<a href='?ignore=$tablename'>IGNORE</a>";
-        print "&nbsp;&nbsp;";
-        print "<a href='?scan=$tablename'>RE-LOAD AS-BUILT</a>\n";
-        print "</h3>\n";
+      print "<h3>\n";
+      print "<a href='?ignore=$tablename'>IGNORE</a>";
+      print "&nbsp;&nbsp;";
+      print "<a href='?scan=$tablename'>RE-LOAD AS-BUILT</a>\n";
+      print "</h3>\n";
+    }
+
+    if ($cmd_create) {
+      $tablename = $cmd_create;
+      print "<h2>CREATE $tablename</h2>\n";
+      
+      print "<h3>\n";
+      print "(write me)";
+      print "</h3>\n";
     }
 
     if ($cmd_alter) {
-        $tablename = $cmd_alter;
-        print "<h2>ALTER $tablename</h2>\n";
-        if ($cmd_override == "yes") {
-            print "<h3>OVERRIDE: EXECUTING SKIPPED COMMANDS</h3>\n";
-        }
-        $alter_file   = $data_dir . "/" . $tablename . "_alter.sql";
+      $tablename = $cmd_alter;
+      print "<h2>ALTER $tablename</h2>\n";
+      if ($cmd_override == "yes") {
+        print "<h3>OVERRIDE: EXECUTING SKIPPED COMMANDS</h3>\n";
+      }
+      $alter_file   = $data_dir . "/" . $tablename . "_alter.sql";
 
-        $alter_table_data = safe_get_contents($alter_file);
-        print "<table border=1>\n";
+      $alter_table_data = safe_get_contents($alter_file);
+      print "<table border=1>\n";
+      print "<tr>\n";
+      print "<td>Command</td>\n";
+      print "<td>Response</td>\n";
+      print "</tr>\n";
+
+      $alter_table_rows = explode("\n", $alter_table_data);
+
+      $count_change = 0;
+      $count_skip   = 0;
+      foreach ($alter_table_rows as $sql) {
         print "<tr>\n";
-        print "<td>Command</td>\n";
-        print "<td>Response</td>\n";
-        print "</tr>\n";
+        print "<td>$sql</td>\n";
+        print "<td>";
 
-        $alter_table_rows = explode("\n", $alter_table_data);
-
-        $count_change = 0;
-        $count_skip   = 0;
-        foreach ($alter_table_rows as $sql) {
-            print "<tr>\n";
-            print "<td>$sql</td>\n";
-            print "<td>";
-
-            if (! $sql) {
-                // next loop
-                continue;
-            } elseif ( ($cmd_override != "yes") and (strpos($sql, "DROP COLUMN") !== false) ) {
-                $count_skip++;
-                $res = "skipping DROP COLUMN command";
-            } elseif ( ($cmd_override != "yes") and (strpos($sql, "ADD KEY") !== false) ) {
-                $count_skip++;
-                $res = "skipping ADD KEY command";
-            } else {
-                $count_change++;
-                $res = "";
-
-                $query = mysql_query($sql)
-                    or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
-                
-                /*
-                // no values returned from these sql commands
-                while ($result = mysql_fetch_assoc($query)) {
-                    $res .= implode(" ", $result) . "\n";
-                }
-                */
-            
-                $res .= "Total of " . mysql_affected_rows() . " rows affected.";
-            }
-
-            print $res;
-            print "</td>\n";
-            print "</tr>\n";
-        }
-
-        print "</table>\n";
-
-        if ($count_change) {
-            // columns were changed.
-            print "<h3>Automatically recreating as-built file.</h2>\n";
-            $cmd_scan  = $tablename;    // fall through and do this also
-            $cmd_check = $tablename;    // fall through and do this also
-        } elseif ($count_skip) {
-            // NO columns were changed
-            // BUT there were skipped drop statements
-            print "<h3>\n";
-            print "<a href='?alter=$tablename&override=yes'>EXECUTE SKIPPED COMMANDS</a>\n";
-            print "</h3>\n";
+        if (! $sql) {
+          // next loop
+          continue;
+        } elseif ( ($cmd_override != "yes") and (strpos($sql, "DROP COLUMN") !== false) ) {
+          $count_skip++;
+          $res = "skipping DROP COLUMN command";
+        } elseif ( ($cmd_override != "yes") and (strpos($sql, "ADD KEY") !== false) ) {
+          $count_skip++;
+          $res = "skipping ADD KEY command";
         } else {
-            // no differences
-            print "<h3>Table as-built and design are the same.</h2>\n";
+          $count_change++;
+          $res = "";
+
+          $query = mysql_query($sql)
+            or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
+            
+          /*
+          // no values returned from these sql commands
+          while ($result = mysql_fetch_assoc($query)) {
+              $res .= implode(" ", $result) . "\n";
+          }
+          */
+        
+          $res .= "Total of " . mysql_affected_rows() . " rows affected.";
         }
+
+        print $res;
+        print "</td>\n";
+        print "</tr>\n";
+      }
+
+      print "</table>\n";
+
+      if ($count_change) {
+        // columns were changed.
+        print "<h3>Automatically recreating as-built file.</h2>\n";
+        $cmd_scan  = $tablename;    // fall through and do this also
+        $cmd_check = $tablename;    // fall through and do this also
+      } elseif ($count_skip) {
+        // NO columns were changed
+        // BUT there were skipped drop statements
+        print "<h3>\n";
+        print "<a href='?alter=$tablename&override=yes'>EXECUTE SKIPPED COMMANDS</a>\n";
+        print "</h3>\n";
+      } else {
+        // no differences
+        print "<h3>Table as-built and design are the same.</h2>\n";
+      }
     }
 
     if ($cmd_scan) {
-        $tablename = $cmd_scan;
-        print "<h2>SCAN AS-BUILT $tablename</h2>\n";
-        $asbuilt_file = $data_dir . "/" . $tablename . "_asbuilt.sql";
-        $asbuilt_data = get_create_sql($tablename);
-        safe_put_contents($asbuilt_file, $asbuilt_data);
+      $tablename = $cmd_scan;
+      print "<h2>SCAN AS-BUILT $tablename</h2>\n";
+      $asbuilt_file = $data_dir . "/" . $tablename . "_asbuilt.sql";
+      $asbuilt_data = get_create_sql($tablename);
+      safe_put_contents($asbuilt_file, $asbuilt_data);
     }
 
     if ($cmd_design) {
-        $tablename = $cmd_design;
-        print "<h2>DESIGN $tablename</h2>\n";
-        $design_file  = $data_dir . "/" . $tablename . "_design.sql";
-        $alter_file   = $data_dir . "/" . $tablename . "_alter.sql";
+      $tablename = $cmd_design;
+      print "<h2>DESIGN $tablename</h2>\n";
+      $design_file  = $data_dir . "/" . $tablename . "_design.sql";
+      $alter_file   = $data_dir . "/" . $tablename . "_alter.sql";
 
-        $design_data = get_create_sql($tablename);
-        safe_put_contents($design_file, $design_data);
-        safe_unlink($alter_file);
+      $design_data = get_create_sql($tablename);
+      safe_put_contents($design_file, $design_data);
+      safe_unlink($alter_file);
     }
 
     if ($cmd_check) {
@@ -188,39 +198,39 @@ if (! $r_admin) {
         $color2 = "lightblue";
         $prev = "";
         foreach($asbuilt_rows as $r) {
-            if (! $r) {
-                # next loop
-                continue;
-            }
+          if (! $r) {
+            # next loop
+            continue;
+          }
 
-            $pos = strpos($r, $create_table_pattern);
-            if ($pos !== false) {
-                $left = trim( substr($r, 0, $pos+1) );
-            #   $right = substr($r, $pos+1);
+          $pos = strpos($r, $create_table_pattern);
+          if ($pos !== false) {
+            $left = trim( substr($r, 0, $pos+1) );
+            # $right = substr($r, $pos+1);
+          } else {
+            $left = "";
+          }
+
+          $clean_r = trim($r, ",");
+
+          if ( in_array($r, $design_rows) ) {
+            # this row is also in the other table
+            $c = "";
+          } else {
+            if (isset($design_create_array[$left])) {
+              # this row has a matching $left
+              $c = "background-color:$color2;";
+              # no addition to alter_table_data here
             } else {
-                $left = "";
+              # no match
+              $c = "background-color:$color;";
+              $alter_table_data .=
+                "$alter_table_root DROP COLUMN $left;\n";
             }
+          }
 
-            $clean_r = trim($r, ",");
-
-            if ( in_array($r, $design_rows) ) {
-                # this row is also in the other table
-                $c = "";
-            } else {
-                if (isset($design_create_array[$left])) {
-                    # this row has a matching $left
-                    $c = "background-color:$color2;";
-                    # no addition to alter_table_data here
-                } else {
-                    # no match
-                    $c = "background-color:$color;";
-                    $alter_table_data .=
-                        "$alter_table_root DROP COLUMN $left;\n";
-                }
-            }
-
-            $asbuilt_data_color .= "<span style='$c'>$r</span><br/>\n";
-            $prev = $left;
+          $asbuilt_data_color .= "<span style='$c'>$r</span><br/>\n";
+          $prev = $left;
         }
 
         $design_data_color  = "";
@@ -470,25 +480,56 @@ if (! $r_admin) {
     }
     print "<tr><td colspan=5 style='text-align:center'>Total of $count tables found</td></tr>\n";
 
-    print "<tr><td colspan=5>";
+    $count = 0;   // start count over
     // find any design files for non-existant tables
     if ($dh = opendir($data_dir)) {
       while (($file = readdir($dh)) !== false) {
         $filename = $data_dir . "/" . $file;
         if ( filetype($filename) == "file" ) {
           if (strpos($filename, '_design.sql') !== false) {
-            print "DEBUG: filename $filename";
-            print " (design file)";
-            if (!isset($design_files_used[ $filename ])) {
-              print " TABLE DOES NOT EXIST";
+            if (! isset($design_files_used[ $filename ])) {
+
+              $tablename = str_replace($file, '_design.sql', '');
+
+              print "<tr>\n";
+              
+              print "<td valign='top' align='center'>$tablename</td>\n";
+              
+              print "<td>DOES NOT EXIST</td>\n";
+
+              print "<td>\n";
+              print "<span style='color:grey;'>IGNORE</span>\n";
+              print "<span style='color:grey;'>VIEW</span>&nbsp;&nbsp;";
+              print "<span style='color:grey;'>AS-BUILT</span>\n";
+              print "</td>\n";
+
+              $design_exists  = file_exists($design_file);
+              $design_size    = @filesize($design_file);
+              $design_mtime   = @filemtime($design_file);
+
+              print "<td>\n";
+              print "Scanned:\n";
+
+              print $design_size . "&nbsp;bytes\n";
+              print "<br/>\n";
+
+              $design_age = ($NOW - $design_mtime);
+              # print "NOW: $NOW<br/>TIME: $asbuilt_mtime<br/>\n";
+
+              print elapsed_time_format($design_age) . "\n";
+              print "</td>\n";
+
+              print "<td>\n";
+              print "<a href='?create=$tablename'>CREATE</a>\n";
+              print "</td>\n";
+
+              print "</tr>\n";
             }
-            print "<br/>\n";
           }
         }
       }
       closedir($dh);
     } // endif dh
-    print "</td></tr>";
 
     print "</table>\n";
 } // endif admin
