@@ -42,8 +42,8 @@ if (! $r_admin) {
     $cmd_design   = @$_GET['design'  ];
     $cmd_check    = @$_GET['check'   ];
     $cmd_alter    = @$_GET['alter'   ];
-    $cmd_create   = @$_GET['create'  ];
     $cmd_override = @$_GET['override'];
+    $cmd_create   = @$_GET['create'  ];
 
     if ($cmd_ignore) {
       $tablename = $cmd_ignore;
@@ -69,9 +69,32 @@ if (! $r_admin) {
       $tablename = $cmd_create;
       print "<h2>CREATE $tablename</h2>\n";
       
-      print "<h3>\n";
-      print "(write me)";
-      print "</h3>\n";
+      print "<table border=1>\n";
+      print "<tr>\n";
+      print "<td>Command</td>\n";
+      print "<td>Response</td>\n";
+      print "</tr>\n";
+
+      $sql = "CREATE TABLE " . $tablename . " (x char(1))";
+
+      print "<tr>\n";
+      print "<td>$sql</td>\n";
+      print "<td>";
+
+      $query = mysql_query($sql)
+        or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
+
+      $res = "";
+      $res .= "Total of " . mysql_affected_rows() . " rows affected.";
+
+      print $res;
+      print "</td>\n";
+      print "</tr>\n";
+      print "</table>\n";
+
+      print "<h3>Automatically recreating as-built file.</h2>\n";
+      $cmd_scan  = $tablename;    // fall through and do this also
+      $cmd_check = $tablename;    // fall through and do this also
     }
 
     if ($cmd_alter) {
@@ -329,8 +352,8 @@ if (! $r_admin) {
         print "</h3>\n";
     }
 
-        print "<br/>\n";
-        print "<br/>\n";
+    print "<br/>\n";
+    print "<br/>\n";
 
     // ========== BEGIN LIST OF TABLES ========== //
 
@@ -432,7 +455,7 @@ if (! $r_admin) {
                 $bgcolor = "pink";
             }
             */
-            print "Scanned:\n";
+            print "Scanned:&nbsp;";
 
             print $design_size . "&nbsp;bytes\n";
             print "<br/>\n";
@@ -512,7 +535,7 @@ if (! $r_admin) {
               $design_mtime   = @filemtime($design_file);
 
               print "<td>\n";
-              print "Scanned:\n";
+              print "Scanned:&nbsp;";
 
               print $design_size . "&nbsp;bytes\n";
               print "<br/>\n";
@@ -654,7 +677,7 @@ function elapsed_time_format($sec) {
     if ( $sec) { $ret .= "$sec sec "; }
     if (!$ret) { $ret .= "$sec sec "; }
 
-    return $ret;
+    return str_replace(' ', '&nbsp;', $ret);
 }
 
 function get_create_array($rows) {
