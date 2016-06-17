@@ -274,17 +274,12 @@ if (! $r_admin) {
                 continue;
             }
 
-            print("DEBUG: r: <b>$r</b> line " . __LINE__ . "<br/>\n");
-
             $pos = strpos($r, $create_table_pattern);
-            print("DEBUG: pos: <b>" . print_r($pos,true) . "</b> line " . __LINE__ . "<br/>\n");
             if ($pos !== false) {
               $left = trim( substr($r, 0, $pos+1) );
-              print("DEBUG: left: <b>$left</b> line " . __LINE__ . "<br/>\n");
             #   $right = substr($r, $pos+1);
             } else {
               $left = "";
-              print("DEBUG: left: <b>$left</b> line " . __LINE__ . "<br/>\n");
             }
 
             $clean_r = trim($r, ",");
@@ -326,7 +321,7 @@ if (! $r_admin) {
                     } else
                      {
                         # don't know what this is
-                        $c = "color:blue;";
+                        $c = "font-weight:bold;background-color:lightblue;";
                     }
                 }
             }
@@ -336,7 +331,6 @@ if (! $r_admin) {
             if (left_match($left, "CREATE TABLE")) {
               // previous column cannot be "create table x"
               $left = "";
-              print("<b>DEBUG: left: '$left' line " . __LINE__ . "</b><br/>\n");
             }
 
             $prev = $left;
@@ -673,7 +667,6 @@ function safe_unlink($file) {
     global $php_errormsg;
 
     if (file_exists($file)) {
-        # print "DEBUG: file $file exists: deleting<br/>\n";
         if (! unlink($file)) {
             die("can't unlink $file: $php_errormsg");
         }
