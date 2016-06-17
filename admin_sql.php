@@ -332,6 +332,13 @@ if (! $r_admin) {
             }
 
             $design_data_color .= "<span style='$c'>$r</span><br/>\n";
+
+            if (left_match($left, "CREATE TABLE")) {
+              // previous column cannot be "create table x"
+              $left = "";
+              print("<b>DEBUG: left: '$left' line " . __LINE__ . "</b><br/>\n");
+            }
+
             $prev = $left;
         }
 
