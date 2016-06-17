@@ -68,6 +68,9 @@ if (! $r_admin) {
     if ($cmd_create) {
       $tablename = $cmd_create;
       print "<h2>CREATE $tablename</h2>\n";
+
+      $asbuilt_file = $data_dir . "/" . $tablename . "_asbuilt.sql";
+      $asbuilt_exists = file_exists($asbuilt_file);
       
       print "<table border=1>\n";
       print "<tr>\n";
@@ -81,11 +84,16 @@ if (! $r_admin) {
       print "<td>$sql</td>\n";
       print "<td>";
 
-      $query = mysql_query($sql)
-        or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
-
       $res = "";
-      $res .= "Total of " . mysql_affected_rows() . " rows affected.";
+
+      if ($asbuilt_exists) {
+        $res .= "(table exists already)";
+      } else {
+        $query = mysql_query($sql)
+          or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
+
+        $res .= "Total of " . mysql_affected_rows() . " rows affected.";
+      }
 
       print $res;
       print "</td>\n";
@@ -266,19 +274,24 @@ if (! $r_admin) {
                 continue;
             }
 
+            print("DEBUG: r: <b>$r</b> line " . __LINE__ . "<br/>\n");
+
             $pos = strpos($r, $create_table_pattern);
+            print("DEBUG: pos: <b>" . print_r($pos,true) . "</b> line " . __LINE__ . "<br/>\n");
             if ($pos !== false) {
-                $left = trim( substr($r, 0, $pos+1) );
+              $left = trim( substr($r, 0, $pos+1) );
+              print("DEBUG: left: <b>$left</b> line " . __LINE__ . "<br/>\n");
             #   $right = substr($r, $pos+1);
             } else {
-                $left = "";
+              $left = "";
+              print("DEBUG: left: <b>$left</b> line " . __LINE__ . "<br/>\n");
             }
 
             $clean_r = trim($r, ",");
 
             if ( in_array($r, $asbuilt_rows) ) {
-                # this row is also in the other table
-                $c = "";
+              # this row is also in the other table
+              $c = "";
             } else {
 
                 if (isset($asbuilt_create_array[$left])) {
