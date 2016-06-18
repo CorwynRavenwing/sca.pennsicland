@@ -20,6 +20,7 @@ nav_right_begin();
 if (! $r_admin) {
 	print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
+	$count = 0;
 	echo "<h2>Land Variables</h2>\n";
 	echo "<ul>\n";
 	$var_list = variable_list();
@@ -29,10 +30,12 @@ if (! $r_admin) {
 		echo "    <ul>\n";
 		foreach ($data as $field => $value) {
 			echo "      <li>$field => $value</li>\n";
+			$count++;
 		}
 		echo "    </ul>\n";
 		echo "  </li>\n";
 	}
+	echo "  <li>Total of $count variables found</li>";
 	echo "</ul>\n";
 } // endif admin
 
