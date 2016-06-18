@@ -220,6 +220,8 @@ if (! $r_admin) {
 
         $alter_table_root = "ALTER TABLE `$tablename`";
         $alter_table_data = "";
+        $auto_inc = "AUTO_INCREMENT";
+        $prim_key = "PRIMARY KEY";
 
         $asbuilt_create_array = get_create_array($asbuilt_rows);
         $design_create_array  = get_create_array($design_rows);
@@ -284,6 +286,14 @@ if (! $r_admin) {
 
             $clean_r = trim($r, ",");
 
+            if (strpos($clean_r,$auto_inc) !== false) {
+              // does contain AUTO_INCREMENT ...
+              if (strops($clean_r,$prim_key) === false) {
+                // ... but does NOT contain PRIMARY KEY: add it
+                $clean_r = str_replace("$auto_inc", "$auto_inc $prim_key", $clean_r);
+              }
+            }
+
             if ( in_array($r, $asbuilt_rows) ) {
               # this row is also in the other table
               $c = "";
@@ -301,7 +311,7 @@ if (! $r_admin) {
                     } else
                      {
                         # don't know what this is
-                        $c = "color:blue;";
+                        $c = "font-weight:bold; background-color:lightblue;";
                     }
                 } else {
                     # no match
