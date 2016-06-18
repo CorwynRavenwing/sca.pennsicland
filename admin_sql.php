@@ -286,11 +286,11 @@ if (! $r_admin) {
 
             $clean_r = trim($r, ",");
 
-            if (strpos($clean_r,$auto_inc) !== false) {
+            if (stripos($clean_r,$auto_inc) !== false) {
               // does contain AUTO_INCREMENT ...
-              if (strops($clean_r,$prim_key) === false) {
+              if (stripos($clean_r,$prim_key) === false) {
                 // ... but does NOT contain PRIMARY KEY: add it
-                $clean_r = str_replace("$auto_inc", "$auto_inc $prim_key", $clean_r);
+                $clean_r = str_ireplace("$auto_inc", "$auto_inc $prim_key", $clean_r);
               }
             }
 
