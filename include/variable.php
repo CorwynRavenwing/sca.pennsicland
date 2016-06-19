@@ -157,7 +157,7 @@ function variable_next() {
 	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
 	
 	$sql = "
-		SELECT name
+		SELECT variable_name
 			 , (updated + delay) AS runtime
 		FROM land_variable
 		WHERE (updated + delay) < NOW()
@@ -172,9 +172,9 @@ function variable_next() {
 		or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
 
 	if ($result = mysql_fetch_assoc($query)) {
-		$next_var_name = $result['name'];
+		$next_var_name = $result['variable_name'];
 		$DEBUG_runtime = $result['runtime'];
-		print("DEBUG: variable_next() returned name '$name', runtime '$runtime'<br/>\n");
+		print("DEBUG: variable_next() returned name '$variable_name', runtime '$runtime'<br/>\n");
 		variable_queue($next_var_name);
 	} else {
 		$next_var_name = "";
