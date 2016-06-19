@@ -270,14 +270,11 @@ function variable_cron() {
 
 // Return a list of all variable names
 function variable_list() {
-
-	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
 	
 	$sql = "SELECT variable_name
 		FROM land_variable
+		ORDER BY variable_name
 		";
-	
-	print "<!-- variable_list SQL:\n$sql\n-->\n";
 	
 	$query = mysql_query($sql)
 		or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);

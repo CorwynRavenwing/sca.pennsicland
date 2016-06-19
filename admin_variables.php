@@ -21,8 +21,6 @@ if (! $r_admin) {
 	print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
 
-	variable_delete('count_users');
-	
 	variable_create('count_users',			3600,	'All existing users');
 	variable_create('count_logged_on',		  60,	'Users currently logged on');
 	variable_create('count_group',			3600,	'All existing groups');
@@ -42,6 +40,8 @@ if (! $r_admin) {
 	variable_create('count_people_prereg',	 600,	'Campers prereged');
 #	variable_create('xyzzy',	3600,	'xyzzy');
 
+	variable_cron();
+	
 	$count = 0;
 	echo "<h2>Land Variables</h2>\n";
 	echo "<table width='100%>\n";
