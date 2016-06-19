@@ -26,7 +26,7 @@ function variable_id($variable_name) {
 	if ($result = mysql_fetch_assoc($query)) {
 		$variable_id = $result['variable_id'];
 	} else {
-		$variable_id = "[$variable_name]";
+		$variable_id = 0;
 	}
 	
 	mysql_free_result($query);							# delete query object
