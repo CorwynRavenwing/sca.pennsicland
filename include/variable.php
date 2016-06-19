@@ -57,6 +57,7 @@ function variable_create($name, $delay, $description = '') {
 	$query = mysql_query($sql)
 		or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
 	
+	print("DEBUG: query = " . print_r($query,true) . "<br/>\n";
 	mysql_free_result($query);							# delete query object
 
 	$sql = "SELECT LAST_INSERT_ID() AS id";

@@ -42,21 +42,36 @@ if (! $r_admin) {
 
 	$count = 0;
 	echo "<h2>Land Variables</h2>\n";
-	echo "<ul>\n";
+	echo "<table>\n";
+	echo "  <tr style='font-weight:bold;background-color:silver;text-align:center'>\n";
+	echo "    <td>ID</td>\n";
+	echo "    <td>Name</td>\n";
+	echo "    <td>value</td>\n";
+	echo "    <td>delay</td>\n";
+	echo "    <td>queued</td>\n";
+	echo "    <td>updated</td>\n";
+	echo "    <td>description</td>\n";
+	echo "    <td>modified_date</td>\n";
+	echo "  </tr>\n";
 	$var_list = variable_list();
 	foreach ($var_list as $name) {
 		$data = variable_record( $name );
-		echo "  <li>$name\n";
-		echo "    <ul>\n";
-		foreach ($data as $field => $value) {
-			echo "      <li>$field => $value</li>\n";
-			$count++;
-		}
-		echo "    </ul>\n";
-		echo "  </li>\n";
+		echo "  <tr>\n";
+		echo "    <td>$data[id]</td>\n";
+		echo "    <td>$name</td>\n";
+		echo "    <td>$data[value]</td>\n";
+		echo "    <td>$data[delay]</td>\n";
+		echo "    <td>$data[queued]</td>\n";
+		echo "    <td>$data[updated]</td>\n";
+		echo "    <td>$data[description]</td>\n";
+		echo "    <td>$data[modified_date]</td>\n";
+		echo "  </tr>\n";
+		$count++;
 	}
-	echo "  <li>Total of $count variables found</li>";
-	echo "</ul>\n";
+	echo "  <tr style='font-weight:bold;text-align:center'>\n";
+	echo "    <td colspan-8>Total of $count variables found</td>\n";
+	echo "  </tr>\n";
+	echo "</table>\n";
 } // endif admin
 
 nav_right_end();
