@@ -209,6 +209,10 @@ function variable_calculate($name) {
 	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
 	
 	switch ($name) {
+		case '':
+			$value = "";
+			break;
+
 		case 'count_users':
 			$value = count_where("user_information");
 			break;
@@ -299,8 +303,12 @@ function variable_calculate($name) {
 function variable_update($name) {
 
 	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
+
+	if (!$name) {
+		return 0;
+	}
 	
-	variable_set(
+	return variable_set(
 		$name,
 		variable_calculate($name)
 	);

@@ -41,11 +41,26 @@ if (! $r_admin) {
 #	variable_create('xyzzy',	3600,	'xyzzy');
 
 	variable_cron();
-	
+	?>
+<style type="text/css">
+
+.header td {
+	font-weight: bold;
+	background-color: silver;
+	text-align: center;
+}
+
+.footer td {
+	font-weight: bold;
+	text-align: center;
+}
+
+</style>
+	<?
 	$count = 0;
 	echo "<h2>Land Variables</h2>\n";
-	echo "<table width='100%>\n";
-	echo "  <tr style='font-weight:bold;background-color:silver;text-align:center'>\n";
+	echo "<table width='100%' border='1'>\n";
+	echo "  <tr class='header'>\n";
 	echo "    <td>ID</td>\n";
 	echo "    <td>Name</td>\n";
 	echo "    <td>value</td>\n";
@@ -70,7 +85,7 @@ if (! $r_admin) {
 		echo "  </tr>\n";
 		$count++;
 	}
-	echo "  <tr style='font-weight:bold;text-align:center'>\n";
+	echo "  <tr class='footer'>\n";
 	echo "    <td colspan=8>Total of $count variables found</td>\n";
 	echo "  </tr>\n";
 	echo "</table>\n";
