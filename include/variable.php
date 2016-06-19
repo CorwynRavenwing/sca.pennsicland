@@ -41,6 +41,7 @@ function variable_create($name, $delay, $description = '') {
 	$id = variable_id($name);
 
 	if ($id) {
+		print("DEBUG: already exists: return value id = $id<br/>\n");
 		return $id;
 	}
 
@@ -72,6 +73,8 @@ function variable_create($name, $delay, $description = '') {
 	}
 	
 	mysql_free_result($query);							# delete query object
+
+	print("DEBUG: return value id = $id<br/>\n");
 
 	return $id;
 } # end function variable_create
