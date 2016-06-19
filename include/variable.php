@@ -2,6 +2,7 @@
 # variable.php: functions regarding the variable object
 
 require_once("connect.php");
+require_once("cooper.php");  # needed only for fix_cooper_data_count()
 
 function variable_id($variable_name) {
 	if ($variable_name == "") {
@@ -208,39 +209,85 @@ function variable_calculate($name) {
 	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
 	
 	switch ($name) {
-		case 'aaaa':
-			$value = "zzzzz";
+		case 'count_users':
+			$value = count_where("user_information");
 			break;
 
-		case 'bbbb':
-			$value = "yyyyy";
+		case 'count_logged_on':
+			$value = current_user_sessions();
 			break;
 
-	/*
+		case 'count_group':
+			$value = count_where("land_groups");
+			break;
 
-    $count_users         = count_where("user_information");
-    $count_logged_on     = current_user_sessions();
+		case 'count_group_reg':
+			$value = count_where("land_groups", "user_id                != 0");
+			break;
 
-    $count_group         = count_where("land_groups");
-    $count_group_reg     = count_where("land_groups", "user_id                != 0");
-    $count_group_unreg   = count_where("land_groups", "user_id                 = 0");
-    $count_group_check   = count_where("land_groups", "status IN ( 2, 3 )
-                OR group_name_base = ''
-                OR group_soundex = ''
-                OR group_metaphone = ''" );
-    $count_group_nohist  = "";          # figure out how to count this
-    $count_group_bonus   = count_where("land_groups", "bonus_footage          != 0");
-    $count_group_compress= count_where("land_groups", "calculated_compression != 0");
-    $count_group_notes   = count_where("land_groups", "other_group_information!= '' ");
-    $count_admin_notes   = count_where("land_groups", "other_admin_information!= '' ");
-    $count_group_kingdom = count_where("land_groups", "exact_land_amount      != 0");
-    $count_known_people  = sum_where("land_groups",   "pre_registration_count", "user_id != 0");
-	variable_create('count_unknown_people',	3600,	'Campers in unregistered groups');
-    $count_unfixed_groups= fix_cooper_data_count();
-    $count_orphan_groups = count_where("land_groups", "pre_registration_count > 0 AND user_id = 0");
-    $count_people_prereg = count_where("cooper_data", "group_name not like ':%'");
+		case 'count_group_unreg':
+			$value = count_where("land_groups", "user_id                 = 0");
+			break;
 
-	*/
+		case 'count_group_check':
+			$value = count_where("land_groups",
+				"status IN ( 2, 3 )
+	                OR group_name_base = ''
+	                OR group_soundex = ''
+	                OR group_metaphone = ''
+                " );
+			break;
+
+		case 'count_group_nohist':
+			$value = "figure out how to count this";
+			break;
+
+		case 'count_group_bonus':
+			$value = count_where("land_groups", "bonus_footage          != 0");
+			break;
+
+		case 'count_group_compress':
+			$value = count_where("land_groups", "calculated_compression != 0");
+			break;
+
+		case 'count_group_notes':
+			$value = count_where("land_groups", "other_group_information!= '' ");
+			break;
+
+		case 'count_admin_notes':
+			$value = count_where("land_groups", "other_admin_information!= '' ");
+			break;
+
+		case 'count_group_kingdom':
+			$value = count_where("land_groups", "exact_land_amount      != 0");
+			break;
+
+		case 'count_known_people':
+			$value = sum_where("land_groups",   "pre_registration_count", "user_id != 0");
+			break;
+
+		case 'count_unknown_people':
+			$value = sum_where("land_groups",   "pre_registration_count", "user_id  = 0");
+			break;
+
+		case 'count_unfixed_groups':
+			$value = fix_cooper_data_count();
+			break;
+
+		case 'count_orphan_groups':
+			$value = count_where("land_groups", "pre_registration_count > 0 AND user_id = 0");
+			break;
+
+		case 'count_people_prereg':
+			$value = count_where("cooper_data", "group_name not like ':%'");
+			break;
+
+		/*
+		case 'xyzzy':
+			$value = "xyzzy";
+			break;
+		*/
+
 		default:
 			$value = "UNKNOWN: variable_calculate($name)";
 			break;
