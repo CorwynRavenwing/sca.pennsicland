@@ -4,6 +4,9 @@
 require_once("connect.php");
 
 function variable_id($variable_name) {
+
+	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
+
 	if ($variable_name == "") {
 		return "";
 	}
@@ -32,6 +35,9 @@ function variable_id($variable_name) {
 } # end function variable_id
 
 function variable_create($name, $delay, $description = '') {
+
+	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
+	
 	$id = variable_id($name);
 
 	if ($id) {
@@ -71,6 +77,9 @@ function variable_create($name, $delay, $description = '') {
 } # end function variable_create
 
 function variable_set($name, $value) {
+
+	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
+	
 	$sql = "
 		UPDATE land_variable
 			SET value = '$value'
@@ -89,6 +98,9 @@ function variable_set($name, $value) {
 } # end function variable_set
 
 function variable_get($name) {
+
+	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
+	
 	$sql = "
 		SELECT value
 		  , (updated + delay < NOW()) AS is_old
@@ -122,6 +134,9 @@ function variable_get($name) {
 } # end function variable_get
 
 function variable_next() {
+
+	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
+	
 	$sql = "
 		SELECT name
 			 , (updated + delay) AS runtime
@@ -151,6 +166,9 @@ function variable_next() {
 } # end function variable_next
 
 function variable_queue($name) {
+
+	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
+	
 	$sql = "
 		UPDATE land_variable
 			SET queued = 1
@@ -167,6 +185,9 @@ function variable_queue($name) {
 } # end function variable_queue
 
 function variable_calculate($name) {
+
+	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
+	
 	switch ($name) {
 		case 'aaaa':
 			$value = "zzzzz";
@@ -176,6 +197,31 @@ function variable_calculate($name) {
 			$value = "yyyyy";
 			break;
 
+	/*
+
+    $count_users         = count_where("user_information");
+    $count_logged_on     = current_user_sessions();
+
+    $count_group         = count_where("land_groups");
+    $count_group_reg     = count_where("land_groups", "user_id                != 0");
+    $count_group_unreg   = count_where("land_groups", "user_id                 = 0");
+    $count_group_check   = count_where("land_groups", "status IN ( 2, 3 )
+                OR group_name_base = ''
+                OR group_soundex = ''
+                OR group_metaphone = ''" );
+    $count_group_nohist  = "";          # figure out how to count this
+    $count_group_bonus   = count_where("land_groups", "bonus_footage          != 0");
+    $count_group_compress= count_where("land_groups", "calculated_compression != 0");
+    $count_group_notes   = count_where("land_groups", "other_group_information!= '' ");
+    $count_admin_notes   = count_where("land_groups", "other_admin_information!= '' ");
+    $count_group_kingdom = count_where("land_groups", "exact_land_amount      != 0");
+    $count_known_people  = sum_where("land_groups",   "pre_registration_count", "user_id != 0");
+	variable_create('count_unknown_people',	3600,	'Campers in unregistered groups');
+    $count_unfixed_groups= fix_cooper_data_count();
+    $count_orphan_groups = count_where("land_groups", "pre_registration_count > 0 AND user_id = 0");
+    $count_people_prereg = count_where("cooper_data", "group_name not like ':%'");
+
+	*/
 		default:
 			$value = "UNKNOWN VARIABLE PASSED TO variable_calculate($name)";
 			break;
@@ -185,24 +231,29 @@ function variable_calculate($name) {
 } # end function variable_calculate
 
 function variable_update($name) {
+
+	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
 	
 	variable_set(
 		$name,
 		variable_calculate($name)
 	);
-
 } # end function variable_update
 
 function variable_cron() {
 
+	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
+	
 	variable_update(
 		variable_next()
 	);
-
 } # end function variable_cron
 
 // Return a list of all variable names
 function variable_list() {
+
+	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
+	
 	$sql = "SELECT variable_name
 		FROM land_variable
 		";
@@ -226,6 +277,9 @@ function variable_list() {
 } // end function variable_list
 
 function variable_record( $name ) {
+
+	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
+	
 	$sql = "SELECT *
 		FROM land_variable
 		where variable_name = '$name' ";

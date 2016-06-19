@@ -5,6 +5,7 @@ require_once("template.php");
 require_once("mode.php");
 require_once("user.php");
 require_once("cooper.php");  # needed only for fix_cooper_data_count()
+require_once("variable.php");
 
 function nav_variables() {
   global $page_name;
@@ -38,7 +39,7 @@ function nav_scriptname() {
 
 function nav_start_admin($html_head_block = "", $body_onload = "") {
 
-$extra_html_head_block = '<link rel=stylesheet href="css/adminmenu.css" type="text/css">';
+  $extra_html_head_block = '<link rel=stylesheet href="css/adminmenu.css" type="text/css">';
 
   if ($html_head_block) { $html_head_block .= "\n"; }
   $html_head_block .= $extra_html_head_block;
@@ -204,7 +205,7 @@ function nav_admin_menu($label_id = "adminmenu") {
     $count_users         = count_where("user_information");
     $count_logged_on     = current_user_sessions();
 
-    $count_group       = count_where("land_groups");
+    $count_group         = count_where("land_groups");
     $count_group_reg     = count_where("land_groups", "user_id                != 0");
     $count_group_unreg   = count_where("land_groups", "user_id                 = 0");
     $count_group_check   = count_where("land_groups", "status IN ( 2, 3 )
