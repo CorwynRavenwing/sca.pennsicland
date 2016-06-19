@@ -4,9 +4,6 @@
 require_once("connect.php");
 
 function variable_id($variable_name) {
-
-	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
-
 	if ($variable_name == "") {
 		return "";
 	}
@@ -35,13 +32,10 @@ function variable_id($variable_name) {
 } # end function variable_id
 
 function variable_create($name, $delay, $description = '') {
-
-	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
-	
 	$id = variable_id($name);
 
 	if ($id) {
-		print("DEBUG: already exists: return value id = $id<br/>\n");
+		// name already exists
 		return $id;
 	}
 
@@ -57,8 +51,7 @@ function variable_create($name, $delay, $description = '') {
 	$query = mysql_query($sql)
 		or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
 	
-	print("DEBUG: query = " . print_r($query,true) . "<br/>\n");
-	mysql_free_result($query);							# delete query object
+	# mysql_free_result
 
 	$sql = "SELECT LAST_INSERT_ID() AS id";
 	
@@ -75,19 +68,14 @@ function variable_create($name, $delay, $description = '') {
 	
 	mysql_free_result($query);							# delete query object
 
-	print("DEBUG: return value id = $id<br/>\n");
-
 	return $id;
 } # end function variable_create
 
 function variable_delete($name) {
-
-	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
-	
 	$id = variable_id($name);
 
 	if (! $id) {
-		print("DEBUG: doesn't exist<br/>\n");
+		// name doesn't exist
 		return 0;
 	}
 
@@ -102,10 +90,7 @@ function variable_delete($name) {
 	$query = mysql_query($sql)
 		or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
 	
-	print("DEBUG: query = " . print_r($query,true) . "<br/>\n");
-	mysql_free_result($query);							# delete query object
-
-	print("DEBUG: return value id = $id<br/>\n");
+	# mysql_free_result
 
 	return $id;
 } # end function variable_delete
@@ -312,11 +297,9 @@ function variable_list() {
 
 function variable_record( $name ) {
 
-	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
-	
 	$sql = "SELECT *
 		FROM land_variable
-		where variable_name = '$name' ";
+		WHERE variable_name = '$name' ";
 	
 	if (headers_sent()) { print "<!-- variable_record SQL:\n$sql\n-->\n"; }
 	
