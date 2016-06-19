@@ -80,6 +80,36 @@ function variable_create($name, $delay, $description = '') {
 	return $id;
 } # end function variable_create
 
+function variable_delete($name) {
+
+	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
+	
+	$id = variable_id($name);
+
+	if (! $id) {
+		print("DEBUG: doesn't exist<br/>\n");
+		return 0;
+	}
+
+	$sql = "
+		DELETE FROM land_variable
+		WHERE variable_name = '$name'
+		LIMIT 1
+	";
+
+	print "<!-- variable_delete SQL 1:\n$sql\n-->\n";
+	
+	$query = mysql_query($sql)
+		or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
+	
+	print("DEBUG: query = " . print_r($query,true) . "<br/>\n");
+	mysql_free_result($query);							# delete query object
+
+	print("DEBUG: return value id = $id<br/>\n");
+
+	return $id;
+} # end function variable_delete
+
 function variable_set($name, $value) {
 
 	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");

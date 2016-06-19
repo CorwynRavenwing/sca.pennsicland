@@ -21,6 +21,8 @@ if (! $r_admin) {
 	print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
 
+	variable_delete('count_users');
+	
 	variable_create('count_users',			3600,	'All existing users');
 	variable_create('count_logged_on',		  60,	'Users currently logged on');
 	variable_create('count_group',			3600,	'All existing groups');
@@ -42,7 +44,7 @@ if (! $r_admin) {
 
 	$count = 0;
 	echo "<h2>Land Variables</h2>\n";
-	echo "<table>\n";
+	echo "<table width='100%>\n";
 	echo "  <tr style='font-weight:bold;background-color:silver;text-align:center'>\n";
 	echo "    <td>ID</td>\n";
 	echo "    <td>Name</td>\n";
@@ -57,7 +59,7 @@ if (! $r_admin) {
 	foreach ($var_list as $name) {
 		$data = variable_record( $name );
 		echo "  <tr>\n";
-		echo "    <td>$data[id]</td>\n";
+		echo "    <td>$data[variable_id]</td>\n";
 		echo "    <td>$name</td>\n";
 		echo "    <td>$data[value]</td>\n";
 		echo "    <td>$data[delay]</td>\n";
@@ -69,7 +71,7 @@ if (! $r_admin) {
 		$count++;
 	}
 	echo "  <tr style='font-weight:bold;text-align:center'>\n";
-	echo "    <td colspan-8>Total of $count variables found</td>\n";
+	echo "    <td colspan=8>Total of $count variables found</td>\n";
 	echo "  </tr>\n";
 	echo "</table>\n";
 } // endif admin
