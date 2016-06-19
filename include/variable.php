@@ -102,7 +102,7 @@ function variable_set($name, $value) {
 	$sql = "
 		UPDATE land_variable
 			SET value = '$value'
-			  , updated = NOW()
+			  , updated = UNIX_TIMESTAMP(NOW())
 			  , queued = 0
 		WHERE variable_name = '$name'
 		LIMIT 1
@@ -122,7 +122,7 @@ function variable_get($name) {
 	
 	$sql = "
 		SELECT value
-		  , (updated + delay < NOW()) AS is_old
+		  , (updated + delay < UNIX_TIMESTAMP(NOW()) ) AS is_old
 		  , (queued > 0) AS is_queued
 		FROM land_variable
 		WHERE variable_name = '$name'
@@ -160,7 +160,7 @@ function variable_next() {
 		SELECT variable_name
 			 , (updated + delay) AS runtime
 		FROM land_variable
-		WHERE (updated + delay) < NOW()
+		WHERE (updated + delay) < UNIX_TIMESTAMP(NOW())
 		  AND queued = 0
 		ORDER BY runtime ASC
 		LIMIT 1
@@ -174,7 +174,7 @@ function variable_next() {
 	if ($result = mysql_fetch_assoc($query)) {
 		$next_var_name = $result['variable_name'];
 		$DEBUG_runtime = $result['runtime'];
-		print("DEBUG: variable_next() returned name '$variable_name', runtime '$runtime'<br/>\n");
+		print("DEBUG: variable_next() returned name '$next_var_name', runtime '$DEBUG_runtime'<br/>\n");
 		variable_queue($next_var_name);
 	} else {
 		$next_var_name = "";
@@ -242,7 +242,7 @@ function variable_calculate($name) {
 
 	*/
 		default:
-			$value = "UNKNOWN VARIABLE PASSED TO variable_calculate($name)";
+			$value = "UNKNOWN: variable_calculate($name)";
 			break;
 	}
 
