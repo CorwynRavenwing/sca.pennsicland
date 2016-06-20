@@ -131,7 +131,7 @@ function variable_get($name) {
 
 	if ($result = mysql_fetch_assoc($query)) {
 		$value = $result['value'];
-		if (!$value) {
+		if ($value === '') {
 			$value = "BLANK";
 		}
 		if ($result['is_old']) {
