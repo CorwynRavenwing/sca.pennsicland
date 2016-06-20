@@ -135,13 +135,13 @@ function variable_get($name) {
 			$value = "BLANK";
 		}
 		if ($result['is_old']) {
-			$value .= " (*)";
+			$value .= "*";
 		}
 		if ($result['is_queued']) {
-			$value .= " (!)";
+			$value .= "!";
 		}
 	} else {
-		$value = "[$name] (?)";
+		$value = "$name?";
 	}
 
 	return $value;
