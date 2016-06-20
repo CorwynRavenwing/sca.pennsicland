@@ -97,9 +97,6 @@ function variable_delete($name) {
 } # end function variable_delete
 
 function variable_set($name, $value) {
-
-	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
-	
 	$sql = "
 		UPDATE land_variable
 			SET value = '$value'
@@ -118,9 +115,6 @@ function variable_set($name, $value) {
 } # end function variable_set
 
 function variable_get($name) {
-
-	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
-	
 	$sql = "
 		SELECT value
 		  , (updated + delay < UNIX_TIMESTAMP(NOW()) ) AS is_old
@@ -154,9 +148,6 @@ function variable_get($name) {
 } # end function variable_get
 
 function variable_next() {
-
-	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
-	
 	$sql = "
 		SELECT variable_name
 			 , (updated + delay) AS runtime
@@ -174,21 +165,17 @@ function variable_next() {
 
 	if ($result = mysql_fetch_assoc($query)) {
 		$next_var_name = $result['variable_name'];
-		$DEBUG_runtime = $result['runtime'];
-		print("DEBUG: variable_next() returned name '$next_var_name', runtime '$DEBUG_runtime'<br/>\n");
+		print("<!-- variable_next() returned name '$next_var_name' -->\n");
 		variable_queue($next_var_name);
 	} else {
 		$next_var_name = "";
-		print("DEBUG: variable_next() found no matches<br/>\n");
+		print("<!-- variable_next() found no matches -->\n");
 	}
 
 	return $next_var_name;
 } # end function variable_next
 
 function variable_queue($name) {
-
-	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
-	
 	$sql = "
 		UPDATE land_variable
 			SET queued = 1
@@ -205,9 +192,6 @@ function variable_queue($name) {
 } # end function variable_queue
 
 function variable_calculate($name) {
-
-	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
-	
 	switch ($name) {
 		case '':
 			$value = "";
@@ -301,9 +285,6 @@ function variable_calculate($name) {
 } # end function variable_calculate
 
 function variable_update($name) {
-
-	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
-
 	if (!$name) {
 		return 0;
 	}
@@ -315,9 +296,6 @@ function variable_update($name) {
 } # end function variable_update
 
 function variable_cron() {
-
-	print("DEBUG: called " . __FUNCTION__ . " line " . __LINE__ . "<br/>\n");
-	
 	variable_update(
 		variable_next()
 	);

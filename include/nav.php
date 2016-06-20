@@ -174,77 +174,73 @@ function nav_admin_menu($label_id = "adminmenu") {
   nav_menu_begin($label_id);
 
   if ($masquerade) {
-      # should mark as an ADMIN type of link:
-      nav_menu_group_begin("STOP MASQUERADING",  "admin_masquerade.php?id=STOP");
-      nav_menu_group_end();
+    # should mark as an ADMIN type of link:
+    nav_menu_group_begin("STOP MASQUERADING",  "admin_masquerade.php?id=STOP");
+    nav_menu_group_end();
   } elseif ($user_id) {
-      nav_menu_group_begin("Logout",    "logout.php");
-      nav_menu_group_end();
+    nav_menu_group_begin("Logout",    "logout.php");
+    nav_menu_group_end();
   } else {
-      nav_menu_group_begin("LOG ON",    "login.php");
-      nav_menu_group_end();
+    nav_menu_group_begin("LOG ON",    "login.php");
+    nav_menu_group_end();
   } // endif masquerade / user_id
 
-      nav_menu_group_begin("(Agent)",  "index.php");
-      nav_menu_group_end();
+  nav_menu_group_begin("(Agent)",  "index.php");
+  nav_menu_group_end();
 
-      if ($r_admin) {
+  if ($r_admin) {
     nav_menu_group_begin("LAND ADMIN MENU", "admin.php");
 
     nav_menu_active("Calendar View",  "admin_calendar.php",   "");  // , count
     nav_menu_active("Land One View",  "admin_land_one.php",   "");  // , count
     nav_menu_active("On-Site View",   "admin_onsite.php",     "");
-      } else {
+  } else {
     nav_menu_group_begin("ADMINS ONLY",  "");
-      } // endif admin
+  } // endif admin
 
-      // always
-    nav_menu_group_end();
+  // always
+  nav_menu_group_end();
 
-      if ($r_admin) {
-    $count_users         = count_where("user_information");
-    $count_logged_on     = current_user_sessions();
+  if ($r_admin) {
+    $count_users         = variable_get("count_users");
+    $count_logged_on     = variable_get("count_logged_on");
 
-    $count_group         = count_where("land_groups");
-    $count_group_reg     = count_where("land_groups", "user_id                != 0");
-    $count_group_unreg   = count_where("land_groups", "user_id                 = 0");
-    $count_group_check   = count_where("land_groups", "status IN ( 2, 3 )
-                OR group_name_base = ''
-                OR group_soundex = ''
-                OR group_metaphone = ''" );
-    $count_group_nohist  = "";          # figure out how to count this
-    $count_group_bonus   = count_where("land_groups", "bonus_footage          != 0");
-    $count_group_compress= count_where("land_groups", "calculated_compression != 0");
-    $count_group_notes   = count_where("land_groups", "other_group_information!= '' ");
-    $count_admin_notes   = count_where("land_groups", "other_admin_information!= '' ");
-    $count_group_kingdom = count_where("land_groups", "exact_land_amount      != 0");
-    $count_known_people  = sum_where("land_groups",   "pre_registration_count", "user_id != 0");
-    $count_unfixed_groups= fix_cooper_data_count();
-    $count_orphan_groups = count_where("land_groups", "pre_registration_count > 0 AND user_id = 0");
-    $count_people_prereg = count_where("cooper_data", "group_name not like ':%'");
+    $count_group         = variable_get("count_group");
+    $count_group_reg     = variable_get("count_group_reg");
+    $count_group_unreg   = variable_get("count_group_unreg");
+    $count_group_check   = variable_get("count_group_check");
+    $count_group_nohist  = "";    # variable_get("count_group_nohist");
+    $count_group_bonus   = variable_get("count_group_bonus");
+    $count_group_compress= variable_get("count_group_compress");
+    $count_group_notes   = variable_get("count_group_notes");
+    $count_admin_notes   = variable_get("count_admin_notes");
+    $count_group_kingdom = variable_get("count_group_kingdom");
+    $count_known_people  = variable_get("count_known_people");
+    $count_unfixed_groups= variable_get("count_unfixed_groups");
+    $count_orphan_groups = variable_get("count_orphan_groups");
+    $count_people_prereg = variable_get("count_people_prereg");
 
-    # $count_xyzzy       = count_where("xyzzy", "xyzzy != ''");
-
+    # $count_xyzzy       = variable_get("xyzzy");
 
     nav_menu_group_begin("USERS AND GROUPS",  "");
 
     // Things that can happen at any time:
-    nav_menu_active_count("<b>USERS</b>",    "admin_users.php",    $count_users);
-    nav_menu_active_count("User LOGINS",     "admin_login_history.php",  $count_logged_on);
+    nav_menu_active_count("<b>USERS</b>",     "admin_users.php",          $count_users);
+    nav_menu_active_count("User LOGINS",      "admin_login_history.php",  $count_logged_on);
     # the following is no longer necessary, as user creation is not forbidden outside of the registration period [Corwyn PW40]
     # nav_menu_active("Create User",    "admin_user_create.php");
 
-    nav_menu_active_count("<b>GROUPS</b>",  "admin_groups.php",       $count_group);
-    nav_menu_active_count("REGISTERED",     "admin_registered.php",   $count_group_reg);
-    nav_menu_active_count("UNREG",          "admin_unregistered.php", $count_group_unreg);
-    nav_menu_active_count("CHECK NAMES",    "admin_group_check.php",  $count_group_check);
-    nav_menu_active_count("w/o HISTORY",    "admin_group_nohist.php", $count_group_nohist);
-    nav_menu_active_count("w/NOTES",        "admin_notes.php",        $count_group_notes);
-    nav_menu_active_count("w/NOTES (admin)","admin_notes_2.php",      $count_admin_notes);
-    nav_menu_active_count("w/BONUSES",      "admin_bonus.php",        $count_group_bonus);
-    nav_menu_active_count("w/COMPRESS",     "admin_compress.php",     $count_group_compress);
-    nav_menu_active_count("w/KINGDOMS",     "admin_kingdom.php",      $count_group_kingdom);
-    nav_menu_active_count("HISTORY",        "admin_history.php",      "");
+    nav_menu_active_count("<b>GROUPS</b>",    "admin_groups.php",         $count_group);
+    nav_menu_active_count("REGISTERED",       "admin_registered.php",     $count_group_reg);
+    nav_menu_active_count("UNREG",            "admin_unregistered.php",   $count_group_unreg);
+    nav_menu_active_count("CHECK NAMES",      "admin_group_check.php",    $count_group_check);
+    nav_menu_active_count("w/o HISTORY",      "admin_group_nohist.php",   $count_group_nohist);
+    nav_menu_active_count("w/NOTES",          "admin_notes.php",          $count_group_notes);
+    nav_menu_active_count("w/NOTES (admin)",  "admin_notes_2.php",        $count_admin_notes);
+    nav_menu_active_count("w/BONUSES",        "admin_bonus.php",          $count_group_bonus);
+    nav_menu_active_count("w/COMPRESS",       "admin_compress.php",       $count_group_compress);
+    nav_menu_active_count("w/KINGDOMS",       "admin_kingdom.php",        $count_group_kingdom);
+    nav_menu_active_count("HISTORY",          "admin_history.php",        "");
 
     nav_menu_group_end();
 
@@ -252,23 +248,23 @@ function nav_admin_menu($label_id = "adminmenu") {
     nav_menu_active_count("Fix Count",        "admin_prereg_count.php",   $count_unfixed_groups);
     nav_menu_active_count("Fix Orphans",      "admin_prereg_cleanup.php", $count_orphan_groups);
 
-    nav_menu_active_count("PREREG",         "admin_prereg.php",       $count_people_prereg);
-    nav_menu_active_count("(dup PENN#)",    "admin_penndups.php",     "");
+    nav_menu_active_count("PREREG",           "admin_prereg.php",         $count_people_prereg);
+    nav_menu_active_count("(dup PENN#)",      "admin_penndups.php",       "");
     
     nav_menu_active("COOPER Count",           "admin_cooper_count_registrations.php",  1);
-  if ($w_admin) {
-    nav_menu_active("COOPER Move",            "admin_cooper_move_tool.php",    1);
+    if ($w_admin) {
+      nav_menu_active("COOPER Move",          "admin_cooper_move_tool.php",    1);
     # nav_menu_active("Show Registrations",   "admin_cooper_show_registrations.php",  1);
     # nav_menu_active("Move Registrations",   "admin_cooper_move_registrations.php",  1);
-    nav_menu_active("COOPER Create",          "admin_cooper_create_group.php",    1);
-    nav_menu_active("COOPER Delete",          "admin_cooper_delete_group.php",    1);
-  } else {
-    nav_menu_inactive("COOPER Move",            "");
-    # nav_menu_inactive("Show Registrations",   "");
-    # nav_menu_inactive("Move Registrations",   "");
-    nav_menu_inactive("COOPER Create",          "");
-    nav_menu_inactive("COOPER Delete",          "");
-  }
+      nav_menu_active("COOPER Create",        "admin_cooper_create_group.php",    1);
+      nav_menu_active("COOPER Delete",        "admin_cooper_delete_group.php",    1);
+    } else {
+      nav_menu_inactive("COOPER Move",        "");
+    # nav_menu_inactive("Show Registrations", "");
+    # nav_menu_inactive("Move Registrations", "");
+      nav_menu_inactive("COOPER Create",      "");
+      nav_menu_inactive("COOPER Delete",      "");
+    }
     nav_menu_group_end();
 
     nav_menu_group_begin("BLOCK ASSIGNMENT",  "admin_block_help.php", 0, "Click for Help");
@@ -276,7 +272,7 @@ function nav_admin_menu($label_id = "adminmenu") {
   # if ( allow_groupmoves() ) {
     nav_menu_active("BLOCKS",                 "admin_block.php", 0, "Make group-move decisions");
   # } else {
-  #   nav_menu_inactive("BLOCKS",    "(after Big Red Button)");
+  #   nav_menu_inactive("BLOCKS",             "(after Big Red Button)");
   # } // endif allow_groupmoves
 
     if ( allow_email() ) {
@@ -298,7 +294,7 @@ function nav_admin_menu($label_id = "adminmenu") {
     # nav_menu_group_inactive("(Does not work)");
     # nav_menu_group_end();
 
-      } // endif admin
+  } // endif admin
 
   nav_menu_end();
 } // end function nav_admin_menu
