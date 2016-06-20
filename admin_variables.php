@@ -76,7 +76,7 @@ if (! $r_admin) {
 		echo "  <tr>\n";
 		echo "    <td>$data[variable_id]</td>\n";
 		echo "    <td>$name</td>\n";
-		echo "    <td>$data[value]</td>\n";
+		echo "    <td>$data[value]<br/><b>" . variable_get($name) . "</b></td>\n";
 		echo "    <td>$data[delay]</td>\n";
 		echo "    <td>$data[queued]</td>\n";
 		echo "    <td>$data[updated]</td>\n";
