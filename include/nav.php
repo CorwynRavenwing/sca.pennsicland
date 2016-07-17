@@ -487,6 +487,7 @@ function nav_menu($label_id = "landmenu") {
     nav_menu_active("Agent Procedures",    "docs_timetable.php");
     nav_menu_active("View Pennsic Maps",   "map.php", 1);
     nav_menu_active("Land Announcements",  "docs_announce.php");
+    nav_menu_active("Group Auth. Form",    "docs/form_auth.pdf", 1);
   nav_menu_group_end();
 
   nav_menu_group_begin("CAMPING INFO",        "docs_camping.php", 0);
