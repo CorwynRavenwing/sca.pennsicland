@@ -37,13 +37,13 @@ if (! $r_admin) {
 	execute_query("UPDATE land_blocks SET on_gas_line = '0' WHERE block_name = 'N17'");
 	execute_query("UPDATE land_blocks SET on_gas_line = '0' WHERE block_name = 'N19'");
 
-	execute_query("UPDATE land_blocks SET campable = '46631', description = 'P45: campable down 5212 per Gunther' WHERE block_name = 'N40'");
+	execute_query("UPDATE land_blocks SET campable_square_footage = '46631', description = 'P45: campable down 5212 per Gunther' WHERE block_name = 'N40'");
 
-	execute_query("UPDATE land_blocks SET campable = '79178', description = 'P45: campable down 2000 (road) per Gunther' WHERE block_name = 'E23'");
+	execute_query("UPDATE land_blocks SET campable_square_footage = '79178', description = 'P45: campable down 2000 (road) per Gunther' WHERE block_name = 'E23'");
 
-	execute_query("UPDATE land_blocks SET campable = '69596', description = 'P45: campable down 9588 (showers) per Gunther' WHERE block_name = 'E17'");
+	execute_query("UPDATE land_blocks SET campable_square_footage = '69596', description = 'P45: campable down 9588 (showers) per Gunther' WHERE block_name = 'E17'");
 
-	execute_query("UPDATE land_blocks SET campable = '69646', description = 'P45: campable up 7163 (showers) per Gunther' WHERE block_name = 'E02'");
+	execute_query("UPDATE land_blocks SET campable_square_footage = '69646', description = 'P45: campable up 7163 (showers) per Gunther' WHERE block_name = 'E02'");
 
 	print("<h2>Done.</h2>\n");
 } // endif admin
