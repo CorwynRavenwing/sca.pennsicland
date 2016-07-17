@@ -18,3 +18,6 @@
 * help screens for every page that needs one
 
 ================
+
+Need a count of all groups, which do not have a "final location" but do have a camper count, to be displayed on the admin summary page, labeled "groups awaiting another press of the BRB" but only if the mode is correct to allow that.  not sure what to label them if that is not true.
+
