@@ -37,7 +37,8 @@ if (! $r_admin) {
 	execute_query("UPDATE land_blocks SET on_gas_line = '0' WHERE block_name = 'N17'");
 	execute_query("UPDATE land_blocks SET on_gas_line = '0' WHERE block_name = 'N19'");
 
-	execute_query("UPDATE land_blocks SET campable_square_footage = '46631', description = 'P45: campable down 5212 per Gunther' WHERE block_name = 'N40'");
+	# execute_query("UPDATE land_blocks SET campable_square_footage = '46631', description = 'P45: campable down 5212 per Gunther' WHERE block_name = 'N40'");
+	execute_query("UPDATE land_blocks SET  block_name = 'N40', total_square_footage = 51843, campable_square_footage = '46631', description = 'P45: campable down 5212 per Gunther' WHERE block_name = '?05' LIMIT 1");
 
 	execute_query("UPDATE land_blocks SET campable_square_footage = '79178', description = 'P45: campable down 2000 (road) per Gunther' WHERE block_name = 'E23'");
 
