@@ -20,7 +20,7 @@ nav_right_begin();
 if (! $r_admin) {
 	print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
-	print("<h2>Creating fake land_blocks.on_gas_line data</h2>\n");
+	print("<h2>Creating land_blocks.on_gas_line data</h2>\n");
 	// Blocks the gas line cuts through:
 	execute_query("UPDATE land_blocks SET on_gas_line = '1' WHERE block_name = 'E11'");
 	execute_query("UPDATE land_blocks SET on_gas_line = '1' WHERE block_name = 'E18'");
@@ -37,6 +37,7 @@ if (! $r_admin) {
 	execute_query("UPDATE land_blocks SET on_gas_line = '0' WHERE block_name = 'N17'");
 	execute_query("UPDATE land_blocks SET on_gas_line = '0' WHERE block_name = 'N19'");
 
+	print("<h2>Updating land_blocks size data</h2>\n");
 	execute_query("UPDATE land_blocks SET total_square_footage = '46631', campable_square_footage = '46631', description = 'P45: campable down 5212 per Gunther', hide = '0', reserved = '0' WHERE block_name = 'N40'");
 
 	execute_query("UPDATE land_blocks SET campable_square_footage = '79178', description = 'P45: campable down 2000 (road) per Gunther' WHERE block_name = 'E23'");

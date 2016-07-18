@@ -947,6 +947,10 @@ function move_all_groups_to_first_choice() {
 function roll_up_used_space() {
   global $pennsic_number;
 
+  if (! $pennsic_number) {
+    die("ERROR: roll_up_used_space() called while pennsic_number($pennsic_number) is false.\n\nPlease tell Corwyn what page you received this error message on.");
+  }
+
   print "<!-- called roll_up_used_space() -->\n";
 
   $sql = "
