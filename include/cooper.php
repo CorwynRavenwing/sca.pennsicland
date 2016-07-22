@@ -2,6 +2,7 @@
 <?php
 require_once("include/connect.php");
 require_once("include/block.php");
+require_once("include/mode.php");   # needed so $pennsic_number is set
 
 $update_cooper_data = 1;    // set to 0 to prevent automatic updating from the coopers site [Corwyn P42]
 
