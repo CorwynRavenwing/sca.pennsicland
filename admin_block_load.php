@@ -46,8 +46,9 @@ if (! $r_admin) {
 
 	execute_query("UPDATE land_blocks SET campable_square_footage = '69646', description = 'P45: campable up 7163 (showers) per Gunther' WHERE block_name = 'E02'");
 
-	print("<h2>Updating land group history data</h2>\n");
+	print("<h2>Updating group history and mail merge data</h2>\n");
 	execute_query("UPDATE land_group_history SET group_id = 10538 WHERE group_id = 10014");	// rename "House Neptune's IcePhoenix Rising" to "The Oracle of the Duckpond"
+	execute_query("UPDATE mailmerge_recipients SET group_id = 10538 WHERE group_id = 10014");	// rename "House Neptune's IcePhoenix Rising" to "The Oracle of the Duckpond"
 
 	print("<h2>Done.</h2>\n");
 } // endif admin
