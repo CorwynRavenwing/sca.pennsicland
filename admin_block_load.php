@@ -46,6 +46,9 @@ if (! $r_admin) {
 
 	execute_query("UPDATE land_blocks SET campable_square_footage = '69646', description = 'P45: campable up 7163 (showers) per Gunther' WHERE block_name = 'E02'");
 
+	print("<h2>Updating land group history data</h2>\n");
+	execute_query("UPDATE land_group_history SET group_id = 10538 WHERE group_id = 10014");	// rename "House Neptune's IcePhoenix Rising" to "The Oracle of the Duckpond"
+
 	print("<h2>Done.</h2>\n");
 } // endif admin
 
@@ -57,20 +60,15 @@ nav_right_end();
 nav_end();
 
 function execute_query($sql) {
-	# if (headers_sent()) { print "<!-- X(1) SQL:\n$sql\n-->\n"; }
-	if (headers_sent()) { print "<pre>SQL:\n$sql\n</pre>\n"; }
+	if (headers_sent()) { print("$sql\n"); }
 	
 	$query = mysql_query($sql)
 		or die('Query failed: ' . mysql_error() . "<br/>SQL=$sql<br/>at file " . __FILE__ . " line " . __LINE__);
 	
 	if ($num = mysql_affected_rows()) {
-		?>
-<h2>A: Updated <?=$num?> rows</h2>
-		<?
+		print("<h2>Updated $num rows</h2>\n");
 	} else {
-		?>
-<h2>A: No rows updated (<?=$num?>)</h2>
-		<?
+		print("<h3>No rows updated ($num)</h3>");
 	} // endif num
 }
 
