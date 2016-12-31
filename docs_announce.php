@@ -19,6 +19,7 @@ nav_right_begin();
 
 // these should all be done prgrammatically:
 $land_one_email = "pennsic.land1@gmail.com";
+$land_one_name  = "Sir Gunther KegSlayer";
 
 $registration_start_short = "January 1, 2017";
 $proxy_deadline_short     = "July 21, 2017";
@@ -34,7 +35,7 @@ $pennsic_stop_long        = "Sunday, August 13, 2017";
 
 <h1>Land Announcements</h1>
 
-Greetings from the Pennsic 45 Land Staff!
+Greetings from the Pennsic <?=$pennsic_number?> Land Staff!
 <br />
 <br />
 We are working hard to continue the trend of the last few years and make this year even easier for all Land Agents.
@@ -56,7 +57,7 @@ Once you have your login, you will be able to access the Land website and check 
 <b>Once pre-registration ends</b>, the Pennsic Land staff will get to work assigning groups to blocks. This is a pretty big project, so we appreciate your patience while we work through the numbers to get everyone settled. Once weare done, each Land Agent will receive a Block Assignment  email which will contain your group&rsquo;s allocated square footage, a map, a camping authorization card and contact information for the needed to other groups camping on your block. Even if you all know each other, please reach out to the other land agents to come up with a plan for how to configure each group on the block based on the land allocated via pre-registration. Reaching out ahead of time will make land grab easier and faster for everyone once Pennsic opens.
 <br />
 <br />
-<b>Land Grab for Pennsic 45 will start</b> on <?=$pennsic_landgrab_long?> at 9:00 am, and will run until 11:00 pm that night. (The Troll Booth will stay open all night for check-in.) The Land Office will open again Saturday morning at 8:00 am and stay open until all the blocks have been settled. 
+<b>Land Grab for Pennsic <?=$pennsic_number?> will start</b> on <?=$pennsic_landgrab_long?> at 9:00 am, and will run until 11:00 pm that night. (The Troll Booth will stay open all night for check-in.) The Land Office will open again Saturday morning at 8:00 am and stay open until all the blocks have been settled. 
 <br />
 <br />
 As soon as your map has been signed off by all groups on the block, processed by the Land Office, and you have received your Camping Authorization Sticker you will be provided with vehicle entry passes to the camp group. Each group will be allowed to bring 5 vehicles into the campground.
@@ -88,10 +89,10 @@ Proxy requests must be emailed to <a href="mailto:<?=$land_one_email?>"><?=$land
 As in years past, all camps must be left clean and all vehicles must be off site <b>no later than noon</b> on <?=$pennsic_stop_long?>. Any vehicles that are still on site, or any camps left with garbage or fires still burning will be docked a year's seniority for that block. Repeat offenses may result in additional seniority years docked.
 <br />
 <br />
-From myself and the Land Staff of Pennsic 45, we look forward to helping all of you make this Pennsic the very best you can have.
+From myself and the Land Staff of Pennsic <?=$pennsic_number?>, we look forward to helping all of you make this Pennsic the very best you can have.
 <br />
 <br />
-Sir Gunther KegSlayer
+<?=$land_one_name?>
 <?
 nav_right_end();
 
