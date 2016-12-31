@@ -20,11 +20,11 @@ nav_right_begin();
 // these should all be done prgrammatically:
 $land_one_email = "pennsic.land1@gmail.com";
 
-$registration_start     = "January 1, 2016";
-$proxy_deadline_short   = "July 22, 2016";
-$pennsic_landgrab_long  = "Friday, July 29, 2016";
-$pennsic_landgrab_short = "Friday, July 29";
-$pennsic_stop_long      = "Sunday, August 14, 2016";
+$registration_start_short = "January 1, 2017";
+$proxy_deadline_short     = "July 21, 2017";
+$pennsic_landgrab_long    = "Friday, July 28, 2017";
+$pennsic_landgrab_short   = "Friday, July 28";
+$pennsic_stop_long        = "Sunday, August 13, 2017";
 ?>
 <!-- FreeFind Begin No Index -->
 
@@ -47,7 +47,7 @@ To get started, you will need a Land login for the <a href="http://land.pennsicw
 Once you have your login, you will be able to access the Land website and check that all your contact information is up-to-date.
 <br />
 <br />
-<b>Starting <?=$registration_start?></b>, you will be able to register your camp group, as in previous years, and select your top 4 block choices.  <u>You must register your camp group before people can pre-reg for your group. You will receive a group registration confirmation email</u>.
+<b>Starting <?=$registration_start_short?></b>, you will be able to register your camp group, as in previous years, and select your top 4 block choices.  <u>You must register your camp group before people can pre-reg for your group. You will receive a group registration confirmation email</u>.
 <br />
 <br />
 <b>Throughout the pre-registration period</b>, you can log into the Land website to review the list of people who have pre-registered for your group. Youwill only be able to see people who entered your camp group's name when they pre-registered, so make sure everyone has the proper spelling and information they need to pre-register with your group.
