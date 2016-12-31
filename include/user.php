@@ -475,6 +475,7 @@ function is_admin_rw_account($user_name) {
   switch (strtolower($user_name)) {
     case 'dagmar':
     case 'emerson':       # g emerson true, L2 P45
+    case 'epickens':      # Elizabeth epickens@gmail.com (training Land 2)
     case 'kegslayer':     # Gunther KegSlayer, L2 P44
     case 'ursus':         # Gaerwen
     case 'wharmon':       # corwyn ravenwing
@@ -493,7 +494,6 @@ function is_admin_ro_account($user_name) {
     case 'aakin':         # aakin the mapmaker
     case 'caryl':         # Countess Caryl
     case 'corwyn':        # Corwyn Ravenwing readonly account
-    case 'epickens':	  # Elizabeth epickens@gmail.com (training Land 2)
     case 'genoveva':      # (name?) mapmaker
     case 'jdc017':        # Dante, mapmaker
     case 'kittie':	  # Annie. Annie Cothran Land Training
