@@ -37,9 +37,9 @@ nav_right_begin();
   template_param("motd",                        $user_motd );
 
   # Dates of LAND GRAB PREP FRIDAY, LAND GRAB SATURDAY, and LAND_GRAB_SUNDAY should be calculated variables
-  $land_grab_friday   = "July 29, 2016";
-  $land_grab_saturday = "July 30, 2016";
-  $land_grab_sunday   = "July 31, 2016";
+  $land_grab_friday   = "Friday, July 28, 2017";
+  $land_grab_saturday = "Saturday, July 29, 2017";
+  $land_grab_sunday   = "Sunday, July 30, 2017";
 
   template_param("land_grab_friday",   $land_grab_friday   );    # = pennsic_open
   template_param("land_grab_saturday", $land_grab_saturday );    # = +1
