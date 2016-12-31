@@ -56,14 +56,14 @@ function nav_start($html_head_block = "", $body_onload = "") {
   ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
   <?
-  template_load("head1.htm");  // DELETE 1 WHEN PUBLISHING
+  template_load("head.htm");
 
   template_param("pennsic_number",  $pennsic_number);
-  template_param("pennsic_roman",    $pennsic_roman);
-  template_param("page_name",    $page_name);
+  template_param("pennsic_roman",   $pennsic_roman);
+  template_param("page_name",       $page_name);
 
-  template_param("html_head_block",  $html_head_block);
-  template_param("body_onload",    $body_onload);
+  template_param("html_head_block", $html_head_block);
+  template_param("body_onload",     $body_onload);
 
   print template_output();
 } // end function nav_start
