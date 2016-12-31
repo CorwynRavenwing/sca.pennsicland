@@ -50,8 +50,11 @@ function nav_start_admin($html_head_block = "", $body_onload = "") {
 
 function nav_start($html_head_block = "", $body_onload = "") {
   global $pennsic_number, $pennsic_roman, $page_name;
+  global $test_mode;
 
   nav_variables();
+
+  $favicon_file = ($test_mode ? 'favicon-test.ico' : 'favicon.ico');
 
   ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -64,6 +67,7 @@ function nav_start($html_head_block = "", $body_onload = "") {
 
   template_param("html_head_block", $html_head_block);
   template_param("body_onload",     $body_onload);
+  template_param("favicon",         $favicon_file);
 
   print template_output();
 } // end function nav_start
