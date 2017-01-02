@@ -77,7 +77,7 @@ if (! $r_admin) {
 		echo "    <td>$data[variable_id]</td>\n";
 		echo "    <td>$name</td>\n";
 		echo "    <td>";
-		$value1 = $data[value];
+		$value1 = $data['value'];
 		$value2 = variable_get($name);
 		if ($value === $value2) {
 			// exact match: show only #1
