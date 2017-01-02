@@ -21,10 +21,10 @@ if (! $r_admin) {
 	print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
 
-	variable_create('count_users',			3600,	'All existing users');
-	variable_create('count_logged_on',		  60,	'Users currently logged on');
-	variable_create('count_group',			3600,	'All existing groups');
-	variable_create('count_group_reg',		 600,	'Registered groups');
+	variable_create('count_users',		3600,	'All existing users');
+	variable_create('count_logged_on',	  60,	'Users currently logged on');
+	variable_create('count_group',		3600,	'All existing groups');
+	variable_create('count_group_reg',	 600,	'Registered groups');
 	variable_create('count_group_unreg',	 600,	'Unregistered groups');
 	variable_create('count_group_check',	 600,	'Groups needing name checks');
 	variable_create('count_group_nohist',	3600,	'Groups with no history');
@@ -38,7 +38,7 @@ if (! $r_admin) {
 	variable_create('count_unfixed_groups',	3600,	'Groups with bad Cooper data');
 	variable_create('count_orphan_groups',	 600,	'Orphan groups');
 	variable_create('count_people_prereg',	 600,	'Campers prereged');
-#	variable_create('xyzzy',	3600,	'xyzzy');
+#	variable_create('xyzzy',		3600,	'xyzzy');
 
 	variable_cron();
 	?>
@@ -76,7 +76,20 @@ if (! $r_admin) {
 		echo "  <tr>\n";
 		echo "    <td>$data[variable_id]</td>\n";
 		echo "    <td>$name</td>\n";
-		echo "    <td>$data[value]<br/><b>" . variable_get($name) . "</b></td>\n";
+		echo "    <td>";
+		$value1 = $data[value];
+		$value2 = variable_get($name);
+		if ($value === $value2) {
+			// exact match: show only #1
+			echo $value1;
+		} else if ($value == $value2) {
+			// value match: show only #2
+			echo "<i>$value2</i>";
+		} else {
+			// non-match: show both
+			echo "$value1<br/><b>$value2</b>";
+		}
+		echo "</td>\n";
 		echo "    <td>$data[delay]</td>\n";
 		echo "    <td>$data[queued]</td>\n";
 		echo "    <td>$data[updated]</td>\n";
