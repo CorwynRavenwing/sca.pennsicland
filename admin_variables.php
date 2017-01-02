@@ -79,10 +79,10 @@ if (! $r_admin) {
 		echo "    <td>";
 		$value1 = $data['value'];
 		$value2 = variable_get($name);
-		if ($value === $value2) {
+		if ($value1 === $value2) {
 			// exact match: show only #1
 			echo $value1;
-		} else if ($value == $value2) {
+		} else if ($value1 == $value2) {
 			// value match: show only #2
 			echo "<i>$value2</i>";
 		} else {
