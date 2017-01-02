@@ -2,7 +2,8 @@
 # variable.php: functions regarding the variable object
 
 require_once("connect.php");
-require_once("cooper.php");  # needed only for fix_cooper_data_count()
+require_once("cooper.php");		# needed only for fix_cooper_data_count()
+require_once("group_history.php");	# needed for count_groups_without_history()
 
 function variable_id($variable_name) {
 	if ($variable_name == "") {
