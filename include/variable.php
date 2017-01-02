@@ -296,6 +296,7 @@ function variable_update($name) {
 	);
 } # end function variable_update
 
+// Calculate whichever variable needs it most
 function variable_cron() {
 	variable_update(
 		variable_next()
@@ -304,7 +305,6 @@ function variable_cron() {
 
 // Return a list of all variable names
 function variable_list() {
-	
 	$sql = "SELECT variable_name
 		FROM land_variable
 		ORDER BY variable_name
@@ -327,7 +327,6 @@ function variable_list() {
 } // end function variable_list
 
 function variable_record( $name ) {
-
 	$sql = "SELECT *
 		FROM land_variable
 		WHERE variable_name = '$name' ";

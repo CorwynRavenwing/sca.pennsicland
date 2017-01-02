@@ -206,25 +206,27 @@ function nav_admin_menu($label_id = "adminmenu") {
   nav_menu_group_end();
 
   if ($r_admin) {
-    $count_users         = variable_get("count_users");
-    $count_logged_on     = variable_get("count_logged_on");
+    variable_cron();  // calculate a variable, if needed, every time the page loads
 
-    $count_group         = variable_get("count_group");
-    $count_group_reg     = variable_get("count_group_reg");
-    $count_group_unreg   = variable_get("count_group_unreg");
-    $count_group_check   = variable_get("count_group_check");
-    $count_group_nohist  = variable_get("count_group_nohist");
-    $count_group_bonus   = variable_get("count_group_bonus");
-    $count_group_compress= variable_get("count_group_compress");
-    $count_group_notes   = variable_get("count_group_notes");
-    $count_admin_notes   = variable_get("count_admin_notes");
-    $count_group_kingdom = variable_get("count_group_kingdom");
-    $count_known_people  = variable_get("count_known_people");
-    $count_unfixed_groups= variable_get("count_unfixed_groups");
-    $count_orphan_groups = variable_get("count_orphan_groups");
-    $count_people_prereg = variable_get("count_people_prereg");
+    $count_users          = variable_get("count_users");
+    $count_logged_on      = variable_get("count_logged_on");
 
-    # $count_xyzzy       = variable_get("xyzzy");
+    $count_group          = variable_get("count_group");
+    $count_group_reg      = variable_get("count_group_reg");
+    $count_group_unreg    = variable_get("count_group_unreg");
+    $count_group_check    = variable_get("count_group_check");
+    $count_group_nohist   = variable_get("count_group_nohist");
+    $count_group_bonus    = variable_get("count_group_bonus");
+    $count_group_compress = variable_get("count_group_compress");
+    $count_group_notes    = variable_get("count_group_notes");
+    $count_admin_notes    = variable_get("count_admin_notes");
+    $count_group_kingdom  = variable_get("count_group_kingdom");
+    $count_known_people   = variable_get("count_known_people");
+    $count_unfixed_groups = variable_get("count_unfixed_groups");
+    $count_orphan_groups  = variable_get("count_orphan_groups");
+    $count_people_prereg  = variable_get("count_people_prereg");
+
+    # $count_xyzzy        = variable_get("xyzzy");
 
     nav_menu_group_begin("USERS AND GROUPS",  "");
 
