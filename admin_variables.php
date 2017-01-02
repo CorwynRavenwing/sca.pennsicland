@@ -82,7 +82,7 @@ if (! $r_admin) {
 		if ($value1 === $value2) {
 			// exact match: show only #1
 			echo $value1;
-		} else if ($value1 == $value2) {
+		} else if ($value1 == (int)$value2) {
 			// value match: show only #2
 			echo "<i>$value2</i>";
 		} else {
