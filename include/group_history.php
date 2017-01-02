@@ -90,7 +90,6 @@ function get_years_in_block_count($group_id, $block_id) {
 } // end function get_years_in_block_count
 
 function get_total_years_in_system($group_id) {
-	
 	$sql = "SELECT Count(*) AS num
 			FROM land_group_history
 			WHERE group_id = '$group_id'
@@ -108,6 +107,27 @@ function get_total_years_in_system($group_id) {
 	
 	return $num;
 } // end function get_total_years_in_system
+
+function count_groups_without_history() {
+	$sql = "SELECT count(*) AS num
+		FROM land_groups G
+		LEFT JOIN land_group_history H ON(G.group_id=H.group_id)
+		WHERE H.group_id IS NULL
+		";
+	
+	print "<!-- count_groups_without_history SQL:\n$sql\n-->\n";
+	
+	$query = mysql_query($sql)
+		or die('Query failed: ' . mysql_error() . " at file " . __FILE__ . " line " . __LINE__);
+	
+	if ($result = mysql_fetch_assoc($query)) {
+		$num = $result['num'];
+	} else {
+		$num = "";
+	}
+	
+	return $num;
+} // end function count_groups_without_history
 
 function blockchoice_magic($label, $chosen, $next, $skipped, $free, $this) {
 	# print "<h5>DEBUG: called blockchoice_magic($label, chosen=$chosen, next=$next, skip=$skipped, free=$free, this=$this)</h5>\n";

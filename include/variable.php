@@ -227,7 +227,7 @@ function variable_calculate($name) {
 			break;
 
 		case 'count_group_nohist':
-			$value = "figure out how to count this";
+			$value = count_groups_without_history();
 			break;
 
 		case 'count_group_bonus':
