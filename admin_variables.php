@@ -84,10 +84,10 @@ if (! $r_admin) {
 			echo $value1;
 		} else if ($value1 == (int)$value2) {
 			// value match: show only #2
-			echo "<i>$value2</i>";
+			echo "<b>$value2</b>";
 		} else {
 			// non-match: show both
-			echo "$value1<br/><b>$value2</b>";
+			echo "<span style='color:red;'>$value1<br/><b>$value2</b></span>";
 		}
 		echo "</td>\n";
 		echo "    <td>$data[delay]</td>\n";
