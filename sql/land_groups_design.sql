@@ -17,6 +17,7 @@ CREATE TABLE `land_groups` (
 `compression_percentage` int(11) NOT NULL default '0'
 `on_site_representative` varchar(100) NOT NULL default ''
 `user_id` int(11) NOT NULL default '0'
+`user_id_prev` int(11) NOT NULL default '0'
 `exact_land_amount` int(11) NOT NULL default '0'
 `reserved_group` int(1) default NULL
 `pre_registration_count` int(11) NOT NULL default '0'
@@ -28,6 +29,7 @@ CREATE TABLE `land_groups` (
 `has_changed` tinyint(1) NOT NULL
 `block_choices_valid` tinyint(1) NOT NULL default '0'
 `status` int(1) NOT NULL default '2'
+`system_camp` int(1) NOT NULL default '0'
 `group_name_base` varchar(255) NOT NULL
 `group_metaphone` varchar(255) NOT NULL
 `group_soundex` varchar(255) NOT NULL

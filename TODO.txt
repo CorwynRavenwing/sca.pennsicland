@@ -148,9 +148,9 @@ TO DO:
 	NEXT YEAR: possible newsgroups for each block discussion?
 	
 	Must flag groups with a land agent but no campers.
---------------------------------------------------------------------------------
-From 2008-07-09:
 ================================================================================
+From 2008-07-09:
+--------------------------------------------------------------------------------
 Greetings,
 
 Can you change the Mail merge to include an auto CC to land 1 and Land 2 when the system is used?
@@ -254,8 +254,6 @@ Emerson
 ================================================================================
 Why does registering a group, set that group's final location to "", even if it had already been set correctly?  Was I resetting this to "" because the global set-everyone-to-"" at Jan 1st had not yet been written?
 ================================================================================
-The list of land administrators should be a flag on the user, not a hard-coded list in the program.  Maybe have a fallback-admin-if-we-lose-all-our-admins user hardcoded, but certainly not the entire list.
-================================================================================
 2008-07-16:
 ================================================================================
 How big a headache would it be to make a place where people could upload block map files?  Not asking you to do it as we have not decided if we want to pre approve maps yet.
@@ -302,33 +300,11 @@ From PW40 notes:
 
 ================================================================================
 P45 notes:
-* add a column in GROUPS called previous_userid or in HISTORY called userid.
-* during the yearly clear phase, update this data with the userid who registered the group.
-* during registration, have "register my normal group GROUPNAME" as the default, this succeeds automatically.
-* if instead they choose to create a group, this succeds automatically (modulo running through the group name approval process).
-* otherwise, if they select a different existing group to register, send an email to that group's prior userid and land1 telling them about it and asking permission.
-================================================================================
 * On the "prereg" page, on the table that is built for the campers in the group,
   could you add a column showing if the registrations is for 1 week or 2 weeks?
 * possibly also a column for adult / child / infant ?
 ================================================================================
 Greetings,
-
-
-Sure, we can discuss that.
-
-A) Block Map for assigned block:
-        not too difficult.
-B) Camp auth form:
-        where would that want to link to?
-        Also not too difficult.
-C) Gas Line waiver, only on such blocks:
-        you're right, the correct thing to do would be to put a "gas line?" yes/no flag on the block table.
-        I will need from you a list of those blocks, seeing as how there's no block-editing tool, so I'll have to do it.
-        I'll also need to know what to link this to as well.
-
-For all of these:
-        I will need the text you want each of the links to display, e.g. "Download Block Map".
 
 Regarding moving the website to somewhere else, I would need to hear where "somewhere else" is, and investigate whether it will work there.  The easiest way to do that would be to try setting it up there and verify if it works.  Sir Edward has been handling the DNS records, so I would need to know whether that is moving to somewhere else as well, and if so, where?  The database shouldn't have to move, seeing as how it is hosted on db.sca.org -- and the last time I spoke to them they said that there shouldn't be a problem with hosting the website on an sca.org owned device, but I didn't pursue that.  What is the impetus behind the move?
 
@@ -353,6 +329,10 @@ Thank You
 Sir Gunther KegSlayer
 Deputy Mayor Zoning & Planning (Land)
 Pennsic 45
+================================================================================
+================================================================================
+===			WORKING ON THESE RIGHT NOW:			     ===
+================================================================================
 ================================================================================
 Pennsiclandstaff@yahoogroups.com wrote on 06/10/2008 05:44:45 PM:
 
@@ -402,5 +382,16 @@ from 2008-06-18:
 --------------------------------------------------------------------------------
 THINGS INVOLVING SCHEMA CHANGES:
 	create flag "system_camp" on land_groups, default false, set to true for e.g. MERCHANT.  System camps are neither registered nor unregistered, they are a separate class of thing.  Do not allow people to choose system camps in the camp registration list.  Automatically register all system camps with the Coopers on Jan 1st.  Automatically link a fake land agent record to all system camps on Jan 1st?  Or, automatically delete all fake land agent records on Jan 1st.
+================================================================================
+From 2008-07-15:
+--------------------------------------------------------------------------------
+The list of land administrators should be a flag (admin_flag) on the user, not a hard-coded list in the program.  Maybe have a fallback-admin-if-we-lose-all-our-admins user hardcoded, but certainly not the entire list.
+================================================================================
+P45 notes:
+* add a column in GROUPS called user_id_prev
+* during the yearly clear phase, update this data with the userid who registered the group.
+* during registration, have "register my normal group GROUPNAME" as the default, this succeeds automatically.
+* if instead they choose to create a group, this succeds automatically (modulo running through the group name approval process).
+* otherwise, if they select a different existing group to register, send an email to that group's prior userid and land1 telling them about it and asking permission.
 ================================================================================
 ================================================================================

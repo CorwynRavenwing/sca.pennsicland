@@ -9,6 +9,7 @@ CREATE TABLE `user_information` (
 `password_salt` varchar(32) default NULL
 `password_hint` varchar(100) default NULL
 `password_answer` varchar(100) default NULL
+`admin_flag` varchar(1) NOT NULL default ''
 `last_update` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP
 `time_created` timestamp NOT NULL default '0000-00-00 00:00:00'
 `street_1` varchar(100) NOT NULL default ''
