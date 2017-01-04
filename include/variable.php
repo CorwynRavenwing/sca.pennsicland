@@ -2,7 +2,8 @@
 # variable.php: functions regarding the variable object
 
 require_once("connect.php");
-require_once("cooper.php");  # needed only for fix_cooper_data_count()
+require_once("cooper.php");		# needed only for fix_cooper_data_count()
+require_once("group_history.php");	# needed for count_groups_without_history()
 
 function variable_id($variable_name) {
 	if ($variable_name == "") {
@@ -227,7 +228,7 @@ function variable_calculate($name) {
 			break;
 
 		case 'count_group_nohist':
-			$value = "figure out how to count this";
+			$value = count_groups_without_history();
 			break;
 
 		case 'count_group_bonus':
@@ -295,6 +296,7 @@ function variable_update($name) {
 	);
 } # end function variable_update
 
+// Calculate whichever variable needs it most
 function variable_cron() {
 	variable_update(
 		variable_next()
@@ -303,7 +305,6 @@ function variable_cron() {
 
 // Return a list of all variable names
 function variable_list() {
-	
 	$sql = "SELECT variable_name
 		FROM land_variable
 		ORDER BY variable_name
@@ -326,7 +327,6 @@ function variable_list() {
 } // end function variable_list
 
 function variable_record( $name ) {
-
 	$sql = "SELECT *
 		FROM land_variable
 		WHERE variable_name = '$name' ";
