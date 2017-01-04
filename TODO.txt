@@ -138,55 +138,9 @@ Corwyn, can this information be generated in a list at the bottom of the Land on
 Christopher
 Angus
 =========================================================================================
-Pennsiclandstaff@yahoogroups.com wrote on 06/10/2008 05:44:45 PM:
-
-> Corwyn,
->
-> I see this group in the unregistered list, but I've been told that
-> people are finding it in the drop down menu of the Pennsic Pre-
-> registration form.
->
-> Is this a glitch?  Or can people pre-reg for a group that's not in the
-> current year's list of registered groups?
->
-> a very confused, Leri
-
-You are correct, we've had quite a lot of that this year.  It seems that
-unlike last year when Fred cleared out the database of camps from his site,
-this year he left in all the groups from last year.  So there are a few
-groups that have people registered to them that nobody has signed up as
-the land agent for.  From page Clean Up Prereg Count:
-
-Group Name                 People      On-site Rep Name
-Clan of the Arctic Winds       1     Michael Kiefer
-House Fabri                    2     Cadifor Cynan
-Iron Cross                     2     Cynthia Sues
-Lochleven                     52     Matt Adwin
-Mirage Forest                  9     Benjamin T Zonker
------
-Individual Camping            11
-Landgroup not Listed          22
-None Selected                 17
-Not filled in                 52
-MERCHANT                      50
-RV CAMPING                     9
-
-The top five are real camps that have campers but no land agent.  Freehold and
-Coldwood was in this list until recently, when their land agent did register
-them.  The bottom six are actually administrative groups that shouldn't have
-a land agent: we want to give them an imaginary land agent, preferably automatically,
-so that they don't show up in this list.
-
-Does anyone have an idea as to what we should do about these last few
-groups?
-
-- Corwyn
-=========================================================================================
 from 2008-06-18:
 --------------------------------------------------------------------------------
 TO DO:
-	deal with people in fictional groups (None Listed), find them homes: produce a tool that shows this list of groups in a helpful way
-	
 	admin_view_all_users: show groupname of group I'm responsible for, if any; add link allow editing of group info "EDIT groupname"; rename link in first column to "EDIT username"
 	
 	Jan 1 button: record this year's land agent id in a previous_user_id field right before you zero out this year's user_id.
@@ -195,9 +149,6 @@ TO DO:
 	
 	Must flag groups with a land agent but no campers.
 --------------------------------------------------------------------------------
-THINGS INVOLVING SCHEMA CHANGES:
-	create flag "system_camp" on land_groups, default false, set to true for e.g. MERCHANT.  System camps are neither registered nor unregistered, they are a separate class of thing.  Do not allow people to choose system camps in the camp registration list.  Automatically register all system camps with the Coopers on Jan 1st.  Automatically link a fake land agent record to all system camps on Jan 1st?  Or, automatically delete all fake land agent records on Jan 1st.
-================================================================================
 From 2008-07-09:
 ================================================================================
 Greetings,
@@ -403,5 +354,53 @@ Sir Gunther KegSlayer
 Deputy Mayor Zoning & Planning (Land)
 Pennsic 45
 ================================================================================
+Pennsiclandstaff@yahoogroups.com wrote on 06/10/2008 05:44:45 PM:
+
+> Corwyn,
+>
+> I see this group in the unregistered list, but I've been told that
+> people are finding it in the drop down menu of the Pennsic Pre-
+> registration form.
+>
+> Is this a glitch?  Or can people pre-reg for a group that's not in the
+> current year's list of registered groups?
+>
+> a very confused, Leri
+
+You are correct, we've had quite a lot of that this year.  It seems that
+unlike last year when Fred cleared out the database of camps from his site,
+this year he left in all the groups from last year.  So there are a few
+groups that have people registered to them that nobody has signed up as
+the land agent for.  From page Clean Up Prereg Count:
+
+Group Name                 People      On-site Rep Name
+Clan of the Arctic Winds       1     Michael Kiefer
+House Fabri                    2     Cadifor Cynan
+Iron Cross                     2     Cynthia Sues
+Lochleven                     52     Matt Adwin
+Mirage Forest                  9     Benjamin T Zonker
+-----
+Individual Camping            11
+Landgroup not Listed          22
+None Selected                 17
+Not filled in                 52
+MERCHANT                      50
+RV CAMPING                     9
+
+The top five are real camps that have campers but no land agent.  Freehold and
+Coldwood was in this list until recently, when their land agent did register
+them.  The bottom six are actually administrative groups that shouldn't have
+a land agent: we want to give them an imaginary land agent, preferably automatically,
+so that they don't show up in this list.
+
+Does anyone have an idea as to what we should do about these last few
+groups?
+
+- Corwyn
+=========================================================================================
+from 2008-06-18:
+--------------------------------------------------------------------------------
+THINGS INVOLVING SCHEMA CHANGES:
+	create flag "system_camp" on land_groups, default false, set to true for e.g. MERCHANT.  System camps are neither registered nor unregistered, they are a separate class of thing.  Do not allow people to choose system camps in the camp registration list.  Automatically register all system camps with the Coopers on Jan 1st.  Automatically link a fake land agent record to all system camps on Jan 1st?  Or, automatically delete all fake land agent records on Jan 1st.
 ================================================================================
 ================================================================================
