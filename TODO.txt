@@ -68,7 +68,7 @@ Corwyn, just note for the time line that sending these letters would be a functi
 
 Angus 
 =========================================================================================
-Regarding this task, the pre-reg numbers are stored in the history (except last year, P35, which I know I need to fix), so this information should be easily accessible even from on the system (e.g. on the block details view of the make-decisions page) as opposed to needing to be only in Excel.  Obviously an extract of all the groups whose growth is higher than N% is also possible and is more in keeping with what you're asking Finn for.
+Regarding this task, the pre-reg numbers are stored in the history (except last year, P35, which I know I need to fix), so this information should be easily accessible even from on the system (e.g. on the block details view of the make-decisions page) as opposed to needing to be only in Excel.  Obviously an extract of all the groups whose growth is higher than N% is also possible.
 
 - Corwyn
 =========================================================================================
@@ -137,19 +137,6 @@ Corwyn, can this information be generated in a list at the bottom of the Land on
 
 Christopher
 Angus
-=========================================================================================
-In a message dated 6/9/2008 11:38:03 A.M. Eastern Daylight Time, Warren.Harmon@onqlegrand.com writes:
-Angus -
-
-> Lets get the registration program shut down when you can.  The last
-> two Kingdoms need to contact us.
-
-All three leftover kingdoms have now registered.  On that subject:
-
-The following groups named "*populace*" have not registered:
-      Populace of Ealdormere
-      Populace of Caid
-      Populace of Meridies
 =========================================================================================
 Pennsiclandstaff@yahoogroups.com wrote on 06/10/2008 05:44:45 PM:
 
@@ -416,33 +403,5 @@ Sir Gunther KegSlayer
 Deputy Mayor Zoning & Planning (Land)
 Pennsic 45
 ================================================================================
-P46 Per Gunther:
-Change to index.php
-
-    Land Agents should be in touch with everyone who will camp with their group. The group will be allocated space based on the number of paid, pre-registered campers.
-
-    All Land Agents must check in at both the Troll and the Land Office. Land Agents or their registered Proxy must be available to negotiate and sign off on their block map sometime between Friday, July 28, 2017 at 9:00 am and Saturday, July 29, 2017 at 10:00 am.Â  After 10am Land One may negotiate with other land agents to finalize your group's location on the block.
-
-Land Staff Hours of Operations for Land Grab
-
-Friday, July 28, 2017: 9:00 am - 11:00 pm
-
-    Land Agent Packet Pick-up, Land Grab General Processing, and Approved Block Land Agent Entry
-
- Saturday, July 29, 2017: 8:00 am - 2:00 pm
-
-    8:00 am until 12:00 noon: Land Grab General Processing, and Approved Block Land Agent Entry
-
-    12:00 noon until 2:00 pm: General Entry and Land Staff Office Available for Questions
-
-Sunday, July 30, 2017: 10:00 am to 12:00 Noon
-
-    Land Staff Office Available for Questions
-================================================================================
-P46 Per Gunther:
-can you adjust the epickens account to have admin rights that account is Land2 this year
-================================================================================
-P46 Per Gunther:
-Change to xyzzy.php
 ================================================================================
 ================================================================================
