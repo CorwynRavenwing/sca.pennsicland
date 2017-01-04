@@ -20,6 +20,17 @@ nav_right_begin();
 if (! $r_admin) {
 	print "<h2>Please log on as Pennsic Land staff first.</h2>\n";
 } else {
+	print("<h2>Creating land_groups.system_group data</h2>\n");
+	execute_query("UPDATE land_groups SET system_group = 'A' WHERE group_name = 'Individual Camping'");
+	execute_query("UPDATE land_groups SET system_group = 'A' WHERE group_name = 'MERCHANT'");
+	execute_query("UPDATE land_groups SET system_group = 'A' WHERE group_name = 'RV CAMPING'");
+
+	execute_query("UPDATE land_groups SET system_group = 'F' WHERE group_name = 'Landgroup not Listed'");
+	execute_query("UPDATE land_groups SET system_group = 'F' WHERE group_name = 'None Selected'");
+	execute_query("UPDATE land_groups SET system_group = 'F' WHERE group_name = 'Not filled in'");
+	execute_query("UPDATE land_groups SET system_group = 'F' WHERE group_name = 'Did not contact land agent'");
+	
+	/*
 	print("<h2>Creating land_blocks.on_gas_line data</h2>\n");
 	// Blocks the gas line cuts through:
 	execute_query("UPDATE land_blocks SET on_gas_line = '1' WHERE block_name = 'E11'");
@@ -39,16 +50,7 @@ if (! $r_admin) {
 
 	print("<h2>Updating land_blocks size data</h2>\n");
 	execute_query("UPDATE land_blocks SET total_square_footage = '46631', campable_square_footage = '46631', description = 'P45: campable down 5212 per Gunther', hide = '0', reserved = '0' WHERE block_name = 'N40'");
-
-	execute_query("UPDATE land_blocks SET campable_square_footage = '79178', description = 'P45: campable down 2000 (road) per Gunther' WHERE block_name = 'E23'");
-
-	execute_query("UPDATE land_blocks SET campable_square_footage = '69596', description = 'P45: campable down 9588 (showers) per Gunther' WHERE block_name = 'E17'");
-
-	execute_query("UPDATE land_blocks SET campable_square_footage = '69646', description = 'P45: campable up 7163 (showers) per Gunther' WHERE block_name = 'E02'");
-
-	print("<h2>Updating group history and mail merge data</h2>\n");
-	execute_query("UPDATE land_group_history SET group_id = 10538 WHERE group_id = 10014");	// rename "House Neptune's IcePhoenix Rising" to "The Oracle of the Duckpond"
-	execute_query("UPDATE mailmerge_recipients SET group_id = 10538 WHERE group_id = 10014");	// rename "House Neptune's IcePhoenix Rising" to "The Oracle of the Duckpond"
+	*/
 
 	print("<h2>Done.</h2>\n");
 } // endif admin
