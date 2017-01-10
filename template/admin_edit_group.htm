@@ -228,7 +228,7 @@
 <tr>
   <td height="38" valign="top"  >
   <font face="Arial, Helvetica, sans-serif" size="3">System Group</font><br>
-  <font face="Arial, Helvetica, sans-serif" size="2">(A=Admin; F=Fictional)</font>
+  <font face="Arial, Helvetica, sans-serif" size="2">(not editable)</font>
   </td>
   <td valign="top" width="*"  >
   <!-- TMPL_VAR NAME=system_group_variable_string -->
@@ -374,6 +374,23 @@
   <a href="admin_masquerade.php?id=<!-- TMPL_VAR NAME=user_id_variable_string -->" target="_blank">BECOME&nbsp;USER</a>
   &nbsp;
   <!-- TMPL_VAR NAME=user_id_error_string -->
+  </td>
+</tr>
+
+<tr>
+  <td height="35" valign="top">
+  <font face="Arial, Helvetica, sans-serif" size="3">Prior UserID</font><br>
+  <font size="2" face="Arial, Helvetica, sans-serif" >(not editable)</font>
+  </td>
+  <td valign="top" colspan="2">
+  <span style="size:1.5em;">
+    <!-- TMPL_VAR NAME=user_id_prior_string -->
+  </span>
+  &nbsp;
+  <a href="admin_users.php?id=<!-- TMPL_VAR NAME=user_id_prior_string -->" target="_blank">Edit&nbsp;User</a>
+  &nbsp;
+  <a href="admin_masquerade.php?id=<!-- TMPL_VAR NAME=user_id_prior_string -->" target="_blank">BECOME&nbsp;USER</a>
+  &nbsp;
   </td>
 </tr>
 
