@@ -240,6 +240,7 @@ if (! $r_admin) {
   template_param("groupname_variable_string"             , $group_rec['group_name']            );
   template_param("user_id_variable_string"               , $group_rec['user_id']               );
   template_param("time_registered_variable_string"       , $group_time_registered              );
+  template_param("system_group_variable_string",         , $group_rec['system_group']          );
   template_param("reserved_group_variable_string"        , $group_rec['reserved_group']        );
   template_param("new_group_variable_string"             , $group_rec['new_group']             );
   template_param("staff_group_variable_string"           , $group_rec['staff_group']           );
