@@ -381,7 +381,12 @@ groups?
 from 2008-06-18:
 --------------------------------------------------------------------------------
 THINGS INVOLVING SCHEMA CHANGES:
-	create flag "system_camp" on land_groups, default false, set to true for e.g. MERCHANT.  System camps are neither registered nor unregistered, they are a separate class of thing.  Do not allow people to choose system camps in the camp registration list.  Automatically register all system camps with the Coopers on Jan 1st.  Automatically link a fake land agent record to all system camps on Jan 1st?  Or, automatically delete all fake land agent records on Jan 1st.
+* create flag "system_camp" on land_groups, default false, set to true for e.g. MERCHANT.
+* System camps are neither registered nor unregistered, they are a separate class of thing.
+* Do not allow people to choose system camps in the camp registration list.
+* Automatically register all system camps with the Coopers on Jan 1st.
+* Automatically link a fake land agent record to all system camps on Jan 1st?
+* Or, automatically delete all fake land agent records at EOY
 ================================================================================
 From 2008-07-15:
 --------------------------------------------------------------------------------

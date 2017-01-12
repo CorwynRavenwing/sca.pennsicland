@@ -359,21 +359,21 @@ nav_end();
 
 function admin_group_type_list() {
   return array(
-    "Admin"    => "Groups used for administrative purposes",
-    "FICTIONAL"  => "Groups that collectively mean 'I am in the wrong place'",
-    "ORPHAN"  => "Normal groups missing their land agents",
+    "Admin"     => "Groups used for administrative purposes",
+    "FICTIONAL" => "Groups that collectively mean 'I am in the wrong place'",
+    "ORPHAN"    => "Normal groups missing their land agents",
   );
 } // end function admin_group_type_list
 
 function admin_group_type($group) {
-  if ($group == "Individual Camping")    { return "Admin"; }
-  if ($group == "MERCHANT")      { return "Admin"; }
-  if ($group == "RV CAMPING")      { return "Admin"; }
+  if ($group == "Individual Camping")         { return "Admin"; }
+  if ($group == "MERCHANT")                   { return "Admin"; }
+  if ($group == "RV CAMPING")                 { return "Admin"; }
 
-  if ($group == "Landgroup not Listed")    { return "FICTIONAL"; }
-  if ($group == "None Selected")      { return "FICTIONAL"; }
-  if ($group == "Not filled in")      { return "FICTIONAL"; }
-  if ($group == "Did not contact land agent")  { return "FICTIONAL"; }
+  if ($group == "Landgroup not Listed")       { return "FICTIONAL"; }
+  if ($group == "None Selected")              { return "FICTIONAL"; }
+  if ($group == "Not filled in")              { return "FICTIONAL"; }
+  if ($group == "Did not contact land agent") { return "FICTIONAL"; }
 
   /* otherwise */
   return "ORPHAN";
