@@ -227,8 +227,6 @@ if (! $r_admin) {
     </td>
   </tr>
           <?
-        } else {
-          print "DEBUG: skip line, '$group_type' != '$this_type'<br/>";
         } // endif type
       } // next result
 
