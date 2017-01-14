@@ -88,6 +88,9 @@ if (! $r_admin) {
     print("<h2>Creating user $create_agent (id $new_user_id): linked to group $link_group (id $new_groupid)</h2>");
   } // endif $create_agent or $link_group
 
+  $admin_group_type_list         = admin_group_type_list();
+  $admin_group_type_descriptions = admin_group_type_descriptions();
+
   $sql = "SELECT
         c.group_name,
         c.pre_registration_count
@@ -184,9 +187,6 @@ if (! $r_admin) {
     </td>
   </tr>
     <?
-    $admin_group_type_list         = admin_group_type_list();
-    $admin_group_type_descriptions = admin_group_type_descriptions();
-
     foreach ( $admin_group_type_list as $this_type => $type_name ) {
       $type_description = $admin_group_type_descriptions[ $this_type ];
       ?>
@@ -204,7 +204,7 @@ if (! $r_admin) {
         $group_name  = $result['group_name'];
         $group_count = $result['campers'];
         $rep_name    = $result['on_site_representative'];
-        $group_type  = admin_group_type($group_name);
+        $group_type  = $result['system_group'];
         if ($group_type == $this_type) {
           $count++;
           $total += $group_count;
@@ -285,23 +285,24 @@ if (! $r_admin) {
     <td>Group Type</td>
   </tr>
     <?
-    foreach ( admin_group_type_list() as $this_type => $type_description ) {
+    foreach ( $admin_group_type_list as $this_type => $type_name ) {
+      $type_description = $admin_group_type_descriptions[ $this_type ];
       ?>
   <tr bgcolor="#b37300"> <!-- dark orange -->
     <td colspan="4" align="center" style="font-weight:bold">
       <a title="<?=$type_description?>">
-        Type <?=$this_type?>
+        Type <?=$type_name?>
       </a>
     </td>
   </tr>
       <?
       $count = 0;
       while ($result = mysql_fetch_assoc($query)) {
-        $group_id = $result['group_id'];
-        $group_name = $result['group_name'];
+        $group_id    = $result['group_id'];
+        $group_name  = $result['group_name'];
         $group_count = $result['campers'];
-        $rep_name = $result['on_site_representative'];
-        $group_type = admin_group_type($group_name);
+        $rep_name    = $result['on_site_representative'];
+        $group_type  = $result['system_group'];
         if ($group_type == $this_type) {
           $count++;
           $total += $group_count;
@@ -362,18 +363,4 @@ nav_footer_panix();
 nav_footer_disclaimer();
 
 nav_end();
-
-function admin_group_type($group) {
-  if ($group == "Individual Camping")         { return "Admin"; }
-  if ($group == "MERCHANT")                   { return "Admin"; }
-  if ($group == "RV CAMPING")                 { return "Admin"; }
-
-  if ($group == "Landgroup not Listed")       { return "FICTIONAL"; }
-  if ($group == "None Selected")              { return "FICTIONAL"; }
-  if ($group == "Not filled in")              { return "FICTIONAL"; }
-  if ($group == "Did not contact land agent") { return "FICTIONAL"; }
-
-  /* otherwise */
-  return "ORPHAN";
-} // end admin_group_type
 ?>
