@@ -160,6 +160,7 @@ if (! $r_admin) {
         group_name,
         sum(pre_registration_count) AS campers,
         on_site_representative,
+        system_group,
         pre_registration_count > 0 AS has_campers,
         user_id != 0 AS has_agent
       FROM land_groups
@@ -259,6 +260,7 @@ if (! $r_admin) {
         group_name,
         sum(pre_registration_count) AS campers,
         on_site_representative,
+        system_group,
         pre_registration_count > 0 AS has_campers,
         g.user_id != 0 AS has_agent,
         (u.alias LIKE 'Admin Account:%') AS admin_account
