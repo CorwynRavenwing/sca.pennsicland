@@ -44,9 +44,11 @@ if (! $r_admin) {
     $total = 0;
     while ($result = mysql_fetch_assoc($query)) {
       $class = (++$count % 2) ? "odd" : "even";
-      $id           = $result['group_id'];
-      $group_name   = $result['group_name'];
-      $system_group = $result['system_group'];
+      $id               = $result['group_id'];
+      $group_name       = $result['group_name'];
+      $system_group     = $result['system_group'];
+      $type_name        = $admin_group_type_list[ $system_group ];
+      $type_description = $admin_group_type_descriptions[ $system_group ];
       ?>
   <tr class='<?=$class?>'>
     <td align='right'><?=$id?></td>
@@ -55,7 +57,11 @@ if (! $r_admin) {
         <?=$group_name?>
       </a>
     </td>
-    <td align='center'><?=$admin_group_type_list[ $system_group ]?></td>
+    <td align='center'>
+      <a title="<?=$type_description?>">
+    	<?=$type_name?>
+      </a>
+    </td>
   </tr>
       <?
     } // next result

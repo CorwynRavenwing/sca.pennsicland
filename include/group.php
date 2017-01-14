@@ -428,9 +428,9 @@ function admin_group_type_list() {
 
 function admin_group_type_descriptions() {
   return array(
-    "Admin"     => "Groups used for administrative purposes",
-    "Fictional" => "Groups that collectively mean 'I am in the wrong place'",
-    "ORPHAN"    => "Normal groups missing their land agents",
+    "A" => "Groups used for administrative purposes",
+    "F" => "Groups that collectively mean 'I am in the wrong place'",
+    ""  => "Normal groups missing their land agents",
   );
 } // end function admin_group_type_descriptions
 
