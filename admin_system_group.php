@@ -37,6 +37,9 @@ if (! $r_admin) {
     <td>System Group</td>
   </tr>
     <?
+    $admin_group_type_list         = admin_group_type_list();
+    $admin_group_type_descriptions = admin_group_type_descriptions();
+
     $count = 0;
     $total = 0;
     while ($result = mysql_fetch_assoc($query)) {
@@ -52,7 +55,7 @@ if (! $r_admin) {
         <?=$group_name?>
       </a>
     </td>
-    <td align='center'><?=$system_group?></td>
+    <td align='center'><?=$admin_group_type_list[ $system_group ]?></td>
   </tr>
       <?
     } // next result

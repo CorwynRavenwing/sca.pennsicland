@@ -184,23 +184,27 @@ if (! $r_admin) {
     </td>
   </tr>
     <?
-    foreach ( admin_group_type_list() as $this_type => $type_description ) {
+    $admin_group_type_list         = admin_group_type_list();
+    $admin_group_type_descriptions = admin_group_type_descriptions();
+
+    foreach ( $admin_group_type_list as $this_type => $type_name ) {
+      $type_description = $admin_group_type_descriptions[ $this_type ];
       ?>
   <tr bgcolor="#858599"> <!-- dark blue -->
     <td colspan="4" align="center" style="font-weight:bold">
       <a title="<?=$type_description?>">
-        Type <?=$this_type?>
+        Type <?=$type_name?>
       </a>
     </td>
   </tr>
       <?
       $count = 0;
       while ($result = mysql_fetch_assoc($query)) {
-        $group_id = $result['group_id'];
-        $group_name = $result['group_name'];
+        $group_id    = $result['group_id'];
+        $group_name  = $result['group_name'];
         $group_count = $result['campers'];
-        $rep_name = $result['on_site_representative'];
-        $group_type = admin_group_type($group_name);
+        $rep_name    = $result['on_site_representative'];
+        $group_type  = admin_group_type($group_name);
         if ($group_type == $this_type) {
           $count++;
           $total += $group_count;
@@ -356,14 +360,6 @@ nav_footer_panix();
 nav_footer_disclaimer();
 
 nav_end();
-
-function admin_group_type_list() {
-  return array(
-    "Admin"     => "Groups used for administrative purposes",
-    "FICTIONAL" => "Groups that collectively mean 'I am in the wrong place'",
-    "ORPHAN"    => "Normal groups missing their land agents",
-  );
-} // end function admin_group_type_list
 
 function admin_group_type($group) {
   if ($group == "Individual Camping")         { return "Admin"; }
