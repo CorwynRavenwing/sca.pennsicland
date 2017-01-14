@@ -32,6 +32,7 @@ if (! $r_admin) {
 	variable_create('count_group_compress',	3600,	'Groups with compression');
 	variable_create('count_group_notes',	 600,	'Groups with notes from Land Agent');
 	variable_create('count_admin_notes',	3600,	'Groups with notes from Admin staff');
+	variable_create('count_group_system',	3600,	'System Groups');
 	variable_create('count_group_kingdom',	3600,	'Groups with a fixed size');
 	variable_create('count_known_people',	 600,	'Campers in registered groups');
 	variable_create('count_unknown_people',	3600,	'Campers in unregistered groups');

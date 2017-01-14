@@ -247,6 +247,10 @@ function variable_calculate($name) {
 			$value = count_where("land_groups", "other_admin_information!= '' ");
 			break;
 
+		case 'count_group_system':
+			$value = count_where("land_groups", "system_group!='' ");
+			break;
+
 		case 'count_group_kingdom':
 			$value = count_where("land_groups", "exact_land_amount      != 0");
 			break;
