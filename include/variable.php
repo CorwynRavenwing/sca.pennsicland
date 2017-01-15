@@ -369,4 +369,6 @@ function variable_init() {
 # variable_create('xyzzy',    3600, 'xyzzy');
 } // end function variable_init
 
+// call init function when this file is included
+variable_init();
 ?>
