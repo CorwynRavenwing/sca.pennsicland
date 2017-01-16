@@ -221,6 +221,7 @@ function nav_admin_menu($label_id = "adminmenu") {
     $count_group_notes    = variable_get("count_group_notes");
     $count_admin_notes    = variable_get("count_admin_notes");
     $count_group_system   = variable_get("count_group_system");
+    $count_group_prev     = variable_get("count_group_prev");
     $count_group_kingdom  = variable_get("count_group_kingdom");
     $count_known_people   = variable_get("count_known_people");
     $count_unfixed_groups = variable_get("count_unfixed_groups");
@@ -245,6 +246,7 @@ function nav_admin_menu($label_id = "adminmenu") {
     nav_menu_active_count("w/NOTES",          "admin_notes.php",          $count_group_notes);
     nav_menu_active_count("w/NOTES (admin)",  "admin_notes_2.php",        $count_admin_notes);
     nav_menu_active_count("w/SYSTEM FLAG",    "admin_system_group.php",   $count_group_system);
+    nav_menu_active_count("w/PREV USERID",    "admin_previous.php",       $count_group_prev);
     nav_menu_active_count("w/BONUSES",        "admin_bonus.php",          $count_group_bonus);
     nav_menu_active_count("w/COMPRESS",       "admin_compress.php",       $count_group_compress);
     nav_menu_active_count("w/KINGDOMS",       "admin_kingdom.php",        $count_group_kingdom);
