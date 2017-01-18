@@ -44,92 +44,92 @@ if (! $r_admin) {
 
   if ($action or $override) {
     if (! $w_admin) {
-	print "<h2>Your access level does not allow this action.</h2>\n";
-	$action = "";
-	$override = "";
+      print "<h2>Your access level does not allow this action.</h2>\n";
+      $action = "";
+      $override = "";
     } // endif w_admin
   } // endif action or override
 
-    if ($action or $override) {
+  if ($action or $override) {
 
-  print("<h3>UPDATING RECORD ...</h3>\n");
+    print("<h3>UPDATING RECORD ...</h3>\n");
 
-  $new_username              = @$_POST['username'];
-  $new_password_1            = @$_POST['password_1'];
-  $new_password_2            = @$_POST['password_2'];
-  $new_password_hint         = stripslashes( @$_POST['password_hint'] );
-  $new_password_hint_answer  = stripslashes( @$_POST['password_hint_answer'] );
-  $new_legal_name            = @$_POST['legal_name'];
-  $new_sca_name              = @$_POST['sca_name'];
-  $new_address_line_1        = @$_POST['address_line_1'];
-  $new_address_line_2        = @$_POST['address_line_2'];
-  $new_state                 = @$_POST['state'];
-  $new_country               = @$_POST['country'];
-  $new_city                  = @$_POST['city'];
-  $new_postal_code           = @$_POST['postal_code'];
-  $new_phone_number          = @$_POST['phone_number'];
-  $new_extension             = @$_POST['extension'];
-  $new_email_address         = @$_POST['email_address'];
+    $new_username              = @$_POST['username'];
+    $new_password_1            = @$_POST['password_1'];
+    $new_password_2            = @$_POST['password_2'];
+    $new_password_hint         = stripslashes( @$_POST['password_hint'] );
+    $new_password_hint_answer  = stripslashes( @$_POST['password_hint_answer'] );
+    $new_legal_name            = @$_POST['legal_name'];
+    $new_sca_name              = @$_POST['sca_name'];
+    $new_address_line_1        = @$_POST['address_line_1'];
+    $new_address_line_2        = @$_POST['address_line_2'];
+    $new_state                 = @$_POST['state'];
+    $new_country               = @$_POST['country'];
+    $new_city                  = @$_POST['city'];
+    $new_postal_code           = @$_POST['postal_code'];
+    $new_phone_number          = @$_POST['phone_number'];
+    $new_extension             = @$_POST['extension'];
+    $new_email_address         = @$_POST['email_address'];
 
-  $username = $user_record['user_name'];
-  if ($new_username != $username) {
+    $username = $user_record['user_name'];
+    if ($new_username != $username) {
       if ($error = invalid_username($new_username)) {
-    $errors_found++;
-    template_param("username_error_string",  error_string("invalid username: $error") );
+        $errors_found++;
+        template_param("username_error_string",  error_string("invalid username: $error") );
       } elseif (username_in_use($new_username)) {
-    $errors_found++;
-    template_param("username_error_string",  error_string("invalid username: already used") );
+        $errors_found++;
+        template_param("username_error_string",  error_string("invalid username: already used") );
       }
-  }
-
-  if( (! $new_password_1) and (! $new_password_2) ) {
-    # do nothing
-  } elseif( $new_password_1 != $new_password_2 ) {
-    $errors_found++;
-    template_param("password_2_error_string", error_string("Passwords do not match") );
-  } elseif ($error = invalid_password($new_password_1)) {
-    $errors_found++;
-    template_param("password_2_error_string", error_string("invalid password; $error") );
-  }
-
-  if($error = invalid_email_address( $new_email_address )) {
-    $errors_found = 1;
-    template_param("email_address_error_string", error_string("invalid email address: $error") );
-  }
-
-  # validate page if any errors found
-  if( $errors_found and (! $override) ) {
-    template_param("top_message", top_message() );
-
-  } else {
-    update_user($new_user_id, $new_legal_name, $new_sca_name,
-      $new_address_line_1, $new_address_line_2, $new_city,
-      $new_state, $new_postal_code, $new_country,
-      $new_phone_number, $new_extension, $new_email_address);
-
-    if ($new_password_1) {
-      update_user_password($new_user_id, $new_password_1);
     }
 
-    update_user_private($new_user_id, $new_username,
-      $new_password_hint, $new_password_hint_answer);
+    if( (! $new_password_1) and (! $new_password_2) ) {
+      # do nothing
+    } elseif( $new_password_1 != $new_password_2 ) {
+      $errors_found++;
+      template_param("password_2_error_string", error_string("Passwords do not match") );
+    } elseif ($error = invalid_password($new_password_1)) {
+      $errors_found++;
+      template_param("password_2_error_string", error_string("invalid password; $error") );
+    }
 
-    $user_record['user_name']        = $new_username;
-    $user_record['password_hint']    = $new_password_hint;
-    $user_record['password_answer']  = $new_password_hint_answer;
-    $user_record['legal_name']       = $new_legal_name;
-    $user_record['alias']            = $new_sca_name;
-    $user_record['street_1']         = $new_address_line_1;
-    $user_record['street_2']         = $new_address_line_2;
-    $user_record['state']            = $new_state;
-    $user_record['country']          = $new_country;
-    $user_record['city']             = $new_city;
-    $user_record['postal_code']      = $new_postal_code;
-    $user_record['phone_number']     = $new_phone_number;
-    $user_record['extension']        = $new_extension;
-    $user_record['email_address']    = $new_email_address;
-  } // endif errors
-    } // endif submit
+    if($error = invalid_email_address( $new_email_address )) {
+      $errors_found = 1;
+      template_param("email_address_error_string", error_string("invalid email address: $error") );
+    }
+
+    # validate page if any errors found
+    if( $errors_found and (! $override) ) {
+      template_param("top_message", top_message() );
+
+    } else {
+      update_user($new_user_id, $new_legal_name, $new_sca_name,
+        $new_address_line_1, $new_address_line_2, $new_city,
+        $new_state, $new_postal_code, $new_country,
+        $new_phone_number, $new_extension, $new_email_address);
+
+      if ($new_password_1) {
+        update_user_password($new_user_id, $new_password_1);
+      }
+
+      update_user_private($new_user_id, $new_username,
+        $new_password_hint, $new_password_hint_answer);
+
+      $user_record['user_name']        = $new_username;
+      $user_record['password_hint']    = $new_password_hint;
+      $user_record['password_answer']  = $new_password_hint_answer;
+      $user_record['legal_name']       = $new_legal_name;
+      $user_record['alias']            = $new_sca_name;
+      $user_record['street_1']         = $new_address_line_1;
+      $user_record['street_2']         = $new_address_line_2;
+      $user_record['state']            = $new_state;
+      $user_record['country']          = $new_country;
+      $user_record['city']             = $new_city;
+      $user_record['postal_code']      = $new_postal_code;
+      $user_record['phone_number']     = $new_phone_number;
+      $user_record['extension']        = $new_extension;
+      $user_record['email_address']    = $new_email_address;
+    } // endif errors
+  } // endif submit
 
   if ($errors_found) {
     template_param("submit_override_style",    "display:inline"    );
@@ -172,9 +172,9 @@ if (! $r_admin) {
 
   template_param("become_user_linkcode",                  $become_user                     );
 
-  $new_group_id  = user_group($new_user_id);
-  $new_group_name  = group_name($new_group_id);
-  // $group_name = "" unless defined($group_name);
+  $new_group_id   = user_group($new_user_id);
+  $new_group_name = group_name($new_group_id);
+
   if (! $new_group_name) {
     $register_group_link = "choose_group.php?admin_user_id=$new_user_id";   // NEED TO WRITE THIS
     $register_group_href = "<a href='$register_group_link' target='_blank'><b>REGISTER GROUP</b></a>";
@@ -262,9 +262,9 @@ if (! $r_admin) {
     if ($search == $s) {
       ?>
   (<?=$s?>)
-      <?
-    } else {
-      ?>
+    <?
+  } else {
+    ?>
   <b><a href='?search=<?=urlencode($s)?>'><?=$s?></a></b>
       <?
     } // endif search
@@ -272,7 +272,7 @@ if (! $r_admin) {
   </td>
     <?
   } // next s
-    ?>
+  ?>
   </tr>
 </table>
 
